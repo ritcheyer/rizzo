@@ -25,12 +25,8 @@
 
       = yield
 
-    .wrapper.wrapper--footer
-      = yield :breadcrumbs
-      = render 'layouts/custom/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
-
-  = render 'layouts/partials/snippets/one_by_one'
-
+    = yield :breadcrumbs
+    = render 'layouts/custom/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
 
   - if defined? Variant
     /
