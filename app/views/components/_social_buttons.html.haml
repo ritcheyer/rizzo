@@ -2,6 +2,7 @@
   show = properties[:show] || %w(facebook twitter google-plus stumbleupon)
   show = show - (properties[:hide] || [])
   encoded_url = CGI.escape(properties[:url])
+  image_url = CGI.escape(properties[:image_url])
   tweet = properties[:tweet] || encoded_url
 
 .nav--inline
@@ -31,6 +32,6 @@
         %span.social__icon.icon--stumbleupon.icon--white
 
     - if show.include? 'pinterest'
-      %a.social__item.social__item--pinterest{ href: "http://pinterest.com/pin/create/button/?url=#{URI.encode(request.original_url)}&media=#{URI.encode(properties[:url])}&description=#{properties[:description]}", target: "blank" }
+      %a.social__item.social__item--pinterest{ href: "http://pinterest.com/pin/create/button/?url=#{URI.encode(request.original_url)}&media=#{image_url}&description=#{properties[:description]}", target: "blank" }
         %span.accessibility Pin this image
         %span.social__icon.icon--pinterest.icon--white
