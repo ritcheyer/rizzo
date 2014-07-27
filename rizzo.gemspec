@@ -9,6 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "http://www.lonelyplanet.com"
 
   gem.files         = `git ls-files`.split($\)
+  gem.files.reject! { |file| file.match(/^git\-hooks\//) }
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(spec|features)/})
   gem.name          = "rizzo"
