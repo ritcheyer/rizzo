@@ -15,7 +15,7 @@
     .row.row--content{id: @no_wallpaper ? "" : "js-row--content"}
       - if (yield :secondary).present?
         .row.row--secondary#js-secondary-nav
-          .row__inner.row__inner--secondary
+          .row__inner.row__inner--secondary.row__inner--full-width
             = yield :secondary
       - if (yield :alerts).present?
         .row.row--alerts

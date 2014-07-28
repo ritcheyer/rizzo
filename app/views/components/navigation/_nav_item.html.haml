@@ -1,0 +1,16 @@
+- nav_type = defined?(primary) ? defined?(has_submenu) ? "" : "nav__item--primary" : "nav__item--secondary"
+- item_classes = defined?(submenu_item) ? "nav__submenu__item" : nav_type
+
+- if item[:slug]
+
+  %a.nav__item.js-nav-item{ data: item[:analytics], class: [item_classes, active, item[:extra_class]], href: item[:slug], itemprop: "url", aria: { label: active.present? ? "Current page" : nil } }<
+
+    %div{itemprop: "name", class: [item[:icon_class] ? "#{item[:icon_class]}" : false, defined?(submenu_item) ? "" : "wv--hidden--before"] }
+      = item[:title]
+
+  - if item[:submenu]
+    = render "components/navigation/submenu", item: item, show_responsive_toggle: !defined?(primary)
+
+- else
+  %span.nav__item
+    = item[:title]

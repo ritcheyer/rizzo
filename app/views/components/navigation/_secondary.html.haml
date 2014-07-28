@@ -19,9 +19,9 @@
   %nav.wv--split--right.wv--block.nav--secondary.js-secondary-nav-other-menu(role="navigation" aria-label="Category navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
     %h6.accessibility Category navigation
 
-    .wv--nav--inline{ class: !!responsive_items ? "wv--block" : "" }
+    .wv--nav--inline.split--right__inner{ class: !!responsive_items ? "wv--block" : "" }
       = render :partial => "components/navigation/secondary_items", locals: { items: properties[:items] }
-    
+
     - if !!responsive_items && responsive_items.length > 0
-      .wv--hidden-block
+      .wv--hidden-block.split--right__inner
         = render :partial => "components/navigation/secondary_items", locals: { items: responsive_items }

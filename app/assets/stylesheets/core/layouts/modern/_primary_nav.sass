@@ -31,10 +31,6 @@
   width: 82px
   vertical-align: top
   padding-top: 2px
-  .responsive &
-    margin-left: 2%
-    +respond-to(wide-view)
-      margin-left: 0
 
 // ----------------------------------------------------------------------------
 //
@@ -75,7 +71,6 @@
     +font-size(18)
     padding: 17px 10px
     border-bottom: 1px solid $offscreen-nav-border
-    padding-left: 60px
     position: relative
     text-transform: none
     &:before
@@ -196,3 +191,31 @@
     text-transform: lowercase
     padding-left: 1px
     padding-right: 1px
+
+
+.nav__item
+  [class*='icon--']
+    position: relative
+    &:before
+      position: absolute
+
+  &.nav__item--primary [class*='icon--']
+    padding-left: 60px
+    &:before
+      +size(22px)
+      top: -3px
+      left: 5px
+
+    +respond-to(wide-view)
+      padding-left: 0
+
+  &.nav__submenu__item [class*='icon--']
+    padding-left: 30px
+    &:before
+      +size(20px)
+      top: -4px
+      left: -2px
+
+    +respond-to(wide-view)
+      &:before
+        left: 0
