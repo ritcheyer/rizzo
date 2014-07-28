@@ -31,12 +31,15 @@
     padding: 0
     +respond-to(wide-view)
       +vertically-center(30)
+      +z-layer(middle)
+      position: absolute
+      background: white
       max-width: 340px
       margin-bottom: 0
       margin-top: 0
       padding: 0
-  &:hover
-    max-width: none
+      &:hover
+        max-width: none
 
 .row__title--secondary__full
   width: 100%
