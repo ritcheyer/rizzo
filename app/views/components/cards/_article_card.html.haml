@@ -11,8 +11,8 @@
   
 %article.js-card{class: css_classes}
   - if properties[:open_layer]  
-    - link_properties =  {href: properties[:url], class: 'js-lightbox-toggle', data: {lightbox: {showpreloader: 'true', class: 'lightbox--layer'} }}
   - else  
+    - link_properties =  {href: properties[:url], class: 'js-layer-toggle', data: {lightbox: {showpreloader: 'true', class: 'lightbox--layer'} }}
     - link_properties =  {href: properties[:url]}
 
   %a.link--wrapper{ link_properties }

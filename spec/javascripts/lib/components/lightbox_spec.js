@@ -105,5 +105,23 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
     });
 
+    describe("Custom renderer", function() {
+      var renderer;
+
+      beforeEach(function() {
+        renderer = jasmine.createSpy("renderer");
+        lightbox = new LightBox({ customRenderer: renderer });
+        lightbox._renderContent("foo");
+      });
+
+      it("gets called if defined", function() {
+        waits(300);
+        runs(function() {
+          expect(renderer).toHaveBeenCalled();
+        });
+      });
+
+    });
+
   });
 });

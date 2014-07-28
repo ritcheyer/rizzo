@@ -21,6 +21,7 @@ define([
     this.$el = $(args.$el || "#js-row--content");
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.showPreloader = args.showPreloader || false;
+    this.customRenderer = args.customRenderer || false;
 
     this.$lightbox = $("#js-lightbox");
     this.$lightboxWrapper = this.$lightbox.find(".js-lightbox-wrapper");
@@ -131,7 +132,7 @@ define([
 
     $("#js-card-holder").on(":layer/received", function(event, data) {
       this._renderPagination(data);
-      this._renderContent(data.content);
+      this._renderContent(data);
     }.bind(this));
   };
 
@@ -150,7 +151,7 @@ define([
 
     // Waits for the end of the transition.
     setTimeout(function() {
-      this.$lightboxContent.html(content);
+      this.$lightboxContent.html(this.customRenderer ? this.customRenderer(content) : content);
       this.$lightbox.addClass("content-ready");
       this.trigger(":lightbox/contentReady");
     }.bind(this), 300);
