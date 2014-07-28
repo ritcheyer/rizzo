@@ -132,7 +132,7 @@ define([
 
     $("#js-card-holder").on(":layer/received", function(event, data) {
       this._renderPagination(data);
-      this._renderContent(data);
+      this._renderContent(data.content);
     }.bind(this));
   };
 
