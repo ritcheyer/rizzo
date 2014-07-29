@@ -75,7 +75,7 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
   TimeAgo.prototype._refreshOnInterval = function() {
     var _this = this;
     // Had to disable original refresh function
-    // in order to extend to proper strings 
+    // in order to extend to proper strings
     // basing on selectors in "_updateStrings"
     $.timeago.settings.refreshMillis = 0;
     setInterval(function() { _this._updateStrings(); }, this.refreshMillis);
