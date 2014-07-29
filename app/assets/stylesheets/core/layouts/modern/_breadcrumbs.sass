@@ -27,7 +27,8 @@
     font-weight: bold
     &:hover
       text-decoration: none
-  .stack &
+  .stack &,
+  .nav--inline &
     font-weight: normal
     padding: 0 0.2em 0 0.65em
     &.current
@@ -56,6 +57,7 @@
 // Qualified selector because not all breadcrumbs are links
 // with slugs and should not be underlined
 a.nav__item--breadcrumbs
+  font-weight: normal
   &:hover
     text-decoration: underline
 
