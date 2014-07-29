@@ -48,7 +48,7 @@ define([
     }.bind(this))
 
     .on(":layer/request", function(event, data) {
-      this._generateState(data.url.replace(/\.json$/, "").split("?")[0]);
+      this._generateState(data.url.split("?")[0].replace(/\.json$/, ""));
       this.pushState.navigate(this._serializeState(), this._currentRoot(), true);
       this._callServer(this._createRequestUrl(this._currentRoot()), this.newLayer);
     }.bind(this))
