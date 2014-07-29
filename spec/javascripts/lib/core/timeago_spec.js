@@ -52,9 +52,12 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
 
     describe("Screen width > breakpoint", function() {
 
-      it("each occurence should have full strings", function() {
+      beforeEach(function() {
         spyOn(timeago, "_isAboveBreakpoint").andReturn(true);
         timeago._updateStrings();
+      });
+
+      it("each occurence should have full strings", function() {
         expect($("time.js-timeago").text()).toMatch(fullStrings);
         expect($("time.js-timeago-full").text()).toMatch(fullStrings);
       });
