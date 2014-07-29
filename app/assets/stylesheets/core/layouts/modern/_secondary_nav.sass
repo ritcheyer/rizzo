@@ -8,7 +8,7 @@
   background: #fff
   .responsive &
     +z-layer(modal)
-    position: relative8
+    position: relative
     +respond-to(wide-view)
       background: #fff
       position: static
@@ -23,26 +23,23 @@
       padding-top: 28px
 
 .row__title--secondary
-  margin-bottom: 8px
+  +z-layer(middle)
+  +vertically-center(30)
   max-width: 340px
+  position: absolute
+  background: white
+  margin-top: 0
+  &:hover
+    max-width: none
   .responsive &
+    position: static
     max-width: 100%
-    margin-bottom: 0
-    padding: 0
+    line-height: 1
+    height: auto
     +respond-to(wide-view)
       +vertically-center(30)
-      +z-layer(middle)
       position: absolute
-      background: white
       max-width: 340px
-      margin-bottom: 0
-      margin-top: 0
-      padding: 0
-      &:hover
-        max-width: none
-
-.row__title--secondary__full
-  width: 100%
 
 // ----------------------------------------------------------------------------
 //
@@ -52,50 +49,41 @@
 
 .nav--secondary__container
   position: relative
-  .responsive &
-    clear: both
-    +respond-to(wide-view)
-      clear: none
+  clear: left
 
 .nav--secondary
   @extend %subpixel-text
-  +font-size(14)
-  margin-top: 6px
 
   .responsive &
-    +z-layer(modal)
-    clear: left
-    margin-top: 0
-    position: absolute
-    top: 34px
-    width: 100%
+
     &.is-active
+      // TODO: Align with footer accordion
       @extend %standard-shadow
       display: block
-    &.nav__tabs
-      position: relative
-      top: 0
-    +respond-to(wide-view)
-      +z-layer
-      clear: none
-      position: static
-      width: auto
 
-  .nav__submenu__trigger--responsive
-    width: 30px
-    height: 44px
-    position: absolute
-    top: 0
-    right: 0
-    display: none
-    padding-right: 20px
+    +respond-to(wide-view)
+      .enhanced &.is-active
+        box-shadow: none
+
+// TODO: Align with footer accordion
+.nav__submenu__trigger--responsive
+  width: 30px
+  height: 44px
+  position: absolute
+  top: 0
+  right: 0
+  padding-right: 20px
+  display: none
+  .responsive &
     .js &
       display: block
+
     &.is-visible
       .icon--chevron-up
         display: block
       .icon--chevron-down
         display: none
+
     &:after
       background: $body-background
       content: ''
@@ -106,13 +94,12 @@
       top: 15%
       width: 1px
 
+.nav--secondary__col
+  padding: 10px 0
+  text-align: left
+  line-height: 1
 
 .responsive
-  .nav--secondary__col
-    padding: 10px 0
-    text-align: left
-    line-height: 1
-
   .nav--secondary__other-toggle
     +font-size(13)
     color: $lightgray
@@ -143,41 +130,33 @@
 
 .nav__item--secondary
   +font-size(14)
-  background: white
   box-sizing: border-box
   letter-spacing: 0.02em
   margin: 0 8px
   padding: 6px 0 12px
   text-transform: uppercase
-  &, & > .nav__item
-    color: $titlegray
-  &.is-current
-    color: $lpblue
+  color: $titlegray
+
   &:active, &:hover,
-  &.nav__submenu__trigger:hover > .nav__item
-    color: $lpblue
-    .responsive &
-      color: $titlegray
-      +respond-to(wide-view)
-        color: $lpblue
+  &.nav__submenu__trigger:hover
+    color: $titlegray
+    +respond-to(wide-view)
+      color: $lpblue
+
   &.is-current
+    color: $lpblue
     border-bottom: 2px solid $lpblue
     font-weight: bold
-  > .nav__item--submenu
-    display: block
 
   .responsive &
     border-bottom: 1px solid $body-background
-    display: block
     margin: 0
     padding: 14px 20px
-    text-align: left
     width: 100%
     &:hover
       background-color: $responsive-nav-hover
 
     +respond-to(wide-view)
-      background: none
       border-bottom: none
       margin: 0 8px
       padding: 6px 0 12px

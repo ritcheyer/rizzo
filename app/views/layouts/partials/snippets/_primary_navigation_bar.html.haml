@@ -36,7 +36,7 @@
       - if nav_primary
         %h6.accessibility Global navigation
         
-        - core_navigation_items.each do |item|
+        - primary_navigation_items(responsive).each do |item|
           - if item[:submenu]
             .nav__submenu__trigger.nav__item.nav__item--primary
               = render "components/navigation/nav_item", item: item, active: false, primary: true, has_submenu: true

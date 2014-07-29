@@ -17,6 +17,15 @@ module GlobalResourcesHelper
     ]
   end
 
+  def primary_navigation_items(responsive=true)
+    return core_navigation_items if responsive
+
+    core_navigation_items[1..-1].map do |item|
+      item.delete(:icon_class)
+      item
+    end
+  end
+
   def core_navigation_items
     [
       {

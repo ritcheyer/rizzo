@@ -8,7 +8,6 @@
 $submenu--width:         200px
 $submenu__padding: 20px 10px 10px
 $submenu__padding__item: 12px
-$submenu__padding__item--icon-left: 39px
 $submenu__left-offset: -(($submenu--width/2) + 10px)
 $submenu__vertical-padding: 14px
 
@@ -18,12 +17,16 @@ $submenu__vertical-padding: 14px
   &:hover
     .nav__submenu
       display: block
+  > .nav__item
+    display: block
+
   .responsive &
     &:hover
       .nav__submenu
         display: none
         +respond-to(wide-view)
           display: block
+
     &.is-visible
       .nav__submenu
         display: block
@@ -84,12 +87,13 @@ $submenu__vertical-padding: 14px
   font-weight: normal
   padding: $submenu__padding__item
   text-transform: none
+  border-bottom: 1px solid $subduedgray
+  &:hover
+    background-color: $body-background-offset
   .responsive &
-    border-bottom: 1px solid $subduedgray
     padding: $submenu__vertical-padding 20px
     text-transform: uppercase
     background-color: $responsive-nav-hover
-
     &:hover
       background-color: $responsive-nav-subnav-hover
     +respond-to(wide-view)

@@ -5,7 +5,7 @@
 
   %a.nav__item.js-nav-item{ data: item[:analytics], class: [item_classes, active, item[:extra_class]], href: item[:slug], itemprop: "url", aria: { label: active.present? ? "Current page" : nil } }<
 
-    %div{itemprop: "name", class: [item[:icon_class] ? "#{item[:icon_class]}" : false, defined?(submenu_item) ? "" : "wv--hidden--before"] }
+    %div{itemprop: "name", class: [item[:icon_class] ? "nav__icon #{item[:icon_class]}" : false, defined?(submenu_item) ? "" : "wv--hidden--before"] }
       = item[:title]
 
   - if item[:submenu]

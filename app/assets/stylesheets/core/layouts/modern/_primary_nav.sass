@@ -60,8 +60,6 @@
   +font-size(13)
   padding: 21px 6px 20px
   text-transform: uppercase
-  .nav__icon
-    display: none
   &.btn--small
     &, .responsive &
       +font-size(13)
@@ -92,25 +90,6 @@
       &:before
         width: 0
         border: none
-
-    .nav__icon
-      position: absolute
-      width: 50px
-      border-right: 1px solid $offscreen-nav-border
-      display: block
-      left: 0
-      top: 0
-      height: 100%
-      color: $offscreen-nav-border
-      opacity: 0.7
-      &:before
-        position: absolute
-        top: 14px
-        left: 15px
-        width: 22px
-        height: 22px
-      +respond-to(wide-view)
-        display: none
 
   &, & > .nav__item
     font-weight: bold
@@ -194,12 +173,12 @@
 
 
 .nav__item
-  [class*='icon--']
+  .nav__icon
     position: relative
     &:before
       position: absolute
 
-  &.nav__item--primary [class*='icon--']
+  &.nav__item--primary .nav__icon
     padding-left: 60px
     &:before
       +size(22px)
@@ -209,7 +188,7 @@
     +respond-to(wide-view)
       padding-left: 0
 
-  &.nav__submenu__item [class*='icon--']
+  &.nav__submenu__item .nav__icon
     padding-left: 30px
     &:before
       +size(20px)

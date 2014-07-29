@@ -29,13 +29,14 @@ $responsive-nav-width: 240px
     .enhanced &
       box-shadow: 16px 4px 20px -6px rgba(0, 0, 0, 0.2) inset
     +respond-to(wide-view)
-      box-shadow: none
       width: 100%
       background: $navblue
       overflow: visible
       height: $primary-nav-height
       left: 0
       right: auto
+      .enhanced &
+        box-shadow: none
 
 .nav--offscreen__title
   +font-size(20)
