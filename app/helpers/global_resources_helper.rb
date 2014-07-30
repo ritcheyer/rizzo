@@ -104,12 +104,12 @@ module GlobalResourcesHelper
           icon_class: "icon--settings--before icon--white--before"
         },
         {
-          title: "My profile",
+          title: "Messages",
           slug: "https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages",
           icon_class: "icon--envelope--before icon--white--before"
         },
         {
-          title: "My profile",
+          title: "Forum Activity",
           slug: "https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/activities",
           icon_class: "icon--comment--before icon--white--before"
         },
