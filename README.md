@@ -115,9 +115,9 @@ Currently a work in progress. Eventually to be run on the styleguide as a pre-pu
 
 A write-up of our Icon solution is available at: [http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/).
 
-The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). 
+The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon).
 
-We split our icons out into two categories: critical and active. Icons in active are considered complenentary and will not be served to browsers that don't support svg. Icons in critical will be served to older browsers as a png fallback. 
+We split our icons out into two categories: critical and active. Icons in active are considered complementary and will not be served to browsers that don't support svg. Icons in critical will be served to older browsers as a png fallback.
 
 To add a new icon to the active section, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
 
@@ -134,7 +134,7 @@ Running `grunt icon` can sometimes produce a lot of noise in the diff as we svgm
 ### Git
 
 - Always work in a branch
-- Rebase into your own branch from master (as long as it is only you working on that branch, otherwise merge)
+- Avoid unnecessary merges of master into your branch - if you are the only person working on your branch, rebase onto master instead.
 - Squash your commits into meaningful and (release|revert)able chunks
 - Merge with --no-ff back into master when it has been code reviewed (or merge through github).
 - Use git pull --rebase to avoid commits like this:
@@ -145,7 +145,7 @@ Running `grunt icon` can sometimes produce a lot of noise in the diff as we svgm
 
 - Prefix your branches with your initials or name.
 - Squash your commits using rebase -i if you think it can better reflect the code you have committed.
-- Make your commit messages useful, no jokes.
+- Make your commit messages useful, no jokes. Follow [Git commit message best practices](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) as much as possible (first line should be a <= 50 character summary of your changes, followed by a blank line and, if appropriate for larger changes, a detailed description wrapped to approx. 72 characters).
 
 ### Code Review
 
@@ -232,7 +232,7 @@ Javascript hooks:
 4. Typography
 5. Decorative
 
-For example: 
+For example:
 ```css
 .component
   +css-arrow(top)
@@ -309,9 +309,9 @@ For example:
       website.enhance({ method: "progressive" });
     });
     ```
-   
+
 * No space before paren in function declaration :<
-  
+
     ```javascript
     function getDressed(hat, suit, scarf, cane) {
       // statements, innit
@@ -333,7 +333,7 @@ For example:
 * We like to use camelCase for method and variable names.
 
     `twistAgainLikeWeDidLastSummer()`
- 
+
     __not__
 
     `rock_around_the_clock()`
@@ -345,7 +345,7 @@ For example:
     if (string) ...
     if (truthyThing)
     ```
- 
+
     __not__
 
     ```javascript
@@ -355,16 +355,16 @@ For example:
     ```
 
 * Put comments before the line or block they are about. Don't use eol comments
- 
+
     ```javascript
     // sanitize animals for collection by spooks
     var animalSanitizer = function(animal) {
       animal.cut(animal.hair).shampoo().rinse();
     }
     ```
- 
+
     __not__
- 
+
     ```javascript
     var animalSanitizer = function(animal) {
       animal.cut(animal.hair).shampoo().rinse(); // sanitizes animals for collection by spooks
@@ -380,7 +380,7 @@ The [.jshintrc](https://github.com/lonelyplanet/rizzo/blob/195a0ae5b47b315f4a5a7
 
 ```javascript
 typeof thing == "string"
-``` 
+```
 ###### Number
 
 ```javascript
