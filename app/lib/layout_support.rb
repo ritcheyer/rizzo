@@ -24,7 +24,7 @@ module LayoutSupport
     {
       india: {
         about:          false,
-        ads_header:     false,
+        ads_header:     true,
         include_js:     true,
         nav_primary:    false,
         search:         false,

@@ -17,7 +17,7 @@ Feature: Custom Layouts
     And search should not be present
     And sitemap nav should not be present
     And about nav should not be present
-    And the header ad should not be present
+    And the header ad should be present
     And the tynt tag should not be displayed
 
   Scenario: it serves the default preview file
