@@ -27,11 +27,11 @@ Then(/^sitemap nav should not be present$/) do
 end
 
 Then(/^the requirejs script block should not exist$/) do
-  page.should_not have_selector '.require-config'
+  page.should_not have_selector '.js-require-config'
 end
 
 Then(/^the requirejs script block should exist$/) do
-  page.should have_selector '.require-config'
+  page.should have_selector '.js-require-config'
 end
 
 Then(/^about nav should not be present$/) do
