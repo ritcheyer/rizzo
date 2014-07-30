@@ -113,10 +113,11 @@ define([
           $("#js-card-holder").trigger(":controller/reset");
         }
 
+        this.$lightbox.removeClass("is-active");
         // Waits for the end of the transition.
         setTimeout(function() {
+          this.$lightbox.removeClass("is-visible");
           this.$lightboxContent.empty();
-          this.$lightbox.removeClass("is-active is-visible");
           this.trigger(":lightbox/is-closed");
         }.bind(this), 300);
 
