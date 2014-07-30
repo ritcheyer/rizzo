@@ -17,7 +17,6 @@
   &.is-active
     opacity: 1
 
-
     .lightbox__content
       > iframe
         display: block
@@ -32,7 +31,7 @@
 .lightbox__content
   margin: auto
   position: relative
-  transition: transform 0.1s ease-out, opacity 0.1s
+  transition: transform 0.75s cubic-bezier(0.075, 0.820, 0.165, 1.000), opacity 0.1s
   transform: translate3d(0, 250px, 0)
   opacity: 0
   width: 95%
@@ -68,7 +67,7 @@
     @extend %large-shadow
     width: 90px
     transform: translate3d(0, 0, 0)
-    transition: transform 0.3s ease-out, opacity 0.5s
+    transition: transform 0.75s cubic-bezier(0.075, 0.820, 0.165, 1.000), opacity 0.5s
     top: 45%
     height: 50px
     background-color: #FFF
@@ -91,6 +90,22 @@
 .lightbox--open
   overflow: hidden
   -webkit-overflow-scrolling: touch
+
+.supports-cssfilters
+  &.lightbox--open
+    .row--primary,
+    .row--secondary,
+    .row__inner--content,
+    .wrapper--footer
+      filter: blur(4px)
+
+    .lightbox
+      background: rgba(238, 241, 243, 0.75)
+      .row--primary,
+      .row--secondary,
+      .row__inner--content,
+      .wrapper--footer
+        filter: none
 
 .lightbox__controls
   bottom: 0
