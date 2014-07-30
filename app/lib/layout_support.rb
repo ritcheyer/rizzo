@@ -52,9 +52,6 @@ module LayoutSupport
         legacy_lp:      true,
         responsive:     false,
       },
-      global: {
-        tynt:           true
-      },
       client_solutions: {
         include_js:     false,
         user_nav:       false,

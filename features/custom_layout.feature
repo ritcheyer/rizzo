@@ -7,6 +7,7 @@ Feature: Custom Layouts
     Given I go to "/layouts/anything"
     Then the Preview route should be displayed
     And the body should have a class of responsive
+    And the requirejs script block should not exist
 
   Scenario: it serves the default preview file for India
     Given I go to "/layouts/india"
@@ -19,13 +20,20 @@ Feature: Custom Layouts
     And about nav should not be present
     And the header ad should be present
     And the tynt tag should not be displayed
+    And the requirejs script block should exist
 
   Scenario: it serves the default preview file
     Given I go to "/layouts/responsive"
     Then the Preview route should be displayed
     And the body should have a class of responsive
+    And the requirejs script block should not exist
 
   Scenario: it serves the default preview file
-    Given I go to "/layouts/global"
+    Given I go to "/layouts/core"
     Then the Preview route should be displayed
-    And the body should have a class of responsive
+    And the body should not have a class of responsive
+    And the requirejs script block should not exist
+
+  Scenario: it serves the default preview file
+    Given I go to "/layouts/minimal"
+    Then the Preview route should be displayed
