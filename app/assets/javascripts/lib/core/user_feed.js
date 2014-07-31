@@ -4,7 +4,12 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeago" ], function($, Template, Tabs) {
+define([
+  "jquery",
+  "lib/utils/template",
+  "lib/components/tabs",
+  "lib/core/timeago"
+], function($, Template, Tabs, TimeAgo) {
 
   "use strict";
 
@@ -45,6 +50,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
 
   UserFeed.prototype.init = function() {
     this._tabsInstance = new Tabs({ selector: this.config.feedSelector });
+    this._timeagoInstance = new TimeAgo({ context: this.config.feedSelector });
     this._fetchFeed();
   };
 
@@ -168,8 +174,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     feed.messages && feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
     this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
 
-    // Update timeago for feed content only
-    $(this.config.feedSelector + " time.js-timeago-full").timeago();
+    this._timeagoInstance.updateStrings();
   };
 
   UserFeed.prototype._updateFeed = function(fetchedFeed) {
