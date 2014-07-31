@@ -7,7 +7,7 @@
   left: 0
   opacity: 0
   position: fixed
-  transition: 0.3s opacity ease-out
+  transition: 0.3s opacity
   top: 0
   visibility: hidden
 
@@ -16,7 +16,6 @@
 
   &.is-active
     opacity: 1
-
 
     .lightbox__content
       > iframe
@@ -27,13 +26,14 @@
   overflow-y: scroll
   overflow-x: hidden
   height: 100%
+  perspective: 700
   width: 100%
 
 .lightbox__content
   margin: auto
   position: relative
-  transition: transform 0.1s ease-out, opacity 0.1s
-  transform: translate3d(0, 250px, 0)
+  transition: transform 0.75s cubic-bezier(0.075, 0.820, 0.165, 1.000), opacity 0.1s
+  transform: translate3d(0, 250px, 50px)
   opacity: 0
   width: 95%
   max-width: 600px
@@ -68,7 +68,7 @@
     @extend %large-shadow
     width: 90px
     transform: translate3d(0, 0, 0)
-    transition: transform 0.3s ease-out, opacity 0.5s
+    transition: transform 0.3s, opacity 0.3s
     top: 45%
     height: 50px
     background-color: #FFF

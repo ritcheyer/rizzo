@@ -6,6 +6,22 @@
 @import "styleguide/perf"
 @import "prism"
 
+.supports-cssfilters
+  &.lightbox--open
+    .row--primary,
+    .row--secondary,
+    .row__inner--content,
+    .wrapper--footer
+      filter: blur(4px)
+
+    .lightbox
+      background: rgba(238, 241, 243, 0.75)
+      .row--primary,
+      .row--secondary,
+      .row__inner--content,
+      .wrapper--footer
+        filter: none
+
 .box
   box-sizing: border-box
   padding: 20px
