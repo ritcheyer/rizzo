@@ -95,12 +95,12 @@ define([
 
   Controller.prototype._callServer = function(url, callback, analytics, dataType) {
     callback = callback.bind(this);
+
     return $.ajax({
       url: url,
-      dataType: dataType || "json",
-      success: function(data) {
-        return callback(data, analytics);
-      }
+      dataType: dataType || "json"
+    }).done(function(data) {
+      return callback(data, analytics);
     });
   };
 

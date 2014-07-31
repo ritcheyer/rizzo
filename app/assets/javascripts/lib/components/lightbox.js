@@ -67,10 +67,7 @@ define([
     this.$lightbox.on("click", ".js-lightbox-close", function(event) {
       event.preventDefault();
       this._closeFlyout(this.$el);
-    }.bind(this))
-    .on("click", ".js-lightbox-close .js-lightbox-no-close", function() {
-      return false;
-    });
+    }.bind(this));
 
     this.$opener.on("click", function(event) {
       event.preventDefault();
@@ -116,10 +113,11 @@ define([
           $("#js-card-holder").trigger(":controller/reset");
         }
 
+        this.$lightbox.removeClass("is-active");
         // Waits for the end of the transition.
         setTimeout(function() {
+          this.$lightbox.removeClass("is-visible");
           this.$lightboxContent.empty();
-          this.$lightbox.removeClass("is-active is-visible");
           this.trigger(":lightbox/is-closed");
         }.bind(this), 300);
 
