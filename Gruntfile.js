@@ -100,6 +100,9 @@ module.exports = function(grunt) {
       },
       fetchSubmodules: {
         command: "git submodule init && git submodule update"
+      },
+      killPhantom: {
+        command: "pkill -f phantomjs || true"
       }
     },
     coffee: {
@@ -216,9 +219,9 @@ module.exports = function(grunt) {
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
   // Tasks
-  grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine" ]);
+  grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine", "shell:killPhantom" ]);
   grunt.registerTask("ci", [ "coffee", "copy", "connect", "jasmine" ]);
-  grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch" ]);
+  grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch", "shell:killPhantom" ]);
   grunt.registerTask("wip", [ "jasmine:rizzo:build", "open:jasmine", "connect:server:keepalive" ]);
   grunt.registerTask("report", [ "shell:cleanJs", "coffee", "copy", "plato", "shell:openPlato" ]);
   grunt.registerTask("imageoptim", [ "imageoptim" ]);
