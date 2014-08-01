@@ -1,4 +1,5 @@
 - default_secondary_nav = YAML.load(File.read(File.expand_path('../../../../data/styleguide/navigation_stubs.yml', __FILE__)))['secondary_navigation_stub']
+- default_breadcrumbs = YAML.load(File.read(File.expand_path('../../../../data/styleguide/breadcrumbs_stubs.yml', __FILE__)))[:breadcrumbs]
 
 - content_for(:secondary) do
   .row__inner.row__inner--secondary
@@ -6,4 +7,4 @@
     = ui_component('navigation/secondary', properties: default_secondary_nav)
 
 - content_for(:breadcrumbs) do
-  = breadcrumbs_nav(default_breadcrumbs)
+  = ui_component("navigation/footer_breadcrumbs", properties: {breadcrumbs: default_breadcrumbs})

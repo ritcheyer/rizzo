@@ -151,8 +151,8 @@
           :name: "Badges"
           :slug: "badges"
         -
-          :name: "User Attribution"
-          :slug: "user-attribution"
+          :name: "Breadcrumbs"
+          :slug: "breadcrumbs"
         -
           :name: "Buttons"
           :slug: "buttons"
@@ -192,6 +192,9 @@
         -
           :name: "Unsocial Buttons"
           :slug: "unsocial-buttons"
+        -
+          :name: "User Attribution"
+          :slug: "user-attribution"
     -
       :title: "Navigation"
       :items:
