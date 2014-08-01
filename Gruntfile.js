@@ -102,7 +102,7 @@ module.exports = function(grunt) {
         command: "git submodule init && git submodule update"
       },
       killPhantom: {
-        command: "pkill -f phantomjs"
+        command: "pkill -f phantomjs || true"
       }
     },
     coffee: {
