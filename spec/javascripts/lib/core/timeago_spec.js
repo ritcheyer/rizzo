@@ -41,7 +41,7 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
       });
 
       it("defines a way to update strings", function() {
-        expect(timeago, "_updateStrings").toBeDefined();
+        expect(timeago, "updateStrings").toBeDefined();
       });
 
       it("defines a way to determine if screen width breakpoint was crossed", function() {
@@ -54,7 +54,7 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
 
       beforeEach(function() {
         spyOn(timeago, "_isAboveBreakpoint").andReturn(true);
-        timeago._updateStrings();
+        timeago.updateStrings();
       });
 
       it("each occurence should have full strings", function() {
@@ -68,7 +68,7 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
 
       beforeEach(function() {
         spyOn(timeago, "_isAboveBreakpoint").andReturn(false);
-        timeago._updateStrings();
+        timeago.updateStrings();
       });
 
       it("should have full strings if selector is '.js-timeago-full'", function() {
