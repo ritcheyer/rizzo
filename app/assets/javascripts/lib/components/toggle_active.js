@@ -50,7 +50,7 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
   ToggleActive.prototype._listen = function() {
     var _this = this;
 
-    $(LISTENER).on(":toggleActive/update", function(e, target) {
+    $(this.config.context || LISTENER).on(":toggleActive/update", function(e, target) {
       _this._updateClasses($(target));
     });
   };
