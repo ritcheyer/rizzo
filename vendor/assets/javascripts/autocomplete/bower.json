@@ -18,6 +18,7 @@
     "autocomplete-example.png",
     "bower.json",
     "Gruntfile.js"
+
   ],
   "dependencies": {
     "jquery": "~1.11.0",
@@ -26,15 +27,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/lonelyplanet/autocomplete.git"
-  },
-  "homepage": "https://github.com/lonelyplanet/autocomplete",
-  "_release": "0.1.10",
-  "_resolution": {
-    "type": "version",
-    "tag": "v0.1.10",
-    "commit": "d363ba74ef5186d16ceff9370600846b2f7d8159"
-  },
-  "_source": "git://github.com/lonelyplanet/autocomplete.git",
-  "_target": "*",
-  "_originalSource": "autocomplete"
+  }
 }
