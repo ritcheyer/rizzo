@@ -8,7 +8,8 @@ Rizzo::Application.routes.draw do
   get 'layouts/:route'            => 'layout#preview'
   get 'layouts',                  to: redirect('/styleguide/page-layout/core-layouts')
 
-  get 'component/*component'  => 'layout#component'
+  # components
+  get 'component/*component'      => 'components#show'
 
   # Styleguide
   root                              to: redirect('/styleguide/design-elements/colours')
