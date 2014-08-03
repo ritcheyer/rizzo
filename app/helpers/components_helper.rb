@@ -1,57 +1,63 @@
 module ComponentsHelper
 
-  def property_passed(key)
-    @properties.has_key? key and @property[key]
+  def property(key)
+    @properties.has_key? key and @properties[key]
   end
 
-  def mustache_section(key: nil, content: '', prefix: '#')
+  def mustache_section(key: key, content: '', prefix: '#', invert: false)
+    # prefix = invert ? '^' : '#'
     "{{#{prefix}#{key}}}#{content}{{/#{key}}}"
   end
 
-  def build_mustache_sections(key: nil, content: '', invert_content: '', no_invert: false)
-    mustache_section(key: key, content: content) +
-      (no_invert ? '' : mustache_section(key: key, content: invert_content, prefix: '^'))
+  def build_mustache_sections(key: nil, content: nil, invert_content: nil)
+    (content ? mustache_section(key: key, content: content) : '') +
+      (invert_content ? mustache_section(key: key, content: invert_content, prefix: '^') : '')
   end
 
-  # &block will return just content or
-  # a hash with content for if and content for else
-  def get_content(content, if_or_else)
-    if content.is_a? String and if_or_else == :if
-      content
-    elsif content.is_a? Hash and content.has_key? if_or_else
-      content[if_or_else]
+  # instead of the ugly lambda based then: -> do end, else: do end system
+  # perhaps it would be preferable to define if_property and else_property
+  # functions. wouldn't that make the code simpler all over?
+  # could get rid of build_mustache_sections too and just set invert on
+  # the mustache_section method.
+  def if_property(key, branch={then: nil, else: nil}, &then_block)
+    if branch[:then]
+      then_block = branch[:then]
+      else_block = branch[:else]
+    end
+
+    if @properties[key] and @properties.has_key? key
+      then_block and capture_haml{then_block.call @properties[key]}
+    elsif @properties[key]
+      content = capture_haml(&then_block) if then_block
+      invert_content = capture_haml(&else_block) if else_block
+      build_mustache_sections(key: key, content: content, invert_content: invert_content)
+    else
+      capture_haml(&else_block) if else_block
     end
   end
 
-  # this would probably all be a lot more sensible if controller passed a
-  # mustache local, why would i write such wizardry as this?
-  def property_predicate(check: nil, set: check, no_invert: false, &block)
-    if @properties[check]
-      if @properties.has_key? check
-        result = yield
-        content = get_content(result, :if)
-        invert_content = no_invert ? "" : get_content(result, :else)
-        @properties[set] = content
-      elsif set == false
-        # set == false non-obviously means do_not_set
-        build_mustache_sections(key: check, content: capture_haml(&block), no_invert: no_invert)
-      else
-        result = yield
-        content = get_content(result, :if)
-        invert_content = no_invert ? "" : get_content(result, :else)
-        @properties[set] = build_mustache_sections(key: check, content: content, invert_content: invert_content, no_invert: no_invert)
-      end
-    elsif @properties.has_key? check
-      # we are here because the property was explicitly set to non-true
-      result = yield
-      content = get_content(result, :else)
-      @properties[set] = content
-    elsif set == false
-
+  def each_over_property(key, &block)
+    if @properties[key] and @properties.has_key? key
+      @properties[key].each(&block)
+      return
+    elsif @properties[key]
+      content = capture_haml{block.call mustache_hash}
+      build_mustache_sections(key: key, content: content)
     end
   end
 
-  def property_each(key)
+  # this is unused.
+  # it would mean changing the data hash to an array of key, value hashes.
+  # a choice between less handsome code and less powerful mustache, or
+  # mustache data and server data not being the same
+  def data_property
+    if @properties[:data] and @properties.has_key? :data
+      {
+        data: @properties[:data]
+      }
+    elsif @properties[key]
+      content = "{{#{key}}}='{{#{value}}}'"
+      build_mustache_sections(key: key, content: content)
+    end
   end
-
 end

@@ -44,11 +44,10 @@
               = button[:styleguide_title]
 
             .styleguide-block__item.split--right{class: " styleguide-block__item--#{count}"}
-              = ui_component("button", button: button)
+              = ui_component("button", properties: button)
 
           %pre.styleguide.copy--body.language-markup
-            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: button)))}
-
+            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, properties: button)))}
 
     .col--one-half.context--content
       .copy--h3 Size and Style variations
@@ -67,10 +66,10 @@
               = heading
 
             .styleguide-block__item.split--right{class: "styleguide-block__item--#{count}", style: variation[:modifiers] == "btn--full-width" ? "float: none;" : ""}
-              = ui_component("button", button: variation)
+              = ui_component("button", properties: variation)
 
           %pre.styleguide.copy--body.language-markup
-            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: variation)))}
+            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, properties: variation)))}
         - i += 1
 
       .styleguide-block__description.card.context--content
@@ -105,7 +104,7 @@
               = button[:styleguide_title]
 
             .styleguide-block__item.split--right{class: " styleguide-block__item--#{count}"}
-              = ui_component("button", button: button)
+              = ui_component("button", properties: button)
 
           %pre.styleguide.copy--body.language-markup
-            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: button)))}
+            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, properties: button)))}

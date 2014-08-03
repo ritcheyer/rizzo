@@ -1,37 +1,42 @@
 :ruby
-  show = properties[:show] || %w(facebook twitter google-plus stumbleupon)
-  show = show - (properties[:hide] || [])
-  encoded_url = CGI.escape("#{properties[:url]}")
-  image_url = CGI.escape("#{properties[:image_url]}")
-  tweet = properties[:tweet] || encoded_url
+  show = property(:show) || %w(facebook twitter google_plus stumbleupon)
+  show = show - (property(:hide) || [])
+
+  properties[:encoded_url] ||= CGI.escape("#{properties[:url]}")
+  properties[:image_url] ||= CGI.escape("#{properties[:image_url]}")
+  properties[:tweet] ||= (properties[:encoded_url] + " via @lonelyplanet")
+
+  show.each do |item|
+    properties[item] = true
+  end
 
 .nav--inline
-  - if properties[:show_label?]
+  != if_property :show_label? do
     %span.sharing__label.nav__item
       Share this
 
   .social
-    - if show.include? 'facebook'
-      %a.social__item.social__item--facebook{ href: "https://www.facebook.com/sharer/sharer.php?u=#{encoded_url}", data: {lpa_category: 'share', lpa_action: 'facebook', lpa_label: "#{properties[:url]}"} }
+    != if_property :facebook do
+      %a.social__item.social__item--facebook{ href: "https://www.facebook.com/sharer/sharer.php?u=#{properties[:encoded_url]}", data: {lpa_category: 'share', lpa_action: 'facebook', lpa_label: "#{properties[:url]}"} }
         %span.accessibility Share on Facebook
         %span.social__icon.icon--facebook.icon--white
 
-    - if show.include? 'twitter'
-      %a.social__item.social__item--twitter{ href: "https://twitter.com/intent/tweet?text=#{tweet}", data: {lpa_category: 'share', lpa_action: 'twitter', lpa_label: '#{properties[:url]}'} }
+    != if_property :twitter do
+      %a.social__item.social__item--twitter{ href: "https://twitter.com/intent/tweet?text=#{properties[:tweet]}", data: {lpa_category: 'share', lpa_action: 'twitter', lpa_label: "#{properties[:url]}"} }
         %span.accessibility Share on Twitter
         %span.social__icon.icon--twitter.icon--white
 
-    - if show.include? 'google-plus'
-      %a.social__item.social__item--google-plus{ href: "https://plus.google.com/share?url=#{encoded_url}", data: {lpa_category: 'share', lpa_action: 'google-plus', lpa_label: "#{properties[:url]}"}}
+    != if_property :google_plus do
+      %a.social__item.social__item--google-plus{ href: "https://plus.google.com/share?url=#{properties[:encoded_url]}", data: {lpa_category: 'share', lpa_action: 'google-plus', lpa_label: "#{properties[:url]}"}}
         %span.accessibility Share on Google+
         %span.social__icon.icon--google-plus.icon--white
 
-    - if show.include? 'stumbleupon'
-      %a.social__item.social__item--stumbleupon{ href: "http://www.stumbleupon.com/submit?url=#{encoded_url}", target: "_blank", data: {lpa_category: "share", lpa_action: "stumbleupon", lpa_label: "#{properties[:url]}"}}
+    != if_property :stumbleupon do
+      %a.social__item.social__item--stumbleupon{ href: "http://www.stumbleupon.com/submit?url=#{properties[:encoded_url]}", target: "_blank", data: {lpa_category: "share", lpa_action: "stumbleupon", lpa_label: "#{properties[:url]}"}}
         %span.accessibility Share on Stumbleupon
         %span.social__icon.icon--stumbleupon.icon--white
 
-    - if show.include? 'pinterest'
-      %a.social__item.social__item--pinterest{ href: "http://pinterest.com/pin/create/button/?url=#{encoded_url}&media=#{image_url}&description=#{properties[:description]}", target: "blank" }
+    != if_property :pinterest do
+      %a.social__item.social__item--pinterest{ href: "http://pinterest.com/pin/create/button/?url=#{properties[:encoded_url]}&media=#{properties[:image_url]}&description=#{properties[:description]}", target: "blank" }
         %span.accessibility Pin this image
         %span.social__icon.icon--pinterest.icon--white

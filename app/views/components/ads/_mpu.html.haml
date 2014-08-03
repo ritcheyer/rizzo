@@ -10,4 +10,6 @@
 
   attrs[:targeting] = attrs[:targeting].to_json
 
-.adunit.adunit--mpu{ data: attrs }
+  properties[:attrs] = attrs
+
+.adunit.adunit--mpu{ data: properties[:attrs] }
