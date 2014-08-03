@@ -1,20 +1,32 @@
-.slider.js-slider{ class: "slider--#{properties[:aspectRatio]}", role: "widget" }
+:ruby
+  # Slider is a good candidate for a presenter.
+  images = property(:images)
+  if images
+    length = images.length
+    properties[:next_label] = "2 of #{length}"
+    properties[:previous_label] = "#{length} of #{length}"
+    if properties[:lazyLoad]
+      lazyloadify(images)
+    else
+      images.each { |image| image[:slide_class] = 'is-loaded' }
+    end
+  end
+
+.slider.js-slider{ class: "slider--#{properties[:aspectRatio]}", role: 'widget' }
 
   .slider__controls-container.js-slider-controls-container
     .slider__controls.js-slider-controls.no-print
-      %a.slider__control.slider__control--next.js-slider-next.icon--chevron-right--before.icon--white--before{ href: "#" }<
-        = "2 of #{properties[:images].length}"
-      %a.slider__control.slider__control--prev.js-slider-previous.icon--chevron-left--after.icon--white--after{ href: "#" }
-        = "#{properties[:images].length} of #{properties[:images].length}"    
+      %a.slider__control.slider__control--prev.js-slider-previous.icon--chevron-left--after.icon--white--after{ href: '#' }
+        = properties[:previous_label]
+      %a.slider__control.slider__control--next.js-slider-next.icon--chevron-right--before.icon--white--before{ href: '#' }<
+        = properties[:next_label]
 
   .slider__viewport.js-slider-viewport.js-onswipe.is-loading
     .slider__container.js-slider-container
-      - properties[:images].each_with_index do |image, i|
-        - if i == 0 || !properties[:lazyLoad]
-          .slider__slide.js-slide.is-loaded{ class: i == 0 ? "is-current" : "" }
-            %img.slider__img{ src: image[:src], alt: image[:alt] }
-        - else
-          .slider__slide.js-slide.is-hidden
-            %img{ data: { class: 'slider__img', src: image[:src], alt: image[:alt] } }
-    
-    = render :partial => "/components/preloader"
+      != each_over_property :images do |image|
+        .slider__slide.js-slide{ class: image[:slide_class] }
+          %img.slider__img{src: image[:src],
+                           alt: image[:alt],
+                           data: image[:data]}
+
+    = render partial: '/components/preloader', formats: :html
