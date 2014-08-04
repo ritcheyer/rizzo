@@ -1,21 +1,16 @@
 {
   // General properties
-  "id" : "",
-  "type" : "",
-  "param" : "",
-  "value" : "",
-  "action" : "",
-  "error" : "",
-  "parent" : "",
+  "id" : "Used in forms and in price tag", // Remove from pice tag?
+  "type" : "Used in badge, adsense and in the text input", // Replace with XXX_type, like "field_type" ¿?
   "user" : "User hash with the user info. Used in user attribution component",
-  "topic" : "",
+  "topic" : "Used in some cards and in poi list.",
   "stack_kind" : "Kind of stack in collection cards", // replace with "kind"
-  "category" : "",
+  "category" : "Only used in things to do card",
 
   // Styling
   "theme" : "", "text_color" : "", // replace with "theme" and set the text color in the class of the theme
   //CSS classes
-  "class" : "", "extra_class" : "", "classes" : "", // replace with "class"
+  "class" : "", "extra_class" : "", "classes" : "", // replace with "class_name"
   // "subcomponents": Use always "[subcomponent]_class"
   "button_class" : "",
   "dropdown_class" : "",
@@ -114,10 +109,7 @@
   "count" : "",
   "things_to_do_count" : "",
   "lodging_count" : "",
-  // Pagination
-  "results_per_page" : "",
-  "total_results" : "",
-  "visible_pages" : "Used in pagination. Num of visible pages",
+
 
   // Price / Money
   "currency" : "",
@@ -127,7 +119,15 @@
   "total_price": "",
   "retail_price" : "",
 
+
+  // -----------------
+  // TOO SPECIFIC TO BE HERE
+  // ----------------
+
+
   // Config values/options specific for a component
+  // -- Place title
+  "parent" : "Only used in place_title. It's the parent of the place",
   // -- Text area and text field
   "maxlength" : "",
   // -- Range slider
@@ -138,29 +138,37 @@
   "unit_position" : "",
   // -- Link card, collection card
   "filter" : "",
-  // - things to do card
+  // -- things to do card
   "duration" : "",
-  // - Lodgings card
+  // -- Lodgings card
   "hotel_star_ranking" : "",
   "neighbourhood" : "",
   "property_type" : "",
   "property_type_title" : "",
-  // - Hero banner
+  // -- Hero banner
   "open_layer" : "",
   "sponsored" : "",
-  // - Place title
+  // -- Place title
   "is_body_title" : "",
-  // - Tags
+  // -- Tags
   "lp_reviewed" : "",
-  // - Article card
+  // -- Article card
   "post_date" : "",
+  // -- Social Buttons
+  "tweet" : "",
+  // -- Pagination
+  "results_per_page" : "",
+  "total_results" : "",
+  "visible_pages" : "Used in pagination. Num of visible pages",
+  "param" : "Only used in pagination",
+  // -- Forms
+  "value" : "Used only in forms", //Replace with "field_value" ¿?
+  "action" : "User for the action in the form", // Replace with "form_action"
+  "error" : "Used in forms for the error messages", // Repalce with error_text
 
   //These ones can be merged
   "top_choice" : "",
   "topchoice" : "",
-
-  // - Social Buttons
-  "tweet" : "",
 
 
 }
