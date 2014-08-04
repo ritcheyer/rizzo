@@ -51,6 +51,7 @@ field_components:
     :placeholder: "Placeholder"
     :cols: 40
     :rows: 4
+    :readonly: true
 
   -
     :styleguide_title: "Date field"
