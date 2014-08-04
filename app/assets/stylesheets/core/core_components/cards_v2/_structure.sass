@@ -1,0 +1,136 @@
+$card-width: 220px
+$card-margin: 10px
+$card-height: 270px
+
+@mixin card-dimensions($span)
+  $width: ($card-width * $span) + ($card-margin * ($span - 1))
+  $ratio: (1 / $width) * $card-height
+
+  width: $width + 0px
+  padding-top: percentage($ratio)
+
+.card
+  @extend %rounded-corners
+  margin: 0 0 $card-margin
+  position: relative
+  background: #FFF
+
+  .enhanced &
+    @extend %standard-shadow
+
+.card__mask
+  @extend %rounded-corners
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  overflow: hidden
+
+.card__figure
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 90%
+
+.card__figure__img
+  position: absolute
+  height: 100%
+
+.card__content
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  padding: 10px 15px 30px
+  color: $body-copy
+
+.card__title
+  +font-size(18)
+  margin-bottom: 10px
+
+.card__desc
+  +font-size(15px)
+  line-height: 1.3
+  color: $feature-copy
+
+.card__meta
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  height: 30px
+  color: $feature-copy
+
+.card__tags
+
+// -----------------------------------------------------------------------------
+// With image
+// -----------------------------------------------------------------------------
+
+.card--has-img
+
+  .card__content
+    height: 75px
+    background: #FFF
+    transition: height .2s ease-out
+
+  .card__desc
+    display: none
+
+  &:hover
+
+    .card__content
+      height: 100px
+
+// -----------------------------------------------------------------------------
+// Without image
+// -----------------------------------------------------------------------------
+
+.card--no-img
+
+  .card__content
+    top: 0
+    padding-top: 15px
+
+// -----------------------------------------------------------------------------
+// Full image cover
+// -----------------------------------------------------------------------------
+
+.card--cover
+
+  .card__figure
+    bottom: 0
+
+  .card__content
+    background: none
+    transition: none
+    color: #FFF
+
+  .card__title
+    +font-size(24)
+
+  &:hover
+
+    .card__content
+      height: 75px
+
+  &.card--double
+
+    .card__figure__img
+      width: 100%
+      height: auto
+
+    .card__title
+      +font-size(32)
+
+// -----------------------------------------------------------------------------
+// Sizes
+// -----------------------------------------------------------------------------
+
+.card--single
+  +card-dimensions(1)
+
+.card--double
+  +card-dimensions(2)

@@ -1,0 +1,62 @@
+:ruby
+
+  attrs = {
+    url: "",
+    kind: "",
+    size: "single",
+    title: "",
+    description: "",
+
+    meta_date: nil,
+    meta_avatar: nil,
+    meta_description: nil,
+
+    image_alt: nil,
+    image_url: nil,
+
+    price: nil,
+    retail_price: nil,
+    currency_symbol: nil
+  }
+
+  attrs.merge!(properties)
+
+  class_names = [
+    "card",
+    "js-card",
+    "card--#{attrs[:size]}",
+    "card--#{attrs[:kind]}",
+    "card--#{attrs[:image_url] ? 'has-img' : 'no-img'}"
+  ].join(" ")
+
+%article{ class: class_names }
+  .card__mask
+
+    %a{ href: attrs[:url] }
+
+      - if attrs[:image_url]
+        %figure.card__figure
+          %img.card__figure__img{ src: attrs[:image_url], alt: attrs[:image_alt] }
+
+      .card__content
+
+        .card__title
+          = attrs[:title]
+        .card__desc
+          = attrs[:description]
+
+      - if attrs[:meta_description] || attrs[:meta_date]
+        .card__meta
+
+          - if attrs[:meta_avatar]
+            .card__meta__author
+              = attrs[:meta_author]
+          - elsif attrs[:meta_date]
+            .card__meta__date
+              = attrs[:meta_date]
+          - else
+            .card__meta__type
+              = attrs[:type]
+
+      - if attrs[:price] && attrs[:currency_symbol]
+        .card__tags
