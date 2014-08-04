@@ -12,5 +12,5 @@
     = render "components/navigation/submenu", item: item, show_responsive_toggle: !defined?(primary)
 
 - else
-  %span.nav__item
+  %span.nav__item{class: [nav_type, item[:extra_class]]}
     = item[:title]

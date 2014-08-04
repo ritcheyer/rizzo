@@ -8,9 +8,12 @@
   right: 0
   left: auto
   width: 320px
+  cursor: default
   .responsive &
     display: none
     +respond-to(wide-view)
+      // Only required because of .responsive specificity
+      width: 320px
       &:hover
         display: block
 

@@ -56,7 +56,8 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
         $userAvatar;
 
     if (window.lp.user.unreadMessageCount > 0) {
-      $rendered.find(".js-responsive-unread-messages").removeClass("is-hidden");
+      $rendered.find(".js-responsive-messages")
+        .append("<span class='js-responsive-unread-messages'>(" + window.lp.user.unreadMessageCount + ")");
     }
 
     // Remove any previously generated user navigation.

@@ -4,19 +4,6 @@ require 'host_support'
 module GlobalResourcesHelper
   include BrowserSupport, HostSupport, IpSupport
 
-  def primary_navigation_items
-    [
-      {style:'home', title:'Home', uri: www_url},
-      {style:'destinations', title:'Destinations', uri: www_url("destinations")},
-      {style:'themes', title:'Themes', uri: www_url("themes")},
-      {style:'forum', title:'Thorn Tree forum', uri: www_url("thorntree")},
-      {style:'shop', title:'Shop', uri: shop_url},
-      {style:'hotels', title:'Hotels', uri: www_url("hotels")},
-      {style:'flights', title:'Flights', uri: www_url("bookings/flights.do")},
-      {style:'insurance', title:'Insurance', uri: www_url("bookings/insurance.do")}
-    ]
-  end
-
   def primary_navigation_items(responsive=true)
     return core_navigation_items if responsive
 
@@ -84,6 +71,14 @@ module GlobalResourcesHelper
     ]
   end
 
+  def user_navigation_signed_out_items(type="wide-view")
+    return user_navigation_items[:signed_out_links] if type == "mobile"
+
+    nav_items = user_navigation_items[:signed_out_links].dup
+    nav_items[-1][:extra_class] += " btn btn--small"
+    nav_items.insert(1, { title: "or", extra_class: "or" }).reverse
+  end
+
   def user_navigation_items
     {
       my_account: {
@@ -106,7 +101,8 @@ module GlobalResourcesHelper
         {
           title: "Messages",
           slug: "https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages",
-          icon_class: "icon--envelope--before icon--white--before"
+          icon_class: "icon--envelope--before icon--white--before",
+          extra_class: "js-responsive-messages"
         },
         {
           title: "Forum Activity",
@@ -124,6 +120,7 @@ module GlobalResourcesHelper
           title: "Sign in",
           slug: "https://auth.lonelyplanet.com/users/sign_in",
           icon_class: "icon--user--before icon--white--before",
+          extra_class: "js-user-sign_in",
           analytics: {
             category: "account",
             action: "sign-in"
@@ -133,6 +130,7 @@ module GlobalResourcesHelper
           title: "Join",
           slug: "https://auth.lonelyplanet.com/users/sign_up",
           icon_class: "icon--sign-in--before icon--white--before",
+          extra_class: "js-user-sign_up",
           analytics: {
             category: "account",
             action: "join"
@@ -140,62 +138,6 @@ module GlobalResourcesHelper
         }
       ]
     }
-  end
-
-  def default_breadcrumbs
-    [
-      {:place=>"South America", :slug=>"south-america"},
-      {:place=>"Argentina", :slug=>"argentina"},
-      {:place=>"Buenos Aires", :slug=>"buneos-aires"},
-      {:place=>"Buenos Aires Hotels", "slug"=>nil}
-    ]
-  end
-
-  def cart_item_element
-    capture_haml do
-      haml_tag(:a, 'Cart: 0', class: 'nav__item--cart js-user-cart', href: 'http://shop.lonelyplanet.com/cart/view')
-    end
-  end
-
-  def membership_item_element
-    capture_haml do
-      haml_tag(:div, class: 'nav__item--user js-user--nav')
-    end
-  end
-
-  def show_arrow(style)
-    if style=='destinations' ||  style=='destinations current'
-      capture_haml do
-        haml_tag(:span, class: 'arrow')
-      end
-    end
-  end
-
-  def place_heading(title, section_name, slug, parent, parent_slug, no_place_link = false)
-
-    capture_haml do
-      haml_tag(:div, class: 'place-title icon--destination-flag--before') do
-        if no_place_link == true
-          haml_tag(:span, class: 'place-title-heading') do
-            haml_concat(title)
-          end
-        else
-          haml_tag(:a, class: 'place-title-heading', href: "/#{slug}") do
-            haml_concat(title)
-          end
-        end
-        unless section_name.nil?
-          haml_tag(:span, class: 'accessibility') do
-            haml_concat(" " + section_name)
-          end
-        end
-        unless parent.nil?
-          haml_tag(:a, class: 'place-title__parent', href: "/#{parent_slug}") do
-            haml_concat(", " + parent)
-          end
-        end
-      end
-    end
   end
 
   def dns_prefetch_for(links)

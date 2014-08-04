@@ -70,12 +70,12 @@ $submenu__vertical-padding: 14px
   position: relative
   &:after
     position: absolute
+    filter: drop-shadow(0px -1px 0px rgba(0, 0, 0, 0.2))
 
   .responsive &
     box-shadow: none
     &:after
       display: none
-
     +respond-to(wide-view)
       // We can't use `@extend %fly-out-shadow` within a mixin, thus:
       box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.4)
@@ -93,15 +93,17 @@ $submenu__vertical-padding: 14px
   .responsive &
     padding: $submenu__vertical-padding 20px
     text-transform: uppercase
-    background-color: $responsive-nav-hover
+    background-color: $responsive-nav-subnav-bg
     &:hover
-      background-color: $responsive-nav-subnav-hover
+      color: $lpblue
+
     +respond-to(wide-view)
       background-color: transparent
       padding: $submenu__padding__item
       text-transform: none
       &:hover
         background-color: $body-background-offset
+        color: $body-copy
 
 .nav__submenu__title
   +font-size(16)

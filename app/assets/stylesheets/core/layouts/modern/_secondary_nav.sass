@@ -6,6 +6,7 @@
 
 .row--secondary
   background: #fff
+  min-height: 60px
   .responsive &
     +z-layer(modal)
     position: relative
@@ -33,13 +34,15 @@
     max-width: none
   .responsive &
     position: static
-    max-width: 100%
+    max-width: none
     line-height: 1
     height: auto
     +respond-to(wide-view)
       +vertically-center(30)
       position: absolute
       max-width: 340px
+      &:hover
+        max-width: none
 
 // ----------------------------------------------------------------------------
 //
@@ -53,19 +56,16 @@
 
 .nav--secondary
   @extend %subpixel-text
-
   .responsive &
-
     &.is-active
-      // TODO: Align with footer accordion
       @extend %standard-shadow
       display: block
-
+      border-top: 1px solid $body-background
     +respond-to(wide-view)
       .enhanced &.is-active
         box-shadow: none
+        border-top: none
 
-// TODO: Align with footer accordion
 .nav__submenu__trigger--responsive
   width: 30px
   height: 44px
@@ -111,8 +111,9 @@
     padding-right: 20px
     &:hover
       text-decoration: none
-      background-color: $responsive-nav-hover
     &.is-active
+      border-left: 1px solid $body-background
+      background-color: $responsive-nav-bg
       .icon--chevron-up
         display: inline-block
       .icon--chevron-down
@@ -153,16 +154,18 @@
     margin: 0
     padding: 14px 20px
     width: 100%
+    background-color: $responsive-nav-bg
     &:hover
-      background-color: $responsive-nav-hover
+      color: $lpblue
 
     +respond-to(wide-view)
       border-bottom: none
       margin: 0 8px
       padding: 6px 0 12px
       width: auto
+      background-color: transparent
       &:hover
-        background-color: transparent
+        color: $titlegray
       &.is-current
         border-bottom: 2px solid $lpblue
 
