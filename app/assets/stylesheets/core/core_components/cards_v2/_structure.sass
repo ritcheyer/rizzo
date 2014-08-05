@@ -2,9 +2,9 @@ $card-width: 220px
 $card-margin: 10px
 $card-height: 270px
 
-@mixin card-dimensions($span)
-  $width: ($card-width * $span) + ($card-margin * ($span - 1))
-  $ratio: (1 / $width) * $card-height
+@mixin card-dimensions($span, $width: $card-width, $height: $card-height, $margin: $card-margin)
+  $width: ($width * $span) + ($margin * ($span - 1))
+  $ratio: (1 / $width) * $height
 
   width: $width + 0px
   padding-top: percentage($ratio)
@@ -129,8 +129,7 @@ $card-height: 270px
       padding-top: 15px
 
 .card--short
-  $card-height: 195px
-  +card-dimensions(1)
+  +card-dimensions($span: 1, $height: 195px)
 
   &.card--has-img
 
