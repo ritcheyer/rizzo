@@ -4,6 +4,8 @@
     url: "",
     kind: "",
     title: "",
+    cover?: false,
+    short?: false,
     double?: false,
     description: "",
 
@@ -25,6 +27,8 @@
     "card",
     "js-card",
     "card--#{attrs[:kind]}",
+    "card--#{attrs[:short?] ? 'short' : 'tall'}",
+    "card--#{attrs[:cover?] ? 'cover' : 'standard'}",
     "card--#{attrs[:double?] ? 'double' : 'single'}",
     "card--#{attrs[:image_url] ? 'has-img' : 'no-img'}"
   ].join(" ")
