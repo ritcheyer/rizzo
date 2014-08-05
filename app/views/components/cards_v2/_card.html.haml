@@ -3,8 +3,8 @@
   attrs = {
     url: "",
     kind: "",
-    size: "single",
     title: "",
+    double?: false,
     description: "",
 
     meta_date: nil,
@@ -24,8 +24,8 @@
   class_names = [
     "card",
     "js-card",
-    "card--#{attrs[:size]}",
     "card--#{attrs[:kind]}",
+    "card--#{attrs[:double?] ? 'double' : 'single'}",
     "card--#{attrs[:image_url] ? 'has-img' : 'no-img'}"
   ].join(" ")
 
@@ -50,13 +50,14 @@
 
           - if attrs[:meta_avatar]
             .card__meta__author
-              = attrs[:meta_author]
+              %img.card__meta__avatar{ src: attrs[:meta_avatar] }
+              = attrs[:meta_description]
           - elsif attrs[:meta_date]
             .card__meta__date
               = attrs[:meta_date]
           - else
-            .card__meta__type
-              = attrs[:type]
+            .card__meta__type{ class: "card__meta__type--#{attrs[:kind]}" }
+              = attrs[:meta_description]
 
       - if attrs[:price] && attrs[:currency_symbol]
         .card__tags

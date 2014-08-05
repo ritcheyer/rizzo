@@ -61,9 +61,20 @@ $card-height: 270px
   right: 0
   bottom: 0
   height: 30px
+  padding: 0 15px
   color: $feature-copy
 
 .card__tags
+
+// -----------------------------------------------------------------------------
+// Size variations
+// -----------------------------------------------------------------------------
+
+.card--single
+  +card-dimensions(1)
+
+.card--double
+  +card-dimensions(2)
 
 // -----------------------------------------------------------------------------
 // With image
@@ -101,12 +112,20 @@ $card-height: 270px
 .card--cover
 
   .card__figure
-    bottom: 0
+    height: 100%
+
+  .card__meta,
+  .card__content
+    color: #FFF
 
   .card__content
+    height: auto
     background: none
     transition: none
-    color: #FFF
+
+    // Remove content overflow mask
+    &:after
+      content: normal
 
   .card__title
     +font-size(24)
@@ -114,7 +133,7 @@ $card-height: 270px
   &:hover
 
     .card__content
-      height: 75px
+      height: auto
 
   &.card--double
 
@@ -124,13 +143,3 @@ $card-height: 270px
 
     .card__title
       +font-size(32)
-
-// -----------------------------------------------------------------------------
-// Sizes
-// -----------------------------------------------------------------------------
-
-.card--single
-  +card-dimensions(1)
-
-.card--double
-  +card-dimensions(2)

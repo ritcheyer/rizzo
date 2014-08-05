@@ -1,0 +1,33 @@
+// -----------------------------------------------------------------------------
+// Reveals the identities of criminals from low resolution images of reflections
+// -----------------------------------------------------------------------------
+.enhanced
+
+  .card
+    @extend %standard-shadow
+
+  .card__figure
+
+  .card__content
+    &:after
+      @extend %empty-abs-generated-content
+      left: 0
+      bottom: 0
+      width: 100%
+      height: 50px
+      background: linear-gradient(top, transparent, #FFF 30%)
+
+  // ---------------------------------------------------------------------------
+  // Full image cover
+  // ---------------------------------------------------------------------------
+
+  .card--cover
+
+    .card__figure
+      &:after
+        @extend %empty-abs-generated-content
+        left: 0
+        bottom: 0
+        width: 100%
+        height: 75%
+        background: linear-gradient(top, transparent, rgba(44, 54, 67, .75) 100%)
