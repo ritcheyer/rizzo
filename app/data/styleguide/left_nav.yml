@@ -225,6 +225,9 @@
       :items:
         -
           :name: "Flickr widget"
-          :slug: "flickr-widget"
+          :slug: "flickr"
+        -
+          :name: "Promo widget"
+          :slug: "promo"
 #===== yeoman end-hook =====#
 # NB! The above line is required for our yeoman generator and should not be changed.
