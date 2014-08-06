@@ -17,6 +17,11 @@ describe 'Asset Analysis' do
       {sizes: {size: "4" }, id: "Hotels" },
       {sizes: {size: "20" }, id: "Search" },
       {sizes: {size: "60" }, id: "Flight" }
+    ],
+    last_month: [
+      {sizes: {size: "4" }, id: "Hotels" },
+      {sizes: {size: "15" }, id: "Search" },
+      {sizes: {size: "60" }, id: "Flight" }
     ]
   } }
   let(:result) { @dummy_class.fetch("all") }
@@ -37,16 +42,19 @@ describe 'Asset Analysis' do
             hotels = result.find {|s| s[:id] == "Hotels"}
             hotels[:compare][:yesterday].should eq(25.0)
             hotels[:compare][:last_week].should eq(150.0)
+            hotels[:compare][:last_month].should eq(150.0)
           }
           specify {
             search = result.find {|s| s[:id] == "Search"}
             search[:compare][:yesterday].should eq(0)
             search[:compare][:last_week].should eq(0)
+            search[:compare][:last_month].should eq(33.3)
           }
           specify {
             flights = result.find {|s| s[:id] == "Flight"}
             flights[:compare][:yesterday].should eq(-33.3)
             flights[:compare][:last_week].should eq(-50.0)
+            flights[:compare][:last_month].should eq(-50.0)
           }
         end
 
