@@ -222,16 +222,22 @@ pre.styleguide.is-open
 
   > a:first-child
     +z-layer
+    +size(30px)
     @extend %transition--base
+    @extend %rounded-corners
     display: block
     position: absolute
-    right: 20px
-    top: 10px
-    width: 25px
-    height: 25px
-    opacity: 0.5
+    right: -35px
+    top: 20px
+    background-color: white
+    opacity: 0.7
     &:hover
       opacity: 1
+    &:after
+      +size(22px)
+      position: absolute
+      left: 5px
+      top: 4px
 
 .styleguide-grid
   .card

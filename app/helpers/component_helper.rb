@@ -18,7 +18,7 @@ module ComponentHelper
     capture_haml do
       haml_tag(:div, class: "styleguide-block#{item_id.present? ? ' styleguide__anchor' : ''}", id: item_id) do
         if item_id.present?
-          haml_tag(:a, name: item_id, href: "##{item_id}", class: "icon--link icon--lp-blue")
+          haml_tag(:a, name: item_id, href: "##{item_id}", class: "icon--link--after icon--lp-blue--after")
         end
         haml_tag(:div, class: item_class) do
           haml_concat ui_component(slug, properties)
