@@ -14,21 +14,12 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
     refreshMillis: 60000,
     fullTimeagoSelector: ".js-timeago-full",
     responsiveTimeagoSelector: ".js-timeago",
-  };
+  },
+
+  MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 
   function TimeAgo(args) {
-
     this.config = $.extend({}, defaults, args);
-
-    this.monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-
-    var calculateMonth = function(number, distanceMillis) {
-          return this.monthNames[new Date(Date.now() - distanceMillis).getMonth()];
-        },
-        calculateYear = function(number, distanceMillis) {
-          return new Date(Date.now() - distanceMillis).getFullYear().toString();
-        };
-
     this.strings = {
       full: {
         suffixAgo: null,
@@ -53,10 +44,10 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
         hours: "%dh",
         day: "%dd",
         days: "%dd",
-        month: calculateMonth,
-        months: calculateMonth,
-        year: calculateYear,
-        years: calculateYear
+        month: this._getMonthName,
+        months: this._getMonthName,
+        year: this._getFullYear,
+        years: this._getFullYear
       }
     };
 
@@ -72,6 +63,14 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
     this.updateStrings();
     this._refreshOnInterval();
     this._refreshOnResize();
+  };
+
+  TimeAgo.prototype._getMonthName = function(number, distanceMillis) {
+    return MONTH_NAMES[new Date(Date.now() - distanceMillis).getMonth()];
+  }.bind(this);
+
+  TimeAgo.prototype._getFullYear = function(number, distanceMillis) {
+    return new Date(Date.now() - distanceMillis).getFullYear().toString();
   };
 
   TimeAgo.prototype._isAboveBreakpoint = function() {
