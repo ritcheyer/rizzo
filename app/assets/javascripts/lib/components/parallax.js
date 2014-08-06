@@ -53,16 +53,13 @@ define([
       };
 
       if (withAnimation){
-        if (this.withinViewport($el)) {
-          _parallaxReady = false;
-          $animEl
-            .addClass("hero-banner__image-initial-position")
-            .on(window.lp.supports.transitionend, function() {
-              $animEl.removeClass("hero-banner__image-initial-position");
-              _parallaxReady = true;
-            });
-        }
-
+        _parallaxReady = false;
+        $animEl
+          .addClass("hero-banner__image-initial-position")
+          .on(window.lp.supports.transitionend, function() {
+            $animEl.removeClass("hero-banner__image-initial-position");
+            _parallaxReady = true;
+          });
         $animEl.css(_transform, "translate3d(0, " + this.calculatePosition(i).toFixed(2) + "px, 0) scale(1) rotate(0deg)");
       }
 
@@ -78,7 +75,12 @@ define([
         maxParallax = (banner.imageHeight - banner.heroHeight),
         scrolledPercentage = (positionInViewport.top + banner.heroHeight) / lengthOnPage;
 
-    return -1 * maxParallax * scrolledPercentage;
+    if (maxParallax * scrolledPercentage > maxParallax){
+      return -1 * maxParallax;
+    } else {
+      return -1 * maxParallax * scrolledPercentage;
+    }
+
   };
 
   HeroParallax.prototype._updateBg = function( i ) {
@@ -126,16 +128,14 @@ define([
     }
   };
 
-  $(window).on("load", function() {
-    // Waits for feature detect to be available
-    if (window.lp.supports.requestAnimationFrame){
+  // Waits for feature detect to be available
+  if (window.lp.supports.requestAnimationFrame){
+    _autoInit();
+  } else {
+    $(document).on(":featureDetect/available", function() {
       _autoInit();
-    }else {
-      $(document).on(":featureDetect/available", function() {
-        _autoInit();
-      });
-    }
-  });
+    });
+  }
 
   return HeroParallax;
 
