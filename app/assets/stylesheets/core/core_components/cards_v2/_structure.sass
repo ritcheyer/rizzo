@@ -45,9 +45,11 @@ $card-height: 270px
   right: 0
   bottom: 0
   padding: 10px 15px 30px
+  border-top: 2px solid
   color: $body-copy
 
 .card__meta
+  +font-size(13)
   position: absolute
   left: 0
   right: 0
@@ -55,6 +57,27 @@ $card-height: 270px
   height: 30px
   padding: 0 15px
   color: $feature-copy
+
+.card__meta__icon,
+.card__meta__avatar
+  display: inline-block
+  margin-right: .25em
+  vertical-align: middle
+  border-radius: 50%
+
+.card__meta__icon
+  +size(14px)
+  +icon-color(white)
+
+  // Fake padding around the icon
+  border: 3px solid
+  background-size: 15px
+
+.card__meta__avatar
+  +size(20px)
+
+.card__meta__author
+  font-weight: bold
 
 .card__title
   +font-size(18)
@@ -97,17 +120,22 @@ $card-height: 270px
         background: #FFF
 
       .card__content
-        height: 40px
+        height: 75px
         transition: height .2s ease-out
+
+      &:hover
+        .card__content
+          height: 100px
 
       &.card--has-meta
         .card__content
+          height: 45px
           bottom: 30px
 
-      &:hover
+        &:hover
+          .card__content
+            height: 70px
 
-        .card__content
-          height: 65px
 
     // Cover image card
     &.card--cover
@@ -115,6 +143,9 @@ $card-height: 270px
       .card__meta,
       .card__content
         color: #FFF
+
+      .card__content
+        border-top: 0
 
       .card__title
         +font-size(24)
@@ -151,35 +182,10 @@ $card-height: 270px
 
     .card__content
       top: auto
+      border-top: 0
 
     .card__title
       +font-size(24)
 
     .card__desc
       display: none
-
-// -----------------------------------------------------------------------------
-// Shop cards
-// -----------------------------------------------------------------------------
-
-.card--shop
-
-  &.card--has-img
-
-    .card__figure
-      bottom: 110px
-      height: auto
-      background: image_url("cards/guide-background.jpg")
-      background-size: cover
-
-    .card__figure__img
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      height: 80%
-      margin: auto
-
-  // Price tag adjustments
-  .tag--price__values
-    padding-top: 10px

@@ -12,6 +12,7 @@
   :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
   :image_alt: ""
   :image_url: "http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg"
+  :meta_description: Activities
 -
   :styleguide_title: "Card with image and author"
   :url: "#"
@@ -19,17 +20,16 @@
   :title: "Classic Paris: a fresh look at the city of light"
   :image_alt: ""
   :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
-  :meta_avatar: ""
+  :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :meta_description: "Phil McCracken"
 -
-  :styleguide_title: "Card with shop product"
+  :styleguide_title: "Card with guide book"
   :url: "#"
-  :kind: "shop"
+  :kind: "guide"
   :title: "France's Best Trips"
   :description: "Discover the freedom of the open road with France’s Best Trips. We’ve selected 39 amazing road trips through France, from two-day escapes to week-long adventures, and packed them full of expert advice and inspirational suggestions. Whether you want to cruise the corniches of the French Riviera, get lost among the snowcapped Alps or taste your way around Champagne’s hallowed vineyards, we’ve got the trip for you."
   :image_alt: ""
   :image_url: "http://10.3.0.44/layouts/assets/img/cover-flat.jpg"
-  :meta_avatar: ""
   :meta_description: "Book & Ebook"
   :price: "12.50"
   :on_sale_here?: true
@@ -38,10 +38,11 @@
 -
   :styleguide_title: "Card with tag"
   :url: "#"
-  :kind: "destination"
+  :kind: "tour"
   :title: "Classic Paris: a fresh look at the city of light"
   :image_alt: ""
   :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
+  :meta_description: "Tours"
   :lp_reviewed: true
 -
   :styleguide_title: "Short card"
@@ -59,7 +60,7 @@
   :description: ""
   :image_alt: ""
   :image_url: "http://images-resrc.staticlp.com/C=W3514,H3386,X1161,Y0/S=W300,H300/http://media.lonelyplanet.com/a/g/hi/t/a03b63e2de8b540613e1cab75404b5a2-travel-shopping.jpg"
-  :meta_avatar: ""
+  :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :meta_description: "Phil McCracken"
 -
   :styleguide_title: "Card with cover image"
@@ -69,7 +70,7 @@
   :title: "The best bars in Paris"
   :image_alt: ""
   :image_url: "http://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
-  :meta_avatar: ""
+  :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :meta_description: "Phil McCracken"
 -
   :styleguide_title: "Double width card with cover image"
@@ -80,5 +81,5 @@
   :title: "Top things to do in Paris"
   :image_alt: ""
   :image_url: "http://media.lonelyplanet.com/a/g/hi/t/d79818893c366ac9d63dd756a86cb968-best-places-to-stay-in-paris.jpg"
-  :meta_avatar: ""
+  :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :meta_description: "Phil McCracken"

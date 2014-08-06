@@ -1,0 +1,51 @@
+// -----------------------------------------------------------------------------
+// Guide book cards
+// -----------------------------------------------------------------------------
+
+.card--guide
+
+  &.card--has-img
+
+    .card__content
+      border-top: 0
+
+    .card__figure
+      bottom: 110px
+      height: auto
+      background: image_url("cards/guide-background.jpg")
+      background-size: cover
+
+    .card__figure__img
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      height: 80%
+      margin: auto
+
+  .card__meta__icon
+    border-color: $darkcyan
+    background-color: $darkcyan
+
+  // Price tag adjustments
+  .tag--price__values
+    padding-top: 10px
+
+// -----------------------------------------------------------------------------
+// Kinds
+// -----------------------------------------------------------------------------
+
+@for $i from 1 through length($poi-names)
+
+  $kind: nth($poi-names, $i)
+  $color: nth($poi-colors, $i)
+
+  .card--#{$kind}
+
+    .card__content
+      border-top-color: $color
+
+    .card__meta__icon
+      color: #FFF
+      border-color: $color
+      background-color: $color

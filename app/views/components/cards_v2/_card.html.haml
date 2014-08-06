@@ -46,7 +46,7 @@
 
       - if attrs[:image_url]
         %figure.card__figure
-          %img.card__figure__img{ src: attrs[:image_url], alt: attrs[:image_alt] }
+          = safe_image_tag(attrs[:image_url], class: "card__figure__img", alt: attrs[:image_alt])
 
       .card__content
 
@@ -59,11 +59,14 @@
         .card__meta
 
           - if attrs[:meta_avatar]
-            .card__meta__author
-              %img.card__meta__avatar{ src: attrs[:meta_avatar] }
-              = attrs[:meta_description]
+            .card__meta__attribution
+              = safe_image_tag(attrs[:meta_avatar], class: "card__meta__avatar", alt: "Avatar for #{attrs[:meta_description]}")
+              by
+              %span.card__meta__author
+                = attrs[:meta_description]
           - else
             .card__meta__kind{ class: "card__meta__kind--#{attrs[:kind]}" }
+              %span.card__meta__icon{ class: "icon--#{attrs[:kind]}" }
               = attrs[:meta_description]
 
   .card__tags
