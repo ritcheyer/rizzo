@@ -9,16 +9,21 @@
     double?: false,
     description: "",
 
-    meta_date: nil,
     meta_avatar: nil,
     meta_description: nil,
 
     image_alt: nil,
     image_url: nil,
 
+    # Price tag
     price: nil,
     retail_price: nil,
-    currency_symbol: nil
+    on_sale_here?: nil,
+    currency_symbol: nil,
+
+    # Other tags
+    lp_review: nil,
+    top_choice: nil
   }
 
   attrs.merge!(properties)
@@ -30,7 +35,8 @@
     "card--#{attrs[:short?] ? 'short' : 'tall'}",
     "card--#{attrs[:cover?] ? 'cover' : 'standard'}",
     "card--#{attrs[:double?] ? 'double' : 'single'}",
-    "card--#{attrs[:image_url] ? 'has-img' : 'no-img'}"
+    "card--#{attrs[:image_url] ? 'has-img' : 'no-img'}",
+    "card--#{attrs[:meta_description] ? 'has-meta' : 'no-meta'}"
   ].join(" ")
 
 %article{ class: class_names }
@@ -49,19 +55,18 @@
         .card__desc
           = attrs[:description]
 
-      - if attrs[:meta_description] || attrs[:meta_date]
+      - if attrs[:meta_description]
         .card__meta
 
           - if attrs[:meta_avatar]
             .card__meta__author
               %img.card__meta__avatar{ src: attrs[:meta_avatar] }
               = attrs[:meta_description]
-          - elsif attrs[:meta_date]
-            .card__meta__date
-              = attrs[:meta_date]
           - else
-            .card__meta__type{ class: "card__meta__type--#{attrs[:kind]}" }
+            .card__meta__kind{ class: "card__meta__kind--#{attrs[:kind]}" }
               = attrs[:meta_description]
 
-      - if attrs[:price] && attrs[:currency_symbol]
-        .card__tags
+  .card__tags
+    - if properties[:price]
+      = render :partial => "/components/cards_v2/partials/price_tag", :locals => { :properties => properties }
+    = render :partial => "/components/cards_v2/partials/tags", :locals => { :properties => properties }

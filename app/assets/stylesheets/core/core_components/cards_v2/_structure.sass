@@ -88,21 +88,28 @@ $card-height: 270px
     .card__content
       top: auto
 
+    .card__desc
+      display: none
+
     // Standard card
     &.card--standard
 
+      .card__meta,
       .card__content
-        height: 75px
         background: #FFF
+
+      .card__content
+        height: 40px
         transition: height .2s ease-out
 
-      .card__desc
-        display: none
+      &.card--has-meta
+        .card__content
+          bottom: 30px
 
       &:hover
 
         .card__content
-          height: 100px
+          height: 65px
 
     // Cover image card
     &.card--cover
@@ -129,6 +136,7 @@ $card-height: 270px
       padding-top: 15px
 
 .card--short
+  // Short cards are always a single width
   +card-dimensions($span: 1, $height: 195px)
 
   &.card--has-img
@@ -140,12 +148,40 @@ $card-height: 270px
       height: auto
 
     .card__meta,
-    .card__desc
-      display: none
+    .card__content
+      color: #FFF
 
     .card__content
       top: auto
-      color: #FFF
 
     .card__title
       +font-size(24)
+
+    .card__desc
+      display: none
+
+// -----------------------------------------------------------------------------
+// Shop cards
+// -----------------------------------------------------------------------------
+
+.card--shop
+
+  &.card--has-img
+
+    .card__figure
+      bottom: 110px
+      height: auto
+      background: image_url("cards/guide-background.jpg")
+      background-size: cover
+
+    .card__figure__img
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      height: 80%
+      margin: auto
+
+  // Price tag adjustments
+  .tag--price__values
+    padding-top: 10px
