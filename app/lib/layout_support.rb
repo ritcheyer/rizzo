@@ -36,7 +36,11 @@ module LayoutSupport
         default_title:  false
       },
       modern: {
-        responsive:     false,
+        responsive:     true,
+        app_core:       true,
+        default_title:  false
+      },
+      responsive: {
         app_core:       true
       },
       noscript: {
