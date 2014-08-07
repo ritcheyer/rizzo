@@ -6,9 +6,10 @@
 
 // Variables - to make the below calculations more obvious
 $submenu--width:         200px
-$submenu__padding: 20px 10px 10px
+$submenu__padding--horizontal: 10px
+$submenu__padding: 20px $submenu__padding--horizontal 10px
 $submenu__padding__item: 12px
-$submenu__left-offset: -(($submenu--width/2) + 10px)
+$submenu__left-offset: -(($submenu--width/2) + $submenu__padding--horizontal)
 $submenu__vertical-padding: 14px
 
 .nav__submenu__trigger
