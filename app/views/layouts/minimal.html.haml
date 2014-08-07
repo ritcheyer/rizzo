@@ -16,8 +16,7 @@
 
       - if (yield :alerts).present?
         .row.row--alerts
-          .row__inner
-            = yield :alerts
+          = yield :alerts
 
       = yield
 
