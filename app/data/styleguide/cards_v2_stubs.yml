@@ -52,6 +52,15 @@
   :title: "Need to know"
   :description: "Paris has all but exhausted the superlatives that can reasonably be applied to any city. Notre Dame and the Eiffel Tower have been described countless times, as have the Seine and the subtle (and not-so-subtle) differences between the Left and Right Banks. Yet, what writers have never been able to even slightly reflect is the grandness and magic."
 -
+  :styleguide_title: "Short quote card"
+  :url: "#"
+  :short?: true
+  :kind: "quote"
+  :title: "Thorntree"
+  :description: "It sounds like you don't know the rules for going to Bhutan."
+  :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/000/095/975/thumb/Photo.jpg"
+  :meta_description: "Ben2World"
+-
   :styleguide_title: "Short image card"
   :url: "#"
   :short?: true

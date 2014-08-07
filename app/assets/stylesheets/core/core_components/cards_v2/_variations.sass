@@ -6,9 +6,6 @@
 
   &.card--has-img
 
-    .card__content
-      border-top: 0
-
     .card__figure
       bottom: 110px
       height: auto
@@ -23,6 +20,9 @@
       height: 80%
       margin: auto
 
+    .card__content
+      border-top: 0
+
   .card__meta__icon
     border-color: $darkcyan
     background-color: $darkcyan
@@ -32,7 +32,32 @@
     padding-top: 10px
 
 // -----------------------------------------------------------------------------
-// Kinds
+// Quote cards
+// -----------------------------------------------------------------------------
+
+.card--quote
+
+  .card__figure,
+  .card__title
+    display: none
+
+  .card__content
+    border-top: 0
+
+  .card__desc
+    +font-size(20)
+    padding: 10px
+
+    // left/right quote marks
+    &:before
+      content: "\201C"
+      margin: 0 -.15em 0 -.5em
+    &:after
+      content: "\201D"
+      margin-left: -.15em
+
+// -----------------------------------------------------------------------------
+// POI types
 // -----------------------------------------------------------------------------
 
 @for $i from 1 through length($poi-names)
