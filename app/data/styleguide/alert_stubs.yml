@@ -7,7 +7,7 @@ alerts:
     :type: "success"
     :title: "Congratulations!"
     :message: "You are now logged in."
-    :lined: true
+    :subtle: true
   -
     :type: "error"
     :title: "Oops!"
@@ -16,7 +16,7 @@ alerts:
     :type: "error"
     :title: "Oops!"
     :message: "Maybe check yourself before..."
-    :lined: true
+    :subtle: true
   -
     :type: "warning"
     :title: "Be careful"
@@ -25,7 +25,7 @@ alerts:
     :type: "warning"
     :title: "Be careful"
     :message: "Mind the gap."
-    :lined: true
+    :subtle: true
   -
     :type: "announcement"
     :title: "Half price books"
@@ -34,4 +34,4 @@ alerts:
     :type: "announcement"
     :title: "Half price books"
     :message: "Get them now, they're hot."
-    :lined: true
+    :subtle: true

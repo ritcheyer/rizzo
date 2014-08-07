@@ -3,32 +3,38 @@
 // -----------------------------------------------------------------------------
 
 .alert
+  +font-size(14)
   @extend %transition--base
   padding: 20px 15px
-  position: relative
+  line-height: 1
 
+.alert__inner
+  position: relative
+  box-sizing: border-box
   &:before
     +size(20px)
     position: absolute
-    top: 16px
-    left: 15px
+    top: -4px
+    left: 0
 
   &[class*=" icon--"]
-    padding-left: 45px
+    padding-left: 30px
 
-.alert__title
+.alert__title, .alert a
   font-weight: bold
 
 .alert--block
   color: white
-  &:before
-    +icon-color(white)
+  .alert__inner
+    &:before
+      +icon-color(white)
 
-.alert--lined
+.alert--subtle
   @extend %rounded-corners
   border: 2px solid
-  &:before
-    +icon-color(custom)
+  .alert__inner
+    &:before
+      +icon-color(custom)
 
 
 // -----------------------------------------------------------------------------
@@ -40,7 +46,7 @@
   &.alert--block
     background: $color
 
-  &.alert--lined
+  &.alert--subtle
     border-color: $color
     @if $title
       .alert__title
@@ -58,14 +64,16 @@
   +alert-variation($red)
 
 .alert--announcement
-  +alert-variation($linkblue)
-  &.alert--lined
-    &:before
-      +icon-color(lp-blue)
+  +alert-variation($lpblue)
+  &.alert--subtle
+    .alert__inner
+      &:before
+        +icon-color(lp-blue)
 
 .alert--warning
   +alert-variation($yella, false)
   color: $titlegray
   &.alert--block
-    &:before
-      +icon-color(custom)
+    .alert__inner
+      &:before
+        +icon-color(custom)
