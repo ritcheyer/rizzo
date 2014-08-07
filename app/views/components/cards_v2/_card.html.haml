@@ -1,7 +1,7 @@
 :ruby
 
   attrs = {
-    url: "",
+    slug: "",
     kind: "",
     title: "",
     cover?: false,
@@ -22,8 +22,9 @@
     currency_symbol: nil,
 
     # Other tags
-    lp_review: nil,
-    top_choice: nil
+    tag_position: nil,
+    tag_lp_review: nil,
+    tag_top_choice: nil
   }
 
   attrs.merge!(properties)
@@ -42,7 +43,7 @@
 %article{ class: class_names }
   .card__mask
 
-    %a{ href: attrs[:url] }
+    %a{ href: attrs[:slug] }
 
       - if attrs[:image_url]
         %figure.card__figure

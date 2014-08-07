@@ -1,11 +1,14 @@
-- if properties[:top_choice]
+- if properties[:tag_top_choice]
   .tag.tag--card.tag--top-choice
     .tag--card__content.icon--collar--after.icon--lp-blue--after
       .icon--top-choice.icon--white
         Top Choice
 
-- elsif properties[:lp_reviewed]
+- elsif properties[:tag_lp_reviewed]
   .tag.tag--card.tag--lp-reviewed
     .tag--card__content
       .icon--lp-reviewed.icon--white
         Lonely Planet Reviewed
+
+- if properties[:tag_position]
+  = ui_component("tags/competition", properties: { position: properties[:tag_position] })
