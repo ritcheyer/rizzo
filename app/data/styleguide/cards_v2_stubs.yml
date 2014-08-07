@@ -21,7 +21,7 @@
   :image_alt: ""
   :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
   :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
-  :meta_description: "Phil McCracken"
+  :meta_author: "Phil McCracken"
 -
   :styleguide_title: "Card with guide book"
   :slug: "#"
@@ -59,7 +59,7 @@
   :title: "Thorntree"
   :description: "It sounds like you don't know the rules for going to Bhutan."
   :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/000/095/975/thumb/Photo.jpg"
-  :meta_description: "Ben2World"
+  :meta_author: "Ben2World"
 -
   :styleguide_title: "Short image card"
   :slug: "#"
@@ -70,7 +70,7 @@
   :image_alt: ""
   :image_url: "http://images-resrc.staticlp.com/C=W3514,H3386,X1161,Y0/S=W300,H300/http://media.lonelyplanet.com/a/g/hi/t/a03b63e2de8b540613e1cab75404b5a2-travel-shopping.jpg"
   :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
-  :meta_description: "Phil McCracken"
+  :meta_author: "Phil McCracken"
 -
   :styleguide_title: "Card with cover image"
   :slug: "#"
@@ -80,7 +80,7 @@
   :image_alt: ""
   :image_url: "http://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
   :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
-  :meta_description: "Phil McCracken"
+  :meta_author: "Phil McCracken"
 -
   :styleguide_title: "Double width card with cover image"
   :slug: "#"
@@ -91,4 +91,4 @@
   :image_alt: ""
   :image_url: "http://media.lonelyplanet.com/a/g/hi/t/d79818893c366ac9d63dd756a86cb968-best-places-to-stay-in-paris.jpg"
   :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
-  :meta_description: "Phil McCracken"
+  :meta_author: "Phil McCracken"

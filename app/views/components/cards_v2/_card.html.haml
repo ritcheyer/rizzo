@@ -1,19 +1,23 @@
 :ruby
 
   attrs = {
-    slug: "",
-    kind: "",
-    title: "",
+    # Format
     cover?: false,
     short?: false,
     double?: false,
-    description: "",
 
-    meta_avatar: nil,
-    meta_description: nil,
+    # Main content
+    slug: "",
+    kind: "",
+    title: "",
+    description: "",
 
     image_alt: nil,
     image_url: nil,
+
+    meta_avatar: nil,
+    meta_author: nil,
+    meta_description: nil,
 
     # Price tag
     price: nil,
@@ -56,19 +60,18 @@
         .card__desc
           = attrs[:description]
 
-      - if attrs[:meta_description]
-        .card__meta
+      .card__meta
 
-          - if attrs[:meta_avatar]
-            .card__meta__attribution
-              = safe_image_tag(attrs[:meta_avatar], class: "card__meta__avatar", alt: "Avatar for #{attrs[:meta_description]}")
-              by
-              %span.card__meta__author
-                = attrs[:meta_description]
-          - else
-            .card__meta__kind{ class: "card__meta__kind--#{attrs[:kind]}" }
-              %span.card__meta__icon{ class: "icon--#{attrs[:kind]}" }
-              = attrs[:meta_description]
+        - if attrs[:meta_avatar] && attrs[:meta_author]
+          .card__meta__attribution
+            = safe_image_tag(attrs[:meta_avatar], class: "card__meta__avatar", alt: "Avatar for #{attrs[:meta_author]}")
+            by
+            %span.card__meta__author
+              = attrs[:meta_author]
+        - elsif attrs[:meta_description]
+          .card__meta__kind{ class: "card__meta__kind--#{attrs[:kind]}" }
+            %span.card__meta__icon{ class: "icon--#{attrs[:kind]}" }
+            = attrs[:meta_description]
 
   .card__tags
     - if properties[:price]
