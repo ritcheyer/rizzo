@@ -179,14 +179,13 @@
       position: absolute
 
   &.nav__item--primary .nav__icon
-    .responsive &
-      padding-left: 60px
-      &:before
-        +size(22px)
-        top: -3px
-        left: 5px
-      +respond-to(wide-view)
-        padding-left: 0
+    padding-left: 60px
+    &:before
+      +size(22px)
+      top: -3px
+      left: 5px
+    +respond-to(wide-view)
+      padding-left: 0
 
   &.nav__submenu__item .nav__icon
     padding-left: 30px
@@ -197,3 +196,11 @@
     +respond-to(wide-view)
       &:before
         left: 0
+
+  .nav--primary--user &
+    .nav__icon
+      padding-left: 0
+      .responsive &
+        padding-left: 60px
+        +respond-to(wide-view)
+          padding: 0
