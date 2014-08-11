@@ -18,7 +18,7 @@
 
 %article.js-card{class: css_classes}
 
-  %a.link--wrapper{href: properties[:url], data: {lpa_category: topic.pluralize, lpa_action: "view-details", lpa_label: properties[:url]}}
+  %a.link--wrapper.things-card--wrapper{href: properties[:url], data: {lpa_category: topic.pluralize, lpa_action: "view-details", lpa_label: properties[:url]}}
 
     - if properties[:topchoice] or properties[:price]
       .card__tags
