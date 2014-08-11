@@ -26,7 +26,8 @@
         .row__inner.row__inner--content
 
           .grid-wrapper--10
-            = ui_component('navigation/left', properties: @app.left_nav_items)
+            - if @app.left_nav_items.present?
+              = ui_component('navigation/left', properties: @app.left_nav_items)
 
             .main-content.stack#js-main-content
               = yield

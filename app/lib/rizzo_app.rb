@@ -23,25 +23,33 @@ class RizzoApp
         {
           title: section[:title],
           slug: "#{root}#{section[:slug]}",
-          current: section[:title] == active_section[:title]
+          current: section[:title] == active_section[:title],
+          submenu: section[:submenu]
         }
       end
     }
   end
 
   def left_nav_items
+    @left_nav ||= build_left_nav
+  end
+
+  def build_left_nav
     active_left_nav = {}
     preceding_slug = "#{root}#{active_section[:slug]}/"
-    active_left_nav[:groups] = left_nav[:"#{active_section[:slug].gsub(/^\//, "").gsub(/[ -]/, "_")}"].map do |group|
-      group[:items].map do |item|
-        item[:slug] = "#{preceding_slug}#{item[:slug]}"
-        item[:active] = (item[:slug] == @path) ? true : false
-        if item[:name] == "Konami"
-          item[:extra_style] = "nav--left__item--konami"
+    section_items = left_nav[:"#{active_section[:slug].gsub(/^\//, "").gsub(/[ -]/, "_")}"]
+    if section_items
+      active_left_nav[:groups] = section_items.map do |group|
+        group[:items].map do |item|
+          item[:slug] = "#{preceding_slug}#{item[:slug]}"
+          item[:active] = (item[:slug] == @path) ? true : false
+          if item[:name] == "Konami"
+            item[:extra_style] = "nav--left__item--konami"
+          end
+          item
         end
-        item
+        group
       end
-      group
     end
     active_left_nav
   end
