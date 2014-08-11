@@ -149,7 +149,7 @@ require([
     describe("calling the server", function() {
       beforeEach(function() {
         window.controller = new Controller();
-        spyOn($, "ajax").andCallThrough();
+        spyOn($, "ajax");
         controller._callServer("http://www.lonelyplanet.com/foo.json?foo=bar", function(){});
       });
 

@@ -98,9 +98,10 @@ define([
 
     return $.ajax({
       url: url,
-      dataType: dataType || "json"
-    }).done(function(data) {
-      return callback(data, analytics);
+      dataType: dataType || "json",
+      success: function(data) {
+        callback(data, analytics);
+      }
     });
   };
 
