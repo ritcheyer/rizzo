@@ -16,7 +16,7 @@ require([ "jquery" ], function($) {
 
       var secure = window.location.protocol === "https:";
 
-      new Base({ secure: secure });
+      new Base();
       new ScrollPerf;
       new ToggleActive;
 
