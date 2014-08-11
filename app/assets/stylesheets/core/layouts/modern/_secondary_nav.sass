@@ -10,9 +10,11 @@
   .responsive &
     +z-layer(modal)
     position: relative
+    min-height: 0
     +respond-to(wide-view)
       background: #fff
       position: static
+      min-height: 60px
 
 .row__inner--secondary
   padding-top: 28px
