@@ -1,4 +1,14 @@
 // -----------------------------------------------------------------------------
+// Hidden text cards
+// -----------------------------------------------------------------------------
+
+.card--hidden-text
+
+  .card__meta,
+  .card__content
+    @extend %visually-hide
+
+// -----------------------------------------------------------------------------
 // Guide book cards
 // -----------------------------------------------------------------------------
 
@@ -28,22 +38,20 @@
     border-color: $darkcyan
     background-color: $darkcyan
 
-  // Price tag adjustments
-  .tag--price__values
-    padding-top: 10px
-
 // -----------------------------------------------------------------------------
 // Quote cards
 // -----------------------------------------------------------------------------
 
 .card--quote
 
-  .card__figure,
-  .card__title
+  .card__figure
     display: none
 
   .card__content
     border-top: 0
+
+  .card__title
+    @extend %visually-hide
 
   .card__desc
     +font-size(20)

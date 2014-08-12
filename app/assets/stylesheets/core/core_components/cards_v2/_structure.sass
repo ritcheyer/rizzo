@@ -116,7 +116,7 @@ $card-height: 310px
       top: auto
 
     .card__desc
-      display: none
+      @extend %visually-hide
 
     // Standard card
     &.card--standard
@@ -195,4 +195,14 @@ $card-height: 310px
       +font-size(24)
 
     .card__desc
-      display: none
+      @extend %visually-hide
+
+// -----------------------------------------------------------------------------
+// Paraphernalia
+// -----------------------------------------------------------------------------
+
+.card
+
+  // Price tag adjustments
+  .tag--price__values
+    padding-top: 10px
