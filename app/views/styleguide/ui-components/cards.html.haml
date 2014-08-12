@@ -5,7 +5,7 @@
 .card.styleguide-intro.copy--body.context--content
   %h1.copy--h1 Cards
   %p
-    Cards should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below.
+    Cards should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below. Cards can either be fixed or flexible width.
 
 - cards.each_with_index do |card, i|
-  = styleguide_component("cards_v2/card", properties: card, count: i)
+  = styleguide_component("cards_v2/card", properties: card.merge({ fixed?: true }), count: i)

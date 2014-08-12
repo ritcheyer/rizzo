@@ -1,13 +1,16 @@
 $card-width: 220px
 $card-margin: 10px
-$card-height: 270px
+$card-height: 310px
 
 @mixin card-dimensions($span, $width: $card-width, $height: $card-height, $margin: $card-margin)
   $width: ($width * $span) + ($margin * ($span - 1))
   $ratio: (1 / $width) * $height
 
-  width: $width + 0px
   padding-top: percentage($ratio)
+
+  // Compatibility for old apps?
+  &.card--fixed
+    width: $width + 0px
 
 .card
   @extend %rounded-corners
@@ -36,7 +39,7 @@ $card-height: 270px
 
 .card__figure__img
   position: absolute
-  height: 100%
+  width: 100%
 
 .card__content
   position: absolute
@@ -152,11 +155,13 @@ $card-height: 270px
       .card__title
         +font-size(24)
 
-      &.card--double
+      &.card--single
 
         .card__figure__img
-          width: 100%
-          height: auto
+          width: auto
+          height: 100%
+
+      &.card--double
 
         .card__title
           +font-size(32)
