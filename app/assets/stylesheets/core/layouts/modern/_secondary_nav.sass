@@ -29,10 +29,14 @@
   +vertically-center(30)
   max-width: 340px
   position: absolute
-  background: white
   margin-top: 0
   &:hover
     max-width: none
+
+  // Sometimes used outside the secondary nav where we can't predict the colour
+  .row--secondary &
+    background: white
+
   .responsive &
     position: static
     max-width: none
