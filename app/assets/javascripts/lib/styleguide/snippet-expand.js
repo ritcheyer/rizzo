@@ -11,10 +11,10 @@ require([ "jquery" ], function($) {
         .data("alt", "Close snippet");
 
       $(button).on("click", function() {
-        var newText = $(this).attr("data-alt"),
+        var newText = $(this).data("alt"),
             prevText = $(this).text();
 
-        $(this).text(newText).attr("data-alt", prevText);
+        $(this).text(newText).data("alt", prevText);
         $(this).prev("pre").toggleClass("is-open");
       });
 
