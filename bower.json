@@ -11,6 +11,7 @@
     "autocomplete": "latest",
     "jquery-timeago": "latest",
     "d3": "3.4.10",
-    "nvd3": "latest"
+    "nvd3": "latest",
+    "picturefill": "latest"
   }
 }

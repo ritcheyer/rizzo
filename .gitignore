@@ -68,3 +68,8 @@ vendor/assets/javascripts/nvd3/**
 !vendor/assets/javascripts/nvd3/nv.d3.css
 !vendor/assets/javascripts/nvd3/nv.d3.min.css
 !vendor/assets/javascripts/nvd3/nv.d3.js
+
+# picturefill
+vendor/assets/javascripts/picturefill/*
+!vendor/assets/javascripts/picturefill/dist/
+vendor/assets/javascripts/picturefill/dist/picturefill.min.js

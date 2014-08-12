@@ -28,7 +28,8 @@ require([ "jquery" ], function($) {
     "pickadate/lib/picker.date",
     "lib/utils/last_input_device",
     "lib/components/range_slider",
-    "lib/styleguide/snippet-expand"
+    "lib/styleguide/snippet-expand",
+    "picturefill"
   ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager) {
 
     new ScrollPerf();
