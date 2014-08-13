@@ -40,6 +40,9 @@ module LayoutSupport
         app_core:       true,
         default_title:  false
       },
+      external: {
+        default_title:  false
+      },
       responsive: {
         app_core:       true
       },
