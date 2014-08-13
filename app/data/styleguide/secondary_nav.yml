@@ -10,6 +10,13 @@
 -
   :title: "Widgets"
   :slug: "/widgets"
+  :submenu:
+    -
+      :title: 'Flickr'
+      :slug: '/styleguide/widgets/flickr'
+    -
+      :title: 'Promo Unit'
+      :slug: '/styleguide/widgets/promo'
 -
   :title: "CSS Utilities"
   :slug: "/css-utilities"
