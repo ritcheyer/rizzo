@@ -1,6 +1,6 @@
-$card-width: 220px
+$card-width: 192px
 $card-margin: 10px
-$card-height: 310px
+$card-height: 380px
 
 @mixin card-dimensions($span, $width: $card-width, $height: $card-height, $margin: $card-margin)
   $width: ($width * $span) + ($margin * ($span - 1))
@@ -39,7 +39,7 @@ $card-height: 310px
 
 .card__figure__img
   position: absolute
-  width: 100%
+  height: 100%
 
 .card__content
   position: absolute
@@ -155,13 +155,11 @@ $card-height: 310px
       .card__title
         +font-size(24)
 
-      &.card--single
+      &.card--double
 
         .card__figure__img
-          width: auto
-          height: 100%
-
-      &.card--double
+          width: 100%
+          height: auto
 
         .card__title
           +font-size(32)
