@@ -46,11 +46,6 @@
         .card__figure
           @extend %card-figure-shroud
 
-      &.card--shop
-
-        .card__figure__img
-          box-shadow: 0 10px 10px rgba(0, 0, 0, .65), 0 15px 15px rgba(0, 0, 0, .15)
-
   .card--short
 
     &.card--no-img
@@ -62,3 +57,10 @@
 
       .card__figure
         @extend %card-figure-shroud
+
+  .card--guide
+
+    &.card--has-img
+
+      .card__figure__img
+        box-shadow: 0 10px 10px rgba(0, 0, 0, .65), 0 15px 15px rgba(0, 0, 0, .15)

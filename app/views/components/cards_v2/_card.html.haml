@@ -46,7 +46,7 @@
     "card--#{properties[:cover?] ? 'cover' : 'standard'}",
     "card--#{properties[:double?] ? 'double' : 'single'}",
     "card--#{properties[:image_url] ? 'has-img' : 'no-img'}",
-    "card--#{properties[:meta_description] ? 'has-meta' : 'no-meta'}"
+    "card--#{properties[:meta_description] || properties[:meta_author] || properties[:image_attribution] ? 'has-meta' : 'no-meta'}"
   ].join(" ")
 
 %article{ class: class_names }
@@ -58,6 +58,9 @@
         %figure.card__figure
           = safe_image_tag(properties[:image_url], class: "card__figure__img", alt: properties[:image_alt])
 
+        - if properties[:user]
+          = ui_component("user_attribution", properties: properties[:user])
+
       .card__content
 
         .card__title
@@ -66,17 +69,7 @@
           = properties[:description]
 
       .card__meta
-
-        - if properties[:meta_avatar] && properties[:meta_author]
-          .card__meta__attribution
-            = safe_image_tag(properties[:meta_avatar], class: "card__meta__avatar", alt: "Avatar for #{properties[:meta_author]}")
-            by
-            %span.card__meta__author
-              = properties[:meta_author]
-        - elsif properties[:meta_description]
-          .card__meta__kind{ class: "card__meta__kind--#{properties[:kind]}" }
-            %span.card__meta__icon{ class: "icon--#{properties[:kind]}" }
-            = properties[:meta_description]
+        = render :partial => "/components/cards_v2/partials/meta", :locals => { :properties => properties }
 
   .card__tags
     - if properties[:price]
