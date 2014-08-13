@@ -26,6 +26,12 @@
   .card
     @extend %standard-shadow
 
+    &.is-disabled
+      opacity: .65
+
+    &.is-invisible
+      opacity: 0
+
   .card--tall
 
     &.card--standard
