@@ -51,7 +51,7 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
       });
 
       self.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
-        this.pluginConfig.setTargeting = this.formatKeywords(window.lp.ads);
+        self.pluginConfig.setTargeting = self.formatKeywords(window.lp.ads);
         self.load();
       });
 
