@@ -1,0 +1,61 @@
+= render 'styleguide/partials/shared'
+
+- pictures = YAML.load(File.read(File.expand_path('../../../../data/styleguide/picture_stubs.yml', __FILE__)))
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Picture
+
+  %p<
+    Our implementation of the
+    %code &lt;picture&gt;
+    element.
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Card Picture Component
+  
+  %p TODO: This will be an opinionated utilization of the base picture component below.
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Content Picture Component
+  
+  %p TODO: This will be an opinionated utilization of the base picture component below.
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Hero Picture Component
+  
+  %p TODO: This will be an opinionated utilization of the base picture component below.
+
+.styleguide-block.styleguide-block__description.styleguide-block__picture.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Base Picture Component
+  
+  %p<
+    This will output the base picture element that the above three pre-existing (and opinionated) components themselves
+    use. Only use this when one of those don't suffice.
+    
+  %p<
+    %code.language-markup sizes
+    defines the sizes that will be used by the picture element. For more information on how these work, refer to the
+    %code operations_to_resrc_string
+    method in the
+    %a{ href: "https://github.com/lonelyplanet/rizzo/blob/master/app/lib/resrcit.rb" }
+      %code lib/resrcit.rb 
+    file.
+    
+  %p<
+    %code.language-markup breakpoints
+    defines the breakpoints beyond which to update the image url, along with the new sizes as mentioned above.
+  
+  %p<
+    %strong NOTE:
+    While this base component does provide fallbacks, it's recommended that you specify all the properties for your
+    specific use case.
+
+= styleguide_component('picture', properties: pictures[:picture_base])

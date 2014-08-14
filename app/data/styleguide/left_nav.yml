@@ -169,6 +169,9 @@
           :name: "Pagination"
           :slug: "pagination"
         -
+          :name: "Picture"
+          :slug: "picture"
+        -
           :name: "POI List"
           :slug: "poi-list"
         -
