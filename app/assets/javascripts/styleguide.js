@@ -41,7 +41,7 @@ require([ "jquery" ], function($) {
     new SelectGroupManager();
     new PageHopper();
 
-    this.adManager = new AdManager({
+    new AdManager({
       template: "styleguide"
     });
 

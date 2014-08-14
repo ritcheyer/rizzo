@@ -6,30 +6,41 @@
     %h1.copy--h1 Picture
 
   %p<
-    Our implementation of the
+    Our implementation of the responsive
     %code &lt;picture&gt;
     element.
 
 .styleguide-block.styleguide-block__description.card.copy--body
 
   %h2.copy--h2.styleguide-block__heading
-    Card Picture Component
-  
-  %p TODO: This will be an opinionated utilization of the base picture component below.
-
-.styleguide-block.styleguide-block__description.card.copy--body
-
-  %h2.copy--h2.styleguide-block__heading
     Content Picture Component
   
-  %p TODO: This will be an opinionated utilization of the base picture component below.
+  %p<
+    Used where the image will only ever be as wide as the main content width (meaning
+    %code.language-markup .row__inner
+    ).
+  
+  %pre.styleguide.copy--body.language-ruby
+    %code
+      = preserve do
+        :escaped
+          = ui_component('picture/content', properties: { alt: "Foo", src: "http://media.lonelyplanet.com/a/g/hi/t/2efbfec4e203d6e47bb609bd9f016f82-adventure-travel.jpg" })
 
 .styleguide-block.styleguide-block__description.card.copy--body
 
   %h2.copy--h2.styleguide-block__heading
     Hero Picture Component
   
-  %p TODO: This will be an opinionated utilization of the base picture component below.
+  %p<
+    Used where the image needs to be able to go the full width of the screen, such as the
+    %a{ href: "/styleguide/ui-components/hero-banner" } Hero Banner
+    for example.
+  
+  %pre.styleguide.copy--body.language-ruby
+    %code
+      = preserve do
+        :escaped
+          = ui_component('picture/hero', properties: { alt: "Foo", class: "hero-banner__image", src: "http://media.lonelyplanet.com/a/g/hi/t/2efbfec4e203d6e47bb609bd9f016f82-adventure-travel.jpg" })
 
 .styleguide-block.styleguide-block__description.styleguide-block__picture.card.copy--body
 
@@ -37,8 +48,9 @@
     Base Picture Component
   
   %p<
-    This will output the base picture element that the above three pre-existing (and opinionated) components themselves
-    use. Only use this when one of those don't suffice.
+    This will output the base picture element that the above pre-existing (and opinionated) components themselves
+    use. Only use this if you've determined that you do actually need to use the picture element for what you're trying
+    to achieve and when one of the above don't suffice.
     
   %p<
     %code.language-markup sizes
