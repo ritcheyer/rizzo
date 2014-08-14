@@ -6,61 +6,30 @@ $slide-width-phone: 480px
 $slide-width-tablet: 768px
 $slide-width: 1000px
 
-@mixin slide-width($offset: 0)
-  width: $slide-width + $offset
-  .responsive &
-    width: $slide-width-phone-small
-    +respond-to(480)
-      width: $slide-width-phone + $offset
-    +respond-to(768)
-      width: $slide-width-tablet + $offset
-    +respond-to(larger-than-ipad)
-      width: $slide-width + $offset
-
-@mixin slide-height()
-  height: ($slide-width / 3) * 2
-  .responsive &
-    height: ($slide-width-phone-small / 3) * 2
-    +respond-to(480)
-      height: ($slide-width-phone / 3) * 2
-    +respond-to(768)
-      height: ($slide-width-tablet / 16) * 9
-    +respond-to(larger-than-ipad)
-      height: ($slide-width / 3) * 2
-
 .gallery
   margin: auto
   transition: left .5s ease
 
 .gallery__controls
-  +slide-height()
+  top: 0
   left: 0
-  position: absolute
-  width: 100%
   .gallery-box &
     top: 120px
 
-.gallery__slide-background
-  +slide-height()
-  background: $body-copy
-  left: 0
-  position: absolute
-  width: 100%
-  .gallery-box &
-    top: 120px
+.gallery__viewport
+  background-color: #3E4752
 
-.gallery__slide-container
-  +slide-height()
-  +slide-width()
+.gallery__container
   position: relative
   margin: auto
-  transition: margin-left 0.2s ease-in-out
+  +respond-to(wide-view)
+    width: 80%
+    .slider--4x3 &
+      padding-top: percentage((1 / 4) * 3 * .8)
+    .slider--16x9 &
+      padding-top: percentage((1 / 16) * 9 * .8)
 
 .gallery__slide
-  +slide-height()
-  +slide-width()
-  &:nth-child(even)
-    background-color: #3E4752
   &.is-loading.is-current:after
     content: " "
     position: absolute
@@ -125,18 +94,23 @@ $slide-width: 1000px
     content: ""
 
 .gallery__footer
-  +slide-width()
   background: white
   margin: auto
   min-height: $footer-height
   overflow: hidden
 
+.gallery__footer__wrapper
+  +respond-to(wide-view)
+    max-width: 80%
+    overflow: hidden
+    margin: 0 auto
+
 .gallery__description
-  +slide-width(- $ad-width)
   background: white
   border-radius: 0 0 0 4px
   box-sizing: border-box
   float: left
+  max-width: 50em
   min-height: $footer-height
   padding: 20px 20px 0 20px
   position: relative
@@ -200,7 +174,7 @@ $slide-width: 1000px
 .gallery__mpu
   background: white
   display: block
-  float: left
+  float: right
   height: $footer-height
   width: $ad-width
   .responsive &
