@@ -6,11 +6,11 @@
   }
 	
 
-%picture
+%picture{ class: properties[:class] }
   -# IE9 has a conflict with <source> elements that aren't nested in a <video>.
   /[if IE 9] <video style="display: none;">
   - if properties[:breakpoints].any?
     - properties[:breakpoints].each do |breakpoint|
-      %source{ srcset: "#{srcset_url(breakpoint, src, retina)}", media: "(min-width: #{breakpoint[:at]})" }
+      %source{ srcset: "#{srcset_url(breakpoint, src, retina)}", media: "(min-width: #{breakpoint[:at]}px)" }
   /[if IE 9] </video>
   %img{ srcset: srcset_url(size, src, retina), alt: properties[:alt] }
