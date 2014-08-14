@@ -1,4 +1,5 @@
 :ruby
+  retina = properties[:retina]
   src = properties[:src]
   size = properties[:size] ||  {
     aspect_ratio: "16x9", resize: { width: 1200 }, retina: true
@@ -10,6 +11,6 @@
   /[if IE 9] <video style="display: none;">
   - if properties[:breakpoints].any?
     - properties[:breakpoints].each do |breakpoint|
-      %source{ srcset: "#{srcset_url(breakpoint, src)}", media: "(min-width: #{breakpoint[:at]})" }
+      %source{ srcset: "#{srcset_url(breakpoint, src, retina)}", media: "(min-width: #{breakpoint[:at]})" }
   /[if IE 9] </video>
-  %img{ srcset: srcset_url(size, src), alt: properties[:alt] }
+  %img{ srcset: srcset_url(size, src, retina), alt: properties[:alt] }

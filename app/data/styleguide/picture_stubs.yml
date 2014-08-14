@@ -1,27 +1,24 @@
 :picture_base:
   :alt: "Foo"
   :src: "http://media.lonelyplanet.com/a/g/hi/t/2efbfec4e203d6e47bb609bd9f016f82-adventure-travel.jpg"
+  :retina: true
   :default_size:
     :aspect_ratio: "16x9"
     :resize:
       :width: 192
-    :retina: true
   :breakpoints:
     -
       :at: "596px"
       :aspect_ratio: "16x9"
       :resize:
         :width: 798
-      :retina: true
     -
       :at: "394px"
       :aspect_ratio: "16x9"
       :resize:
         :width: 596
-      :retina: true
     -
       :at: "192px"
       :aspect_ratio: "16x9"
       :resize:
         :width: 394
-      :retina: true

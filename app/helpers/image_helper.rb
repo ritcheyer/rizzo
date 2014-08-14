@@ -30,10 +30,10 @@ module ImageHelper
     helper.generated_url
   end
 
-  def srcset_url(opts={}, src)
+  def srcset_url(opts={}, src, retina)
     url = resrcit_url(opts, src)
 
-    if opts[:retina]
+    if retina
       retina_opts = opts.dup
       crop = retina_opts[:crop]
       resize = retina_opts[:resize]
