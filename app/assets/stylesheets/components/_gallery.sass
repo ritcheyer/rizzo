@@ -40,9 +40,10 @@ $footer-height: 250px
     opacity: 1
 
 .gallery__img
-  display: block
-  min-height: 100%
-  width: 100%
+  &, & > img
+    display: block
+    min-height: 100%
+    width: 100%
 
 .gallery__img--portrait
   display: block
