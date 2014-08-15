@@ -1,4 +1,4 @@
-require 'ResrcIt'
+require 'resrcit'
 
 module ImageHelper
 
