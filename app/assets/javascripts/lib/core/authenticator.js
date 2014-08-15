@@ -12,7 +12,7 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
   "use strict";
 
   var Authenticator = function() {
-    this.statusUrl = "https://auth.lonelyplanet.com/users/status";
+    this.statusUrl = "https://auth.lonelyplanet.com/users/status.json";
 
     this.init();
   },
