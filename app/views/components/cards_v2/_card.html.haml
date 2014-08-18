@@ -17,10 +17,7 @@
         .card__content__desc
           = properties[:description]
 
-      .card__meta
-        = render :partial => "/components/cards_v2/partials/meta", :locals => { :properties => properties }
+      = render :partial => "/components/cards_v2/partials/meta", :locals => { :properties => properties }
 
-  .card__tags
-    - if properties[:price]
-      = render :partial => "/components/cards_v2/partials/price_tag", :locals => { :properties => properties }
-    = render :partial => "/components/cards_v2/partials/tags", :locals => { :properties => properties }
+  = render :partial => "/components/cards_v2/partials/tags", :locals => { :properties => properties }
+  = render :partial => "/components/cards_v2/partials/attribution", :locals => { :properties => properties }

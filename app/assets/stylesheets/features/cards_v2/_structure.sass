@@ -64,12 +64,18 @@
   padding: 0 15px
   color: $feature-copy
 
+.card__meta__content
+  position: relative
+
 .card__meta__icon,
 .card__meta__avatar
   display: inline-block
   margin-right: .25em
   vertical-align: middle
   border-radius: 50%
+
+.card__meta__avatar
+  +size(20px)
 
 .card__meta__icon
   +size(14px)
@@ -78,9 +84,6 @@
   // Fake padding around the icon
   border: 3px solid
   background-size: 15px
-
-.card__meta__avatar
-  +size(20px)
 
 .card__meta__author
   font-weight: bold
@@ -187,6 +190,59 @@
       @extend %visually-hide
 
 // -----------------------------------------------------------------------------
+// Image attribution
+// -----------------------------------------------------------------------------
+
+.card__attribution
+  position: absolute
+  right: 0
+  left: 0
+  top: 0
+  overflow: hidden
+
+.card__attribution__tooltip
+  +font-size(12)
+  position: relative
+  left: -100%
+  width: 100%
+  transition: left .25s ease-out
+
+  &:hover
+    left: 0
+
+.card__attribution__content
+  margin: 5px
+  padding: 5px
+  background: #FFF
+  border-radius: 3px
+
+.card__attribution__toggle
+  position: absolute
+  top: 5px
+  left: 100%
+  margin-left: -5px
+  padding: 1px 1px 1px 5px
+  background-color: #FFF
+  border-radius: 0 9px 9px 0
+
+  &:before
+    display: block
+    width: 16px
+    height: 16px
+
+.card__attribution__licenses
+
+  .license
+    display: inline-block
+    overflow: hidden
+    height: 28px
+    width: 32px
+    margin: -6px -6px 0
+    text-indent: -999em
+
+.card__attribution__caption
+
+// -----------------------------------------------------------------------------
 // Paraphernalia
 // -----------------------------------------------------------------------------
 
@@ -195,11 +251,3 @@
   // Price tag adjustments
   .tag--price__values
     padding-top: 10px
-
-  .license
-    display: inline-block
-    overflow: hidden
-    height: 20px
-    width: 32px
-    margin: 0 -5px
-    text-indent: -999em

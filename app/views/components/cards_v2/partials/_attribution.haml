@@ -1,0 +1,22 @@
+- if properties[:image_attribution]
+  .card__attribution
+
+    .card__attribution__tooltip
+
+      %span.card__attribution__toggle.icon--information--before
+
+      .card__attribution__content
+
+        .card__attribution__licenses
+          - unless properties[:image_license] == 'permission'
+            %a.license.icon--cc{ href: "https://creativecommons.org/licenses/by-nd/2.0/" }<>
+              Creative Commons
+          %span.license.icon--by<>
+          - if properties[:image_license] == 'by-nd'
+            %span.license.icon--nd<>
+              Non-Derivation
+          - if properties[:image_license] == 'by-sa'
+            %span.license.icon--sa<>
+              Share Alike
+        %a.card__attribution__caption{ href: properties[:image_attribution_link] }<>
+          = properties[:image_attribution]

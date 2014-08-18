@@ -82,7 +82,7 @@
   :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :meta_author: "Phil McCracken"
 -
-  :styleguide_title: "Card with cover image and attribution"
+  :styleguide_title: "Card with cover image and image attribution"
   :url: "#"
   :kind: "article"
   :cover?: true
@@ -90,7 +90,10 @@
   :image_alt: ""
   :image_url: "http://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
   :image_license: 'by-nd'
-  :image_attribution: "Jack took this photo"
+  :image_attribution: "A wine bar in Paris by Valdiny Pinenta"
+  :image_attribution_link: "http://"
+  :meta_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
+  :meta_author: "Phil McCracken"
 -
   :styleguide_title: "Card with cover image and hidden text"
   :url: "#"
