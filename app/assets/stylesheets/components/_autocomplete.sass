@@ -5,37 +5,49 @@
 // -----------------------------------------------------------------------------
 
 .autocomplete
+  +z-layer(middle)
   position: absolute
   display: block
+  cursor: pointer
   width: 100%
   padding: 10px 0
-  margin: 5px 0 0 0
   left: 0
-  top: 75%
+  top: 81%
 
 .autocomplete__results
-  background-color: #fff
+  +css-arrow-central(top, $size: 30px)
+  @extend %transition--base
+  @extend %fly-out-shadow
+  @extend %rounded-corners
+  position: relative
   padding: 10px 0
-  border: 1px solid $subduedgray
+  background-color: white
+  border-top: 1px solid rgba(0, 0, 0, 0.05)
+  &:after
+    position: absolute
 
 .autocomplete__results__item
-  color: $titlegray
+  float: none
+  padding: 10px
+  color: $body-copy
+  text-align: left
+  text-transform: none
   font-weight: normal
-  cursor: pointer
-  border-color: $body-background
-  border-width: 1px 0 0 0
+  border-top: 1px solid $body-background-offset
+  &:hover
+    background-color: $body-background-offset
   &:last-child
-    border-width: 1px 0
+    border-bottom: 1px solid $body-background-offset
 
 .autocomplete__results__item--user-avatar
-  padding-left: 50px
+  padding-left: 45px
   background-repeat: no-repeat
   background-size: auto 100%
 
 .autocomplete__results__item:hover,
 .autocomplete__results__item--highlight
-  background-color: $body-background
-  border-color: $body-background
+  background-color: $body-background-offset
+  border-color: $body-background-offset
 
 .autocomplete__search-term--highlight
   font-weight: bold
