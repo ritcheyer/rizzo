@@ -32,7 +32,7 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
 
     this.pluginConfig = {
       dfpID: this.getNetworkID(),
-      setTargeting: this.formatKeywords(),
+      setTargeting: this.formatKeywords(this.config),
       namespace: this.config.layers.join("/"),
       sizeMapping: this.config.sizeMapping,
       collapseEmptyDivs: true,
@@ -51,6 +51,7 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
       });
 
       self.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
+        self.pluginConfig.setTargeting = self.formatKeywords(window.lp.ads);
         self.load();
       });
 
@@ -75,24 +76,24 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
 
   };
 
-  AdManager.prototype.formatKeywords = function() {
+  AdManager.prototype.formatKeywords = function(config) {
     var keywords = {
-      theme: this.config.theme,
-      template: this.config.template,
-      topic: this.config.topic,
+      theme: config.theme,
+      template: config.template,
+      topic: config.topic,
 
       // Deprecated targeting properties
-      thm: this.config.adThm,
-      tnm: this.config.adTnm.replace(/\s/, "").split(","),
-      ctt: this.config.continent,
-      cnty: this.config.country,
-      dest: this.config.destination
+      thm: config.adThm,
+      tnm: config.adTnm.replace(/\s/, "").split(","),
+      ctt: config.continent,
+      cnty: config.country,
+      dest: config.destination
     };
 
-    if (this.config.keyValues && !$.isEmptyObject(this.config.keyValues)) {
-      for (var key in this.config.keyValues) {
-        if (this.config.keyValues.hasOwnProperty(key)) {
-          keywords[key] = this.config.keyValues[key];
+    if (config.keyValues && !$.isEmptyObject(config.keyValues)) {
+      for (var key in config.keyValues) {
+        if (config.keyValues.hasOwnProperty(key)) {
+          keywords[key] = config.keyValues[key];
         }
       }
     }

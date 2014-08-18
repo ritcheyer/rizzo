@@ -42,6 +42,10 @@ Then(/^the header ad should be present$/) do
   page.should have_selector('.row--leaderboard--header')
 end
 
+Then(/^the oneByOne ad should be present$/) do
+  page.should have_selector('#js-ad-oneByOne')
+end
+
 Then(/^the footer ad should not be present$/) do
   page.should_not have_selector('.row--leaderboard--footer')
 end

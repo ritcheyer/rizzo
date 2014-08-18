@@ -63,6 +63,7 @@ cards:
     :title: "See your breakfast on the big screen - submit your Ulster fry film!"
     :context: "Thorntree"
     :name: "Shadyguy17"
+    :size: "single"
     :avatar: "http://assets.staticlp.com/assets/stubs/article.jpg"
 
   -
@@ -165,16 +166,6 @@ cards:
     -
       :url: "/"
       :title: "Warnings"
-
-  -
-    :styleguide_title: "Media Card"
-    :kind: "media"
-    :size: "mini"
-    :icon?: true
-    :resized_image_url: "http://assets.staticlp.com/assets/stubs/sight.jpg"
-    :resized_video_url: "http://assets.staticlp.com/assets/stubs/video-thumb.jpg"
-    :image_description: "A photo of a building"
-    :video_description: "A video filmed from a bus"
 
   -
     :styleguide_title: "Place Card"

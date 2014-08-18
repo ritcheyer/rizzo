@@ -71,12 +71,14 @@ define([
   // Page offset currently lives within search so we must check and update each time
   Controller.prototype.replace = function(data, analytics) {
     this._updateGoogleAnalytics(data);
+    this._updateAdConfig(data);
     data.pagination && data.pagination.page_offsets && this._updateOffset(data.pagination); // jshint ignore:line
     this.trigger(":cards/received", [ data, this._currentState(), analytics ]);
   };
 
   Controller.prototype.append = function(data, analytics) {
     this._updateGoogleAnalytics(data);
+    this._updateAdConfig(data);
     data.pagination && data.pagination.page_offsets && this._updateOffset(data.pagination); // jshint ignore:line
     this._removePageParam();
     this.trigger(":cards/append/received", [ data, this._currentState(), analytics ]);
@@ -84,12 +86,14 @@ define([
 
   Controller.prototype.newPage = function(data, analytics) {
     this._updateGoogleAnalytics(data);
+    this._updateAdConfig(data);
     data.pagination && data.pagination.page_offsets && this._updateOffset(data.pagination); // jshint ignore:line
     this.trigger(":page/received", [ data, this._currentState(), analytics ]);
   };
 
   Controller.prototype.newLayer = function(data) {
     this._updateGoogleAnalytics(data);
+    this._updateAdConfig(data);
     this.trigger(":layer/received", [ data, this._currentState() ]);
   };
 
@@ -98,9 +102,10 @@ define([
 
     return $.ajax({
       url: url,
-      dataType: dataType || "json"
-    }).done(function(data) {
-      return callback(data, analytics);
+      dataType: dataType || "json",
+      success: function(data) {
+        callback(data, analytics);
+      }
     });
   };
 
@@ -153,6 +158,12 @@ define([
     if (data.datalayer && window.lp.analytics.api) {
       window.lp.analytics.dataLayer = data.datalayer;
       window.lp.analytics.api.trackPageView(window.lp.analytics.dataLayer);
+    }
+  };
+
+  Controller.prototype._updateAdConfig = function(data) {
+    if (data.ads) {
+      window.lp.ads = data.ads;
     }
   };
 

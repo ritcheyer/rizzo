@@ -7,8 +7,6 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
     beforeEach(function() {
       loadFixtures("ad_iframe.html");
 
-      window.lp = window.lp || {};
-
       window.lp.getCookie = function() {
         return [];
       };
@@ -52,8 +50,8 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
 
     describe(".formatKeywords()", function() {
 
-      it("Should return the instance config formatted for jQuery.dfp targeting", function() {
-        instance.config = {
+      it("Should return a correctly formatted config for jQuery.dfp targeting", function() {
+        var config = {
           adThm: "honeymoons,world-food",
           adTnm: "overview,poi-list",
           layers: [],
@@ -62,11 +60,11 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
           }
         };
 
-        var result = instance.formatKeywords();
+        var result = instance.formatKeywords(config);
 
-        expect(result.thm).toEqual(instance.config.adThm);
-        expect(result.tnm).toEqual(instance.config.adTnm.split(","));
-        expect(result.foo).toEqual(instance.config.keyValues.foo);
+        expect(result.thm).toEqual(config.adThm);
+        expect(result.tnm).toEqual(config.adTnm.split(","));
+        expect(result.foo).toEqual(config.keyValues.foo);
       });
     });
 

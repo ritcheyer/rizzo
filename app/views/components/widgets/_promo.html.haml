@@ -1,8 +1,12 @@
-.row.widget__promo
-  .row__inner
-    %h2.promo__heading--secondary
-      = properties[:title]
-      %span= properties[:description]
+.widget__promo.context--content
+
+  %h2.copy--h1
+    = properties[:title]
+    %span.copy--feature
+      = properties[:description]
+
+  .nav--inline
     - 3.times do
-      = ui_component("ads/mpu")
+      .nav__item
+        = ui_component("ads/mpu")
 

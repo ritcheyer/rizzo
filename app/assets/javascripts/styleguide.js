@@ -5,6 +5,7 @@ require([ "jquery" ], function($) {
   require([
     "lib/page/swipe",
     "lib/utils/konami",
+    "lib/core/ad_manager",
     "lib/page/scroll_perf",
     "lib/components/slider",
     "lib/styleguide/charts",
@@ -28,7 +29,7 @@ require([ "jquery" ], function($) {
     "lib/utils/last_input_device",
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand"
-  ], function(Swipe, Konami, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager) {
+  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager) {
 
     new ScrollPerf();
     new ToggleActive();
@@ -38,6 +39,10 @@ require([ "jquery" ], function($) {
     new Slider({ el: ".js-slider", assetReveal: true });
     new SelectGroupManager();
     new PageHopper();
+
+    this.adManager = new AdManager({
+      template: "styleguide"
+    });
 
     var d = new Date();
     $(".input--datepicker").pickadate({

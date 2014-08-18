@@ -75,7 +75,7 @@ define([
 
   Gallery.prototype._afterNavigation = function(event) {
     // Ensure we're handling the correct transitionend event
-    if (window.lp.supports.transform.css.indexOf(event.originalEvent.propertyName) < 0) return;
+    if (!event || window.lp.supports.transform.css.indexOf(event.originalEvent.propertyName) < 0) return;
 
     var partial = this.slider.$currentSlide.data("partial-slug");
     this.analytics.track();
