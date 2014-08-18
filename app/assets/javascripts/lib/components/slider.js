@@ -5,8 +5,9 @@
 // }
 define([
   "jquery",
-  "lib/utils/asset_reveal"
-], function($, AssetReveal) {
+  "lib/utils/asset_reveal",
+  "lib/utils/resrcit_helper"
+], function($, AssetReveal, ResrcIt) {
 
   "use strict";
 
@@ -27,6 +28,7 @@ define([
     this.$el = $(this.config.el);
     this.$slides = this.$el.find(this.config.slides);
     this.numSlides = this.$slides.length;
+    this.$picture = this.$el.find("picture");
     this.$el.length && this.numSlides > 2 && this.init();
   }
 
@@ -133,18 +135,36 @@ define([
   };
 
   Slider.prototype._loadHiddenContent = function() {
-    var slides;
+    var config = this.config,
+        slides;
 
-    if (this.config.assetBalance == null) {
+    if (config.assetBalance == null) {
       slides = this.$slides;
     } else {
-      var left = Math.max(this.currentSlide - this.config.assetBalance, 0),
-          right = Math.min(this.currentSlide + this.config.assetBalance, this.$slides.length);
+      var left = Math.max(this.currentSlide - config.assetBalance, 0),
+          right = Math.min(this.currentSlide + config.assetBalance, this.$slides.length);
 
       slides = this.$slides.slice(left, right);
     }
 
-    if (this.config.assetReveal) {
+    if (config.assetReveal) {
+      if (this.$picture.length > 0) {
+        var pictureSrc = this.$picture.find("img").attr("src"),
+            // Grab the bit of the url with the image resizing service's config.
+            picturePrefix = ResrcIt.get(pictureSrc);
+
+        slides.find("[data-src]").each(function() {
+          var $img = $(this),
+              // Grab the url to the original, non-resized image.
+              imgSrc = ResrcIt.strip($img.attr("data-src")),
+              newSrc = picturePrefix + imgSrc;
+
+          newSrc = ResrcIt.bestFit(newSrc, $img.closest(config.slides).data("orientation"));
+
+          $img.attr("data-src", newSrc);
+        });
+      }
+
       this.$el.trigger(":asset/uncomment", [ slides, "[data-uncomment]" ]);
       this.$el.trigger(":asset/loadDataSrc", [ slides, "[data-src]" ]);
     }

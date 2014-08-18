@@ -82,6 +82,18 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
       });
     });
 
+    describe("picture element", function() {
+      beforeEach(function() {
+        loadFixtures("slider_picture_element.html");
+        window.slider = new Slider(config);
+        window.slider._loadHiddenContent();
+      });
+
+      it("updates the hidden content with the correctly sized url", function() {
+        expect($(".js-slide-2 img").attr("data-src")).toBe("//images-resrc.staticlp.com/S=W480/http://placehold.it/427x290&text=photo+2");
+      });
+    });
+
     describe("hidden dynamically loaded content", function() {
       beforeEach(function() {
         loadFixtures("slider_hidden_content.html");
