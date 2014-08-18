@@ -57,7 +57,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         userFeed = new UserFeed({
           feedSelector: "body",
           feedItemSelector: ".fake-feed-item",
-          targetLinkSelector: "a"
+          targetLinkSelector: "a",
+          feedUrl: "foo/bar"
         });
         tempElement = $(
           "<div class='fake-feed-item'>" +
@@ -65,19 +66,13 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
             "</div>"
         );
         doc.find("body").append(tempElement);
+        spyOn(userFeed, "_goToUrl");
+        userFeed._bindLinks();
+        tempElement.click();
       });
 
-      describe("when called", function () {
-
-        beforeEach(function () {
-          spyOn(userFeed, "_goToUrl");
-          userFeed._bindLinks();
-          tempElement.click();
-        });
-
-        it("should call set proper click event listener on proper element", function () {
-          expect(userFeed._goToUrl).toHaveBeenCalledWith("FAKE_URL");
-        });
+      it("should call set proper click event listener on proper element", function () {
+        expect(userFeed._goToUrl).toHaveBeenCalledWith("FAKE_URL");
       });
     });
 
@@ -89,7 +84,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         $("." + unreadFeedNumberClass).remove(); // should be in after each but jasmine fails to use after each properly
         testElement = $("<div/>").addClass(unreadFeedNumberClass).appendTo(doc.find("body"));
         userFeed = new UserFeed({
-          unreadFeedNumberSelector: "." + unreadFeedNumberClass
+          unreadFeedNumberSelector: "." + unreadFeedNumberClass,
+          feedUrl: "foo/bar"
         });
       });
 
@@ -128,53 +124,52 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
     });
 
     describe("._createUserActivities()", function () {
-      var userFeed;
+      var userFeed,
+          feedActivities;
 
       beforeEach(function () {
         userFeed = new UserFeed({
           maxFeedActivities: 4,
           newFeedHighlightClass: "FAKE-TEST-CLASS",
-          initialHighlightedActivitiesNumber: 10
-        });
+          initialHighlightedActivitiesNumber: 10,
+          feedUrl: "foo/bar"
+        }),
+        feedActivities = [
+          {text: "a-"},
+          {text: "b-"},
+          {text: "c-"},
+          {text: "d-"},
+          {text: "e-"}
+        ];
+
+        userFeed.$unreadActivitiesIndicator = {
+          text: jasmine.createSpy("text")
+        };
+
+        spyOn(userFeed, "_bindLinks");
+
+        userFeed._createUserActivities(feedActivities);
       });
 
-      describe("called with proper arg", function () {
-        var feedActivities;
 
-        beforeEach(function () {
-          feedActivities = [
-            {text: "a-"},
-            {text: "b-"},
-            {text: "c-"},
-            {text: "d-"},
-            {text: "e-"}
-          ];
-
-          userFeed.$unreadActivitiesIndicator = {
-            text: jasmine.createSpy("text")
-          };
-
-          spyOn(userFeed, "_bindLinks");
-
-          userFeed._createUserActivities(feedActivities);
-        });
-
-        it("should call 'this._bindLinks()'", function () {
-          expect(userFeed._bindLinks).toHaveBeenCalled();
-        });
-
-        it("should call 'this.$unreadActivitiesIndicator.text( [proper Number ] )'", function () {
-          expect(userFeed.$unreadActivitiesIndicator.text).toHaveBeenCalledWith(userFeed.highlightedActivitiesNumber);
-        });
+      it("should call 'this._bindLinks()'", function () {
+        expect(userFeed._bindLinks).toHaveBeenCalled();
       });
+
+      it("should call 'this.$unreadActivitiesIndicator.text( [proper Number ] )'", function () {
+        expect(userFeed.$unreadActivitiesIndicator.text).toHaveBeenCalledWith(userFeed.highlightedActivitiesNumber);
+      });
+
     });
+
     describe("._createUserMessages()", function () {
       var userFeed;
 
       beforeEach(function () {
         userFeed = new UserFeed({
           maxFeedActivities: 4,
-          newFeedHighlightClass: "FAKE-TEST-CLASS"
+          newFeedHighlightClass: "FAKE-TEST-CLASS",
+          feedUrl: "foo/bar"
         });
       });
 
@@ -225,7 +220,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
       beforeEach(function () {
         userFeed = new UserFeed({
-          initialHighlightedActivitiesNumber: 2
+          initialHighlightedActivitiesNumber: 2,
+          feedUrl: "foo/bar"
         });
         feed = {
           activities: ["ITEM_ONE", "ITEM_TWO"]
@@ -301,7 +297,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       beforeEach(function () {
         $.fn.timeago = jasmine.createSpy("timeago");
         userFeed = new UserFeed({
-          initialHighlightedActivitiesNumber: 14
+          initialHighlightedActivitiesNumber: 14,
+          feedUrl: "foo/bar"
         });
         spyOn(userFeed, "_createUserMessages");
         spyOn(userFeed, "_updateUnreadFeedIndicator");
@@ -353,7 +350,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
       beforeEach(function () {
         userFeed = new UserFeed({
-          fetchInterval: 100
+          fetchInterval: 100,
+          feedUrl: "foo/bar"
         });
       });
 
