@@ -192,7 +192,8 @@ define([
     $.ajax({
       url: this.config.feedUrl,
       cache: false,
-      dataType: "json",
+      dataType: "jsonp",
+      jsonpCallback: "lpUserFeedCallback",
       success: this._updateFeed.bind(this),
       error: this._updateFeed.bind(this)
     });

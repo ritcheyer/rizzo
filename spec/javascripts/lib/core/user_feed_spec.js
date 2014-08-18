@@ -439,7 +439,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
           expect($.ajax).toHaveBeenCalledWith({
             url: "SOME/TEST/URL",
             cache: false,
-            dataType: "json",
+            dataType: "jsonp",
+            jsonpCallback: "lpUserFeedCallback",
             success: "TEST_BIND_OUTPUT",
             error: "TEST_BIND_OUTPUT"
           });
