@@ -57,20 +57,19 @@ body
   width: $fixed-layout-width
 
   .layout--fluid &
-    width: auto
-    max-width: $fluid-layout-width
+    width: $fluid-layout-width
 
   .responsive &
     box-sizing: border-box
-    max-width: none
+    width: 100%
     padding: 0 20px
     +respond-to(wide-view)
-      max-width: $fixed-layout-width
+      width: $fixed-layout-width
       padding-left: 0
       padding-right: 0
 
       .layout--fluid &
-        max-width: $fluid-layout-width
+        width: $fluid-layout-width
 
   &.row__inner--full-width
     padding-left: 0
