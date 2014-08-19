@@ -79,7 +79,7 @@ $submenu__vertical-padding: 14px
       display: none
     +respond-to(wide-view)
       // We can't use `@extend %fly-out-shadow` within a mixin, thus:
-      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.4)
+      box-shadow: 0 2px 2px 0px rgba($darkgray,0.25)
       &:after
         display: block
 
@@ -89,6 +89,11 @@ $submenu__vertical-padding: 14px
   padding: $submenu__padding__item
   text-transform: none
   border-bottom: 1px solid $subduedgray
+  &:first-child
+    border-radius: 4px 4px 0 0
+  &:last-child
+    border-bottom: 0
+    border-radius: 0 0 4px 4px
   &:hover
     background-color: $body-background-offset
   .responsive &
