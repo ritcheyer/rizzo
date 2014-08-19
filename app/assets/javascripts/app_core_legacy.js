@@ -13,17 +13,18 @@ require([ "jquery" ], function($) {
   require([
     "lib/core/base",
     "flamsteed",
+    "lib/components/toggle_active",
     "trackjs",
     "polyfills/function_bind",
     "polyfills/xdr"
-  ], function(Base, Flamsteed) {
+  ], function(Base, Flamsteed, ToggleActive) {
 
     $(function() {
 
       var secure = window.location.protocol === "https:";
 
       new Base();
-
+      new ToggleActive;
       if (!secure) {
         if (window.lp.getCookie) {
           window.lp.fs = new Flamsteed({

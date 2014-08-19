@@ -41,6 +41,7 @@ Rizzo::Application.routes.draw do
 
   # Legacy
   get 'global-head'                  => 'layout#snippet', defaults: { snippet: "head", route: "legacy" }
+  get 'global-head/responsive'       => 'layout#snippet', defaults: { snippet: "head", route: "legacyresponsive" }
   get 'global-body-header'           => 'layout#snippet', defaults: { snippet: "header", route: "legacy" }
   get 'global-body-footer'           => 'layout#snippet', defaults: { snippet: "footer", route: "legacy" }
 

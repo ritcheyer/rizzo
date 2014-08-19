@@ -71,6 +71,10 @@ module LayoutSupport
       legacy: {
         responsive:     false,
         legacy_lp:      true
+      },
+      legacyresponsive: {
+        responsive:     true,
+        legacy_lp:      true
       }
     }
   end
