@@ -57,7 +57,13 @@ module LayoutSupport
         tynt:           false,
         secure:         true,
         legacy_lp:      true,
-        responsive:     false,
+        responsive:     false
+      },
+      secure_responsive: {
+        tynt:           false,
+        secure:         true,
+        legacy_lp:      true,
+        responsive:     true
       },
       client_solutions: {
         include_js:     false,
@@ -72,7 +78,7 @@ module LayoutSupport
         responsive:     false,
         legacy_lp:      true
       },
-      legacyresponsive: {
+      legacy_responsive: {
         responsive:     true,
         legacy_lp:      true
       }
