@@ -10,7 +10,8 @@ module CardsHelper
       "card--#{props[:cover?] ? 'cover' : 'standard'}",
       "card--#{props[:double?] ? 'double' : 'single'}",
       "card--#{props[:image_url] ? 'has-img' : 'no-img'}",
-      "card--#{props[:meta_description] || props[:meta_author] || props[:image_attribution] ? 'has-meta' : 'no-meta'}"
+      "card--#{props[:image_attribution] ? 'has-attribution' : 'no-attribution'}",
+      "card--#{props[:meta_description] || props[:meta_author] ? 'has-meta' : 'no-meta'}"
     ]
   end
 
