@@ -113,7 +113,7 @@ define([
     var _this = this,
         $next, $prev;
 
-    this.$sliderControlsContainer.addClass("slider__controls--show");
+    this.$sliderControlsContainer.addClass("is-shown");
 
     $next = this.$sliderControlsContainer.find(".js-slider-next").attr("href", "");
     $prev = this.$sliderControlsContainer.find(".js-slider-previous").attr("href", "");
