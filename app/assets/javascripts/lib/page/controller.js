@@ -44,13 +44,13 @@ define([
     .on(":page/request", function(event, data, analytics) {
       this._generateState(data.url.split("?")[0]);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
-      this._callServer(this._createRequestUrl(this._currentRoot()), this.newPage, analytics);
+      this._callServer(data.url, this.newPage, analytics);
     }.bind(this))
 
     .on(":layer/request", function(event, data) {
       this._generateState(data.url.split("?")[0].replace(/\.json$/, ""));
       this.pushState.navigate(this._serializeState(), this._currentRoot(), true);
-      this._callServer(this._createRequestUrl(this._currentRoot()), this.newLayer);
+      this._callServer(data.url, this.newLayer);
     }.bind(this))
 
     .on(":controller/back", function() {
