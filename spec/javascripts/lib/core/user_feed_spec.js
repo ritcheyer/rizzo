@@ -295,11 +295,11 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       var userFeed;
 
       beforeEach(function () {
-        $.fn.timeago = jasmine.createSpy("timeago");
         userFeed = new UserFeed({
           initialHighlightedActivitiesNumber: 14,
           feedUrl: "foo/bar"
         });
+        spyOn($.fn, "timeago");
         spyOn(userFeed, "_createUserMessages");
         spyOn(userFeed, "_updateUnreadFeedIndicator");
       });
