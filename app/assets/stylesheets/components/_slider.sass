@@ -61,7 +61,7 @@
 .slider__img
   +best-fit-media
 
-.slider__controls
+.slider__controls-container
   @extend %clearfix
   @extend %transition--base
   +z-layer(top)
@@ -70,7 +70,7 @@
   display: none
   width: 100%
   height: 100%
-  &.slider__controls--show
+  &.is-shown
     display: block
 
 .slider__control
