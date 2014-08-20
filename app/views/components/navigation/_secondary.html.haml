@@ -23,5 +23,5 @@
       = render :partial => "components/navigation/secondary_items", locals: { items: properties[:items] }
 
     - if !!responsive_items && responsive_items.length > 0
-      .wv--hidden-block.split--right__inner
+      .wv--nav--inline.split--right__inner.wv--hidden-block
         = render :partial => "components/navigation/secondary_items", locals: { items: responsive_items }
