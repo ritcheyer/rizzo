@@ -1,26 +1,17 @@
 // ----------------------------------------------------------------------------
 //
-// User feed fly-out menu component
+// User Feed Menu
 //
 // ----------------------------------------------------------------------------
 
-.user-feed
-  right: 0
-  left: auto
-  width: 320px
+.user-feed,
+  left: -160px
   cursor: default
-  .responsive &
-    display: none
-    +respond-to(wide-view)
-      // Only required because of .responsive specificity
-      width: 320px
-      &:hover
-        display: block
+  &, .responsive & // because .nav__submenu overwrites width when .responsive used
+    width: 320px 
 
 .user-feed__content
-  background-color: #fff
-  &:after
-    left: 288px
+  +css-arrow(top, 30px, 277px)
 
 .user-feed__user-name,
 .user-feed__user-email
@@ -29,6 +20,7 @@
 
 .user-feed__user-name
   +font-size(22)
+  font-weight: bold
   padding-top: 18px
   color: $titlegray
   .icon--settings
@@ -52,28 +44,6 @@
 .user-feed__activities__item
   position: relative
 
-.user-feed__activities__toggle-buttons
-  padding: 0
-  border-top: 1px solid $body-background
-  text-align: center
-  .btn--feed-toggle
-    +font-size(15)
-    +size(100%)
-    padding: 18px 0 10px 0
-    vertical-align: bottom
-    display: inline-block
-    border-radius: 0
-    border-bottom: 2px solid $body-background
-    color: $grey-highlight
-    &:hover,
-    &.is-active
-      border-bottom: 2px solid $linkblue
-      color: $titlegray
-
-  .btn--feed-toggle__unread-count
-    font-weight: normal
-    color: $grey-highlight
-
 .user-feed__activities
   .ie7 &,
   .ie8 &
@@ -88,30 +58,34 @@
   list-style: none
   &.is-active
     display: block
-  .responsive & .activity-list__item
+  .activity-list__item
     position: relative
     margin: 0
     border-bottom: 1px solid $body-background
+    cursor: pointer
     font-weight: normal
     color: $titlegray
     &.is-highlighted
       background: mix($linkblue, #fff, 3%)
     &:hover
       background: mix($linkblue, #fff, 10%)
-    &, &:first-child
+    &, &:first-of-type // because it gets overwritten in Community
       padding: 15px $primary-nav-height 30px 15px
       min-height: 20px
     &:last-child
       border-bottom: 0
+      border-radius: 0 0 4px 4px
     .activity-list__activity-content
       display: block
       padding-bottom: 5px
     .activity-list__time
-      position: absolute
-      bottom: 0
-      left: 0
-      margin: 0 0 15px 15px
+      &, .responsive & // same as above
+        position: absolute
+        bottom: 0
+        left: 0
+        margin: 0 0 15px 15px
     .activity-list__link
+      font-weight: bold
       color: $titlegray
 
   .activity-list__avatar
