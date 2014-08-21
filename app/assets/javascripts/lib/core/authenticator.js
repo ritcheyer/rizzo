@@ -29,13 +29,15 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
       this.$template = $(this.templateContainer.html());
     }
 
-    $.ajax({
-      url: this.statusUrl,
-      dataType: "jsonp",
-      jsonpCallback: "lpUserStatusCallback",
-      success: _this._updateStatus,
-      error: _this._updateStatus
-    });
+    if (this.$template.length > 0) {
+      $.ajax({
+        url: this.statusUrl,
+        dataType: "jsonp",
+        jsonpCallback: "lpUserStatusCallback",
+        success: _this._updateStatus,
+        error: _this._updateStatus
+      });
+    }
   };
 
   // -------------------------------------------------------------------------
