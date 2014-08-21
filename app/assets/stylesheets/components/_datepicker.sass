@@ -20,6 +20,7 @@
     max-height: 25em
     @extend %fly-out-shadow
 
+
 .picker__box
   padding: 10px
   text-align: center
@@ -89,7 +90,6 @@
   +font-size(13)
   border-radius: 30px
   @extend %inline-block
-  font-family: "Helvetica Neue", arial
   font-weight: bold
   width: 26px
   height: 26px
@@ -115,3 +115,75 @@
 
 .picker__footer
   display: none
+
+// -------------------------------
+// Blue theme for the datepicker
+// -------------------------------
+// - This class should be added in the js when the datepicker is created
+// $input_datepicker.pickadate({
+//   klass: {
+//     picker: "picker picker__theme-blue",
+//     navPrev: 'picker__nav--prev icon--white',
+//     navNext: 'picker__nav--next icon--white'
+//   }
+// });
+.picker__theme-blue
+  &.picker--opened
+    .picker__holder
+      +css-arrow-central(top, $size: 30px)
+      &:after
+        position: absolute
+        top: -11px
+
+  .picker__frame
+    transition: none
+    left: 50%
+    top: 10px
+    margin-left: -160px
+  .picker__frame
+    background: $linkblue
+  .picker__box
+    border: none
+  .picker__header, .picker__table
+    color: white
+  .picker__header
+    padding-top: 8px
+    padding-bottom: 10px
+
+  .picker__day
+    line-height: 2.2em
+  .picker__day--selected
+    background: white
+    color: $linkblue
+    border: none
+    &:hover
+      background: white
+      color: $linkblue
+  .picker__day--outfocus
+    opacity: 0.25
+  .picker__day--infocus
+    border: 1px solid rgba(255,255,255,0.25)
+
+  .picker__weekday
+    +font-size(12px)
+    font-weight: bold
+    text-transform: uppercase
+    opacity: .5
+  .picker__month
+    margin-right: 10px
+  .picker__month, .picker__year
+    +font-size(20px)
+    display: inline-block
+  .picker__footer
+    margin-top: 10px
+    display: block
+    .picker__button--today
+      -webkit-font-smoothing: antialiased
+      -moz-osx-font-smoothing: grayscale
+      font-smoothing: antialiased
+      box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.2)
+      width: 95%
+      margin: auto
+    .picker__button--clear
+      display: none
+
