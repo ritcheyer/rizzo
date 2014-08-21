@@ -105,10 +105,8 @@
     // Standard card
     &.card--standard
 
-      .card__figure__img
-        // Avoid fragments appearing
-        // behind border radius clip
-        // margin-bottom: 5px
+      .card__figure
+        bottom: $card-content-height + nth($card-content-padding, 1) + nth($card-content-padding, 3)
 
       .card__meta,
       .card__content
@@ -188,59 +186,6 @@
 
     .card__content__desc
       @extend %visually-hide
-
-// -----------------------------------------------------------------------------
-// Image attribution
-// -----------------------------------------------------------------------------
-
-.card__attribution
-  position: absolute
-  right: 0
-  left: 0
-  top: 0
-  overflow: hidden
-
-.card__attribution__tooltip
-  +font-size(12)
-  position: relative
-  left: -100%
-  width: 100%
-  transition: left .25s ease-out
-
-  &:hover
-    left: 0
-
-.card__attribution__content
-  margin: 5px
-  padding: 5px
-  background: #FFF
-  border-radius: 3px
-
-.card__attribution__toggle
-  position: absolute
-  top: 5px
-  left: 100%
-  margin-left: -5px
-  padding: 1px 1px 1px 5px
-  background-color: #FFF
-  border-radius: 0 9px 9px 0
-
-  &:before
-    display: block
-    width: 16px
-    height: 16px
-
-.card__attribution__licenses
-
-  .license
-    display: inline-block
-    overflow: hidden
-    height: 28px
-    width: 32px
-    margin: -6px -6px 0
-    text-indent: -999em
-
-.card__attribution__caption
 
 // -----------------------------------------------------------------------------
 // Paraphernalia

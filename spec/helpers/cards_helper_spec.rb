@@ -31,25 +31,21 @@ describe CardsHelper do
       it "should add 'has' class names when given content" do
         result = helper.card_classes(
           image_url: "path/to/image",
-          meta_description: "Meta content",
-          image_attribution: "This photo was taken by Joe Bloggs"
+          meta_description: "Meta content"
         )
 
         result.should include("card--has-img")
         result.should include("card--has-meta")
-        result.should include("card--has-attribution")
       end
 
       it "should add 'no' class names when given no content" do
         result = helper.card_classes(
           image_url: nil,
-          meta_description: nil,
-          image_attribution: nil
+          meta_description: nil
         )
 
         result.should include("card--no-img")
         result.should include("card--no-meta")
-        result.should include("card--no-attribution")
       end
 
     end
