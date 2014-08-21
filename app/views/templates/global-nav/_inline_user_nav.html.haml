@@ -1,0 +1,4 @@
+- if user.guest?
+  = render 'templates/global-nav/user_signed_out'
+- else
+  = render partial: 'templates/global-nav/active_session', object: user, as: :user
