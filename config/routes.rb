@@ -43,7 +43,7 @@ Rizzo::Application.routes.draw do
   get 'global-head'                   => 'layout#snippet', defaults: { snippet: "head", route: "legacy" }
   get 'global-head/responsive'        => 'layout#snippet', defaults: { snippet: "head", route: "legacy_responsive" }
   get 'global-body-header'            => 'layout#snippet', defaults: { snippet: "header", route: "legacy" }
-  get 'global-body-footer'            => 'layout#snippet', defaults: { snippet: "footer", route: "legacy_responsive" }
+  get 'global-body-footer'            => 'layout#snippet', defaults: { snippet: "footer", route: "legacy" }
 
   get 'noscript/global-head'          => 'layout#snippet', defaults: { snippet: "head", route: "noscript" }
   get 'noscript/global-head'          => 'layout#snippet', defaults: { snippet: "head", route: "noscript" }
@@ -53,6 +53,6 @@ Rizzo::Application.routes.draw do
   get 'secure/global-head'            => 'layout#snippet', defaults: { snippet: "head", route: "secure",  }
   get 'secure/global-head/responsive' => 'layout#snippet', defaults: { snippet: "head", route: "secure_responsive",  }
   get 'secure/global-body-header'     => 'layout#snippet', defaults: { snippet: "header", route: "secure" }
-  get 'secure/global-body-footer'     => 'layout#snippet', defaults: { snippet: "footer", route: "secure_responsive" }
+  get 'secure/global-body-footer'     => 'layout#snippet', defaults: { snippet: "footer", route: "secure" }
 
 end if defined?(Rizzo::Application)

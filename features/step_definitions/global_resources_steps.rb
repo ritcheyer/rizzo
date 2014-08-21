@@ -18,6 +18,12 @@ Then /^the base global\-head content should be displayed$/ do
   page.should have_xpath("//script[@src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"]")
 end
 
+Then /^the responsive global\-head content should be displayed$/ do
+  page.should have_xpath("//meta[@content=\"width=device-width, initial-scale=1\" and @name=\"viewport\"]")
+  page.should have_xpath("//link[@href=\"/assets/common_core_overrides.css\"]")
+  page.should have_xpath("//script[@src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"]")
+end
+
 Then /^the non-secure global\-head content should be displayed$/ do
   page.should have_xpath("//link[@href=\"http://static.lonelyplanet.com/static-ui/style/app-core-legacy.css\"]")
   page.should have_xpath("//script[@src=\"http://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js\"]")
