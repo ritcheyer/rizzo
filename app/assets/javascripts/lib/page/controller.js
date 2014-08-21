@@ -150,8 +150,8 @@ define([
 
   Controller.prototype._createRequestUrl = function(rootUrl) {
     var documentRoot = rootUrl || this.getDocumentRoot();
-    documentRoot = documentRoot.replace(/\/$/, "");
-    return documentRoot + "?" + this._serializeState();
+    documentRoot = documentRoot.replace(/\/$/, "").replace(/\.json$/, "");
+    return documentRoot + ".json" + "?" + this._serializeState();
   };
 
   Controller.prototype._updateGoogleAnalytics = function(data) {
