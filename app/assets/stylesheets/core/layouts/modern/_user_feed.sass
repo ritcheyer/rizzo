@@ -59,6 +59,7 @@
   &.is-active
     display: block
   .activity-list__item
+    +font-size(14)
     position: relative
     margin: 0
     border-bottom: 1px solid $body-background
@@ -84,6 +85,13 @@
         bottom: 0
         left: 0
         margin: 0 0 15px 15px
+        color: $bodygray
+      &:before
+        display: inline-block
+        margin: -0.2em 0.2em 0 0
+        vertical-align: middle
+        +size(1.1em)
+
     .activity-list__link
       font-weight: bold
       color: $titlegray
