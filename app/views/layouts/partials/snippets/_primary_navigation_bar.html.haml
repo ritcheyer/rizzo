@@ -23,13 +23,15 @@
             %span.user-basket__icon.icon--shop-basket.icon--white{ itemprop: "name" }
               View Basket
 
-          - if include_js
+          - if defined?(current_user) && current_user
+            = render partial: 'templates/global-nav/inline_user_nav', object: current_user, as: :user
+          - elsif include_js
             %script#js-user-nav-template{ type: "text/mustache" }
               = render partial: "templates/global-nav/user_nav"
-
-          %noscript
-            .nav__item.nav__item--user
-              = render "components/navigation/nav_item", item: user_navigation_items[:my_account], active: false, primary: true
+          - else
+            %noscript
+              .nav__item.nav__item--user
+                = render "components/navigation/nav_item", item: user_navigation_items[:my_account], active: false, primary: true
 
   .wv--split--left
     %nav.wv--nav--inline.nav--primary#js-nav--primary{ role: "navigation", aria: { label: "Global navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
