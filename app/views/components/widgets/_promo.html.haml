@@ -1,6 +1,6 @@
 .widget__promo.context--content
 
-  %h2.copy--h1
+  %h2.copy--h1{ class: properties[:extra_class_title] || false }
     = properties[:title]
     %span.copy--feature
       = properties[:description]
@@ -9,4 +9,3 @@
     - 3.times do
       .nav__item
         = ui_component("ads/mpu")
-
