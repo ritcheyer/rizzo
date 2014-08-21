@@ -110,13 +110,13 @@ require([
       it("serializes the application state with the document root", function() {
         var newUrl;
         newUrl = controller._createRequestUrl();
-        expect(newUrl).toBe("/foo?" + serialized.newUrlWithSearchAndFilters);
+        expect(newUrl).toBe("/foo.json?" + serialized.newUrlWithSearchAndFilters);
       });
 
       it("serializes the application state with the *new* document root", function() {
         var newUrl;
         newUrl = controller._createRequestUrl("/bar");
-        expect(newUrl).toBe("/bar?" + serialized.newUrlWithSearchAndFilters);
+        expect(newUrl).toBe("/bar.json?" + serialized.newUrlWithSearchAndFilters);
       });
     });
 
