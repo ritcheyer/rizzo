@@ -14,6 +14,7 @@ require([ "jquery" ], function($) {
     "lib/components/page_hopper",
     "lib/components/toggle_active",
     "lib/components/select_group_manager",
+    "lib/components/widget_travel_insurance",
     "lib/styleguide/svg",
     "lib/styleguide/copy",
     "lib/styleguide/swipe",
@@ -30,7 +31,7 @@ require([ "jquery" ], function($) {
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand",
     "picturefill"
-  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager) {
+  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, WidgetTravelInsurance) {
 
     new ScrollPerf();
     new ToggleActive();
@@ -50,5 +51,8 @@ require([ "jquery" ], function($) {
       min: [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ]
     });
 
+    if (document.getElementById("js-travel-widget")) {
+      (new WidgetTravelInsurance).init();
+    }
   });
 });

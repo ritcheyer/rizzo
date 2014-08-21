@@ -1,0 +1,67 @@
+.booking-widget.booking-widget--travel#js-travel-widget
+  .booking-widget__inner#qp-form
+
+    %h1.copy--h1.booking-title Travel insurance
+
+    %h4.copy--h4.booking-subtitle Get a quote for travel insurance
+
+    = form_tag("http://www.worldnomads.com/afturnstile.aspx", method: "get", target: "_blank") do
+
+      = hidden_field_tag(:affiliate, "LNYPLT")
+      = hidden_field_tag(:utm_source, "LNYPLT")
+      = hidden_field_tag(:utm_medium, "Affiliate")
+      = hidden_field_tag(:subid)
+      = hidden_field_tag(:utm_content, "Quick-Quote")
+      = hidden_field_tag(:utm_term, "qq_300x300")
+      = hidden_field_tag(:utm_campaign, "QQeng")
+
+      .form-row
+        .grid-wrapper--10
+          .col--one-whole
+            = ui_component("forms/dropdown", properties: {id:"country-residence", name:"country", placeholder: "Country of residence", options: travel_country_options(), class: "dropdown--booking" } )
+
+            .dropdown.dropdown--booking.js-select-group-manager.select-guests#canadian-provinces{style: "display:none"}
+              %label.input--regular--dark.dropdown__value.icon--chevron-down--after.js-select-overlay{for: "qp-province"} Province
+              %select.dropdown__select.js-select#qp-province{name: "province"}
+                %option{value: "AB"}Alberta
+                %option{value: "BC"}British Columbia
+                %option{value: "MB"}Manitoba
+                %option{value: "NB"}New Brunswick
+                %option{value: "NL"}Newfoundland and Labrador
+                %option{value: "NT"}Northwest Territories
+                %option{value: "NS"}Nova Scotia
+                %option{value: "NU"}Nunavut
+                %option{value: "ON"}Ontario
+                %option{value: "PE"}Prince Edward Island
+                %option{value: "QC"}Quebec
+                %option{value: "SK"}Saskatchewan
+                %option{value: "YT"}Yukon
+
+            .dropdown.dropdown--booking.js-select-group-manager#cover-region{style: "display: none"}
+              %label.input--regular--dark.dropdown__value.icon--chevron-down--after.js-select-overlay{for: "qp-coverage"} Where are you going?
+              %select.dropdown__select.js-select#qp-coverage{name: "coverage", disabled: true}
+                %option{value: ""} Region
+
+            .date-group--booking.date-group.input--regular--dark.input--grouped--top#js-start-date-container
+              .date-group__container.input__container.js-input.icon--calendar--after
+                %label.polyfill--placeholder{for: "js-start-date"} Policy Start Date
+                %input.input.booking-input.input--text.input--datepicker.js-datepicker#js-start-date{autocomplete: "off", name: "qp3_startdate", placeholder: "Policy Start Date", type: "date"}
+            %input#qp3_startday{name: "startday", type: "hidden"}
+            %input#qp3_startmonth{name: "startmonth", type: "hidden"}
+            %input#qp3_startyear{name: "startyear", type: "hidden"}
+
+            = ui_component("forms/select_field", properties: {label:"Duration", id:"qp3_duration", fields:[{name:"duration",  options: travel_duration_options() }], extra_class: "field--booking" } )
+
+            %fieldset.field--booking#policy_type
+              %legend.booking-legend Policy Type
+              .booking-radios
+                %input#qp3_typeofpolicy_single{type: "radio", value: "single", name: "typeofpolicy"}
+                %label{for: "qp3_typeofpolicy_single"} Single
+                %input#qp3_typeofpolicy_family{type: "radio", value: "family", name: "typeofpolicy"}
+                %label{for: "qp3_typeofpolicy_family"} Family
+
+            .form-row
+              %button.btn.btn--green.btn--submit.btn--full-width#js-submit-booking{type: "submit"}
+                Get a quote
+                .alert.alert--error.icon--cross--before.is-hidden
+                  Please make sure all fields are filled out
