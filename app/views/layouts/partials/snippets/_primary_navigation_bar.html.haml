@@ -23,12 +23,11 @@
             %span.user-basket__icon.icon--shop-basket.icon--white{ itemprop: "name" }
               View Basket
 
-          - if defined?(current_user) && current_user
+          - if Feature.active?(:inline_user_profile) && defined?(current_user) && current_user
             = render partial: 'templates/global-nav/inline_user_nav', object: current_user, as: :user
           - elsif include_js
             %script#js-user-nav-template{ type: "text/mustache" }
               = render partial: "templates/global-nav/user_nav"
-          - else
             %noscript
               .nav__item.nav__item--user
                 = render "components/navigation/nav_item", item: user_navigation_items[:my_account], active: false, primary: true
