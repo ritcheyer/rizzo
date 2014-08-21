@@ -13,6 +13,12 @@ Feature: Global Resources
     And the non-secure global-head content should be displayed
     And the tynt tag should be displayed
 
+  Scenario: it serves the responsive global-head
+    Given I go to "/global-head/responsive"
+    Then the responsive global-head content should be displayed
+    And the non-secure global-head content should be displayed
+    And the tynt tag should be displayed
+
   Scenario: it serves the secure global head
     Given I go to "/secure/global-head"
     Then the base global-head content should be displayed
