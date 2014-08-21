@@ -27,10 +27,7 @@
 
 - if legacy_lp
   = smart_stylesheet('common_core_overrides')
-  - if responsive
-    = smart_stylesheet('legacy_responsive')
   = static_ui_stylesheet('app-core-legacy', (defined? secure) ? secure : false)
-  
 - else
   = smart_stylesheet('common_core_no_font')
 

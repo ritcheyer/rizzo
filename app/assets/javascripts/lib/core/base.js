@@ -3,12 +3,13 @@ define([
   "lib/page/swipe",
   "lib/core/authenticator",
   "lib/core/shopping_cart",
+  "lib/components/toggle_active",
   "lib/core/ad_manager",
   "lib/core/cookie_compliance",
   "lib/components/select_group_manager",
   "lib/core/nav_search",
   "lib/core/feature_detect"
-], function($, Swipe, Authenticator, ShoppingCart, AdManager, CookieCompliance, SelectGroupManager, NavSearch) {
+], function($, Swipe, Authenticator, ShoppingCart, ToggleActive, AdManager, CookieCompliance, SelectGroupManager, NavSearch) {
 
   "use strict";
 
@@ -18,6 +19,7 @@ define([
     new Swipe();
     new NavSearch();
     new ShoppingCart();
+    new ToggleActive;
 
     if (window.lp && window.lp.ads) {
       new AdManager(window.lp.ads);
