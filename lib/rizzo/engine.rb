@@ -3,8 +3,6 @@ module Rizzo
 
     initializer "rizzo.configure_rails_initialization" do |app|
 
-      require 'feature'
-
       app.routes.prepend do
         get 'breadcrumb'        => 'global_resources#breadcrumb'
         get "r/:encrypted_url"  => 'redirector#show', :as => :redirector
