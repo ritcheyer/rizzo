@@ -32,7 +32,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
     describe("config", function() {
 
       it("should check the status from the live site", function() {
-        expect(auth.statusUrl).toBe("https://auth.lonelyplanet.com/users/status");
+        expect(auth.statusUrl).toBe("https://auth.lonelyplanet.com/users/status.json");
       });
 
     });
