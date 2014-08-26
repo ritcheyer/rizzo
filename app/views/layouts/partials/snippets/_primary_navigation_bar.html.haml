@@ -23,8 +23,8 @@
             %span.user-basket__icon.icon--shop-basket.icon--white{ itemprop: "name" }
               View Basket
 
-          - if Feature.active?(:inline_user_profile) && defined?(current_user) && current_user
-            = render partial: 'templates/global-nav/inline_user_nav', object: current_user, as: :user
+          - if defined?(user)
+            = render partial: 'templates/global-nav/inline_user_nav', object: user, as: :user
           - elsif include_js
             %script#js-user-nav-template{ type: "text/mustache" }
               = render partial: "templates/global-nav/user_nav"
@@ -36,7 +36,7 @@
     %nav.wv--nav--inline.nav--primary#js-nav--primary{ role: "navigation", aria: { label: "Global navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
       - if nav_primary
         %h6.accessibility Global navigation
-        
+
         - primary_navigation_items(responsive).each do |item|
           - if item[:submenu]
             .nav__submenu__trigger.nav__item.nav__item--primary

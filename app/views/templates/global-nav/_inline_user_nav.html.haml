@@ -1,4 +1,4 @@
-- if user.guest?
+- if !defined?(user) || user[:sub].nil?
   = render 'templates/global-nav/user_signed_out'
-- else
+- elsif
   = render partial: 'templates/global-nav/active_session', object: user, as: :user
