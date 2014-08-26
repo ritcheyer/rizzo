@@ -14,8 +14,4 @@ module NavigationHelper
     @view_flow.set(name, ActiveSupport::SafeBuffer.new)
     content_for(name, content, &block)
   end
-
-  def user_attr(user, att)
-    user.respond_to?(att.to_sym) ? user.methods(att.to_sym).call : nil
-  end
 end
