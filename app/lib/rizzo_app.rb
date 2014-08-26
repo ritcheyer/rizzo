@@ -1,5 +1,13 @@
 class RizzoApp
 
+  class << self
+    attr_reader :root
+
+    def set_root(root)
+      @root = root
+    end
+  end
+
   def initialize(path)
     @path = path
     @page_hopper_sections = flatten_page_hopper_sections
@@ -14,7 +22,7 @@ class RizzoApp
   end
 
   def primary_nav_items
-    @primary_nav_items ||= (YAML.load(File.read(File.expand_path('../../data/styleguide/primary_nav.yml', __FILE__))))
+    @primary_nav_items ||= load_yaml_file('data/styleguide/primary_nav')
   end
 
   def secondary_nav_items
@@ -34,38 +42,45 @@ class RizzoApp
     @left_nav ||= build_left_nav
   end
 
-  def build_left_nav
-    active_left_nav = {}
-    preceding_slug = "#{root}#{active_section[:slug]}/"
-    section_items = left_nav[:"#{active_section[:slug].gsub(/^\//, "").gsub(/[ -]/, "_")}"]
-    if section_items
-      active_left_nav[:groups] = section_items.map do |group|
-        group[:items].map do |item|
-          item[:slug] = "#{preceding_slug}#{item[:slug]}"
-          item[:active] = (item[:slug] == @path) ? true : false
-          if item[:name] == "Konami"
-            item[:extra_style] = "nav--left__item--konami"
-          end
-          item
-        end
-        group
-      end
-    end
-    active_left_nav
-  end
-
   def page_hopper_sections
     { sections: @page_hopper_sections }
   end
 
+
   private
 
-  def active_section
-    section_from_slug = @path.match(/(performance|styleguide|documentation)\/([^\/]+)/)
-    section_from_slug && sections.map do |section|
-      if section[:slug].include? section_from_slug[2]
-        return section
+  def build_left_nav(active_left_nav = {})
+
+    return active_left_nav unless left_nav_for_section
+
+    active_left_nav[:groups] = left_nav_for_section.map do |group|
+      group[:items].each do |item|
+        item[:slug] = "#{preceding_slug}#{item[:slug]}"
+        item[:active] = (item[:slug] == @path) ? true : false
+        item[:extra_style] = (item[:name] == "Konami") ? "nav--left__item--konami" : nil
+        item
       end
+      group
+    end
+
+    active_left_nav
+  end
+
+  def preceding_slug
+    @preceding_slug ||= "#{root}#{active_section[:slug]}/"
+  end
+
+  def left_nav_for_section
+    @left_nav_for_section ||= left_nav[:"#{active_section[:slug].gsub(/^\//, "").gsub(/[ -]/, "_")}"]
+  end
+
+  def root
+    self.class.root
+  end
+
+  def active_section
+    if section_from_slug = @path.match(/(performance|styleguide|documentation)\/([^\/]+)/)
+      sections.map{|s| return s if s[:slug].include? section_from_slug[2]}
     end
     sections[0]
   end
