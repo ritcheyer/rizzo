@@ -1,0 +1,9 @@
+.card__footer
+  .card__footer__content
+
+    - if properties[:author_name]
+      = ui_component("user_attribution", :properties => { image: properties[:author_avatar], name: properties[:author_name], size: "tiny" })
+
+    - elsif properties[:button_text]
+      %span.btn.btn--small.btn--yellow.btn--full-width{ class: properties[:button_class] }
+        = properties[:button_text]

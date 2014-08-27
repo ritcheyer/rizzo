@@ -4,7 +4,7 @@
 
 .card--hidden-text
 
-  .card__meta,
+  .card__footer,
   .card__content
     @extend %visually-hide
 
@@ -73,15 +73,10 @@
   $kind: nth($poi-names, $i)
   $color: nth($poi-colors, $i)
 
-  .card--#{$kind}
+  .card--#{$kind}.card--no-img
 
     .card__content
       border-top-color: $color
-
-    .card__meta__icon
-      color: #FFF
-      border-color: $color
-      background-color: $color
 
 // -----------------------------------------------------------------------------
 // Legacy compatibility

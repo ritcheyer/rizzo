@@ -35,7 +35,7 @@ describe CardsHelper do
         )
 
         result.should include("card--has-img")
-        result.should include("card--has-meta")
+        result.should include("card--has-footer")
       end
 
       it "should add 'no' class names when given no content" do
@@ -45,7 +45,7 @@ describe CardsHelper do
         )
 
         result.should include("card--no-img")
-        result.should include("card--no-meta")
+        result.should include("card--no-footer")
       end
 
     end
