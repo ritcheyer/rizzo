@@ -110,7 +110,6 @@
   cursor: pointer
 
   &:after
-    +z-layer
     @extend %empty-abs-generated-content
     top: 1150px
     height: 150px
@@ -121,10 +120,10 @@
 
   .row__inner--content,
   .row__inner--secondary
-    +z-layer(middle)
     padding-right: 22px
     padding-left: 22px
     cursor: default
+
   .row__inner--content
     background-color: $body-background
 
