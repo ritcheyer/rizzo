@@ -69,11 +69,7 @@ require([
           targetLinkSelector: "a",
           feedUrl: "foo/bar"
         });
-        tempElement = $(
-          "<div class='fake-feed-item'>" +
-            "<a href='FAKE_URL'></a>" +
-            "</div>"
-        );
+        tempElement = $("<div class='fake-feed-item'><a href='FAKE_URL'></a></div>");
         doc.find("body").append(tempElement);
         spyOn(userFeed, "_goToUrl");
         userFeed._bindLinks();
@@ -405,19 +401,26 @@ require([
 
           describe("for screen width < 980px", function() {
 
-            beforeEach(function() {
-              spyOn(userFeed, "_updateUnreadMessagesResponsiveIndicator").andCallThrough();
-              userFeed._updateFeed(979, fetchedFeed);
-            });
+            var messagesSelector,
+                $indicator;
 
-            it("should call '_updateUnreadMessagesResponsiveIndicator' with 'unreadMessageCount'", function() {
-              expect(userFeed._updateUnreadMessagesResponsiveIndicator).toHaveBeenCalledWith(fetchedFeed.unreadMessagesCount);
+            beforeEach(function() {
+              messagesSelector = userFeed.config.messagesResponsiveSelector.replace(".", "");
+              doc.find(messagesSelector).remove();
+              doc.find("body").append(
+                "<div class=" + messagesSelector + "><div>some</div><a>children</a></div>"
+              );
+              userFeed = new UserFeed({ feedUrl: "foo/bar" });
+              userFeed._updateFeed(979, fetchedFeed);
+
+              $indicator = $(userFeed.config.unreadMessagesResponsiveNumberSelector);
             });
 
             it("should append undread messages count indicator to responsive menu", function() {
-              var $indicator = $(userFeed.config.unreadMessagesResponsiveNumberSelector);
-
               expect($indicator.length).toEqual(1);
+            });
+
+            it("should update unread messages count", function() {
               expect($indicator.text().trim()).toBe("(" + fetchedFeed.unreadMessagesCount + ")");
             });
 
