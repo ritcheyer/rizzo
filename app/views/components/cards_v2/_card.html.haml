@@ -9,11 +9,14 @@
 
       .card__content
 
-        - if properties[:context]
-          .card__content__context
-            = properties[:context]
+        - if properties[:context_text]
+          %p.card__content__context{ class: properties[:context_icon] ? "icon--#{properties[:kind]}--before" : "" }
+            = properties[:context_text]
         %h1.card__content__title
           = properties[:title]
+        - if properties[:context_locale]
+          %p.card__content__locale.icon--place--before
+            = properties[:context_locale]
         %p.card__content__desc
           = properties[:description]
 

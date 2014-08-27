@@ -54,7 +54,8 @@
 
   .card__content__desc
     +font-size(20)
-    padding: 10px
+    margin-top: 0
+    padding: 0 10px
 
     // left/right quote marks
     &:before
@@ -73,10 +74,19 @@
   $kind: nth($poi-names, $i)
   $color: nth($poi-colors, $i)
 
-  .card--#{$kind}.card--no-img
+  .card--#{$kind}
 
     .card__content
       border-top-color: $color
+
+    .card__content__context
+      &:before
+        border-color: $color
+        background-color: $color
+
+        // Tweak icon position for Josh
+        @if $kind == 'hotel'
+          background-position-y: 41%
 
 // -----------------------------------------------------------------------------
 // Legacy compatibility
