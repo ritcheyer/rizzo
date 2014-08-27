@@ -1,8 +1,9 @@
-.user_attribution__source
+.user-attribution
   +font-size(16)
+  display: block
   overflow: hidden
   text-overflow: ellipsis
-  width: 75%
+  max-width: 75%
   white-space: nowrap
 
   &:hover
@@ -12,22 +13,23 @@
   &.theme--light
     color: white
 
-.user_attribution__source-text
+.user-attribution__source
   font-style: italic
   font-weight: lighter
 
-.user_attribution__avatar
+.user-attribution__avatar
   +size(30px)
   @extend %inline-block
   vertical-align: middle
   border-radius: 50%
-  .user_attribution--small &
-    +size(30px)
 
   // While we're using the static layout don't hide
   // all the breakpoints behind the responsive flag
   +respond-to(wide-view)
     +size(50px)
 
-.user_attribution__username
+  .user-attribution--small &
+    +size(30px)
+
+.user-attribution__username
   font-weight: bold

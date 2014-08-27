@@ -1,19 +1,18 @@
 :ruby
 
   css_classes = [
-    "user_attribution__source",            
-    "mv--split--left",
-    "theme--#{properties[:theme]}",
-    "user_attribution--#{properties[:size]}"    
+    "user-attribution",
+    "user-attribution--#{properties[:size]}",
+    "theme--#{properties[:theme]}"
   ].join(" ")
 
 - single_content_for :user_attribution_content do
   - if properties[:image]
-    = safe_image_tag(properties[:image], class: 'user_attribution__avatar', alt: properties[:name], lazyload: defined?(lazyload))
-  %span.user_attribution__source-text
-    by
-  %span.user_attribution__username
-    = properties[:name]    
+    = safe_image_tag(properties[:image], class: 'user-attribution__avatar', alt: properties[:name])
+  %span.user-attribution__source
+    by 
+  %span.user-attribution__username
+    = properties[:name]
 
 - if properties[:url]
   %a{ href: properties[:url], class: css_classes }
