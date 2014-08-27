@@ -46,10 +46,11 @@ $footer-height: 250px
     width: 100%
 
 .gallery__img--portrait
-  display: block
-  height: 100%
-  margin: auto
-  width: auto
+  &, & > img
+    display: block
+    height: 100%
+    margin: auto
+    width: auto
 
 .gallery__title
   +font-size(24)

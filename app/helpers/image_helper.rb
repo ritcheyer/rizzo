@@ -32,6 +32,7 @@ module ImageHelper
 
   def srcset_url(opts={}, src, retina)
     url = resrcit_url(opts, src)
+    scale_factor = 1.5
 
     if retina
       retina_opts = opts.dup
@@ -39,20 +40,20 @@ module ImageHelper
       resize = retina_opts[:resize]
 
       if resize
-        resize[:width] = resize[:width].to_i * 2 if resize[:width]
-        resize[:height] = resize[:height].to_i * 2 if resize[:height]
+        resize[:width] = resize[:width].to_i * scale_factor if resize[:width]
+        resize[:height] = resize[:height].to_i * scale_factor if resize[:height]
         retina_opts[:resize] = resize
       end
 
       if crop
-        crop[:width] = crop[:width].to_i * 2 if crop[:width]
-        crop[:height] = crop[:height].to_i * 2 if crop[:height]
-        crop[:x_offset] = crop[:x_offset].to_i * 2 if crop[:x_offset]
-        crop[:y_offset] = crop[:y_offset].to_i * 2 if crop[:y_offset]
+        crop[:width] = crop[:width].to_i * scale_factor if crop[:width]
+        crop[:height] = crop[:height].to_i * scale_factor if crop[:height]
+        crop[:x_offset] = crop[:x_offset].to_i * scale_factor if crop[:x_offset]
+        crop[:y_offset] = crop[:y_offset].to_i * scale_factor if crop[:y_offset]
         retina_opts[:crop] = crop
       end
 
-      retina_opts[:quality] = 1 # 1 is the lowest quality we can go.
+      retina_opts[:quality] = 85
 
       url = "#{url}, #{resrcit_url(retina_opts, src)} 2x"
     end
