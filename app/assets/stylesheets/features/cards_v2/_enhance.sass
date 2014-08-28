@@ -2,7 +2,7 @@
 // Reveals the identities of criminals from low resolution images of reflections
 // -----------------------------------------------------------------------------
 %card-content-overflow
-  &:after
+  &:before
     @extend %empty-abs-generated-content
     left: 0
     bottom: 0
@@ -13,7 +13,7 @@
     background: linear-gradient(top, rgba(255, 255, 255, 0) 0, #FFF 75%)
 
 %card-figure-shroud
-  &:after
+  &:before
     @extend %empty-abs-generated-content
     left: 0
     bottom: 0
@@ -31,6 +31,23 @@
 
     &.is-invisible
       opacity: 0
+
+    .card__figure
+      &:after
+        @extend %empty-abs-generated-content
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        opacity: 0
+        background: $darkgray
+        transition: opacity .25s ease-out
+
+    &:hover
+
+      .card__figure
+        &:after
+          opacity: .35
 
   .card--tall
 
