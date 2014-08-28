@@ -44,13 +44,13 @@ define([
     .on(":page/request", function(event, data, analytics) {
       this._generateState(data.url.split("?")[0]);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
-      this._callServer(data.url, this.newPage, analytics);
+      this._callServer(this._createJSONUrl(data.url), this.newPage, analytics);
     }.bind(this))
 
     .on(":layer/request", function(event, data) {
       this._generateState(data.url.split("?")[0]);
       this.pushState.navigate(this._serializeState(), this._currentRoot(), true);
-      this._callServer(data.url, this.newLayer);
+      this._callServer(this._createJSONUrl(data.url), this.newLayer);
     }.bind(this))
 
     .on(":controller/back", function() {
@@ -151,7 +151,21 @@ define([
   Controller.prototype._createRequestUrl = function(rootUrl) {
     var documentRoot = rootUrl || this.getDocumentRoot();
     documentRoot = documentRoot.replace(/\/$/, "").replace(/\.json$/, "");
-    return documentRoot + ".json" + "?" + this._serializeState();
+
+    return this._createJSONUrl(documentRoot + "?" + this._serializeState());
+  };
+
+  Controller.prototype._createJSONUrl = function(url) {
+    var urlParts = url.split("?"),
+        params = "";
+
+    if (url.indexOf(".json") > -1) return url;
+
+    if (urlParts.length > 1) {
+      params = "?" + urlParts[1];
+    }
+
+    return urlParts[0] + ".json" + params;
   };
 
   Controller.prototype._updateGoogleAnalytics = function(data) {
