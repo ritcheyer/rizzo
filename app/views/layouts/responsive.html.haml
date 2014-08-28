@@ -24,7 +24,7 @@
       = yield
 
     = yield :breadcrumbs
-    = render 'layouts/custom/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
+    = render 'layouts/custom/footer', include_js: true, ads_footer: (defined?(ads_footer) ? ads_footer : false), nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
 
     - if defined? Variant
       /

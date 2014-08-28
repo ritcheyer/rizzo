@@ -7,6 +7,14 @@
 .icon--cc--before:before, .icon--cc--after:after,
 .icon--cc { background-image: url('png/cc.png'); background-repeat: no-repeat; }
 
+.picker__nav--prev,
+.icon--chevron-left--before:before, .icon--chevron-left--after:after,
+.icon--chevron-left { background-image: url('png/chevron-left.png'); background-repeat: no-repeat; }
+
+.picker__nav--next,
+.icon--chevron-right--before:before, .icon--chevron-right--after:after,
+.icon--chevron-right { background-image: url('png/chevron-right.png'); background-repeat: no-repeat; }
+
 .icon--cross--before:before, .icon--cross--after:after,
 .icon--cross { background-image: url('png/cross.png'); background-repeat: no-repeat; }
 
