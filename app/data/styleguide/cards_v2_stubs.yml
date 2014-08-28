@@ -43,7 +43,8 @@
   :image_alt: ""
   :image_url: "http://aff.bstatic.com/images/hotel/max300/135/13558989.jpg"
   :price: "223"
-  :currency_symbol: "£"
+  :currency: "£"
+  :scope: "per night"
   :button_text: "Learn more"
   :tag_top_choice: true
 -
@@ -56,9 +57,9 @@
   :image_alt: ""
   :image_url: "cards/guide-sample.jpg"
   :price: "12.50"
-  :on_sale_here?: true
+  :on_sale?: true
   :retail_price: "16.00"
-  :currency_symbol: "£"
+  :currency: "£"
   :button_text: "Buy now"
 -
   :styleguide_title: "Short card"

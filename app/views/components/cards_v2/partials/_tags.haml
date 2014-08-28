@@ -1,7 +1,7 @@
 .card__tags
   - if properties[:price]
-    = render :partial => "/components/cards_v2/partials/price_tag", :locals => { :properties => properties }
-    
+    = ui_component("tags/price", properties: properties)
+
   - if properties[:tag_top_choice]
     .tag.tag--card.tag--top-choice
       .tag--card__content.icon--collar--after.icon--lp-blue--after
