@@ -11,14 +11,18 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
 
       jasmine.Clock.useMock();
 
-      mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker", "Point", "Size", "Animation" ]);
+      mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker", "Point", "Size", "Animation", "LatLngBounds" ]);
 
       mockAPI.Map.andCallFake(function() {
-        return jasmine.createSpyObj("Google Map Instance", [ "setCenter", "panBy" ]);
+        return jasmine.createSpyObj("Google Map Instance", [ "setCenter", "panBy", "fitBounds" ]);
       });
 
       mockAPI.Marker.andCallFake(function() {
         return jasmine.createSpyObj("Google Maps Marker", [ "setIcon", "getPosition", "setVisible", "setZIndex" ]);
+      });
+
+      mockAPI.LatLngBounds.andCallFake(function() {
+        return jasmine.createSpyObj("Google Maps LatLngBounds", [ "extend" ]);
       });
 
       instance = new POIList(null, {
@@ -26,7 +30,9 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
         $el: $("div.js-poi-map"),
         marker: mockAPI.Marker(),
         map: mockAPI.Map(),
-        isOpen: false
+        isOpen: false,
+        trigger: jasmine.createSpy(),
+        setupTooltip: jasmine.createSpy()
       });
 
       window.google = {
@@ -65,6 +71,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
 
     describe("Markers", function() {
       beforeEach(function() {
+        spyOn(instance, "centerAroundMarkers");
         $(".js-poi-map").trigger(":map/open");
         jasmine.Clock.tick(1000);
       });
@@ -73,6 +80,22 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
         // Parent POI maps component will also call Marker
         expect(window.google.maps.Marker.callCount - 1).toBe(4);
         expect(instance.poiMarkers.length).toBe(4);
+      });
+
+      it("should zoom in and center around the markers", function() {
+        expect(instance.centerAroundMarkers).toHaveBeenCalled();
+      });
+    });
+
+    describe("Tooltip", function() {
+      beforeEach(function() {
+        $(".js-poi-map").trigger(":map/open");
+        jasmine.Clock.tick(1000);
+        $(".js-poi-map").trigger(":map/pois-added");
+      });
+
+      it("should setup the tooltip when all markers have been added", function() {
+        expect(instance.poiMap.setupTooltip).toHaveBeenCalled();
       });
     });
 

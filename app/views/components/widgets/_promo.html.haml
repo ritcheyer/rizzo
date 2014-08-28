@@ -6,6 +6,6 @@
       = properties[:description]
 
   .nav--inline
-    - 3.times do
-      .nav__item
+    - 3.times do |i|
+      .nav__item{ class: i == 1 ? "widget__promo--middle" : "" }
         = ui_component("ads/mpu")

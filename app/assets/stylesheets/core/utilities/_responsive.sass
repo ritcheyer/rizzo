@@ -132,6 +132,14 @@
     +respond-to(medium-view)
       display: block
 
+// [doc] Hide content but show it on medium screens (with inline properties). [/doc]
+.mv--inline
+  display: inline
+  .responsive &
+    display: none
+    +respond-to(medium-view)
+      display: inline
+
 // [doc] Hide content but show it on medium screens (with inline-block properties). [/doc]
 .mv--inline-block
   @extend %inline-block

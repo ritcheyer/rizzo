@@ -2,8 +2,9 @@ define([
   "jquery",
   "lib/mixins/events",
   "lib/components/map_styles",
+  "lib/components/toggle_active",
   "polyfills/function_bind"
-], function($, asEventEmitter, mapStyles) {
+], function($, asEventEmitter, mapStyles, ToggleActive) {
 
   "use strict";
 
@@ -11,7 +12,9 @@ define([
     defaults = {
       el: ".js-poi-map",
       container: ".js-poi-map-container",
-      placeholder: ".js-poi-map-placeholder"
+      placeholder: ".js-poi-map-placeholder",
+      showTooltip: false,
+      tooltipSelector: ".js-poi-map-tooltip"
     },
     API_KEY = "AIzaSyBQxopw4OR08VaLVtHaY4XEXWk3dvLSj5k";
 
@@ -28,6 +31,25 @@ define([
   }
 
   asEventEmitter.call(POIMap.prototype);
+
+  POIMap.prototype.setupTooltip = function() {
+    var _this = this;
+
+    if (this.config.showTooltip) {
+      require([ "infobox" ], function(InfoBox) {
+        var tooltip = new InfoBox({
+          content: $(_this.config.tooltipSelector).html(),
+          closeBoxURL: ""
+        });
+        tooltip.open(_this.map, _this.marker);
+        window.google.maps.event.addListener(tooltip, "domready", function() {
+          new ToggleActive({
+            context: _this.config.container
+          });
+        });
+      });
+    }
+  };
 
   // Private
 

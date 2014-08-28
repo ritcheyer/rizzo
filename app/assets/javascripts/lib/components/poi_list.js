@@ -26,6 +26,7 @@ define([
   POIList.prototype._init = function() {
     this.poiData = [];
     this.poiMarkers = [];
+    this.latLngs = [];
     this.markerImages = {};
 
     if (this.poiMap.isOpen) {
@@ -36,15 +37,23 @@ define([
   };
 
   POIList.prototype._build = function() {
+
+    var map = this.poiMap;
+
     for (var i = 0, len = this.$pois.length; i < len; i++) {
       this.poiData.push(this.$pois.eq(i).data());
     }
 
-    if (this.poiMap.marker) {
-      this.poiMap.marker.setIcon(this._createMarkerImage(null, "dot"));
+    if (map.marker) {
+      map.marker.setIcon(this._createMarkerImage(null, "dot"));
+
+      map.$el.on(":map/pois-added", function() {
+        map.setupTooltip();
+      });
     }
 
     this._addPOIs();
+    this.centerAroundMarkers();
   };
 
   POIList.prototype._getIcon = function( topic, size ) {
@@ -76,23 +85,28 @@ define([
       this._createMarker(i);
     }
 
+    this.poiMap.trigger(":map/pois-added");
+
     this._listen();
   };
 
   POIList.prototype._createMarker = function(i) {
-    var marker = new window.google.maps.Marker({
-      icon: this._getIcon( this.poiData[ i ].topic, "small" ),
-      animation: window.google.maps.Animation.DROP,
-      position: new window.google.maps.LatLng(
-                  this.poiData[ i ].latitude,
-                  this.poiData[ i ].longitude ),
-      map: this.poiMap.map,
-      visible: false
-    });
+    var latLng = new window.google.maps.LatLng(
+          this.poiData[ i ].latitude,
+          this.poiData[ i ].longitude
+        ),
+        marker = new window.google.maps.Marker({
+          icon: this._getIcon( this.poiData[ i ].topic, "small" ),
+          animation: window.google.maps.Animation.DROP,
+          position: latLng,
+          map: this.poiMap.map,
+          visible: false
+        });
 
     setTimeout(marker.setVisible.bind(marker, true), (i + 1) * 100);
 
     this.poiMarkers.push( marker );
+    this.latLngs.push( latLng );
   };
 
   POIList.prototype._listen = function() {
@@ -127,6 +141,17 @@ define([
     // Take into account the list overlay
     this.poiMap.map.setCenter( poiMarker.getPosition() );
     this.poiMap.map.panBy( this.poiMap.$container.width() / 6, 0 );
+  };
+
+  POIList.prototype.centerAroundMarkers = function() {
+    var bounds = new window.google.maps.LatLngBounds();
+
+    for (var i = 0, latLngLen = this.latLngs.length; i < latLngLen; i++) {
+      //  And increase the bounds to take this point
+      bounds.extend (this.latLngs[i]);
+    }
+
+    this.poiMap.map.fitBounds(bounds);
   };
 
   return POIList;

@@ -11,8 +11,23 @@
   overflow: auto
   background: #fff
 
+  .responsive &
+    max-width: inherit
+    position: static
+    width: auto
+
+    +respond-to(medium-view)
+      max-width: 50%
+      position: absolute
+      width: 294px
+
   .is-closed &
     display: none
+
+    .responsive &
+      display: block
+      +respond-to(medium-view)
+        display: none
 
   &::-webkit-scrollbar
     width: 4px
@@ -36,7 +51,7 @@
     border-top: none
   &:before
     position: absolute
-    top: 14px
+    top: 10px
     left: 18px
     display: block
     width: 18px
@@ -45,6 +60,9 @@
   &:hover,
   &.is-selected
     background-color: $body-background-offset
+
+.nearby-pois__title
+  +font-size(14)
 
 .nearby-pois__description
   margin-bottom: 0
