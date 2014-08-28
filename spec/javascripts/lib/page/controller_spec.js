@@ -9,7 +9,9 @@ require([
 
     serialized = {
       url: "http://www.lonelyplanet.com/france/paris/hotels",
+      urlJSON: "http://www.lonelyplanet.com/france/paris/hotels.json",
       urlWithSearchAndFilters: "http://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
+      urlWithSearchAndFiltersJSON: "http://www.lonelyplanet.com/england/london/hotels.json?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
       urlParams: "utf8=✓&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
       newUrlWithSearchAndFilters: "filters%5Bproperty_type%5D%5B4star%5D=true"
     };
@@ -117,6 +119,24 @@ require([
         var newUrl;
         newUrl = controller._createRequestUrl("/bar");
         expect(newUrl).toBe("/bar.json?" + serialized.newUrlWithSearchAndFilters);
+      });
+    });
+
+    describe("JSON", function() {
+      beforeEach(function() {
+        window.controller = new Controller();
+      });
+
+      it("updated normal url", function() {
+        var newUrl;
+        newUrl = controller._createJSONUrl(serialized.url);
+        expect(newUrl).toBe(serialized.urlJSON);
+      });
+
+      it("updated url with params", function() {
+        var newUrl;
+        newUrl = controller._createJSONUrl(serialized.urlWithSearchAndFilters);
+        expect(newUrl).toBe(serialized.urlWithSearchAndFiltersJSON);
       });
     });
 
