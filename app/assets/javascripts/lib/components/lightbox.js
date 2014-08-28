@@ -26,6 +26,7 @@ define([
     this.$lightbox = $("#js-lightbox");
     this.$lightboxWrapper = this.$lightbox.find(".js-lightbox-wrapper");
     this.$lightboxContent = this.$lightbox.find(".js-lightbox-content");
+    this.$lightboxControls = this.$lightbox.find(".js-lightbox-controls");
     this.$previous = this.$lightbox.find(".js-lightbox-previous");
     this.$next = this.$lightbox.find(".js-lightbox-next");
 
@@ -74,7 +75,7 @@ define([
       this.trigger(":lightbox/open", {
         listener: this.$el,
         opener: event.currentTarget,
-        target: this.$lightboxWrapper
+        target: this.$lightboxContent
       });
     }.bind(this));
 
@@ -83,10 +84,10 @@ define([
       element.hasClass("js-lightbox-arrow") || (element = element.closest(".js-lightbox-arrow"));
       this.$lightbox.removeClass("content-ready");
       this.$el.trigger(":lightbox/fetchContent", element.attr("href"));
-      this.$lightbox.find(".js-lightbox-arrow").addClass("is-hidden");
+      this.$lightboxControls.find(".js-lightbox-arrow").addClass("is-hidden");
       this.$lightboxContent.empty();
 
-      event.preventDefault();
+      return false;
     }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
