@@ -169,8 +169,8 @@ define([], function() {
         featureType: "road.highway",
         elementType: "geometry.fill",
         stylers: [
-          { "color": "#ffc83f" },
-          { "lightness": 50 }
+          { color: "#ffc83f" },
+          { lightness: 50 }
         ]
       }
     ],
