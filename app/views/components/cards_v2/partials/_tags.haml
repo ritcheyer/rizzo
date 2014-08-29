@@ -1,18 +1,18 @@
 .card__tags
-  - if properties[:price]
-    = ui_component("tags/price", properties: properties)
+  - if properties[:price_tag]
+    = ui_component("tags/price", properties: properties[:price_tag])
 
-  - if properties[:tag_top_choice]
+  - if properties[:tags] && properties[:tags][:top_choice?]
     .tag.tag--card.tag--top-choice
       .tag--card__content.icon--collar--after.icon--lp-blue--after
         .icon--top-choice.icon--white
           Top Choice
 
-  - elsif properties[:tag_lp_reviewed]
+  - elsif properties[:tags] && properties[:tags][:lp_reviewed?]
     .tag.tag--card.tag--lp-reviewed
       .tag--card__content
         .icon--lp-reviewed.icon--white
           Lonely Planet Reviewed
 
-  - if properties[:tag_position]
-    = ui_component("tags/competition", properties: { position: properties[:tag_position] })
+  - if properties[:tags] && properties[:tags][:position]
+    = ui_component("tags/competition", properties: { position: properties[:tags][:position] })
