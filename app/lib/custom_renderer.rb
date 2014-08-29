@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 class CustomRenderer < Redcarpet::Render::HTML
 
   def header(text, header_level, section)
