@@ -17,7 +17,7 @@ module GoogleApiHelper
     src += "&zoom=#{properties[:zoom]}&scale=#{properties[:scale]}"
 
     if properties[:marker]
-      src+= "&markers=icon:#{CGI.escape(properties[:icon])}|#{properties[:latitude]},#{properties[:longitude]}"
+      src+= "&markers=scale:#{properties[:icon_scale]}|icon:#{CGI.escape(properties[:icon])}|#{properties[:latitude]},#{properties[:longitude]}"
     else
       src+= "&center=#{properties[:latitude]},#{properties[:longitude]}"
     end
