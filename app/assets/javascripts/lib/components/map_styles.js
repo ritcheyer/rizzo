@@ -169,17 +169,8 @@ define([], function() {
         featureType: "road.highway",
         elementType: "geometry.fill",
         stylers: [
-          {
-            color: "#16c98d"
-          }
-        ]
-      }, {
-        featureType: "road.highway",
-        elementType: "geometry.stroke",
-        stylers: [
-          {
-            visibility: "off"
-          }
+          { "color": "#ffc83f" },
+          { "lightness": 50 }
         ]
       }
     ],
