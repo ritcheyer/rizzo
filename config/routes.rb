@@ -10,6 +10,7 @@ Rizzo::Application.routes.draw do
 
   # Styleguide
   root                              to: redirect('/styleguide/design-elements/colours')
+  get 'styleguide/',                to: redirect('/styleguide/design-elements/colours')
   get 'styleguide/design-elements', to: redirect('/styleguide/design-elements/colours')
   get 'styleguide/ui-components',   to: redirect('/styleguide/ui-components/cards')
   get 'styleguide/js-components',   to: redirect('/styleguide/js-components/asset-reveal')
