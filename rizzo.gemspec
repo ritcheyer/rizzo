@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'sass'
   gem.add_dependency 'addressable'
   gem.add_dependency 'sanitize'
+  gem.add_dependency 'redcarpet'
 
   gem.add_development_dependency 'rspec', '2.10.0'
   gem.add_development_dependency 'rspec-rails', '2.10.0'
@@ -31,4 +32,3 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'selenium-webdriver'
   gem.add_development_dependency 'headless'
 end
-
