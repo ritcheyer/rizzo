@@ -141,10 +141,17 @@
         color: #FFF
 
       .card__content
+        padding-bottom: 15px
         transition: margin-bottom .2s ease-out
+
+      .card__content__context
+        color: inherit
 
       .card__content__title
         +font-size(24)
+
+      .card__content__desc
+        @extend %visually-hide
 
       &.card--double
 
@@ -200,3 +207,7 @@
 
   .user-attribution
     font-size: 100%
+
+  .text-icon
+    +size(16)
+    +icon-color(white)

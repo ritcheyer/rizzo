@@ -8,7 +8,7 @@
       from
       .tag--price__amount<>
         %span.tag--price__currency.js-currency<>
-          = properties[:currency]
+          != properties[:currency]
         %span.js-price<>
           = price_parts.first
           %span.tag--price__decimal<>
@@ -20,5 +20,5 @@
 
     - if properties[:on_sale?]
       .tag--price__retail<>
-        = properties[:currency]
+        != properties[:currency]
         = properties[:retail_price]

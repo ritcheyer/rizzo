@@ -4,6 +4,10 @@
     - if properties[:author_name]
       = ui_component("user_attribution", :properties => { image: properties[:author_avatar], name: properties[:author_name], size: "nano" })
 
+    - elsif properties[:post_date]
+      %time.text-icon.icon--time--before{datetime: properties[:post_date]}
+        = prettify_date(properties[:post_date])
+
     - elsif properties[:button_text]
       %span.btn.btn--small.btn--yellow.btn--full-width{ class: properties[:button_class] }
         = properties[:button_text]

@@ -18,7 +18,11 @@
           %p.card__content__locale.icon--place--before
             = properties[:context_locale]
         .card__content__desc
-          = properties[:description]
+          - if properties[:content]
+            = properties[:content]
+          - else
+            %p
+              = properties[:description]
 
       = render :partial => "/components/cards_v2/partials/footer", :locals => { :properties => properties }
 

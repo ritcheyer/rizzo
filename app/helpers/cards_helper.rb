@@ -10,7 +10,7 @@ module CardsHelper
       "card--#{props[:cover?] ? 'cover' : 'standard'}",
       "card--#{props[:double?] ? 'double' : 'single'}",
       "card--#{props[:image_url] ? 'has-img' : 'no-img'}",
-      "card--#{props[:button_text] || props[:author_name] ? 'has-footer' : 'no-footer'}"
+      "card--#{props[:button_text] || props[:author_name] || props[:post_date] ? 'has-footer' : 'no-footer'}"
     ]
   end
 
