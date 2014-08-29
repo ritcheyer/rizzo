@@ -36,7 +36,7 @@
   transform: translate3d(0, 250px, 50px)
   opacity: 0
   width: 95%
-  max-width: 600px
+  max-width: 800px
 
   .lightbox__close
     +z-layer
@@ -92,16 +92,42 @@
   overflow: hidden
   -webkit-overflow-scrolling: touch
 
-.lightbox-arrow__text
-  display: inline-block
-  overflow: hidden
-  text-overflow: ellipsis
-  width: 65px
-  +font-size(12)
-  white-space: normal
-  line-height: 1
-  height: 100%
-  .arrow-left &
-    margin-left: 10px
-    width: 55px
-    text-align: left
+.lightbox__controls-wrapper
+  position: absolute
+  width: 100%
+  top: 50%
+.lightbox__controls
+  max-width: 800px
+  margin: auto
+  width: 95%
+  position: relative
+  left: -7px
+.lightbox__arrow
+  position: absolute !important
+  +size(60px)
+  &:before
+    +size(60px)
+    position: absolute
+    content: ''
+    border-radius: 50px
+    background-color: $darkgray
+    opacity: 0.2
+  &:hover
+    &:before
+      opacity: 0.5
+  .tooltip
+    overflow: visible
+
+.lightbox__arrow-left
+  left: -100px
+  .tooltip
+    left: auto
+    right: 0px
+    &:after
+      left: 71%
+.lightbox__arrow-right
+  right: -100px
+  .tooltip
+    &:after
+      left: 29%
+

@@ -169,7 +169,7 @@ define([
       if (obj && obj.url && obj.title) {
         $element.removeClass("is-hidden");
         $element.attr("href", obj.url);
-        $element.find(".lightbox-arrow__text").text(obj.title);
+        $element.find(".js-lightbox-arrow__text").html(obj.title);
       } else {
         $element.addClass("is-hidden");
       }
