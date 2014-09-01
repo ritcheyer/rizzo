@@ -24,4 +24,13 @@ module CardsHelper
     end
   end
 
+  def card_icon(props)
+    case props[:kind]
+    when 'need-to-know'
+      return 'information'
+    end
+
+    props[:kind]
+  end
+
 end

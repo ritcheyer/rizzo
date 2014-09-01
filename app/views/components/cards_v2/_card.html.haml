@@ -9,8 +9,11 @@
 
       .card__content
 
+        - if properties[:context_pin]
+          .card__content__pin{ class: "icon--#{card_icon(properties)}--pin" }
+
         - if properties[:context_text]
-          %p.card__content__context{ class: properties[:context_icon] ? "icon--#{properties[:kind]}--before" : "" }
+          %p.card__content__context{ class: properties[:context_icon] ? "icon--#{card_icon(properties)}--before" : "" }
             = properties[:context_text]
         %h1.card__content__title
           = properties[:title]

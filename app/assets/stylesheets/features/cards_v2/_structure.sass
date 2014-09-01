@@ -42,8 +42,13 @@
 
 .card__content
   padding: $card-content-padding
-  border-top: 2px solid
   color: $body-copy
+
+.card__content__pin
+  .card--no-img &
+    width: 24px
+    height: 35px
+    margin-bottom: 8px
 
 .card__content__locale,
 .card__content__context
@@ -209,5 +214,5 @@
     font-size: 100%
 
   .text-icon
-    +size(16)
-    +icon-color(white)
+    &:before
+      +size(16px)
