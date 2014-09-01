@@ -33,4 +33,12 @@ module CardsHelper
     props[:kind]
   end
 
+  def card_link_if(condition, *props)
+    if condition
+      haml_tag(:a, *props){ yield }
+    else
+      yield
+    end
+  end
+
 end

@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe CardsHelper do
 
+  before do
+    class << helper
+      include Haml, Haml::Helpers
+    end
+    helper.init_haml_helpers
+  end
+
   describe "#card_classes" do
 
     it "returns an array of structural class names for the given properties" do
@@ -68,6 +75,18 @@ describe CardsHelper do
         'lpa_action' => "view",
         'lpa_label' => "/path/to/lodging"
       )
+    end
+
+  end
+
+  describe "#card_link_if" do
+
+    it "should return an anchor element with given properties if condition is true" do
+      result = helper.capture_haml do
+        helper.card_link_if(true, href: "path/to/thing") {}
+      end
+
+      result.should eq "<a href='path/to/thing'>\n</a>\n"
     end
 
   end
