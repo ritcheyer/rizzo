@@ -31,7 +31,7 @@ describe CardsHelper do
       it "should add 'has' class names when given content" do
         result = helper.card_classes(
           image_url: "path/to/image",
-          meta_description: "Meta content"
+          author_name: "Joe Bloggs"
         )
 
         result.should include("card--has-img")
@@ -48,6 +48,26 @@ describe CardsHelper do
         result.should include("card--no-footer")
       end
 
+    end
+
+  end
+
+  describe "#card_tracking_data" do
+
+    it "should return properties for given tracking hash" do
+      result = helper.card_tracking_data(
+        tracking: {
+          category: "lodgings",
+          action: "view",
+          label: "/path/to/lodging"
+        }
+      )
+
+      result.should eq(
+        'lpa_category' => "lodgings",
+        'lpa_action' => "view",
+        'lpa_label' => "/path/to/lodging"
+      )
     end
 
   end

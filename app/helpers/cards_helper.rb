@@ -14,4 +14,14 @@ module CardsHelper
     ]
   end
 
+  def card_tracking_data(props)
+    if props[:tracking] && props[:tracking][:label]
+      HashWithIndifferentAccess.new(
+        lpa_category: props[:tracking][:category],
+        lpa_action: props[:tracking][:action],
+        lpa_label: props[:tracking][:label]
+      )
+    end
+  end
+
 end

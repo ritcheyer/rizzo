@@ -49,6 +49,10 @@
   :button_text: "Learn more"
   :tags:
     :top_choice?: true
+  :tracking:
+    :category: "lodgings"
+    :action: "view-details"
+    :label: "#"
 -
   :styleguide_title: "Card with price and button for guide books"
   :url: "#"
