@@ -17,8 +17,8 @@
 
 .poi-map.poi-map--dynamic.js-poi-map.is-closed
   %a.poi-map__toggle.js-poi-map-placeholder{ rel: "map", href: google_maps_url(attrs[:latitude], attrs[:longitude]) }
-    = render :partial => '/components/poi-maps/partials/img', :locals => { properties: attrs }
-  = render :partial => '/components/poi-maps/partials/map', :locals => { properties: attrs }
+    = render :partial => '/components/poi_maps/partials/img', :locals => { properties: attrs }
+  = render :partial => '/components/poi_maps/partials/map', :locals => { properties: attrs }
   - if properties[:pois]
-    = render :partial => '/components/poi-maps/partials/poi-list', :locals => { pois: properties[:pois] }
+    = render :partial => '/components/poi_maps/partials/poi_list', :locals => { pois: properties[:pois] }
   = render :partial => '/components/preloader'
