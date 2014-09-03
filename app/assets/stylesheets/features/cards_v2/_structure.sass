@@ -6,12 +6,21 @@
 
   &.card--fixed
     width: $width + 0px
+    padding-top: $height + 0px
 
 .card
   @extend %rounded-corners
   position: relative
   margin-bottom: $card-margin
   background: #FFF
+
+  .grid-wrapper--10 > &
+    float: left
+    margin-left: 10px
+
+  .grid-wrapper--20 > &
+    float: left
+    margin-left: 20px
 
 .card--single
   +card-dimensions(1)
@@ -124,7 +133,7 @@
 
       &:hover
         .card__content
-          height: $card-content-height + 25px
+          height: $card-content-height + $card-content-hover-growth
 
       &.card--has-footer
         .card__content
@@ -136,7 +145,7 @@
 
         &:hover
           .card__content
-            height: $card-content-height - $card-footer-height + 25px
+            height: $card-content-height - $card-footer-height + $card-content-hover-growth
 
     // Cover image card
     &.card--cover
@@ -165,7 +174,7 @@
           height: auto
 
         .card__content__title
-          +font-size(32)
+          +font-size(28)
 
   &.card--no-img
 
@@ -204,15 +213,18 @@
 
 .card
 
-  .btn
-    width: auto
-    font-size: 100%
-    margin: 0 -8px
-    padding: 9px 10px
+  .card__footer
 
-  .user-attribution
-    font-size: 100%
+    .btn
+      width: auto
+      font-size: 100%
+      margin: 0 -8px
+      padding: 9px 10px
 
-  .text-icon
-    &:before
-      +size(16px)
+    .user-attribution
+      font-size: 100%
+
+    .text-icon
+      &:before
+        +size(16px)
+        +icon-color(body-grey)
