@@ -7,15 +7,17 @@ define([
 ], function($, asEventEmitter, PushState, withPageState) {
   "use strict";
 
-  var LISTENER = "#js-card-holder",
-    Controller;
+  var defaults = {
+    el: "#js-card-holder"
+  };
 
-  Controller = function Controller(args) {
-    args || (args = {});
-    $.extend(this.config, args);
+  function Controller(args) {
+    this.config = $.extend({}, defaults, args);
+    this.$el = $(this.config.el);
+
     this.init();
     this.listen();
-  };
+  }
 
   Controller.prototype.states = null;
 
@@ -24,7 +26,6 @@ define([
 
   Controller.prototype.init  = function() {
     this.pushState = new PushState;
-    this.$el = $(LISTENER);
     this._generateState(this.getSlug());
   };
 

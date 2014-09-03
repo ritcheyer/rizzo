@@ -19,6 +19,7 @@ define([
   var LightBox = function(args) {
     this.customClass = args.customClass;
     this.$el = $(args.$el || "#js-row--content");
+    this.$controllerEl = $(args.$controllerEl || "#js-card-holder");
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
@@ -111,7 +112,7 @@ define([
 
         if (this.requestMade){
           this.requestMade = false;
-          $("#js-card-holder").trigger(":controller/reset");
+          this.$controllerEl.trigger(":controller/reset");
         }
 
         this.$lightbox.removeClass("is-active");
@@ -132,9 +133,9 @@ define([
       this._renderContent(content);
     }.bind(this));
 
-    $("#js-card-holder").on(":layer/received", function(event, data) {
+    this.$controllerEl.on(":layer/received", function(event, data) {
       this._renderPagination(data);
-      this._renderContent(data.content);
+      this._renderContent(data.content || data);
     }.bind(this));
   };
 
@@ -144,8 +145,7 @@ define([
 
   LightBox.prototype._fetchContent = function(url) {
     this.$lightbox.addClass("is-loading");
-
-    $("#js-card-holder").trigger(":layer/request", { url: url });
+    this.$controllerEl.trigger(":layer/request", { url: url });
   };
 
   // @content: {string} the content to dump into the lightbox.
