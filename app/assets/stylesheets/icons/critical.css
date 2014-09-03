@@ -1,6 +1,9 @@
 .icon--bold--before:before, .icon--bold--after:after,
 .icon--bold { background-image: url('png/bold.png'); background-repeat: no-repeat; }
 
+.icon--book--before:before, .icon--book--after:after,
+.icon--book { background-image: url('png/book.png'); background-repeat: no-repeat; }
+
 .icon--by--before:before, .icon--by--after:after,
 .icon--by { background-image: url('png/by.png'); background-repeat: no-repeat; }
 
@@ -32,6 +35,9 @@
 
 .icon--hamburger--before:before, .icon--hamburger--after:after,
 .icon--hamburger { background-image: url('png/hamburger.png'); background-repeat: no-repeat; }
+
+.icon--ipad--before:before, .icon--ipad--after:after,
+.icon--ipad { background-image: url('png/ipad.png'); background-repeat: no-repeat; }
 
 .icon--italics--before:before, .icon--italics--after:after,
 .icon--italics { background-image: url('png/italics.png'); background-repeat: no-repeat; }

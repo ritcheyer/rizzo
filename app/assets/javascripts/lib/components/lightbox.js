@@ -19,10 +19,10 @@ define([
   var LightBox = function(args) {
     args = args || {};
 
-    this.customClass = (args.customClass || "");
     this.$el = $(args.$el || "#js-row--content");
     this.$controllerEl = $(args.$controllerEl || "#js-card-holder");
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
+    this.customClass = args.customClass || "";
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
 
