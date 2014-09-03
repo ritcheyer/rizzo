@@ -1,4 +1,4 @@
-$pickerWidth: 320
+$pickerWidth: 320px
 
 .picker__holder
   +z-layer(modal)
@@ -14,7 +14,7 @@ $pickerWidth: 320
   left: 0
   background: white
   position: relative
-  max-width: #{$pickerWidth}px
+  max-width: $pickerWidth
   min-width: 256px
   max-height: 0
   overflow-y: hidden
@@ -101,7 +101,7 @@ $pickerWidth: 320
   font-weight: bold
   width: 26px
   height: 26px
-  line-height: 2.2em
+  line-height: 2.2
   text-align: center
   border: 1px solid #d7dee3
   cursor: pointer
@@ -159,7 +159,7 @@ $pickerWidth: 320
 .picker--centered
   .picker__frame
     left: 50%
-    margin-left: -#{$pickerWidth / 2}px
+    margin-left: -#{$pickerWidth / 2}
 
 
 // -----------------------------------------------------------------------------
