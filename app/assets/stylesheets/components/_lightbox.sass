@@ -1,3 +1,5 @@
+$lightbox-width: 800px !default
+
 .lightbox
   +z-layer(modal)
   width: 100%
@@ -36,7 +38,7 @@
   transform: translate3d(0, 250px, 50px)
   opacity: 0
   width: 95%
-  max-width: 600px
+  max-width: $lightbox-width
 
   .lightbox__close
     +z-layer
@@ -61,7 +63,7 @@
     padding-bottom: 50px
 
   .lightbox--layer &
-    max-width: 800px
+    max-width: $lightbox-width
 
   .is-loading &
     @extend %rounded-corners
@@ -92,16 +94,62 @@
   overflow: hidden
   -webkit-overflow-scrolling: touch
 
-.lightbox-arrow__text
-  display: inline-block
-  overflow: hidden
-  text-overflow: ellipsis
-  width: 65px
-  +font-size(12)
-  white-space: normal
-  line-height: 1
-  height: 100%
-  .arrow-left &
-    margin-left: 10px
-    width: 55px
+.lightbox__controls-wrapper
+  position: absolute
+  width: 100%
+  top: 50%
+  display: none
+  +respond-to(1100)
+    display: block
+
+.lightbox__controls
+  max-width: $lightbox-width
+  margin: auto
+  position: relative
+
+.lightbox__arrow
+  +size(60px)
+  position: absolute
+  border-radius: 50px
+  background-color: mix($darkgray, white, 20%)
+
+  &:after
+    +size(50px)
+    top: 5px
+    position: absolute
+    content: ''
+    opacity: 0.6
+
+  &:hover
+    background-color: mix($darkgray, white, 50%)
+    &:after
+      opacity: 0.8
+
+  .tooltip--container
+    +size(100%)
+
+  .tooltip
+    overflow: visible
     text-align: left
+    box-sizing: border-box
+    padding: 10px
+    min-width: 100px
+
+.lightbox__arrow--left
+  right: $lightbox-width + 30
+  &:after
+    right: 7px
+  .tooltip
+    left: auto
+    right: 0
+    &:after
+      left: 70%
+
+.lightbox__arrow--right
+  left: $lightbox-width + 30
+  &:after
+    left: 7px
+  .tooltip
+    &:after
+      left: 30%
+
