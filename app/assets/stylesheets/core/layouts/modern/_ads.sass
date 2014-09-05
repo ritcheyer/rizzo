@@ -109,6 +109,12 @@
   background-position-y: 56px !important
   cursor: pointer
 
+  .responsive &
+    background-position-y: 118px !important
+    &:after
+      +z-layer(below)
+      top: 1210px
+
   &:after
     @extend %empty-abs-generated-content
     top: 1150px
