@@ -94,7 +94,6 @@ define([
     }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
-
       $("html").addClass("lightbox--open");
       this.$lightbox.addClass("is-active is-visible");
 
@@ -183,10 +182,12 @@ define([
 
   // Self instantiate if the default class is used.
   if ($(".js-lightbox-toggle").length) {
-    var $lightboxToggle = $(".js-lightbox-toggle");
-    new LightBox({
-      customClass: $lightboxToggle.data("lightbox-class"),
-      showPreloader: $lightboxToggle.data("lightbox-showpreloader")
+    $(document).ready(function() {
+      var $lightboxToggle = $(".js-lightbox-toggle");
+      new LightBox({
+        customClass: $lightboxToggle.data("lightbox-class"),
+        showPreloader: $lightboxToggle.data("lightbox-showpreloader")
+      });
     });
   }
 
