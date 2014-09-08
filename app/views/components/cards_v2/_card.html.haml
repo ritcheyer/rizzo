@@ -3,7 +3,7 @@
 
     - card_link_if(properties[:url], href: properties[:url], data: card_tracking_data(properties)) do
 
-      - if properties[:image_url]
+      - if properties[:image_url] && !properties[:image_url].empty?
         %figure.card__figure
           = safe_image_tag(properties[:image_url], class: "card__figure__img", alt: properties[:image_alt])
 

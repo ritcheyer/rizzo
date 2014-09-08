@@ -38,11 +38,15 @@ describe CardsHelper do
       it "should add 'has' class names when given content" do
         result = helper.card_classes(
           image_url: "path/to/image",
-          author_name: "Joe Bloggs"
+          author_name: "Joe Bloggs",
+          tags: {
+            top_choice?: true
+          }
         )
 
         result.should include("card--has-img")
         result.should include("card--has-footer")
+        result.should include("card--has-tags")
       end
 
       it "should add 'no' class names when given no content" do
@@ -53,6 +57,7 @@ describe CardsHelper do
 
         result.should include("card--no-img")
         result.should include("card--no-footer")
+        result.should include("card--no-tags")
       end
 
     end
@@ -61,19 +66,21 @@ describe CardsHelper do
 
   describe "#card_tracking_data" do
 
+    let(:tracking_data) do
+      {
+        category: "lodgings",
+        action: "view",
+        label: "/path/to/lodging"
+      }
+    end
+
     it "should return properties for given tracking hash" do
-      result = helper.card_tracking_data(
-        tracking: {
-          category: "lodgings",
-          action: "view",
-          label: "/path/to/lodging"
-        }
-      )
+      result = helper.card_tracking_data(tracking: tracking_data)
 
       result.should eq(
-        'lpa_category' => "lodgings",
-        'lpa_action' => "view",
-        'lpa_label' => "/path/to/lodging"
+        'lpa_category' => tracking_data[:category],
+        'lpa_action' => tracking_data[:action],
+        'lpa_label' => tracking_data[:label]
       )
     end
 
@@ -81,12 +88,25 @@ describe CardsHelper do
 
   describe "#card_link_if" do
 
+    let(:link_url) { "path/to/thing" }
+
     it "should return an anchor element with given properties if condition is true" do
       result = helper.capture_haml do
-        helper.card_link_if(true, href: "path/to/thing") {}
+        helper.card_link_if(true, href: link_url) {}
       end
 
-      result.should eq "<a href='path/to/thing'>\n</a>\n"
+      result.should eq "<a href='#{link_url}'>\n</a>\n"
+    end
+
+  end
+
+  describe "#card_datetime" do
+
+    let(:datetime) { "2014-09-08T16:39:00Z" }
+
+    it "re-formats the given date to be more readable" do
+      result = helper.card_datetime(datetime)
+      result.should eq "08 September 2014"
     end
 
   end

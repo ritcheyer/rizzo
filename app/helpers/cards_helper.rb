@@ -9,7 +9,8 @@ module CardsHelper
       "card--#{props[:fixed?] ? 'fixed' : 'flexible'}",
       "card--#{props[:cover?] ? 'cover' : 'standard'}",
       "card--#{props[:double?] ? 'double' : 'single'}",
-      "card--#{props[:image_url] ? 'has-img' : 'no-img'}",
+      "card--#{props[:tags] && !props[:tags].empty? ? 'has-tags' : 'no-tags'}",
+      "card--#{props[:image_url] && !props[:image_url].empty? ? 'has-img' : 'no-img'}",
       "card--#{props[:button_text] || props[:author_name] || props[:post_date] ? 'has-footer' : 'no-footer'}"
     ]
   end
@@ -39,6 +40,10 @@ module CardsHelper
     else
       yield
     end
+  end
+
+  def card_datetime(date_str)
+    date_str.to_date.strftime("%d %B %Y")
   end
 
 end
