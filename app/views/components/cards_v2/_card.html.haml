@@ -1,7 +1,7 @@
 %article{ class: card_classes(properties).join(" ") }
   .card__mask
 
-    - card_link_if(properties[:url], href: properties[:url], data: card_tracking_data(properties)) do
+    - card_link_if(properties[:url], href: properties[:url], data: card_link_data(properties)) do
 
       - if properties[:image_url] && !properties[:image_url].empty?
         %figure.card__figure

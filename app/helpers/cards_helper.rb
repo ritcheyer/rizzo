@@ -15,14 +15,28 @@ module CardsHelper
     ]
   end
 
+  def card_link_data(props)
+    card_tracking_data(props).merge(card_layer_data(props))
+  end
+
   def card_tracking_data(props)
-    if props[:tracking] && props[:tracking][:label]
+    if props[:tracking] && !props[:tracking].empty?
       HashWithIndifferentAccess.new(
         lpa_category: props[:tracking][:category],
         lpa_action: props[:tracking][:action],
         lpa_label: props[:tracking][:label]
       )
     end
+  end
+
+  def card_layer_data(props)
+    return {} unless props[:layer?]
+    {
+      lightbox: {
+        showPreloader: true,
+        class: 'lightbox--layer'
+      }
+    }
   end
 
   def card_icon(props)

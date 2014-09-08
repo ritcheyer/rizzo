@@ -64,6 +64,25 @@ describe CardsHelper do
 
   end
 
+  describe "#card_link_data" do
+    let(:tracking_data) { { category: "lodgings" } }
+    let(:lightbox_data) { { lightbox: true } }
+
+    before(:each) do
+      helper.stub(:card_tracking_data).and_return(tracking_data)
+      helper.stub(:card_layer_data).and_return(lightbox_data)
+    end
+
+    it "should return tracking and lightbox data" do
+      result = helper.card_link_data({})
+
+      result.should eq(
+        :category => tracking_data[:category],
+        :lightbox => lightbox_data[:lightbox]
+      )
+    end
+  end
+
   describe "#card_tracking_data" do
 
     let(:tracking_data) do
