@@ -17,6 +17,9 @@
     -
       :title: 'Promo Unit'
       :slug: '/styleguide/widgets/promo'
+    -
+      :title: 'Travel Insurance'
+      :slug: '/styleguide/widgets/travel-insurance'
 -
   :title: "CSS Utilities"
   :slug: "/css-utilities"
