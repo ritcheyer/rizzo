@@ -12,7 +12,7 @@ class ResrcIt
 
   def initialize(opts={}, src)
     @src = src
-
+    @operations = opts[:operations]
     operations << {op: :optimize, quality: opts[:quality]} if opts[:quality]
   end
 
