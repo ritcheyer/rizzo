@@ -43,8 +43,8 @@
         :slug: "http://www.lonelyplanet.com/south-america"
 
   -
-    :title: "Interests"
-    :slug: "http://www.lonelyplanet.com/interests"
+    :title: "Inspiration"
+    :slug: "http://www.lonelyplanet.com/inspiration"
     :icon_class: "icon--adventure-travel--before icon--white--before"
     :submenu:
       -
