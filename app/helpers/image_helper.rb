@@ -19,7 +19,7 @@ module ImageHelper
   end
 
   def resrcit_url(opts={}, src)
-    helper = ResrcIt.new(opts, src)
+    helper = src.is_a?(String) ? ResrcIt.new(opts, src) : src
 
     helper = helper.crop(opts[:crop]) if opts[:crop]
     helper = helper.optimize(opts[:optimize]) if opts[:optimize]
