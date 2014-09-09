@@ -75,22 +75,17 @@
   margin-bottom: 4px
   color: $bodygray
 
-  &:before
-    display: inline-block
-    vertical-align: middle
-
 .card__content__locale
   margin-top: 6px
 
   &:before
     +size(10px)
-    margin: -2px 2px 0 0
 
 .card__content__context
   &:before
-    +size(13px)
     +icon-color(white)
-    margin: -4px 2px 0 0
+    margin-top: -4px
+    margin-bottom: -2px
     border-radius: 50%
 
     // Fake padding around the icon
@@ -242,7 +237,6 @@
     .user-attribution
       font-size: 100%
 
-    .text-icon
+    .copy--icon--before
       &:before
-        +size(16px)
         +icon-color(body-grey)

@@ -16,14 +16,14 @@
           .card__content__pin{ class: "icon--#{card_icon(properties)}--pin" }
 
         - if properties[:context_text]
-          %p.card__content__context{ class: properties[:context_icon] ? "icon--#{card_icon(properties)}--before" : "" }
+          %p.card__content__context{ class: properties[:context_icon] ? "copy--icon--before icon--#{card_icon(properties)}--before" : "" }
             = properties[:context_text]
 
         %h1.card__content__title
           = properties[:title]
 
         - if properties[:context_locale]
-          %p.card__content__locale.icon--place--before
+          %p.card__content__locale.copy--icon--before.icon--place--before
             = properties[:context_locale]
 
         .card__content__desc
