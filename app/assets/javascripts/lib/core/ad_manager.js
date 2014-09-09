@@ -84,11 +84,14 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
 
       // Deprecated targeting properties
       thm: config.adThm,
-      tnm: config.adTnm.replace(/\s/, "").split(","),
       ctt: config.continent,
       cnty: config.country,
       dest: config.destination
     };
+
+    if (config.adTnm) {
+      keywords.tnm = config.adTnm.replace(/\s/, "").split(",");
+    }
 
     if (config.keyValues && !$.isEmptyObject(config.keyValues)) {
       for (var key in config.keyValues) {
