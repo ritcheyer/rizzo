@@ -20,6 +20,10 @@ class ResrcIt
     @operations ||= []
   end
 
+  def initialize_copy(other)
+    @operations = other.operations.clone
+  end
+
   def crop(opts)
     new_format = self.dup
     new_format.operations << default_crop.merge(opts).merge(op: :crop)
