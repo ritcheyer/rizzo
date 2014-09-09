@@ -21,7 +21,7 @@
   :title: "Ko Pha-Ngan"
   :description: "In the family of southern Gulf islands, Ko Pha-Ngan sits in the crystal sea between Ko Samui, its business-savvy older brother, and little Ko Tao, the spunky younger brother full of dive-centric energy."
 -
-  :styleguide_title: "Card with image and date"
+  :styleguide_title: "Card with image and post date"
   :url: "#"
   :kind: "article"
   :title: "Classic Paris: a fresh look at the city of light"
@@ -40,7 +40,7 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
-  :styleguide_title: "Card with image, context text and button"
+  :styleguide_title: "Card with image, context text, context icon and button"
   :url: "#"
   :kind: "activity"
   :context_text: "Tour"
@@ -50,7 +50,7 @@
   :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
   :button_text: "Learn more"
 -
-  :styleguide_title: "Card with context text, context locale, tag, price and button"
+  :styleguide_title: "Card with image, context text, context icon, context locale, price tag and button"
   :url: "#"
   :kind: "hotel"
   :context_text: "5 star hotel"
@@ -65,14 +65,8 @@
     :currency: "£"
     :scope: "per night"
   :button_text: "Learn more"
-  :tags:
-    :top_choice?: true
-  :tracking:
-    :category: "lodgings"
-    :action: "view-details"
-    :label: "#"
 -
-  :styleguide_title: "Card with price and button for guide books"
+  :styleguide_title: "Guide card with image, context text, price tag and button"
   :url: "#"
   :kind: "guide"
   :context_text: "Book & Ebook"
@@ -103,7 +97,7 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/000/095/975/thumb/Photo.jpg"
   :author_name: "Ben2World"
 -
-  :styleguide_title: "Short image card"
+  :styleguide_title: "Short card with image and author"
   :url: "#"
   :short?: true
   :kind: "article"
@@ -114,7 +108,25 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
+  :styleguide_title: "Short card with image and icon"
+  :url: "#"
+  :short?: true
+  :kind: "article"
+  :title: "Kyoto"
+  :description: ""
+  :image_alt: ""
+  :image_url: "http://images-resrc.staticlp.com/C=W788,H760,X0,Y0/S=W192,H185/http://media.lonelyplanet.com/a/g/hi/t/93beb9e9226011d72bce4b41db62d4ff-top-things-to-do-in-kyoto.jpg"
+  :image_icon: "japan_kansai_kyoto"
+-
   :styleguide_title: "Card with cover image"
+  :url: "#"
+  :kind: "article"
+  :cover?: true
+  :title: "The best bars in Paris"
+  :image_alt: ""
+  :image_url: "http://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
+-
+  :styleguide_title: "Card with cover image and author"
   :url: "#"
   :kind: "article"
   :cover?: true
@@ -134,7 +146,7 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
-  :styleguide_title: "Double width card with cover image"
+  :styleguide_title: "Double width card with cover image and author"
   :url: "#"
   :kind: "article"
   :cover?: true

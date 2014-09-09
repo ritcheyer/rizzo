@@ -39,12 +39,6 @@
 
 .card--quote
 
-  .card__figure
-    display: none
-
-  .card__content
-    border-top: 0
-
   .card__content__title
     @extend %visually-hide
 
@@ -55,10 +49,10 @@
     line-height: 1.2
 
     // left/right quote marks
-    &:before
+    p:before
       content: "\201C"
       margin: 0 -.15em 0 -.5em
-    &:after
+    p:after
       content: "\201D"
       margin-left: -.15em
 

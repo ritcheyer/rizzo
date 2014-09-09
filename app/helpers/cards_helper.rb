@@ -20,13 +20,12 @@ module CardsHelper
   end
 
   def card_tracking_data(props)
-    if props[:tracking] && !props[:tracking].empty?
-      HashWithIndifferentAccess.new(
-        lpa_category: props[:tracking][:category],
-        lpa_action: props[:tracking][:action],
-        lpa_label: props[:tracking][:label]
-      )
-    end
+    return {} unless props[:tracking] && !props[:tracking].empty?
+    HashWithIndifferentAccess.new(
+      lpa_category: props[:tracking][:category],
+      lpa_action: props[:tracking][:action],
+      lpa_label: props[:tracking][:label]
+    )
   end
 
   def card_layer_data(props)

@@ -45,13 +45,28 @@
   @extend %rounded-corners
   overflow: hidden
 
+.card__figure
+  .card--no-img &
+    display: none
+
 .card__figure__img
   height: 100%
+
+.card__figure__icon
+  +icon-color(white)
+  position: absolute
+  left: 10px
+  top: 10px
+  width: 36px
+  height: 36px
 
 .card__content
   padding: $card-content-padding
   overflow: hidden
   color: $body-copy
+
+  .card--has-footer &
+    bottom: $card-footer-height
 
 .card__content__pin
   .card--no-img &
@@ -109,6 +124,9 @@
   padding: 0 15px
   color: $feature-copy
 
+  .card--no-footer &
+    display: none
+
 // -----------------------------------------------------------------------------
 // Height variations
 // -----------------------------------------------------------------------------
@@ -125,8 +143,9 @@
     &.card--standard
 
       .card__figure
-        bottom: $card-content-height + nth($card-content-padding, 1) + nth($card-content-padding, 3)
+        bottom: $card-content-height + ($card-content-padding * 2)
 
+      .card__footer,
       .card__content
         background: #FFF
 
@@ -141,10 +160,6 @@
       &.card--has-footer
         .card__content
           height: $card-content-height - $card-footer-height
-          bottom: $card-footer-height
-
-        .card__footer
-          background: #FFF
 
         &:hover
           .card__content
@@ -156,10 +171,6 @@
       .card__footer,
       .card__content
         color: #FFF
-
-      .card__content
-        padding-bottom: 15px
-        transition: margin-bottom .2s ease-out
 
       .card__content__locale,
       .card__content__context
@@ -189,10 +200,6 @@
     .card__content
       padding-top: 15px
 
-    &.card--has-footer
-      .card__content
-        bottom: $card-footer-height
-
 .card--short
   // Short cards are always a single width
   +card-dimensions($span: 1, $height: $card-short-height)
@@ -212,6 +219,10 @@
     .card__content
       top: auto
       border-top: 0
+
+    .card__content__locale,
+    .card__content__context
+      color: inherit
 
     .card__content__title
       +font-size(24)
