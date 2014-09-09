@@ -16,7 +16,7 @@
 
   .results &
     float: left
-    margin-left: 10px
+    margin-left: $card-margin
 
 .card--single
   +card-dimensions(1)
@@ -45,20 +45,15 @@
   @extend %rounded-corners
   overflow: hidden
 
-.card__figure
-  .card--no-img &
-    display: none
-
 .card__figure__img
   height: 100%
 
 .card__figure__icon
+  +size(36px)
   +icon-color(white)
   position: absolute
   left: 10px
   top: 10px
-  width: 36px
-  height: 36px
 
 .card__content
   padding: $card-content-padding

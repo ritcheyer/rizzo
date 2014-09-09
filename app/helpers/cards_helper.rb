@@ -9,8 +9,8 @@ module CardsHelper
       "card--#{props[:fixed?] ? 'fixed' : 'flexible'}",
       "card--#{props[:cover?] ? 'cover' : 'standard'}",
       "card--#{props[:double?] ? 'double' : 'single'}",
-      "card--#{props[:tags] && !props[:tags].empty? ? 'has-tags' : 'no-tags'}",
-      "card--#{props[:image_url] && !props[:image_url].empty? ? 'has-img' : 'no-img'}",
+      "card--#{props[:image_url].present? ? 'has-img' : 'no-img'}",
+      "card--#{props[:tags].present? || props[:price_tag].present? ? 'has-tags' : 'no-tags'}",
       "card--#{props[:button_text] || props[:author_name] || props[:post_date] ? 'has-footer' : 'no-footer'}"
     ]
   end
@@ -20,12 +20,12 @@ module CardsHelper
   end
 
   def card_tracking_data(props)
-    return {} unless props[:tracking] && !props[:tracking].empty?
-    HashWithIndifferentAccess.new(
+    return {} unless props[:tracking].present?
+    {
       lpa_category: props[:tracking][:category],
       lpa_action: props[:tracking][:action],
       lpa_label: props[:tracking][:label]
-    )
+    }
   end
 
   def card_layer_data(props)
@@ -39,12 +39,7 @@ module CardsHelper
   end
 
   def card_icon(props)
-    case props[:kind]
-    when 'need-to-know'
-      return 'information'
-    end
-
-    props[:kind]
+    props[:kind] == 'need-to-know' ? 'information' : props[:kind]
   end
 
   def card_link_if(condition, *props)
