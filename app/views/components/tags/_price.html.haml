@@ -1,6 +1,8 @@
 - price_parts = properties[:price].to_s.split(".")
+- discount_modifier = properties[:on_sale?] ? "tag--price--discount" : nil
+- size_modifier = properties[:size] ? "tag--price--#{properties[:size]}" : nil
 
-.tag.tag--price{ id: properties[:id] ? properties[:id] : nil, class: properties[:size] ? "tag--price--#{properties[:size]}" : nil }
+.tag.tag--price{ id: properties[:id] ? properties[:id] : nil, class: "#{discount_modifier} #{size_modifier}"}
   .tag--price__inner
     .tag--price__values
       from
