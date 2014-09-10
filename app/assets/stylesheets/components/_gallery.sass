@@ -8,6 +8,8 @@ $footer-height: 250px
 .gallery__controls
   top: 0
   left: 0
+  margin: 0 auto
+  width: 80%
   .gallery-box &
     top: 120px
 
@@ -209,69 +211,55 @@ $footer-height: 250px
   cursor: pointer
   opacity: .25
 
+$arrow-size: 60px
 .arrow--left,
 .arrow--right,
 .gallery__next,
 .gallery__previous
   +hardware-acceleration()
   +z-layer(modal)
+  +size($arrow-size)
   background: #888
-  background: rgba(#000, 0.5)
-  padding: 10px 0
+  background: rgba($darkgray, 0.15)
+  border: 2px solid white
+  border-radius: $arrow-size
   display: inline-block
-  font-weight: bold
-  height: 50px
-  line-height: 50px
-  margin-top: -25px
+  margin-top: -#{$arrow-size / 2}
+  opacity: 0.7
   position: absolute
-  color: white
-  text-decoration: none
   top: 50%
-  transition: left 0.2s, right 0.2s, transform 0.2s, opacity 0.2s
-  white-space: nowrap
-  width: 120px
-  &:hover
+  transition: background 0.3s, opacity 0.3s
+  &:hover,
+  &.is-hover,
+  &:focus
+    background: rgba($darkgray, 0.5)
+    opacity: 1
     text-decoration: none
   .supports-touch &
     display: none
 
 .arrow--left:after,
-.arrow--right:before,
-.gallery__next:before,
-.gallery__previous:after
+.arrow--right:before
+  +size(50%)
   display: inline-block
-  height: 50px
+  left: 25%
+  position: relative
+  top: 25%
   vertical-align: top
-  width: 35px
 
-.arrow--left,
-.gallery__previous
-  border-radius: 0 50px 50px 0
-  left: -70px
-  text-align: right
+.arrow--left
+  left: -90px
+  &:after
+    left: 15%
   .at-beginning &
     opacity: 0
     pointer-events: none
-  &:after
-    margin-right: 15px
-  &:hover,
-  &.is-hover,
-  &:focus
-    left: 0
 
-.arrow--right,
-.gallery__next
-  border-radius: 50px 0 0 50px
-  right: -70px
+.arrow--right
+  right: -90px
   .at-end &
     opacity: 0
     pointer-events: none
-  &:before
-    margin-left: 15px
-  &:hover,
-  &.is-hover,
-  &:focus
-    right: 0
 
 .gallery__slide-details
   display: none

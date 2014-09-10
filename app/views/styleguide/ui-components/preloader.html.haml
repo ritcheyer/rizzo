@@ -12,7 +12,7 @@
 .styleguide-block.styleguide-block__description.card.copy--body
 
   %h2.copy--h2.styleguide-block__heading
-    Usage
+    Default Usage
 
   %pre.styleguide.copy--body.language-ruby
     %code
@@ -30,3 +30,17 @@
 
   .styleguide-preloader.is-loading
     = ui_component('preloader')
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Styled Example
+
+  %pre.styleguide.copy--body.language-ruby
+    %code
+      = preserve do
+        :plain
+          = ui_component('preloader', properties: { styled: true })
+
+.styleguide-preloader.is-loading
+  = ui_component('preloader', properties: { styled: true })

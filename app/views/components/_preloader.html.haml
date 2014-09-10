@@ -1,4 +1,5 @@
-.preloader
+- styled = properties[:styled] if defined? properties
+.preloader{ class: styled ? "preloader--styled" : "" }
   .preloader__disc
     .preloader__disc--coloured.preloader__disc--blue
   .preloader__disc
