@@ -44,7 +44,6 @@
         transition: opacity .25s ease-out
 
     &:hover
-
       .card__figure
         &:after
           opacity: .35
@@ -52,32 +51,26 @@
   .card--tall
 
     &.card--standard
-
       .card__content
         @extend %card-content-overflow
 
-    &.card--has-img:not(.card--hidden-text)
-
-      &.card--cover
-
-        .card__figure
-          @extend %card-figure-shroud
+    &.card--cover
+      .card__figure
+        @extend %card-figure-shroud
 
   .card--short
 
     &.card--no-img
-
       .card__content
         @extend %card-content-overflow
 
-    &.card--has-img
-
-      .card__figure
-        @extend %card-figure-shroud
+    .card__figure
+      @extend %card-figure-shroud
+      &:before
+        height: 100%
 
   .card--guide
 
     &.card--has-img
-
       .card__figure__img
         box-shadow: 0 10px 10px rgba(0, 0, 0, .65), 0 15px 15px rgba(0, 0, 0, .15)
