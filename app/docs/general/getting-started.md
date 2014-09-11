@@ -2,8 +2,7 @@
 
 ```bash
 git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
-cp .ruby-version.example .ruby-version
-cp .ruby-gemset.example .ruby-gemset
+find . -name '*.example' | grep '^[\.c]' | perl -pE 's/^(.*?)\.example/$1/' | xargs -IFILE cp -v FILE.example FILE
 cd .
 bundle install
 npm install
