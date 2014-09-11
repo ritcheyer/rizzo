@@ -64,7 +64,7 @@ define([
   POIMap.prototype._googleMapsOptions = function() {
     var options = this.$container.data();
 
-    return {
+    return $.extend({}, {
       center: new window.google.maps.LatLng(options.latitude, options.longitude),
       mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       styles: mapStyles.mapStyles,
@@ -72,7 +72,7 @@ define([
       mapTypeControl: false,
       zoom: options.zoom,
       panControl: false
-    };
+    }, this.config.map || {});
   };
 
   POIMap.prototype._googleMapsMarker = function() {
