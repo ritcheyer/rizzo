@@ -47,6 +47,7 @@
 
 .card__figure__img
   height: 100%
+  min-width: 100%
 
 .card__figure__icon
   +size(36px)
@@ -177,10 +178,6 @@
         @extend %visually-hide
 
       &.card--double
-
-        .card__figure__img
-          width: 100%
-          height: auto
 
         .card__content__title
           +font-size(28)
