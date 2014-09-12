@@ -35,6 +35,10 @@
   border-top-left-radius: 6px
   border-bottom-left-radius: 6px
 
+@mixin tag-price-option($color:$yella)
+  background-color: $color
+  padding: 4px 6px
+  line-height: 15px
 
 // -----------------------------------------------------------------------------
 // Top-hanging tag (default is top hanging)
@@ -54,7 +58,7 @@
 // -----------------------------------------------------------------------------
 
 .tag--horizontal
-  +z-layer
+  +z-layer(middle)
   @extend %tag
   +font-size(12)
   color: #fff
@@ -91,16 +95,18 @@
   min-width: 60px
   +tag-curl-top-large($yella)
 
+.tag--price--wide
+  min-width: 80px
+  +tag-curl-top-large($green)
+
 .tag--price__inner
   @extend %tag--top
   @extend %subpixel-text
   overflow: hidden
 
-.tag--price__values
-  background-color: $yella
-  padding: 4px 6px
-  line-height: 15px
 
+.tag--price__values
+  +tag-price-option()
   .tag--price--small &
     padding: 2px 4px
     line-height: 13px
@@ -108,6 +114,16 @@
   .tag--price--large &
     padding: 6px 10px
     +font-size(12)
+
+  .tag--price--wide &
+    padding: 4px 10px
+    +font-size(13)
+
+.tag--price--discount
+  &.tag--price--wide
+    color: #fff
+    .tag--price__values
+      +tag-price-option($green)
 
 .tag--price__icon
   width: 100%
@@ -129,6 +145,11 @@
     +font-size(28)
     line-height: 26px
 
+  .tag--price--wide &
+    +font-size(28)
+    line-height: 26px
+    margin-top: 5px
+
 .tag--price__currency
   font-size: 0.65em
   line-height: 0
@@ -137,6 +158,10 @@
   word-spacing: -2px
 
   .tag--price--large &
+    font-size: 0.55em
+    top: -0.5em
+
+  .tag--price--wide &
     font-size: 0.55em
     top: -0.5em
 
@@ -152,12 +177,18 @@
     top: -.5em
     +font-size(16)
 
+  .tag--price--wide &
+    top: -.5em
+    +font-size(16)
+
 .tag--price__retail
   +font-size(12)
   background: $dark-blue-gray
   color: #fff
   padding: 2px 0
   text-decoration: line-through
+  .tag--price--wide &
+    +font-size(14)
 
 .tag--non-bookable
   @extend %tag--top
