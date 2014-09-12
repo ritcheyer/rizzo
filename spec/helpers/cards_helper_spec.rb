@@ -97,9 +97,9 @@ describe CardsHelper do
       result = helper.card_tracking_data(tracking: tracking_data)
 
       result.should eq(
-        'lpa_category' => tracking_data[:category],
-        'lpa_action' => tracking_data[:action],
-        'lpa_label' => tracking_data[:label]
+        lpa_category: tracking_data[:category],
+        lpa_action: tracking_data[:action],
+        lpa_label: tracking_data[:label]
       )
     end
 
