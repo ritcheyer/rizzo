@@ -32,7 +32,7 @@ module CardsHelper
     return {} unless props[:layer?]
     {
       lightbox: {
-        showPreloader: true,
+        showpreloader: 'true',
         class: 'lightbox--layer'
       }
     }
