@@ -9,8 +9,8 @@ define([ "jquery", "sCode" ], function($) {
   "use strict";
 
   // @data = {}
-  function Analytics(data) {
-    this.LISTENER = "#js-card-holder";
+  function Analytics(data, listener) {
+    this.LISTENER = listener || "#js-card-holder";
     this.config = $.extend({}, data || window.lp.tracking);
   }
 
