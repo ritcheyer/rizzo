@@ -71,6 +71,9 @@ define([
 
     this.$listener.on(":slider/next", this._nextSlide.bind(this));
     this.$listener.on(":slider/previous", this._previousSlide.bind(this));
+    this.$listener.on(":slider/goto", function(e, index) {
+      _this._goToSlide(index);
+    });
 
     this.$el.on(":swipe/left", this._nextSlide.bind(this));
     this.$el.on(":swipe/right", this._previousSlide.bind(this));
