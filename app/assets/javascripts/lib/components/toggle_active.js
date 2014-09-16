@@ -13,9 +13,8 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
 
     this.config = $.extend({}, defaults, args);
 
-    LISTENER = this.config.listener || LISTENER;
-
     this.$toggles = $(this.config.selector, this.config.context);
+    this.$context = $(this.config.context || this.config.listener || LISTENER);
 
     if (this.$toggles.length) {
       this._init();
@@ -50,7 +49,7 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
   ToggleActive.prototype._listen = function() {
     var _this = this;
 
-    $(this.config.context || LISTENER).on(":toggleActive/update", function(e, target) {
+    this.$context.on(":toggleActive/update", function(e, target) {
       _this._updateClasses($(target));
     });
   };
@@ -103,6 +102,8 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
     }
 
     this._getTargetEls($toggle).toggleClass(classList);
+
+    this.$context.trigger(":toggleActive/ready", $toggle);
   };
 
   ToggleActive.prototype._getTargetEls = function($toggle) {
