@@ -23,7 +23,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
 
       it("found the lightbox opener", function() {
-        expect(lightbox.$opener.length).toBe(1);
+        expect(lightbox.opener).toBe(".js-lightbox-toggle");
       });
 
       it("extends the flyout functionality", function() {
