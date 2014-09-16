@@ -103,6 +103,17 @@
     +respond-to(wide-view)
       display: none
 
+  // Hide the last primary nav item in small/screen + non-responsive
+  // This is only relevant for non-responsive pages.
+  // Move to _overrides when only legacy is fixed-width
+  .nav--primary &:last-child
+    display: none
+    .responsive &
+      display: inline-block
+
+    +respond-to(1050)
+      display: inline-block
+
 .nav__item--sign-in,
 .nav__item--join
   &:before
