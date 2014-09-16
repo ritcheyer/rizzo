@@ -21,7 +21,7 @@ define([
 
     this.$el = $(args.$el || "#js-row--content");
     this.$controllerEl = $(args.$controllerEl || "#js-card-holder");
-    this.$opener = $(args.$opener || ".js-lightbox-toggle");
+    this.opener = args.$opener || ".js-lightbox-toggle";
     this.customClass = args.customClass || "";
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
@@ -73,7 +73,7 @@ define([
       this._closeFlyout(this.$el);
     }.bind(this));
 
-    this.$opener.on("click", function(event) {
+    this.$el.on("click", this.opener, function(event) {
       event.preventDefault();
       this.trigger(":lightbox/open", {
         listener: this.$el,
