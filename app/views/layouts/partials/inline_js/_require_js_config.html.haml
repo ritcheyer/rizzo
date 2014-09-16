@@ -14,7 +14,13 @@
       autocomplete: "autocomplete/dist/autocomplete",
       d3: "d3/d3",
       nvd3: "nvd3/nv.d3",
-      picturefill: "picturefill/dist/picturefill"
+      picturefill: "picturefill/dist/picturefill",
+      infobox: "google/infobox"
+    },
+    shim: {
+      infobox: {
+        exports: "InfoBox"
+      }
     },
     waitSeconds: 30
   };
