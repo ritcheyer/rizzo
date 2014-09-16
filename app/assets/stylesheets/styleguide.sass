@@ -28,9 +28,9 @@
   padding: 20px
 
 pre[class*="language-"]
-  background: $body-background-offset
-  border-top: 1px solid #DEE2E6
-  border-bottom: 1px solid #DEE2E6
+  @extend %rounded-corners
+  background: rgba($subduedgray, 0.1)
+  border: 1px solid #DEE2E6
   box-sizing: border-box
   max-height: 200px
   overflow: auto
@@ -45,10 +45,9 @@ pre[class*="language-"]
     float: none
 
 pre[class*="language-"].styleguide
-  margin: 20px -20px 10px
+  margin: 20px 0 10px
   font-size: 15px
   .styleguide-intro &
-    margin: 20px -25px 10px
     padding: 15px 25px
   .styleguide-intro__inner &
     margin: 0
@@ -58,8 +57,10 @@ pre.styleguide.is-open
   &:after
     background: none
 
-*:not(pre) > code
-  background: $body-background-offset
+*:not(pre) > code,
+*:not(pre) > code[class*="language-"]
+  @extend %rounded-corners
+  background: rgba($subduedgray, 0.1)
   border: 1px solid #DEE2E6
   font-size: 1rem
   padding: .1em .3em
