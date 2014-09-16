@@ -59,7 +59,7 @@ define([
 
   Slider.prototype._gatherElements = function() {
     this.$currentSlide = this.$slides.filter(".is-current");
-    this.$listener = $(this.config.$listener || "#js-row-content");
+    this.$listener = $(this.config.$listener || "#js-row--content");
     this.$slidesContainer = this.$el.find(this.config.slidesContainer);
     this.$slidesViewport = this.$el.find(this.config.slidesViewport);
     this.$sliderControlsContainer = $(".js-slider-controls-container");
