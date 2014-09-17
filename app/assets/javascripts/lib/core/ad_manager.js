@@ -89,6 +89,11 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
       dest: config.destination
     };
 
+    if (window.Krux) {
+      keywords.ksg = window.Krux.segments || "";
+      keywords.kuid = window.Krux.user || "";
+    }
+
     if (config.adTnm) {
       keywords.tnm = config.adTnm.replace(/\s/, "").split(",");
     }

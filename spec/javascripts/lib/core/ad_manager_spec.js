@@ -10,6 +10,10 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
       window.lp.getCookie = function() {
         return [];
       };
+      window.Krux = {
+        user: "foo",
+        segments: []
+      };
 
       instance = new AdManager({
         networkID: "xxxx",
@@ -49,23 +53,30 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
     });
 
     describe(".formatKeywords()", function() {
+      var config = {
+        adThm: "honeymoons,world-food",
+        adTnm: "overview,poi-list",
+        layers: [],
+        keyValues: {
+          foo: "bar"
+        }
+      }, result;
+
+      beforeEach(function() {
+        result = instance.formatKeywords(config);
+      });
 
       it("Should return a correctly formatted config for jQuery.dfp targeting", function() {
-        var config = {
-          adThm: "honeymoons,world-food",
-          adTnm: "overview,poi-list",
-          layers: [],
-          keyValues: {
-            foo: "bar"
-          }
-        };
-
-        var result = instance.formatKeywords(config);
-
         expect(result.thm).toEqual(config.adThm);
         expect(result.tnm).toEqual(config.adTnm.split(","));
         expect(result.foo).toEqual(config.keyValues.foo);
       });
+
+      it("supports krux targeting", function() {
+        expect(result.ksg).toEqual(Krux.segments);
+        expect(result.kuid).toEqual(Krux.user);
+      });
+
     });
 
     describe(".getNetworkID()", function() {
