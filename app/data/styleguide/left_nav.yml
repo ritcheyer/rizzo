@@ -121,6 +121,9 @@
         -
           :name: "Interests"
           :slug: "interests-icons"
+        -
+          :name: "Need to know"
+          :slug: "need-to-know-icons"
   :ui_components:
     -
       :title: "Components"
