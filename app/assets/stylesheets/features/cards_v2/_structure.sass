@@ -1,0 +1,239 @@
+@mixin card-dimensions($span, $width: $card-width, $height: $card-height, $margin: $card-margin)
+  $width: ($width * $span) + ($margin * ($span - 1))
+  $ratio: (1 / $width) * $height
+
+  padding-top: percentage($ratio)
+
+  &.card--fixed
+    width: $width + 0px
+    padding-top: $height + 0px
+
+.card
+  @extend %rounded-corners
+  position: relative
+  margin-bottom: $card-margin
+  background: #FFF
+
+  .results &
+    float: left
+    margin-left: $card-margin
+
+.card--single
+  +card-dimensions(1)
+
+.card--double
+  +card-dimensions(2)
+
+.card--triple
+  +card-dimensions(3)
+
+// -----------------------------------------------------------------------------
+// Basic card layout and styles
+// -----------------------------------------------------------------------------
+
+.card__mask,
+.card__figure,
+.card__footer,
+.card__content
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+.card__mask
+  @extend %rounded-corners
+  overflow: hidden
+
+.card__figure__img
+  height: 100%
+  min-width: 100%
+
+.card__figure__icon
+  +size(30px)
+  +icon-color(white)
+  position: absolute
+  left: 10px
+  top: 10px
+
+.card__content
+  padding: $card-content-padding
+  overflow: hidden
+  color: $body-copy
+
+  .card--has-footer &
+    bottom: $card-footer-height
+
+.card__content__pin
+  .card--no-img &
+    width: 24px
+    height: 35px
+    margin-bottom: 8px
+
+.card__content__locale,
+.card__content__context
+  +font-size(13)
+  margin-bottom: 4px
+  color: $bodygray
+
+.card__content__locale
+  margin-top: 6px
+
+  &:before
+    +size(10px)
+
+.card__content__context
+  &:before
+    +icon-color(white)
+    margin-top: -4px
+    margin-bottom: -2px
+    border-radius: 50%
+
+    // Fake padding around the icon
+    border: 2px solid
+    background-size: 100%
+
+.card__content__title
+  +font-size(20)
+
+  .card--has-tags &
+    padding-right: 40px
+
+.card__content__desc
+  +font-size(15)
+  margin: 10px 0 0
+  line-height: 1.3
+  color: $feature-copy
+
+.card__footer
+  +font-size(13)
+  top: auto
+
+  // A cheeky extra 1px to cover any seams or
+  // artefacts on iDevices when zoomed out
+  height: $card-footer-height + 1px
+  padding: 0 15px
+  color: $feature-copy
+
+  .card--no-footer &
+    display: none
+
+// -----------------------------------------------------------------------------
+// Height variations
+// -----------------------------------------------------------------------------
+
+.card--tall
+
+  &.card--has-img
+
+    .card__content
+      top: auto
+      border-top: 0
+
+    // Standard card
+    &.card--standard
+
+      .card__figure
+        bottom: $card-content-height + ($card-content-padding * 2)
+
+      .card__footer,
+      .card__content
+        background: #FFF
+
+      .card__content
+        height: $card-content-height
+        transition: height .2s ease-out
+
+      &:hover
+        .card__content
+          height: $card-content-height + $card-content-hover-growth
+
+      &.card--has-footer
+        .card__content
+          height: $card-content-height - $card-footer-height
+
+        &:hover
+          .card__content
+            height: $card-content-height - $card-footer-height + $card-content-hover-growth
+
+    // Cover image card
+    &.card--cover
+
+      .card__footer,
+      .card__content
+        color: #FFF
+
+      .card__content__locale,
+      .card__content__context
+        color: inherit
+
+      .card__content__locale
+        &:before
+          +icon-color(white)
+
+      .card__content__title
+        +font-size(24)
+
+      .card__content__desc
+        @extend %visually-hide
+
+      &.card--double
+
+        .card__content__title
+          +font-size(28)
+
+  &.card--no-img
+
+    .card__content
+      padding-top: 15px
+
+.card--short
+  // Short cards are always a single width
+  +card-dimensions($span: 1, $height: $card-short-height)
+
+  &.card--has-img
+
+    // Short cards with an image should always act
+    // as a cover image whether told to or not.
+    .card__figure__img
+      width: 100%
+      height: auto
+
+    .card__footer,
+    .card__content
+      color: #FFF
+
+    .card__content
+      top: auto
+      border-top: 0
+
+    .card__content__locale,
+    .card__content__context
+      color: inherit
+
+    .card__content__title
+      +font-size(24)
+
+    .card__content__desc
+      @extend %visually-hide
+
+// -----------------------------------------------------------------------------
+// Paraphernalia
+// -----------------------------------------------------------------------------
+
+.card
+
+  .card__footer
+
+    .btn
+      width: auto
+      font-size: 100%
+      margin: 0 -8px
+      padding: 9px 10px
+
+    .user-attribution
+      font-size: 100%
+
+    .copy--icon--before
+      &:before
+        +icon-color(body-grey)

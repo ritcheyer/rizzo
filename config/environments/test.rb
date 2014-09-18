@@ -8,4 +8,8 @@ Rizzo::Application.configure do
   config.action_dispatch.show_exceptions = false
   config.action_controller.allow_forgery_protection    = false
   config.active_support.deprecation = :stderr
+
+  # Features
+  config.cards_version = :v1
+
 end if defined?(Rizzo::Application)

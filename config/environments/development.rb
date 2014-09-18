@@ -9,6 +9,10 @@ Rizzo::Application.configure do
   config.active_support.deprecation = :log
 
   config.action_dispatch.best_standards_support = :builtin
-  
+
   config.assets.debug = true
+
+  # Features
+  config.cards_version = :v1
+
 end if defined?(Rizzo::Application)
