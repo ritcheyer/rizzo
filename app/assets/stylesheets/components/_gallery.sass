@@ -103,16 +103,18 @@ $footer-height: 250px
     max-width: $fluid-layout-width
     overflow: hidden
     margin: 0 auto
+    position: relative
 
 .gallery__description
+  +z-layer
   background: white
   border-radius: 0 0 0 4px
-  box-sizing: border-box
-  float: left
   max-width: 50em
   min-height: $footer-height
   padding: 20px 20px 0 20px
   position: relative
+  +respond-to(wide-view)
+    padding-right: 20px + $ad-width
 
 .gallery__social .sharing
   padding: 10px 0 20px 0
@@ -166,15 +168,21 @@ $footer-height: 250px
   font-weight: bold
 
 .gallery__mpu
+  +z-layer(middle)
   background: white
   display: block
-  float: right
   height: $footer-height
   width: $ad-width
   .responsive &
     display: none
-    +respond-to(480)
+    +respond-to(strip-unit($ad-width))
       display: block
+      margin: 0 auto 20px
+    +respond-to(wide-view)
+      margin: 0
+      position: absolute
+      right: 0
+      top: 0
 
 .gallery-underlay
   +z-layer(middle)
