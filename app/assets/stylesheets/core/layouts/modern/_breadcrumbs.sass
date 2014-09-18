@@ -10,6 +10,15 @@
     +respond-to(wide-view)
       padding: 0
 
+.breadcrumbs--icon
+  padding-left: 1.2em
+  &:before
+    +size(1em)
+    display: block
+    left: 0
+    position: absolute
+    top: 3px
+
 .nav__item--breadcrumbs
   @extend %left-icon
   padding: 20px 8px 18px 20px
@@ -79,6 +88,3 @@ a.nav__item--breadcrumbs
     @extend .nav__item--breadcrumbs
     text-indent: 0
     width: auto
-
-.nav__item--breadcrumbs--icon
-  

@@ -1,4 +1,6 @@
-.nav--inline{ itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb" }
+- icon_class = properties[:icon] ? "breadcrumbs--icon icon--#{properties[:icon]}--before" : ""
+
+.nav--inline{ itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb", class: icon_class }
 
   - if properties[:show_home]
     %a.nav__item.nav__item--breadcrumbs--home.icon--home{href: '/', itemprop:"url"} Home
@@ -8,8 +10,6 @@
 
     - if breadcrumb[:slug] && !last
       %a.nav__item.js-nav-item.nav__item--breadcrumbs{itemprop: "url", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}"}
-        - if index == 0 && properties[:icon]
-          %span.nav__item.nav__item--breadcrumbs--icon.copy--icon{ class: "icon--#{properties[:icon]}" }
         = breadcrumb[:place]
     - else
       %span.nav__item.js-nav-item.nav__item--breadcrumbs{class: last ? "current" : false}
