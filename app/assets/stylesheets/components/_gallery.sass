@@ -41,6 +41,30 @@ $footer-height: 250px
   &.is-current:hover .social__item--pinned
     opacity: 1
 
+.gallery__slide__caption
+  background: $dark-blue-gray
+  background: rgba($dark-blue-gray, 0.75)
+  bottom: 0
+  box-sizing: border-box
+  color: white
+  font-weight: bold
+  left: 0
+  opacity: 0
+  padding: 14px 21px
+  position: absolute
+  transition: opacity .5s ease
+  width: 100%
+  .is-current &
+    opacity: 1
+
+.gallery__slide__caption--position
+  color: $placeholder-copy
+  margin: 0 3px
+  font-weight: normal
+
+.gallery__slide__caption--title
+  margin: 0 3px
+
 .gallery__img
   &, & > img
     display: block
@@ -99,6 +123,7 @@ $footer-height: 250px
     display: none
   .sharing__label
     display: none
+  .social,
   .facebook-like
     margin-left: 0
 
