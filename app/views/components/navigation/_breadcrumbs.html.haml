@@ -1,0 +1,16 @@
+.nav--inline{ itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb" }
+
+  - if properties[:show_home]
+    %a.nav__item.nav__item--breadcrumbs--home.icon--home{href: '/', itemprop:"url"} Home
+
+  - properties[:breadcrumbs].each_with_index do |breadcrumb, index|
+    - last = properties[:breadcrumbs].length == (index+1)
+
+    - if breadcrumb[:slug] && !last
+      %a.nav__item.js-nav-item.nav__item--breadcrumbs{itemprop: "url", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}"}
+        - if index == 0 && properties[:icon]
+          %span.nav__item.nav__item--breadcrumbs--icon.copy--icon{ class: "icon--#{properties[:icon]}" }
+        = breadcrumb[:place]
+    - else
+      %span.nav__item.js-nav-item.nav__item--breadcrumbs{class: last ? "current" : false}
+        = breadcrumb[:place]
