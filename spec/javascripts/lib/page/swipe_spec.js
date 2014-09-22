@@ -110,7 +110,7 @@ require([
           var swooped = false;
 
           window.swipe.difference = {
-            x: 100,
+            x: 200,
             y: 0
           };
 
