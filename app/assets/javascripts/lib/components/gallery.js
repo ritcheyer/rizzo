@@ -31,7 +31,8 @@ define([
       assetBalance: 4,
       assetReveal: true,
       createControls: false,
-      keyboardControls: true
+      keyboardControls: true,
+      loopAround: true
     }, this.config.sliderConfig));
 
     if (!(this.slider && this.slider.$currentSlide)) return;

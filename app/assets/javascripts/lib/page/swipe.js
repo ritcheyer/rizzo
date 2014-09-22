@@ -14,7 +14,7 @@ define([
   var defaults = {
     listener: "#js-row--content",
     selector: ".js-onswipe",
-    threshold: 10
+    threshold: 100
   },
 
   Swipe = function(args) {

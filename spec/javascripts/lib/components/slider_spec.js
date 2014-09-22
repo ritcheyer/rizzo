@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slider) {
+require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], function($, Slider) {
   "use strict";
   describe("Slider", function() {
 
@@ -58,18 +58,18 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
       it("goes to the next slide (first -> second)", function() {
         window.slider._nextSlide();
         window.slide  = $(".js-slide");
-        expect($(".js-slide").get(2)).toHaveClass("is-next")
+        expect($(".js-slide").get(2)).toHaveClass("is-next");
       });
 
       it("goes to a given slide", function() {
         window.slider._goToSlide(4);
-        expect($(".js-slide").get(3)).toHaveClass("is-current")
+        expect($(".js-slide").get(3)).toHaveClass("is-current");
       });
 
       it("goes to the previous slide (third -> second)", function() {
         window.slider._goToSlide(3);
         window.slider._previousSlide();
-        expect($(".js-slide").get(0)).toHaveClass("is-previous")
+        expect($(".js-slide").get(0)).toHaveClass("is-previous");
       });
 
       it("knows when at the beginning", function() {
@@ -77,9 +77,41 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
       });
 
       it("knows when at the end", function() {
-        slider._goToSlide($(".slider__slide").length);
+        window.slider._goToSlide($(".slider__slide").length);
         expect($(".js-slider-controls-container")).toHaveClass("at-end");
       });
+
+    });
+
+    describe("looping", function() {
+
+      beforeEach(function() {
+        loadFixtures("slider.html");
+        window.slider = new Slider(config);
+      });
+
+      it("doesn't loop around by default", function() {
+        window.slider._goToSlide(1);
+        window.slider._previousSlide();
+        expect($(".js-slide:first")).toHaveClass("is-current");
+
+        window.slider._goToSlide($(".slider__slide").length);
+        window.slider._nextSlide();
+        expect($(".js-slide:last")).toHaveClass("is-current");
+      });
+
+      it("loops around when configured to do so", function() {
+        window.slider.config.loopAround = true;
+
+        window.slider._goToSlide(1);
+        window.slider._previousSlide();
+        expect($(".js-slide:last")).toHaveClass("is-current");
+
+        window.slider._goToSlide($(".slider__slide").length);
+        window.slider._nextSlide();
+        expect($(".js-slide:first")).toHaveClass("is-current");
+      });
+
     });
 
     describe("picture element", function() {
@@ -90,7 +122,7 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
       });
 
       it("updates the hidden content with the correctly sized url", function() {
-        expect($(".js-slide-2 img").attr("data-src")).toBe("//images-resrc.staticlp.com/S=W480/http://placehold.it/427x290&text=photo+2");
+        expect($(".js-slide-2 img").attr("src")).toBe("//images-resrc.staticlp.com/S=W480/http://placehold.it/427x290&text=photo+2");
       });
     });
 

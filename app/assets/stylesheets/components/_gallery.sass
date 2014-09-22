@@ -20,13 +20,18 @@ $footer-height: 250px
   position: relative
   margin: auto
   +respond-to(wide-view)
-    width: $fluid-layout-width
+    width: 1000px
     .slider--4x3 &
       padding-top: percentage((1 / 4) * 3 * .8)
     .slider--16x9 &
       padding-top: percentage((1 / 16) * 9 * .8)
 
 .gallery__slide
+  opacity: 0.5
+  &.is-current
+    opacity: 1
+    &:hover .social__item--pinned
+      opacity: 1
   &.is-loading.is-current:after
     content: " "
     position: absolute
@@ -38,8 +43,30 @@ $footer-height: 250px
     background: rgba(125, 125, 125, 0.5)
     border-radius: 100%
     animation: discmove 2s cubic-bezier(0.6, 1, 1, 1) infinite
-  &.is-current:hover .social__item--pinned
+
+.gallery__slide__caption
+  background: $dark-blue-gray
+  background: rgba($dark-blue-gray, 0.75)
+  bottom: 0
+  box-sizing: border-box
+  color: white
+  font-weight: bold
+  left: 0
+  opacity: 0
+  padding: 14px 21px
+  position: absolute
+  transition: opacity .5s ease
+  width: 100%
+  .is-current &
     opacity: 1
+
+.gallery__slide__caption--position
+  color: $placeholder-copy
+  margin: 0 3px
+  font-weight: normal
+
+.gallery__slide__caption--title
+  margin: 0 3px
 
 .gallery__img
   &, & > img
@@ -66,31 +93,7 @@ $footer-height: 250px
       +font-size(24)
 
 .gallery__breadcrumb
-  +font-size(14)
-  font-weight: bold
-  line-height: 2
-  text-transform: uppercase
-  .responsive &
-    +font-size(11)
-    line-height: 1
-    +respond-to(480)
-      +font-size(12)
-    +respond-to(768)
-      +font-size(14)
-    +respond-to(1000)
-      line-height: 2
-
-  &:before
-    +size(14px)
-    display: inline-block
-    vertical-align: middle
-
-.gallery__breadcrumb-item
-  color: $body-copy
-  &:after
-    content: " / "
-  &:last-child:after
-    content: ""
+  position: relative
 
 .gallery__footer
   background: white
@@ -100,19 +103,21 @@ $footer-height: 250px
 
 .gallery__footer__wrapper
   +respond-to(wide-view)
-    max-width: $fluid-layout-width
+    max-width: 1000px
     overflow: hidden
     margin: 0 auto
+    position: relative
 
 .gallery__description
+  +z-layer
   background: white
   border-radius: 0 0 0 4px
-  box-sizing: border-box
-  float: left
   max-width: 50em
   min-height: $footer-height
   padding: 20px 20px 0 20px
   position: relative
+  +respond-to(wide-view)
+    padding-right: 20px + $ad-width
 
 .gallery__social .sharing
   padding: 10px 0 20px 0
@@ -121,6 +126,7 @@ $footer-height: 250px
     display: none
   .sharing__label
     display: none
+  .social,
   .facebook-like
     margin-left: 0
 
@@ -166,15 +172,21 @@ $footer-height: 250px
   font-weight: bold
 
 .gallery__mpu
+  +z-layer(middle)
   background: white
   display: block
-  float: right
   height: $footer-height
   width: $ad-width
   .responsive &
     display: none
-    +respond-to(480)
+    +respond-to(strip-unit($ad-width))
       display: block
+      margin: 0 auto 20px
+    +respond-to(wide-view)
+      margin: 0
+      position: absolute
+      right: 0
+      top: 0
 
 .gallery-underlay
   +z-layer(middle)
@@ -211,7 +223,7 @@ $footer-height: 250px
   cursor: pointer
   opacity: .25
 
-$arrow-size: 60px
+$arrow-size: 50px
 .arrow--left,
 .arrow--right,
 .gallery__next,
@@ -252,15 +264,21 @@ $arrow-size: 60px
   left: -90px
   &:after
     left: 15%
-  .at-beginning &
-    opacity: 0
-    pointer-events: none
 
 .arrow--right
   right: -90px
-  .at-end &
-    opacity: 0
-    pointer-events: none
+
+.gallery__next
+  right: 20px
+  .responsive &
+    +respond-to(larger-than-ipad)
+      right: -90px
+
+.gallery__previous
+  left: 20px
+  .responsive &
+    +respond-to(larger-than-ipad)
+      left: -90px
 
 .gallery__slide-details
   display: none

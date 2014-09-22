@@ -19,7 +19,8 @@ define([
     assetBalance: 2,
     assetReveal: false,
     keyboardControl: false,
-    showSliderControls: true
+    showSliderControls: true,
+    loopAround: false
   };
 
   function Slider(args) {
@@ -29,7 +30,7 @@ define([
     this.$slides = this.$el.find(this.config.slides);
     this.numSlides = this.$slides.length;
     this.$picture = this.$el.find("picture");
-    this.$el.length && this.numSlides > 2 && this.init();
+    this.$el.length && this.numSlides > 1 && this.init();
   }
 
   Slider.prototype.init = function() {
@@ -135,16 +136,23 @@ define([
   };
 
   Slider.prototype._loadHiddenContent = function() {
-    var config = this.config,
-        slides;
+    var atBeginning = this.$sliderControlsContainer.is(".at-beginning"),
+        atEnd = this.$sliderControlsContainer.is(".at-end"),
+        config = this.config,
+        $slidesToReveal, left, right;
 
     if (config.assetBalance == null) {
-      slides = this.$slides;
-    } else {
-      var left = Math.max(this.currentSlide - config.assetBalance, 0),
-          right = Math.min(this.currentSlide + config.assetBalance, this.$slides.length);
+      $slidesToReveal = this.$slides;
+    } else if (config.loopAround && (atBeginning || atEnd)) {
+      left = this.$slides.slice(this.numSlides - config.assetBalance, this.numSlides),
+      right = this.$slides.slice(0, config.assetBalance);
 
-      slides = this.$slides.slice(left, right);
+      $slidesToReveal = left.add(right);
+    } else {
+      left = Math.max(this.currentSlide - config.assetBalance, 0),
+      right = Math.min(this.currentSlide + config.assetBalance, this.numSlides);
+
+      $slidesToReveal = this.$slides.slice(left, right);
     }
 
     if (config.assetReveal) {
@@ -153,7 +161,7 @@ define([
             // Grab the bit of the url with the image resizing service's config.
             picturePrefix = ResrcIt.get(pictureSrc);
 
-        slides.find("[data-src]").each(function() {
+        $slidesToReveal.find("[data-src]").each(function() {
           var $img = $(this),
               // Grab the url to the original, non-resized image.
               imgSrc = ResrcIt.strip($img.attr("data-src")),
@@ -165,53 +173,79 @@ define([
         });
       }
 
-      this.$el.trigger(":asset/uncomment", [ slides, "[data-uncomment]" ]);
-      this.$el.trigger(":asset/loadDataSrc", [ slides, "[data-src]" ]);
+      this.$el.trigger(":asset/uncomment", [ $slidesToReveal, "[data-uncomment]" ]);
+      this.$el.trigger(":asset/loadDataSrc", [ $slidesToReveal, "[data-src]" ]);
     }
   };
 
   Slider.prototype._nextSlide = function() {
-    if (this.$el.is(".at-end")) return;
-    this._goToSlide(this.currentSlide + 1);
+    if (this.$sliderControlsContainer.is(".at-end")) {
+      if (this.config.loopAround) {
+        this._goToSlide(1);
+      }
+    } else {
+      this._goToSlide(this.currentSlide + 1);
+    }
   };
 
   Slider.prototype._previousSlide = function() {
-    if (this.$el.is(".at-beginning")) return;
-    this._goToSlide(this.currentSlide - 1);
+    if (this.$sliderControlsContainer.is(".at-beginning")) {
+      if (this.config.loopAround) {
+        this._goToSlide(this.numSlides);
+      }
+    } else {
+      this._goToSlide(this.currentSlide - 1);
+    }
   };
 
   Slider.prototype._goToSlide = function(index) {
-    this.currentSlide = Math.min(Math.max(index, 1), this.$slides.length);
+    this.currentSlide = Math.min(Math.max(index, 1), this.numSlides);
     this.$currentSlide = this.$slides.eq(index - 1);
+
     this._updateSlideClasses();
     this._updateCount();
     this._loadHiddenContent();
+
     this.$listener.trigger(":slider/slideChanged");
   };
 
   Slider.prototype._updateSlideClasses = function() {
-    var current = this.$slides.eq(this.currentSlide - 1);
+    var atBeginning, atEnd,
+        current = this.$slides.eq(this.currentSlide - 1),
+        next = current.next(),
+        prev = current.prev();
+
+    this.$sliderControlsContainer.removeClass("at-beginning at-end");
+
+    if (this.currentSlide == 1) {
+      this.$sliderControlsContainer.addClass("at-beginning");
+      atBeginning = true;
+    } else if (this.currentSlide == this.numSlides) {
+      this.$sliderControlsContainer.addClass("at-end");
+      atEnd = true;
+    }
+
+    if (this.config.loopAround) {
+      if (atBeginning) {
+        prev = this.$slides.eq(this.numSlides - 1);
+      } else if (atEnd) {
+        next = this.$slides.eq(0);
+      }
+    }
 
     this.$slides.removeClass("is-hidden is-previous-previous is-previous is-current is-next is-next-next");
     current.addClass("is-current");
-    current.prev().addClass("is-previous").prev().addClass("is-previous-previous");
-    current.next().addClass("is-next").next().addClass("is-next-next");
+
+    prev.addClass("is-previous").prev().addClass("is-previous-previous");
+    next.addClass("is-next").next().addClass("is-next-next");
   };
 
   Slider.prototype._updateCount = function() {
     var next = this.$sliderControlsContainer.find(".js-slider-next"),
         previous = this.$sliderControlsContainer.find(".js-slider-previous"),
         currentHTML = next.html() || "",
-        nextIndex = Math.min(this.currentSlide + 1, this.$slides.length),
+        nextIndex = Math.min(this.currentSlide + 1, this.numSlides),
         prevIndex = Math.max(this.currentSlide - 1, 1);
-
-    this.$sliderControlsContainer.removeClass("at-beginning at-end");
-
-    if (this.currentSlide == 1) {
-      this.$sliderControlsContainer.addClass("at-beginning");
-    } else if (this.currentSlide == this.$slides.length) {
-      this.$sliderControlsContainer.addClass("at-end");
-    }
 
     next.html(currentHTML.replace(/([0-9]+)/, nextIndex));
     previous.html(currentHTML.replace(/([0-9]+)/, prevIndex));

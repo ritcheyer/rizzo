@@ -6,5 +6,16 @@
 .card.styleguide-intro.copy--body.context--content
   %h1.copy--h1 Breadcrumbs
 
+.styleguide-block.styleguide-block__description.card.copy--body
 
-= styleguide_component('navigation/footer_breadcrumbs', properties: breadcrumbs, full_width: true)
+  %h2.copy--h2.styleguide-block__heading
+    Default
+
+= styleguide_component('navigation/breadcrumbs', properties: breadcrumbs[:default], full_width: true)
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Footer
+
+= styleguide_component('navigation/footer_breadcrumbs', properties: breadcrumbs[:footer], full_width: true)
