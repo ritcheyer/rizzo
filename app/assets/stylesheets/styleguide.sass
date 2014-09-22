@@ -48,7 +48,7 @@ pre[class*="language-"]
 
 pre[class*="language-"].styleguide
   margin: 20px 0 10px
-  font-size: 15px
+  font-size: 13px
   .styleguide-intro &
     padding: 15px 25px
   .styleguide-intro__inner &
@@ -64,7 +64,8 @@ pre.styleguide.is-open
   @extend %rounded-corners
   background: rgba($subduedgray, 0.1)
   border: 1px solid #DEE2E6
-  font-size: 1rem
+  +font-size(13)
+  font-weight: normal
   padding: .1em .3em
 
 .snippet-expand
@@ -89,9 +90,15 @@ pre.styleguide.is-open
 .title--styleguide
   color: white
   padding: 10px 0
-
+  
+.styleguide-intro,
+.styleguide-block
+  @extend %rounded-corners
+  //  Why is there no variable for border radius??
+  
 .styleguide-intro
   padding: 25px
+  margin-bottom: 20px
 
 .styleguide-intro__section
   margin-bottom: 20px
@@ -126,6 +133,7 @@ pre.styleguide.is-open
     margin: 0
   .styleguide-block__description
     min-height: 120px
+    @extend %rounded-corners
 
 .styleguide-block__badges
   .styleguide-block__item
@@ -172,9 +180,7 @@ pre.styleguide.is-open
   box-sizing: border-box
   overflow: hidden
   padding: 20px
-  &.theme--dark,
-  .theme--dark &
-    background: $darkgray
+  @extend %rounded-corners
 
 .styleguide-block__heading
   margin-top: 0
@@ -200,7 +206,6 @@ pre.styleguide.is-open
 
 .styleguide__partial
   padding: 10px 0
-  font-weight: bold
 
 .filter--links
   min-width: 200px
@@ -358,6 +363,3 @@ pre.styleguide.is-open
   p
     span
       font-style: italic
-
-.context--content ul
-  margin-bottom: 30px
