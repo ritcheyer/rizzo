@@ -20,7 +20,7 @@ $footer-height: 250px
   position: relative
   margin: auto
   +respond-to(wide-view)
-    width: $fluid-layout-width
+    width: 1000px
     .slider--4x3 &
       padding-top: percentage((1 / 4) * 3 * .8)
     .slider--16x9 &
@@ -103,7 +103,7 @@ $footer-height: 250px
 
 .gallery__footer__wrapper
   +respond-to(wide-view)
-    max-width: $fluid-layout-width
+    max-width: 1000px
     overflow: hidden
     margin: 0 auto
     position: relative
@@ -267,6 +267,18 @@ $arrow-size: 60px
 
 .arrow--right
   right: -90px
+
+.gallery__next
+  right: 20px
+  .responsive &
+    +respond-to(larger-than-ipad)
+      right: -90px
+
+.gallery__previous
+  left: 20px
+  .responsive &
+    +respond-to(larger-than-ipad)
+      left: -90px
 
 .gallery__slide-details
   display: none
