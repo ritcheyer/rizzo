@@ -112,11 +112,11 @@
   .responsive &
     background-position-y: 118px !important
     &:after
-      +z-layer(below)
       top: 1210px
 
   &:after
     @extend %empty-abs-generated-content
+    +z-layer(below)
     top: 1150px
     height: 150px
     width: 100%
