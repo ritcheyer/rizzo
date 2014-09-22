@@ -225,7 +225,7 @@ define([
       atEnd = true;
     }
 
-    if (this.config.loopAround && (atBeginning || atEnd)) {
+    if (this.config.loopAround) {
       if (atBeginning) {
         prev = this.$slides.eq(this.numSlides - 1);
       } else if (atEnd) {
