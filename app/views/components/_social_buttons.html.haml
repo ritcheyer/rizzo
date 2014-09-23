@@ -6,9 +6,6 @@
   tweet = properties[:tweet] || encoded_url
 
 .nav--inline
-  - if properties[:show_label?]
-    %span.sharing__label.nav__item
-      Share this
 
   .social
     - if show.include? 'facebook'
