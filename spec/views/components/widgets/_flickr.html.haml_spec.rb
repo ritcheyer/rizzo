@@ -12,8 +12,8 @@ describe 'components/widgets/_flickr.html.haml' do
     end
     it 'renders the ranking' do
       rendered.should have_css('.card--double')
-      rendered.should have_css('article.card--single:not(.card--mini)', count: 2)
-      rendered.should have_css('article.card--mini', count: 2)
+      rendered.should have_css('.card--single:not(.card--short)', count: 2)
+      rendered.should have_css('.card--short', count: 2)
     end
   end
 

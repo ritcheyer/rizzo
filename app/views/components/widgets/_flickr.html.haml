@@ -4,19 +4,17 @@
 
   - if properties[:comments].present?
     - properties[:comments].first(5).each.with_index do |(id, entry), index|
+      
+      - entry[:author_name] = entry[:owner_name]
+      - entry[:tags] = { position: index + 1 }
+
       - if index.zero?
-        - entry[:size] = "double"
-        - entry[:user] = {image: entry[:owner_image], name: entry[:owner_name], theme: "light", size: "small"}
-      - elsif (1..2).include?(index)
-        - entry[:size] = "single"
-        - entry[:user] = {name: entry[:owner_name], theme: "light", size: "small"}
+        - entry[:double?] = true
+        - entry[:author_avatar] = entry[:owner_image]
       - elsif index > 2
-        - entry[:size] = "mini"
-        - entry[:user] = {name: entry[:owner_name], theme: "light", size: "small"}
+        - entry[:short?] = true
 
-      - entry[:position] = index + 1
-
-      = ui_component("cards/image_card", { properties: entry })
+      = ui_component("cards/card", { properties: entry })
   - else
     .no--content
       No content found, please try again later
