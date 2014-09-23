@@ -5,4 +5,4 @@
         %a{ href: link[:url].chomp('/when-to-go'), class: 'card__links__anchor' }
           = link[:title]
 
-= render partial: "components/cards_v2/card", locals: { properties: properties.merge(html_content: html_content) }
+= render partial: "components/cards/card", locals: { properties: properties.merge(html_content: html_content) }
