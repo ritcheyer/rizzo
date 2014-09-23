@@ -55,7 +55,7 @@ define([
       // Set up our event listener to listen to hashchange (back/forward)
       $(window).on( "hashchange", this._onHashChange );
       // If there's a hash on page load, fire the _onHashChange function and redirect the user to the correct page.
-      if ( this.getHash() ) {
+      if ( this.getHash().indexOf("#!") === 0 ) {
         this._onHashChange();
       }
     }
@@ -128,7 +128,7 @@ define([
     // Only cause a refresh if it's back/forward
     if (this.allowHistoryNav) {
       hash = this.getHash();
-      if (hash) {
+      if (hash.indexOf("#!") === 0) {
         url = hash.substring(2);
       } else {
         url = this.getUrl();
