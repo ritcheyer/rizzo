@@ -5,16 +5,6 @@
   %p
     Cards should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below. Cards can either be fixed or flexible width.
 
-- if Rails.application.config.cards_version == :v2
-
-  - cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_v2_stubs.yml', __FILE__)))
-  - cards.each_with_index do |card, i|
-    = styleguide_component("cards_v2/card", properties: card.merge({ fixed?: true }), count: i)
-
-- else
-
-  - cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_stubs.yml', __FILE__)))
-
-  .grid-wrapper--10
-    - cards['cards'].each_with_index do |card, i|
-      = styleguide_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", properties: card, count: i)
+- cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_stubs.yml', __FILE__)))
+- cards.each_with_index do |card, i|
+  = styleguide_component("cards/card", properties: card.merge({ fixed?: true }), count: i)

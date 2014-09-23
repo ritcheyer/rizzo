@@ -34,7 +34,7 @@
             %p
               = properties[:description]
 
-      = render :partial => "/components/cards_v2/partials/footer", :locals => { :properties => properties }
+      = render :partial => "/components/cards/partials/footer", :locals => { :properties => properties }
 
   - if properties[:tags].present? || properties[:price_tag].present?
-    = render :partial => "/components/cards_v2/partials/tags", :locals => { :properties => properties }
+    = render :partial => "/components/cards/partials/tags", :locals => { :properties => properties }

@@ -12,7 +12,4 @@ Rizzo::Application.configure do
 
   config.assets.debug = true
 
-  # Features
-  config.cards_version = :v1
-
 end if defined?(Rizzo::Application)

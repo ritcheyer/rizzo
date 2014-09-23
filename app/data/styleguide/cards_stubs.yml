@@ -1,295 +1,148 @@
-cards:
-  -
-    :styleguide_title: "Collection Card"
-    :double?: true
-    :kind: "collection"
-    :slug: "#"
-    :title: "Four days in Argentina"
-    :context: "Collection"
-    :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
-
-  -
-    :styleguide_title: "Collection Card"
-    :double?: true
-    :kind: "collection"
-    :slug: "#"
-    :title: "Four days in Argentina"
-    :context: "Collection"
-    :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
-    :image_license: 'by-nd'
-    :image_attribution_link: "http://google.com"
-    :image_attribution: "Jack took this photo"
-
-  -
-    :styleguide_title: "Collection Card"
-    :double?: false
-    :kind: "collection"
-    :slug: "#"
-    :title: "Top picks for Iceland"
-    :image_url: 'http://assets.staticlp.com/assets/stubs/collection.jpg'
-
-  -
-    :styleguide_title: "Collection Card"
-    :double?: false
-    :kind: "collection"
-    :slug: "#"
-    :title: "Top picks for Iceland"
-    :image_url: 'http://assets.staticlp.com/assets/stubs/collection.jpg'
-    :image_license: 'by-sa'
-    :image_attribution_link: "http://google.com"
-    :image_attribution: "Jack took this photo"
-
-  -
-    :styleguide_title: "Article Card"
-    :slug: "#"
-    :title: "Hello"
-    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :strapline: "Just a little article about the many ways to say hello"
-
-  -
-    :styleguide_title: "Symbol Card"
-    :styleguide_description: "icon_colors options are: ('header-grey','body-grey','white','lp-blue') default is white. text_color can be any color from the Rizzo Colour Palette for ex. 'navblue', 'green', 'plum' default is white"
-    :slug: "#"
-    :title: "Canada, aye"
-    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :icon_type: "destinations"
-    :icon: "canada"
-    :icon_color: "lp-blue"
-    :text_color: "subduedgray"
-
-  -
-    :styleguide_title: "Quote Card"
-    :slug: "#"
-    :title: "See your breakfast on the big screen - submit your Ulster fry film!"
-    :context: "Thorntree"
-    :name: "Shadyguy17"
-    :size: "single"
-    :avatar: "http://assets.staticlp.com/assets/stubs/article.jpg"
-
-  -
-    :styleguide_title: "Blog Card"
-    :slug: "#"
-    :title: "Hello"
-    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :subtitle: "Just a little blog about the many ways to say hello"
-
-  -
-    :styleguide_title: "Lodging Card"
-    :slug: "#"
-    :name: "Bookable Hotel"
-    :card_description: "The world's greatest hotel in London"
-    :property_type: "hotel"
-    :hotel_star_ranking: "Five star hotel"
-    :bookable?: true
-    :lp_reviewed: true
-    :nearby_place_text: "Brixton"
-    :list_image:
-      url: "http://aff.bstatic.com/images/hotel/max300/134/13487616.jpg"
-
-  -
-    :styleguide_title: "Lodging Card"
-    :slug: "#"
-    :name: "Non Bookable Hotel"
-    :card_description: "This lodging isn't bookable online"
-    :property_type_title: "Guesthouse"
-    :top_choice: true
-
-  -
-    :styleguide_title: "Things to Do Card"
-    :styleguide_description: "Topic must match the class name in Rizzo for the correct icon to show up ex. 'activity' shows up as '.icon--activity--pin' in the code. When 'show_place_name' is set to true and 'place_name' is entered in, it will show up under the large name text. When 'bookable?' is set to true, the yellow button will appear. Set it to false to omit this button. When 'button_text' and 'button_class' are entered in that text will appear as the button text and the class will be added to the button. If one or both are omitted the default 'Book now' will appear. Set 'top_choice' and/or 'lp-reviewed' to true to make the blue tag at the top appear."
-    :topic: "activity"
-    :image_url: "http://assets.staticlp.com/landing-pages/chitown.jpg"
-    :url: "#"
-    :top_choice: true
-    :currency_symbol: "$"
-    :price: 65
-    :category: "Food & Drink"
-    :name: "Small group Chicago-style hot dog tour"
-    :show_place_name?: false
-    :duration: "4 hours"
-    :description: "Some information about Chicago but definitely not ketchup."
-    :bookable?: true
-    :button_text: "Give me hot dogs!"
-    :button_class: "btn--mustard"
-
-  -
-    :styleguide_title: "Shop Card"
-    :slug: "#"
-    :place_name: "Paris"
-
-  -
-    :styleguide_title: "Guide Card"
-    :url: "#"
-    :image_url: "http://media.lonelyplanet.com/shop/images/Miami___the_Keys_travel_guide_-_6th_Edition929784_Large.png"
-    :title: "Miami & The Keys Travel Guide"
-    :description: "Some information about what this book is all about."
-    :context: "Book"
-    :price_icon: :book
-    :currency_symbol: "$"
-    :price: 6.66
-
-  -
-    :styleguide_title: "Guide Card"
-    :url: "#"
-    :image_url: "http://media.lonelyplanet.com/shop/images/Miami___the_Keys_travel_guide_-_6th_Edition929784_Large.png"
-    :title: "Miami & The Keys Travel Guide"
-    :description: "Some information about what this book is all about."
-    :context: "Book"
-    :price_icon: :book
-    :on_sale_here?: true
-    :currency_symbol: "$"
-    :price: 6.66
-    :retail_price: 9.99
-
-  -
-    :styleguide_title: "Need to know Card"
-    :kind: "need_to_know"
-    :slug: "#"
-    :double: false
-    :title: "Hello"
-    :links:
-    -
-      :url: "/"
-      :title: "What to take"
-    -
-      :url: "/"
-      :title: "When to go"
-    -
-      :url: "/"
-      :title: "Money"
-    -
-      :url: "/"
-      :title: "Weather"
-    -
-      :url: "/"
-      :title: "Getting there"
-    -
-      :url: "/"
-      :title: "Warnings"
-
-  -
-    :styleguide_title: "Place Card"
-    :kind: "place"
-    :double?: "true"
-    :slug: "#"
-    :title: "Antarctic"
-    :image_url: "http://media.lonelyplanet.com/lpi/24571/24571-47/469x264.jpg"
-    :strapline: "Some stuff about Antarctic"
-
-  -
-    :styleguide_title: "Place Card"
-    :kind: "place"
-    :slug: "#"
-    :title: "Paris"
-    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :strapline: "Some information about Paris and its environs"
-
-  -
-    :styleguide_title: "Place Card"
-    :kind: "place"
-    :slug: "#"
-    :title: "Cassis"
-    :strapline: "Some information about Cassis and its environs"
-
-  -
-    :styleguide_title: "Link Card"
-    :kind: "link"
-    :title: "Sights"
-    :slug: "#"
-    :image_url: "cards/sights.jpg"
-  -
-    :styleguide_title: "Link Card"
-    :kind: "link"
-    :title: "Activities"
-    :slug: "#"
-    :image_url: "cards/activities.jpg"
-  -
-    :styleguide_title: "Link Card"
-    :kind: "link"
-    :title: "Entertainment"
-    :slug: "#"
-    :image_url: "cards/entertainment.jpg"
-  -
-    :styleguide_title: "Link Card"
-    :kind: "link"
-    :title: "Restaurants"
-    :slug: "#"
-    :image_url: "cards/restaurants.jpg"
-  -
-    :styleguide_title: "Link Card"
-    :kind: "link"
-    :title: "Shopping"
-    :slug: "#"
-    :image_url: "cards/shopping.jpg"
-  -
-    :styleguide_title: "Link Card"
-    :kind: "link"
-    :title: "Tours"
-    :slug: "#"
-    :image_url: "cards/tours.jpg"
-  -
-    :styleguide_title: "Link Card"
-    :kind: "link"
-    :title: "Events"
-    :slug: "#"
-    :image_url: "cards/events.jpg"
-  -
-    :styleguide_title: "Link Card"
-    :kind: "link"
-    :title: "Transport"
-    :slug: "#"
-    :image_url: "cards/transport.jpg"
-
-  -
-    :styleguide_title: "Ad sense Card"
-    :kind: "ad_sense"
-
-  -
-    :styleguide_title: "Mpu Card"
-    :kind: "mpu"
-    :double?: false
-    :position: "content"
-
-  -
-    :styleguide_title: "Traffic driver Card"
-    :kind: "traffic_driver"
-
-  -
-    :styleguide_title: "Image Card"
-    :size: "double"
-    :url: "#"
-    :image_description: "Canada, aye with a long description very very long "
-    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :position: 1
-    :user:
-      :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
-      :name: "Rizzo"
-      :theme: "light"
-      :size: "small"
-
-  -
-    :styleguide_title: "Image Card"
-    :size: "single"
-    :url: "#"
-    :image_description: "Canada, aye"
-    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :position: 2
-    :user:
-      :name: "Rizzo"
-      :theme: "light"
-      :size: "small"
-
-  -
-    :styleguide_title: "Image Card"
-    :size: "mini"
-    :url: "#"
-    :image_description: "Canada, aye"
-    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :position: 3
-    :user:
-      :name: "Rizzo with a long name"
-      :theme: "light"
-      :size: "small"
-
-
-
+-
+  :styleguide_title: "Card"
+  :url: "#"
+  :kind: "need-to-know"
+  :title: "Need to know"
+  :description: "Paris has all but exhausted the superlatives that can reasonably be applied to any city. Notre Dame and the Eiffel Tower have been described countless times, as have the Seine and the subtle (and not-so-subtle) differences between the Left and Right Banks. Yet, what writers have never been able to even slightly reflect is the grandness and magic."
+-
+  :styleguide_title: "Card with image"
+  :url: "#"
+  :kind: "activity"
+  :title: "Moulin Rouge in Paris"
+  :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
+  :image_alt: ""
+  :image_url: "http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg"
+-
+  :styleguide_title: "Card with context text and context pin"
+  :url: "#"
+  :kind: "destination"
+  :context_pin: true
+  :context_text: "Destination"
+  :title: "Ko Pha-Ngan"
+  :description: "In the family of southern Gulf islands, Ko Pha-Ngan sits in the crystal sea between Ko Samui, its business-savvy older brother, and little Ko Tao, the spunky younger brother full of dive-centric energy."
+-
+  :styleguide_title: "Card with image and post date"
+  :url: "#"
+  :kind: "article"
+  :title: "Classic Paris: a fresh look at the city of light"
+  :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
+  :image_alt: ""
+  :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
+  :post_date: 2014-09-08T16:39:00Z
+-
+  :styleguide_title: "Card with image and author"
+  :url: "#"
+  :kind: "article"
+  :title: "Classic Paris: a fresh look at the city of light"
+  :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
+  :image_alt: ""
+  :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
+  :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
+  :author_name: "Phil McCracken"
+-
+  :styleguide_title: "Card with image, context text, context icon and button"
+  :url: "#"
+  :kind: "activity"
+  :context_text: "Tour"
+  :context_icon: true
+  :title: "Classic Paris: a fresh look at the city of light"
+  :image_alt: ""
+  :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
+  :button_text: "Learn more"
+-
+  :styleguide_title: "Card with image, context text, context icon, context locale, price tag and button"
+  :url: "#"
+  :kind: "hotel"
+  :context_text: "5 star hotel"
+  :context_icon: true
+  :context_locale: "St-Germain & Les Invalides"
+  :title: "L'hôtel"
+  :description: "In a quiet quayside street, this award-winning hostelry is the stuff of romance, Parisian myths and urban legends"
+  :image_alt: ""
+  :image_url: "http://aff.bstatic.com/images/hotel/max300/135/13558989.jpg"
+  :price_tag:
+    :price: "223"
+    :currency: "£"
+    :scope: "per night"
+  :button_text: "Learn more"
+-
+  :styleguide_title: "Guide card with image, context text, price tag and button"
+  :url: "#"
+  :kind: "guide"
+  :context_text: "Book & Ebook"
+  :title: "France's Best Trips"
+  :description: "Discover the freedom of the open road with France’s Best Trips. We’ve selected 39 amazing road trips through France, from two-day escapes to week-long adventures, and packed them full of expert advice and inspirational suggestions. Whether you want to cruise the corniches of the French Riviera, get lost among the snowcapped Alps or taste your way around Champagne’s hallowed vineyards, we’ve got the trip for you."
+  :image_alt: ""
+  :image_url: "cards/guide-sample.jpg"
+  :price_tag:
+    :price: "12.50"
+    :currency: "£"
+    :on_sale?: true
+    :retail_price: "16.00"
+  :button_text: "Buy now"
+-
+  :styleguide_title: "Short card"
+  :url: "#"
+  :short?: true
+  :kind: "need-to-know"
+  :title: "Need to know"
+  :description: "Paris has all but exhausted the superlatives that can reasonably be applied to any city. Notre Dame and the Eiffel Tower have been described countless times, as have the Seine and the subtle (and not-so-subtle) differences between the Left and Right Banks. Yet, what writers have never been able to even slightly reflect is the grandness and magic."
+-
+  :styleguide_title: "Short quote card"
+  :url: "#"
+  :short?: true
+  :kind: "quote"
+  :title: "Thorntree"
+  :description: "It sounds like you don't know the rules for going to Bhutan."
+  :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/000/095/975/thumb/Photo.jpg"
+  :author_name: "Ben2World"
+-
+  :styleguide_title: "Short card with image and author"
+  :url: "#"
+  :short?: true
+  :kind: "article"
+  :title: "Travel shopping"
+  :description: ""
+  :image_alt: ""
+  :image_url: "http://images-resrc.staticlp.com/C=W3514,H3386,X1161,Y0/S=W300,H300/http://media.lonelyplanet.com/a/g/hi/t/a03b63e2de8b540613e1cab75404b5a2-travel-shopping.jpg"
+  :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
+  :author_name: "Phil McCracken"
+-
+  :styleguide_title: "Short card with image and icon"
+  :url: "#"
+  :short?: true
+  :kind: "article"
+  :title: "Kyoto"
+  :description: ""
+  :image_alt: ""
+  :image_url: "http://images-resrc.staticlp.com/C=W788,H760,X0,Y0/S=W192,H185/http://media.lonelyplanet.com/a/g/hi/t/93beb9e9226011d72bce4b41db62d4ff-top-things-to-do-in-kyoto.jpg"
+  :image_icon: "japan_kansai_kyoto"
+-
+  :styleguide_title: "Card with cover image"
+  :url: "#"
+  :kind: "article"
+  :cover?: true
+  :title: "The best bars in Paris"
+  :image_alt: ""
+  :image_url: "http://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
+-
+  :styleguide_title: "Card with cover image and author"
+  :url: "#"
+  :kind: "article"
+  :cover?: true
+  :title: "The best bars in Paris"
+  :image_alt: ""
+  :image_url: "http://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
+  :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
+  :author_name: "Phil McCracken"
+-
+  :styleguide_title: "Double width card with cover image and author"
+  :url: "#"
+  :kind: "article"
+  :cover?: true
+  :double?: true
+  :title: "Top things to do in Paris"
+  :image_alt: ""
+  :image_url: "http://media.lonelyplanet.com/a/g/hi/t/d79818893c366ac9d63dd756a86cb968-best-places-to-stay-in-paris.jpg"
+  :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
+  :author_name: "Phil McCracken"
