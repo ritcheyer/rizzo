@@ -1,63 +1,24 @@
-
 // -----------------------------------------------------------------------------
-// Collection card image attribution
+// Image attribution
 // -----------------------------------------------------------------------------
 
-.has-attribution
-  overflow: hidden
-
-  &:hover
-    .card__content
-      bottom: 0
-
-.card__attribution
+.image-attribution
   padding-left: 25px
   position: relative
   &:before
+    +size(20px)
     position: absolute
     top: 5px
     left: 0
-    width: 20px
-    height: 20px
-  .card--single &
-    color: $feature-copy
-    margin-top: 17px
-    &:before
-      top: 0
-  .card--double &
-    position: absolute
-    bottom: 7px
-    left: 0
-    right: 0
 
-.card__attribution-link
+.image-attribution__link
   cursor: pointer
   pointer-events: all
-  .card--double &
-    @extend %inline-block
-    @extend %truncate-text
-    width: 70%
-    line-height: 32px
   &:hover
     text-decoration: underline
 
-.license
-  display: inline-block
-  height: 32px
-  width: 32px
+.image-attribution__license
+  +size(32px)
+  @extend %image-replacement
   margin-right: -10px
-  text-indent: -999em
   vertical-align: middle
-  .card--single &
-    vertical-align: sub
-    height: 26px
-    width: 26px
-
-
-.card__licenses
-  .card--double &
-    float: right
-  .card--single &
-    display: block
-    margin-left: -5px
-    margin-top: -5px

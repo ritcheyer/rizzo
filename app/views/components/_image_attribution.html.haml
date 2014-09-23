@@ -1,17 +1,15 @@
-- icon_colour = properties[:double?] ? "icon--white" : ""
-
-.card__attribution.icon--image--before{class: icon_colour ? "#{icon_colour}--before" : ""}
-  %span.card__attribution-link.js-card-attribution{ data: { link: properties[:image_attribution_link] }}<
+.image-attribution.icon--image--before.icon--white--before
+  %span.image-attribution__link.js-image-attribution{ data: { link: properties[:image_attribution_link] }}<
     = properties[:image_attribution]
   %span.card__licenses
     - unless properties[:image_license] == 'permission'
-      %span.license.icon--cc{class: icon_colour}<
+      %span.image-attribution__license.icon--cc.icon--white<
         Creative Commons
-    %span.license.icon--by{class: icon_colour}<
+    %span.image-attribution__license.icon--by.icon--white<
       Attribution
     - if properties[:image_license] == 'by-nd'
-      %span.license.icon--nd{class: icon_colour}<
+      %span.image-attribution__license.icon--nd.icon--white<
         Non-Derivation
     - if properties[:image_license] == 'by-sa'
-      %span.license.icon--sa{class: icon_colour}<
+      %span.image-attribution__license.icon--sa.icon--white<
         Share Alike
