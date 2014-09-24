@@ -1,5 +1,5 @@
 .card__tags
-  - if properties[:price_tag].present?
+  - if properties[:price_tag] && properties[:price_tag][:price].present?
     = ui_component("tags/price", properties: properties[:price_tag])
 
   - if properties[:tags] && properties[:tags][:top_choice?]
