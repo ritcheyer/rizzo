@@ -162,14 +162,14 @@ pre.styleguide.is-open
   .copy--h4
     padding: 10px
   .card
-    @extend %rounded-corners
     overflow: hidden
 
 .styleguide-block__item--colour
   font-size: 13px
-  padding: 12px 0
+  padding: 25px 0
   color: white
   margin: 0
+  @extend %rounded-corners
 
   &.is-light
     color: $body-copy
@@ -363,3 +363,17 @@ pre.styleguide.is-open
   p
     span
       font-style: italic
+      
+.styleguide-typography-block
+  .copy--h1,
+  .copy--h2,
+  .copy--h3,
+  .copy--h4,
+  .copy--h5
+    padding-bottom: 15px
+    border-bottom: 1px solid $body-background
+    
+  code
+    float: right
+    line-height: 1.4
+    
