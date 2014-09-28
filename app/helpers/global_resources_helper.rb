@@ -1,7 +1,5 @@
-require 'host_support'
-
 module GlobalResourcesHelper
-  include HostSupport, IpSupport
+  include IpSupport
 
   def core_navigation_items
     @core_navigation_items ||= (YAML.load(File.read(File.expand_path('../../data/layouts/primary_nav.yml', __FILE__))))
