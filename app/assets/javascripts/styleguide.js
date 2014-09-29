@@ -38,7 +38,7 @@ require([ "jquery" ], function($) {
     new Konami();
     new Swipe();
     new POIList(null, new POIMap);
-    new Slider({ el: ".js-slider", assetReveal: true });
+    new Slider({ el: ".js-slider", assetReveal: true, thumbSlider: true ,listener: document });
     new SelectGroupManager();
     new PageHopper();
 
