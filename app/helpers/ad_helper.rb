@@ -16,7 +16,7 @@ module AdHelper
       extension: nil
     }
 
-    attrs.merge!(props) if props.present?
+    attrs.merge!(props.symbolize_keys) if props.present?
     attrs[:targeting] = attrs[:targeting].to_json
 
     attrs
