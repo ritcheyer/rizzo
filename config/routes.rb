@@ -56,5 +56,7 @@ Rizzo::Application.routes.draw do
   get 'secure/global-head/responsive' => 'layout#snippet', defaults: { snippet: "head", route: "secure_responsive",  }
   get 'secure/global-body-header'     => 'layout#snippet', defaults: { snippet: "header", route: "secure" }
   get 'secure/global-body-footer'     => 'layout#snippet', defaults: { snippet: "footer", route: "secure" }
+  get 'secure/layouts/responsive/pre_header'  => 'layout#snippet', defaults: { snippet: "pre_header", route: "secure_responsive" }
+  get 'secure/layouts/responsive/post_header' => 'layout#snippet', defaults: { snippet: "pre_header", route: "secure_responsive" }
 
 end if defined?(Rizzo::Application)
