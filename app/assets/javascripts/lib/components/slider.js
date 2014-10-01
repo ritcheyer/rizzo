@@ -60,7 +60,7 @@ define([
 
   Slider.prototype._gatherElements = function() {
     this.$currentSlide = this.$slides.filter(".is-current");
-    this.$listener = $(this.config.$listener || "#js-row-content");
+    this.$listener = $(this.config.$listener || "#js-row--content");
     this.$slidesContainer = this.$el.find(this.config.slidesContainer);
     this.$slidesViewport = this.$el.find(this.config.slidesViewport);
     this.$sliderControlsContainer = $(".js-slider-controls-container");
@@ -72,6 +72,9 @@ define([
 
     this.$listener.on(":slider/next", this._nextSlide.bind(this));
     this.$listener.on(":slider/previous", this._previousSlide.bind(this));
+    this.$listener.on(":slider/goto", function(e, index) {
+      _this._goToSlide(index);
+    });
 
     this.$el.on(":swipe/left", this._nextSlide.bind(this));
     this.$el.on(":swipe/right", this._previousSlide.bind(this));
