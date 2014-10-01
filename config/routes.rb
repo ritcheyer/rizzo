@@ -4,9 +4,10 @@ Rizzo::Application.routes.draw do
   get "redirector"                   => 'redirector#internal'
 
   # Custom layouts
-  get 'layouts/:route/:snippet'   => 'layout#snippet'
-  get 'layouts/:route'            => 'layout#preview'
-  get 'layouts',                  to: redirect('/styleguide/page-layout/core-layouts')
+  get 'secure/layouts/:route/:snippet'  => 'layout#snippet'
+  get 'layouts/:route/:snippet'         => 'layout#snippet'
+  get 'layouts/:route'                  => 'layout#preview'
+  get 'layouts',                        to: redirect('/styleguide/page-layout/core-layouts')
 
   # Styleguide
   root                              to: redirect('/styleguide/design-elements/colours')
@@ -56,7 +57,5 @@ Rizzo::Application.routes.draw do
   get 'secure/global-head/responsive' => 'layout#snippet', defaults: { snippet: "head", route: "secure_responsive",  }
   get 'secure/global-body-header'     => 'layout#snippet', defaults: { snippet: "header", route: "secure" }
   get 'secure/global-body-footer'     => 'layout#snippet', defaults: { snippet: "footer", route: "secure" }
-  get 'secure/layouts/responsive/pre_header'  => 'layout#snippet', defaults: { snippet: "pre_header", route: "secure_responsive" }
-  get 'secure/layouts/responsive/post_header' => 'layout#snippet', defaults: { snippet: "post_header", route: "secure_responsive" }
 
 end if defined?(Rizzo::Application)
