@@ -96,9 +96,6 @@
 .card__content__title
   +font-size(20)
 
-  .card--has-tags &
-    padding-right: 40px
-
 .card__content__desc
   +font-size(15)
   margin: 10px 0 0
@@ -186,6 +183,10 @@
 
     .card__content
       padding-top: 15px
+
+    &.card--has-tags
+      .card__content__title
+        padding-right: 40px
 
 .card--short
   // Short cards are always a single width
