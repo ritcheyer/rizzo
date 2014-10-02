@@ -39,7 +39,7 @@ define([
 
     .on(":cards/append", function(event, data, analytics) {
       this._updateState(data);
-      this._callServer(this._createRequestUrl(this.getUrl()), this.append, analytics);
+      this._callServer(this._createRequestUrl(), this.append, analytics);
     }.bind(this))
 
     .on(":page/request", function(event, data, analytics) {
