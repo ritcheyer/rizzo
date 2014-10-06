@@ -11,7 +11,7 @@ module CardsHelper
       "card--#{props[:double?] ? 'double' : 'single'}",
       "card--#{props[:image_url].present? ? 'has-img' : 'no-img'}",
       "card--#{props[:tags].present? || props[:price_tag].present? ? 'has-tags' : 'no-tags'}",
-      "card--#{props[:button_text] || props[:author_name] || props[:post_date] ? 'has-footer' : 'no-footer'}"
+      "card--#{props[:button_text] || props[:author_name] || props[:post_date] || (props[:test_variation] == :simple && props[:context_text]) ? 'has-footer' : 'no-footer'}"
     ]
 
     class_names.push("card--variation--#{props[:test_variation]}") if props[:test_variation].present?

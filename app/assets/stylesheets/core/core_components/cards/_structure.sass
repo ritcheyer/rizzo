@@ -76,8 +76,11 @@
   margin-bottom: 4px
   color: $bodygray
 
+// Locale is moved to footer in simplified A/B test
+.card__footer__locale,
 .card__content__locale
   margin-top: 6px
+  white-space: nowrap
 
   &:before
     +size(14px)
@@ -117,6 +120,10 @@
 
   .card--no-footer &
     display: none
+
+.card__footer__content
+  position: relative
+  overflow: hidden
 
 // -----------------------------------------------------------------------------
 // Height variations
@@ -228,6 +235,23 @@
 .card
 
   .card__footer
+
+    // Badges and locale moved to footer in simplified A/B test
+    .badge
+      position: absolute
+      top: 0
+      right: 0
+      background: white
+
+      &:before
+        content: ""
+        position: absolute
+        right: 100%
+        width: 10px
+        height: 100%
+        // Allow for badge border
+        margin-right: 1px
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, #FFF 75%)
 
     .btn
       width: auto
