@@ -2,7 +2,7 @@ paths:
   flamsteed: "flamsteed/lib/javascripts/flamsteed"
   hogan: "hogan/dist/hogan-3.0.0.amd"
   jplugs: "jquery-plugins"
-  jquery: "jquery/jquery"
+  jquery: "jquery/dist/jquery"
   jtimeago: "jquery-timeago/jquery.timeago"
   sailthru: "sailthru/v1"
   sCode: "omniture/s_code"

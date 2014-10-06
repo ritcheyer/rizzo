@@ -73,3 +73,11 @@ vendor/assets/javascripts/nvd3/**
 vendor/assets/javascripts/picturefill/*
 !vendor/assets/javascripts/picturefill/dist/
 vendor/assets/javascripts/picturefill/dist/picturefill.min.js
+
+# jquery
+vendor/assets/javascripts/jquery/.bower.json
+vendor/assets/javascripts/jquery/bower.json
+vendor/assets/javascripts/jquery/MIT-LICENSE.txt
+vendor/assets/javascripts/jquery/dist/jquery.min.js
+vendor/assets/javascripts/jquery/dist/jquery.min.map
+vendor/assets/javascripts/jquery/src/
