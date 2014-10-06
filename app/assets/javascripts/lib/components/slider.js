@@ -20,7 +20,8 @@ define([
     assetReveal: false,
     keyboardControl: false,
     showSliderControls: true,
-    loopAround: false
+    loopAround: false,
+    transition: "200"
   };
 
   function Slider(args) {
@@ -34,6 +35,12 @@ define([
   }
 
   Slider.prototype.init = function() {
+    var transform = window.lp.supports.transform.css,
+        transition = this.$el.data("transition") || this.config.transition,
+        transitionString = transform + " " + transition + "ms ease-in-out, left " + transition + "ms ease-in-out";
+
+    this.$slides.css("transition", transitionString);
+
     this._gatherElements();
     this._addClasses();
 
