@@ -23,6 +23,9 @@
           %h1.card__content__title
             = properties[:title]
 
+            - if ENV['VANITY_ENABLED'] && properties[:test_variation] == :simple
+              = render partial: "/components/cards/partials/badges", locals: { properties: properties }
+
         - if properties[:context_locale]
           %p.card__content__locale.copy--icon--before.icon--place--before
             = properties[:context_locale]
@@ -34,7 +37,14 @@
             %p
               = properties[:description]
 
-      = render :partial => "/components/cards/partials/footer", :locals => { :properties => properties }
+      = render partial: "/components/cards/partials/footer", locals: { properties: properties }
 
-  - if properties[:tags].present? || properties[:price_tag].present?
-    = render :partial => "/components/cards/partials/tags", :locals => { :properties => properties }
+  - if ENV['VANITY_ENABLED'] && properties[:test_variation] == :simple 
+
+    - if properties[:price_tag].present?
+      = render partial: "/components/cards/partials/price_label", local: { properties: properties[:price_tag] }
+
+  - else
+
+    - if properties[:tags].present? || properties[:price_tag].present?
+      = render partial: "/components/cards/partials/tags", locals: { properties: properties }
