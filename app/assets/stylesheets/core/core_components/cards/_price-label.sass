@@ -1,8 +1,8 @@
 .price-label
-  +font-size(24)
   @extend %rounded-corners
   margin-top: 10px
   padding: 5px 10px 3px
+  font-weight: bold
   text-align: center
   letter-spacing: -0.015em
   color: white
@@ -10,9 +10,12 @@
   background: rgba(red($titlegray), green($titlegray), blue($titlegray), 0.8)
 
 .price-label__currency
+  +font-size(15)
   position: relative
   top: -0.2em
-  font-size: 75%
+
+.price-label__price
+  +font-size(20)
 
 .price-label__decimal
   position: relative
@@ -20,6 +23,9 @@
   font-size: 65%
 
 .price-label__retail
-  font-size: 65%
+  +font-size(12)
+  margin: 0 -5px 2px
   text-decoration: line-through
-  color: $subduedgray
+  color: $bodygray
+  background-color: white
+  border-radius: 2px

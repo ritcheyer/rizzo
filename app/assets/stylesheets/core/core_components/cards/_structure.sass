@@ -79,12 +79,15 @@
 // Locale is moved to footer in simplified A/B test
 .card__footer__locale,
 .card__content__locale
+  position: relative
   margin-top: 6px
   white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
 
   &:before
-    +size(14px)
-    top: 0.1em
+    +size(16px)
+    top: 0.25em
     margin-top: -2px
     margin-bottom: -2px
 
@@ -98,6 +101,13 @@
     // Fake padding around the icon
     border: 2px solid
     background-size: 100%
+
+.card__content__ribbon
+  position: absolute
+  top: 12px
+  right: 0
+  width: 56px
+  height: 18px
 
 .card__content__title
   +font-size(20)
@@ -120,10 +130,6 @@
 
   .card--no-footer &
     display: none
-
-.card__footer__content
-  position: relative
-  overflow: hidden
 
 // -----------------------------------------------------------------------------
 // Height variations
@@ -235,23 +241,6 @@
 .card
 
   .card__footer
-
-    // Badges and locale moved to footer in simplified A/B test
-    .badge
-      position: absolute
-      top: 0
-      right: 0
-      background: white
-
-      &:before
-        content: ""
-        position: absolute
-        right: 100%
-        width: 10px
-        height: 100%
-        // Allow for badge border
-        margin-right: 1px
-        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, #FFF 75%)
 
     .btn
       width: auto

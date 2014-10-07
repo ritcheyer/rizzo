@@ -19,12 +19,16 @@
           %p.card__content__context{ class: properties[:context_icon] ? "copy--icon--before icon--#{card_icon(properties)}--before" : "" }
             = properties[:context_text]
 
+        - if properties[:tags] && properties[:tags][:top_choice?] && properties[:test_variation] == :simple
+          .card__content__ribbon.icon--top-pick
+            .accessibility Top Pick
+
         - if properties[:title].present?
           %h1.card__content__title
             = properties[:title]
 
         - if properties[:context_locale] && properties[:test_variation] != :simple
-          %p.card__content__locale.copy--icon--before.icon--place--pin--line--before
+          %p.card__content__locale.copy--icon--before.icon--place--pin--line--before<>
             = properties[:context_locale]
 
         .card__content__desc
