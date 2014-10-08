@@ -4,12 +4,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], fun
 
   describe("Gallery", function() {
 
-    lp.supports = {
-      transform: {
-        css: ""
-      }
-    };
-
     var gallery;
 
     beforeEach(function () {
