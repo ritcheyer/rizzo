@@ -11,3 +11,7 @@
     - elsif properties[:button_text]
       %span.btn.btn--small.btn--yellow.btn--full-width{ class: properties[:button_class] }
         = properties[:button_text]
+
+    - elsif properties[:context_locale] && properties[:test_variation] == :simple
+      .card__footer__locale.copy--icon--before.icon--place--pin--line--before<>
+        = properties[:context_locale]
