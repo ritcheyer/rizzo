@@ -82,11 +82,6 @@ define([
       if (this.viewport().width > this.mobileBreakpoint) {
         event.preventDefault();
 
-        this.customClass = $(event.currentTarget).data().lightboxClass;
-        if (this.customClass){
-          this.$lightbox.addClass( this.customClass );
-        }
-
         this.trigger(":lightbox/open", {
           listener: this.$el,
           opener: event.currentTarget,
@@ -109,6 +104,12 @@ define([
     this.$el.on(":lightbox/open", function(event, data) {
       $("html").addClass("lightbox--open");
       this.$lightbox.addClass("is-active is-visible");
+      if (data && data.opener){
+        this.customClass = $(data.opener).data().lightboxClass;
+        if (this.customClass){
+          this.$lightbox.addClass( this.customClass );
+        }
+      }
 
       setTimeout(function() {
         this.listenToFlyout(event, data);
