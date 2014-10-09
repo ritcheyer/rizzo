@@ -63,7 +63,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         jasmine.Clock.tick(301);
         expect($("#js-lightbox")).toHaveClass("is-active is-visible");
         expect($("html")).toHaveClass("lightbox--open");
-        //custom class
+        // custom class
         expect($("#js-lightbox")).toHaveClass("lightbox-foo");
       });
 

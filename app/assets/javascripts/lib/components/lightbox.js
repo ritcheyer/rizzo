@@ -61,7 +61,7 @@ define([
 
     if (this.showPreloader) {
       this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
-      this.$lightboxContent.parent().append( this.preloaderTmpl );
+      this.$lightboxContent.parent().append(this.preloaderTmpl);
     }
 
     this.listen();
@@ -104,10 +104,10 @@ define([
     this.$el.on(":lightbox/open", function(event, data) {
       $("html").addClass("lightbox--open");
       this.$lightbox.addClass("is-active is-visible");
-      if (data && data.opener){
+      if (data && data.opener) {
         this.customClass = $(data.opener).data().lightboxClass;
-        if (this.customClass){
-          this.$lightbox.addClass( this.customClass );
+        if (this.customClass) {
+          this.$lightbox.addClass(this.customClass);
         }
       }
 
@@ -123,10 +123,10 @@ define([
 
     this.$el.on(":flyout/close", function() {
 
-      if (this.$lightbox.hasClass("is-active")){
+      if (this.$lightbox.hasClass("is-active")) {
         $("html").removeClass("lightbox--open");
 
-        if (this.requestMade){
+        if (this.requestMade) {
           this.requestMade = false;
           this.$controllerEl.trigger(":controller/reset");
         }
