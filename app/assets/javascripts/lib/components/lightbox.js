@@ -122,7 +122,7 @@ define([
     }.bind(this));
 
     this.$el.on(":flyout/close", function() {
-      this.trigger(":lightbox/closing");
+
       if (this.$lightbox.hasClass("is-active")){
         $("html").removeClass("lightbox--open");
 
