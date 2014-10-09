@@ -64,6 +64,11 @@ define([
       this.states = [ this.states[0] ];
       this.currentState = 0;
       this.pushState.navigate(this._serializeState(), this._currentRoot(), true);
+    }.bind(this))
+
+    .on(":controller/updatePath", function(event, data) {
+      this._generateState(data.url.split("?")[0]);
+      this.pushState.navigate(this._serializeState(), this._currentRoot());
     }.bind(this));
   };
 
