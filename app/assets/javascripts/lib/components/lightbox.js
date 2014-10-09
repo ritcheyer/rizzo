@@ -27,7 +27,6 @@ define([
       this.opener = ".js-lightbox-toggle";
     }
 
-    this.customClass = args.customClass || "";
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
     this.mobileBreakpoint = args.mobileBreakpoint || 500;
@@ -82,6 +81,12 @@ define([
     this.$el.on("click", this.opener, function(event) {
       if (this.viewport().width > this.mobileBreakpoint) {
         event.preventDefault();
+
+        this.customClass = $(event.currentTarget).data().lightboxClass;
+        if (this.customClass){
+          this.$lightbox.addClass( this.customClass );
+        }
+
         this.trigger(":lightbox/open", {
           listener: this.$el,
           opener: event.currentTarget,
@@ -116,6 +121,7 @@ define([
     }.bind(this));
 
     this.$el.on(":flyout/close", function() {
+      this.trigger(":lightbox/closing");
       if (this.$lightbox.hasClass("is-active")){
         $("html").removeClass("lightbox--open");
 
@@ -124,7 +130,7 @@ define([
           this.$controllerEl.trigger(":controller/reset");
         }
 
-        this.$lightbox.removeClass("is-active");
+        this.$lightbox.removeClass("is-active " + this.customClass);
         // Waits for the end of the transition.
         setTimeout(function() {
           this.$lightbox.removeClass("is-visible");
@@ -193,7 +199,6 @@ define([
     $(document).ready(function() {
       var $lightboxToggle = $(".js-lightbox-toggle");
       new LightBox({
-        customClass: $lightboxToggle.data("lightbox-class"),
         showPreloader: $lightboxToggle.data("lightbox-showpreloader")
       });
     });
