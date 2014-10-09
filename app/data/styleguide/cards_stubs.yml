@@ -65,22 +65,6 @@
     :scope: "per night"
   :button_text: "Learn more"
 -
-  :styleguide_title: "Simplified card with image, context text, context locale, price tag and button"
-  :url: "#"
-  :kind: "hotel"
-  :context_text: "5 star hotel"
-  :context_locale: "St-Germain & Les Invalides"
-  :title: "L'hôtel"
-  :description: "In a quiet quayside street, this award-winning hostelry is the stuff of romance, Parisian myths and urban legends"
-  :image_alt: ""
-  :image_url: "http://aff.bstatic.com/images/hotel/max300/135/13558989.jpg"
-  :price_tag:
-    :price: "223"
-    :currency: "£"
-  :tags:
-    :top_choice?: true
-  :test_variation: :simple
--
   :styleguide_title: "Guide card with image, context text, price tag and button"
   :url: "#"
   :kind: "guide"

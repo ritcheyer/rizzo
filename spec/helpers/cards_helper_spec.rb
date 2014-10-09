@@ -71,7 +71,7 @@ describe CardsHelper do
 
     context "with no variation" do
       it "returns the original URL" do
-        result = helper.card_href_for_test_variation(props)
+        result = helper.card_href_for_test_variation(props, var)
         result.should eq(url)
       end
     end
@@ -81,7 +81,7 @@ describe CardsHelper do
 
       context "when the URL has no QS" do
         it "returns the URL appended with variation" do
-          result = helper.card_href_for_test_variation(props)
+          result = helper.card_href_for_test_variation(props, var)
           result.should eq("#{url}?abv=1")
         end
       end
@@ -90,7 +90,7 @@ describe CardsHelper do
         let(:url) { "/path/to/thing?foo=bar" }
 
         it "returns the URL appended with variation" do
-          result = helper.card_href_for_test_variation(props)
+          result = helper.card_href_for_test_variation(props, var)
           result.should eq("#{url}&abv=1")
         end
       end
