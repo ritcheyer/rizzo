@@ -117,3 +117,18 @@
     right: 0
   .at-end &
     display: none
+
+.slider__pagination
+  bottom: 0
+  position: absolute
+  text-align: center
+  width: 100%
+.slider__pagination--link
+  @extend %transition--base
+  +size(6px)
+  background: $bodygray
+  border-radius: 6px
+  display: inline-block
+  margin: 5px
+  &.is-current
+    background: $linkblue
