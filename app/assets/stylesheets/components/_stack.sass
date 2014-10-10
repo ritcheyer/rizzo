@@ -38,56 +38,23 @@
       width: auto
 
 // -----------------------------------------------------------------------------
-// Places View type
+// New responsive layout with fixed ad rail
 // -----------------------------------------------------------------------------
 
-.stack__view-select
-  position: absolute
-  right: 25px
-
-.stack__view-type
-  @extend %inline-block
+.stack--with-rail
   position: relative
-  +font-size(14)
-  border-style: solid
-  border-color: $body-background
-  color: $body-copy
-  font-weight: bold
-  line-height: 1em
-  overflow: hidden
-  padding: 10px 10px
+  margin-left: 0
 
-  &:hover
-    text-decoration: none
+  +respond-to(wide-view)
+    // This takes the ad rail out of context so
+    // you don't have to think about it.
+    // Just focus on the content area!
+    padding-right: 320px
 
-  &:before
-    +font-size(25)
-    vertical-align: inherit
+.stack__rail
 
-.stack__view-type--grid
-  border-radius: 4px 0 0 4px
-  border-width: 1px 0 1px 1px
-
-.stack__view-type--list
-  border-radius: 0 4px 4px 0
-  border-width: 1px 1px 1px 0
-
-.stack__view-type--selected
-  background: $teal
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.2) inset
-  color: white
-
-.list-view__section-heading
-  @extend %heading--2
-  margin-left: 10px
-  margin-top: 10px
-
-.list-view__heading
-  +font-size(36)
-  color: #c5d6d9
-  clear: left
-  line-height: 1em
-  margin: 20px 0 10px 20px
-
-.list-view__section .card--list
-  height: 50px
+  +respond-to(wide-view)
+    position: absolute
+    top: 0
+    right: 0
+    width: 300px
