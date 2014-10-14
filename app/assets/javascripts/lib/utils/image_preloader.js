@@ -11,7 +11,8 @@ define([ "jquery" ], function($) {
 
   ImagePreloader.prototype.loadImages = function($images, callback) {
     var loadedImages = 0,
-      badTags = 0;
+      badTags = 0,
+      loadHandler;
 
     $images.each(function() {
 
@@ -27,14 +28,18 @@ define([ "jquery" ], function($) {
       } else {
         badTags++;
       }
-        // Load images
-      $(image).load(function() {
+
+      loadHandler = function() {
         loadedImages++;
         if ( loadedImages == ($images.length - badTags) ){
           callback();
         }
-      })
-      .attr("src", src);
+      };
+        // Load images
+      $(image)
+        .load(loadHandler)
+        .error(loadHandler)
+        .attr("src", src);
     });
   };
 
