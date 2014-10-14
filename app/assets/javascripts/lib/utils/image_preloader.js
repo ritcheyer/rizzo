@@ -1,6 +1,8 @@
-// ImagePreloader
-// Preload images before the elements are shown
+// ------------------------------------------------------------------------------
 //
+// ImagePreloader
+//
+// ------------------------------------------------------------------------------
 define([ "jquery" ], function($) {
 
   "use strict";
