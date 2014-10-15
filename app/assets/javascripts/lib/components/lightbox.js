@@ -99,17 +99,14 @@ define([
       $("html").addClass("lightbox--open");
       this.$lightbox.addClass("is-active is-visible");
 
-      var $opener = $(data.opener);
       if (data && data.opener) {
-        var customClass, showPreloader;
+        var showPreloader,
+            $opener = $(data.opener);
 
-        customClass = this.customClass || $opener.data().lightboxClass;
-        if (customClass) {
-          this.$lightbox.addClass(customClass);
-        }
+        this.$lightbox.addClass(this.customClass || $opener.data().lightboxClass);
 
         showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
-        if (showPreloader && !this.$lightbox.find(".preloader").length){
+        if (showPreloader && !this.$lightbox.find(".js-preloader").length){
           this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
           this.$lightboxContent.parent().append(this.preloaderTmpl);
         }
