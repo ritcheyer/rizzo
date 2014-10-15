@@ -250,7 +250,6 @@
 // -----------------------------------------------------------------------------
 
 .tag--best-in-travel
-  +tag-curl-right($lpblue)
   bottom: auto
   top: 20px
   background-color: $lpblue
@@ -264,10 +263,19 @@
     position: absolute
     width: 0
     bottom: 0px
-    left: -20px
     border: 15px solid $lpblue
-    border-left-color: transparent
-    border-left-width: 8px
+  &.tag--horizontal--right
+    +tag-curl-right($lpblue)
+    .tag__ribbon
+      left: -20px
+      border-left-color: transparent
+      border-left-width: 8px
+  &.tag--horizontal--left
+    +tag-curl-left($lpblue)
+    .tag__ribbon
+      right: -20px
+      border-right-color: transparent
+      border-right-width: 8px
   img
     max-width: 100%
     display: block
