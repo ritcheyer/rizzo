@@ -82,6 +82,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
           expect($("#js-lightbox")).not.toHaveClass("content-ready");
           expect($("#js-lightbox")).not.toHaveClass("is-active");
+          expect($("#js-lightbox")).not.toHaveClass("lightbox-foo");
           expect($("html")).not.toHaveClass("lightbox--open");
         });
       });
@@ -108,6 +109,17 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         it("should't have preloader", function() {
           jasmine.Clock.tick(301);
           expect($("#js-lightbox").find(".preloader").length).toBe(1);
+        });
+
+        it("should close and clean the lightbox", function() {
+
+          $("#js-row--content").trigger(":flyout/close");
+          jasmine.Clock.tick(301);
+
+          expect($("#js-lightbox")).not.toHaveClass("content-ready");
+          expect($("#js-lightbox")).not.toHaveClass("is-active");
+          expect($("#js-lightbox")).not.toHaveClass("lightbox-bar");
+          expect($("html")).not.toHaveClass("lightbox--open");
         });
 
       });

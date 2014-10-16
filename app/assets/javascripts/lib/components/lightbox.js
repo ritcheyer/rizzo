@@ -103,7 +103,7 @@ define([
         var showPreloader,
             $opener = $(data.opener);
 
-        this.$lightbox.addClass(this.customClass || $opener.data().lightboxClass);
+        this.$lightbox.addClass(this.customClass = this.customClass || $opener.data().lightboxClass);
 
         showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
         if (showPreloader && !this.$lightbox.find(".js-preloader").length){
