@@ -159,7 +159,8 @@
         height: $card-content-height
         transition: height .2s ease-out
 
-      &:hover
+      a:hover,
+      a:focus
         .card__content
           height: $card-content-height + $card-content-hover-growth
 
@@ -167,7 +168,8 @@
         .card__content
           height: $card-content-height - $card-footer-height
 
-        &:hover
+        a:hover,
+        a:focus
           .card__content
             height: $card-content-height - $card-footer-height + $card-content-hover-growth
 
