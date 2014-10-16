@@ -119,15 +119,4 @@ describe CardsHelper do
 
   end
 
-  describe "#card_datetime" do
-
-    let(:datetime) { "2014-09-08T16:39:00Z" }
-
-    it "re-formats the given date to be more readable" do
-      result = helper.card_datetime(datetime)
-      result.should eq "08 September 2014"
-    end
-
-  end
-
 end
