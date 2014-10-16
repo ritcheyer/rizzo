@@ -86,6 +86,8 @@ define([
       var urlParts = data.url.split("?");
       this._generateState(urlParts[0], urlParts[1]);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
+      this._updateGoogleAnalytics(data);
+      this.trigger(":ads/refresh");
     }.bind(this));
   };
 
