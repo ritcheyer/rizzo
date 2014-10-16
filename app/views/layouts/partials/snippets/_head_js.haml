@@ -80,7 +80,8 @@
   }(document,"script",new Date));
 
 = render 'layouts/partials/inline_js/cut_the_mustard'
-= render 'layouts/partials/inline_js/fonts_loader'
+- unless third_party
+  = render 'layouts/partials/inline_js/fonts_loader'
 = render 'layouts/partials/inline_js/grunticon'
 
 = render 'layouts/partials/inline_js/require_js_config'
