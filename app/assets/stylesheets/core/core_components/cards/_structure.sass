@@ -70,29 +70,15 @@
     height: 35px
     margin-bottom: 8px
 
-.card__content__locale,
+  .card--has-img &
+    display: none
+
 .card__content__context
   +font-size(13)
   margin-bottom: 4px
   color: $bodygray
 
-// Locale is moved to footer in simplified A/B test
-.card__footer__locale,
-.card__content__locale
-  position: relative
-  margin-top: 6px
-  white-space: nowrap
-  overflow: hidden
-  text-overflow: ellipsis
-
-  &:before
-    +size(16px)
-    top: 0.25em
-    margin-top: -2px
-    margin-bottom: -2px
-
-.card__content__context
-  &:before
+  &.copy--icon--before:before
     +icon-color(white)
     margin-top: -4px
     margin-bottom: -2px
@@ -130,6 +116,22 @@
 
   .card--no-footer &
     display: none
+
+  .copy--icon--before
+    &:before
+      +icon-color(body-grey)
+
+.card__footer__locale
+  margin-top: 6px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+  &.copy--icon--before:before
+    +size(16px)
+    top: 0.25em
+    margin-top: -2px
+    margin-bottom: -2px
 
 // -----------------------------------------------------------------------------
 // Height variations
@@ -176,13 +178,12 @@
       .card__content
         color: #FFF
 
-      .card__content__locale,
-      .card__content__context
-        color: inherit
-
-      .card__content__locale
+      .copy--icon--before
         &:before
           +icon-color(white)
+
+      .card__content__context
+        color: inherit
 
       .card__content__title
         +font-size(24)
@@ -220,11 +221,14 @@
     .card__content
       color: #FFF
 
+    .copy--icon--before
+      &:before
+        +icon-color(white)
+
     .card__content
       top: auto
       border-top: 0
 
-    .card__content__locale,
     .card__content__context
       color: inherit
 
@@ -240,17 +244,5 @@
 
 .card
 
-  .card__footer
-
-    .btn
-      width: auto
-      font-size: 100%
-      margin: 0 -8px
-      padding: 9px 10px
-
-    .user-attribution
-      font-size: 100%
-
-    .copy--icon--before
-      &:before
-        +icon-color(body-grey)
+  .user-attribution
+    font-size: 100%
