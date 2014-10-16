@@ -72,7 +72,8 @@ define([ "jquery", "lib/mixins/page_state" ], function($, withPageState) {
 
   SocialToolbar.prototype._updateTweetMeta = function(url, data) {
     var $tw = this.$el.find(".js-twitter-share");
-    $tw.attr("href",
+
+    $tw.length && $tw.attr("href",
       $tw.attr("href")
         .replace(/(text=).+?(?=via)/, "text=" + data.copy.title + " " + url + " ")
     );
@@ -80,7 +81,8 @@ define([ "jquery", "lib/mixins/page_state" ], function($, withPageState) {
 
   SocialToolbar.prototype._updateMailtoMeta = function(url, data) {
     var $mail = this.$el.find(".js-mailto-share");
-    $mail.attr("href",
+
+    $mail.length && $mail.attr("href",
       $mail.attr("href")
         .replace(/(subject=)[^&]+/, "subject=" + data.copy.title)
         .replace(/(body=)[^&]+/, "body=" + url)
