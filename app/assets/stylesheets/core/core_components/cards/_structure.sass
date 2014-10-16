@@ -75,6 +75,7 @@
 
 .card__content__context
   +font-size(13)
+  @extend %truncate-text
   margin-bottom: 4px
   color: $bodygray
 
@@ -87,6 +88,9 @@
     // Fake padding around the icon
     border: 2px solid
     background-size: 100%
+
+  .card__content__ribbon + &
+    margin-right: 40px
 
 .card__content__ribbon
   position: absolute
@@ -122,10 +126,8 @@
       +icon-color(body-grey)
 
 .card__footer__locale
+  @extend %truncate-text
   margin-top: 6px
-  white-space: nowrap
-  overflow: hidden
-  text-overflow: ellipsis
 
   &.copy--icon--before:before
     +size(16px)
@@ -159,7 +161,8 @@
         height: $card-content-height
         transition: height .2s ease-out
 
-      &:hover
+      a:hover,
+      a:focus
         .card__content
           height: $card-content-height + $card-content-hover-growth
 
@@ -167,7 +170,8 @@
         .card__content
           height: $card-content-height - $card-footer-height
 
-        &:hover
+        a:hover,
+        a:focus
           .card__content
             height: $card-content-height - $card-footer-height + $card-content-hover-growth
 
