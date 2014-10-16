@@ -15,17 +15,16 @@
         - if properties[:context_pin]
           .card__content__pin{ class: "icon--#{card_icon(properties)}--pin" }
 
-        - if properties[:context_text]
-          %p.card__content__context{ class: properties[:context_icon] ? "copy--icon--before icon--#{card_icon(properties)}--before" : "" }
-            = properties[:context_text]
-
         - if properties[:tags] && properties[:tags][:top_choice?]
           .card__content__ribbon.icon--top-pick
             .accessibility Top Pick
 
-        - if properties[:title].present?
-          %h1.card__content__title
-            = properties[:title]
+        - if properties[:context_text]
+          %p.card__content__context{ class: properties[:context_icon] ? "copy--icon--before icon--#{card_icon(properties)}--before" : "" }
+            = properties[:context_text]
+
+        %h1.card__content__title
+          = properties[:title]
 
         .card__content__desc
           - if properties[:html_content]
