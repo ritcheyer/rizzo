@@ -67,8 +67,9 @@
   // Initialise a flamsteed buffer
   window.lp.fs = {
     buffer: [],
-    log : function(x){this.buffer.push({e: x})},
-    time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
+    now: function(){return (Date.now ? Date.now() : new Date().getTime());},
+    log : function(x){this.buffer.push({e: x, t: this.now()})},
+    time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: this.now()})}
   };
 
 = yield :head_js
