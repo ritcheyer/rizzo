@@ -12,11 +12,11 @@
     "TODO"
   ],
   "homepage": "https://github.com/lonelyplanet/flamsteed",
-  "_release": "ae5d0eebbf",
+  "_release": "152005aa68",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "ae5d0eebbf718b0be658448f1431dc23eccf428a"
+    "commit": "152005aa68a9878a9475fe9a661392d1521167ca"
   },
   "_source": "git://github.com/lonelyplanet/flamsteed.git",
   "_target": "*",
