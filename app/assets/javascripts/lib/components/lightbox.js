@@ -103,7 +103,7 @@ define([
         var showPreloader,
             $opener = $(data.opener);
 
-        this.$lightbox.addClass(this.customClass = this.customClass || $opener.data().lightboxClass);
+        this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data().lightboxClass);
 
         showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
         if (showPreloader && !this.$lightbox.find(".js-preloader").length){
@@ -129,10 +129,11 @@ define([
 
         if (this.requestMade) {
           this.requestMade = false;
-          this.$controllerEl.trigger(":controller/reset");
         }
 
-        this.$lightbox.removeClass("is-active " + this.customClass);
+        this.$controllerEl.trigger(":controller/reset");
+
+        this.$lightbox.removeClass("is-active " + this.customClassAdded);
         // Waits for the end of the transition.
         setTimeout(function() {
           this.$lightbox.removeClass("is-visible");
