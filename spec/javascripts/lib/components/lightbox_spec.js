@@ -55,6 +55,9 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
           loadFixtures("lightbox.html");
           jasmine.Clock.useMock();
           lightbox = new LightBox();
+          spyOn(lightbox, "viewport").andReturn({
+            width: 600
+          });
 
           $("#js-row--content").trigger(":lightbox/open", {
             opener: lightbox.opener
@@ -85,6 +88,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
           expect($("#js-lightbox")).not.toHaveClass("lightbox-foo");
           expect($("html")).not.toHaveClass("lightbox--open");
         });
+
       });
 
       describe("with the config in constructor", function() {
@@ -94,6 +98,9 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
           lightbox = new LightBox({
             showPreloader: true,
             customClass: "lightbox-bar"
+          });
+          spyOn(lightbox, "viewport").andReturn({
+            width: 600
           });
 
           $("#js-row--content").trigger(":lightbox/open", {
@@ -124,6 +131,25 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
       });
 
+      describe("and small viewport", function() {
+        beforeEach(function() {
+          loadFixtures("lightbox.html");
+          jasmine.Clock.useMock();
+          lightbox = new LightBox();
+          spyOn(lightbox, "viewport").andReturn({
+            width: 400
+          });
+
+          $("#js-row--content").trigger(":lightbox/open", {
+            opener: lightbox.opener
+          });
+        });
+
+        it("should not be opened", function() {
+          expect($("#js-lightbox")).not.toHaveClass("is-active");
+        });
+      });
+
     });
 
     describe("Functionality", function() {
@@ -145,6 +171,9 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
     describe("Preloader", function() {
       beforeEach(function() {
         lightbox = new LightBox({ showPreloader: true });
+        spyOn(lightbox, "viewport").andReturn({
+          width: 600
+        });
         $("#js-row--content").trigger(":lightbox/open", {
           opener: lightbox.opener
         });
