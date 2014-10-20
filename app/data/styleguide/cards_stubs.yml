@@ -19,14 +19,6 @@
   :title: "Ko Pha-Ngan"
   :description: "In the family of southern Gulf islands, Ko Pha-Ngan sits in the crystal sea between Ko Samui, its business-savvy older brother, and little Ko Tao, the spunky younger brother full of dive-centric energy."
 -
-  :styleguide_title: "Card with image and post date"
-  :url: "#"
-  :title: "Classic Paris: a fresh look at the city of light"
-  :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
-  :image_alt: ""
-  :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
-  :post_date: 2014-09-08T16:39:00Z
--
   :styleguide_title: "Card with image and author"
   :url: "#"
   :title: "Classic Paris: a fresh look at the city of light"
@@ -98,15 +90,6 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
-  :styleguide_title: "Short card with image and date"
-  :url: "#"
-  :short?: true
-  :title: "Travel shopping"
-  :description: ""
-  :image_alt: ""
-  :image_url: "http://images-resrc.staticlp.com/C=W3514,H3386,X1161,Y0/S=W300,H300/http://media.lonelyplanet.com/a/g/hi/t/a03b63e2de8b540613e1cab75404b5a2-travel-shopping.jpg"
-  :post_date: "Tue Oct 31 2014 11:50:00 GMT+0100"
--
   :styleguide_title: "Short card with image and image icon"
   :url: "#"
   :short?: true
@@ -132,11 +115,10 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
-  :styleguide_title: "Double width card with cover image and date"
+  :styleguide_title: "Double width card with cover image"
   :url: "#"
   :cover?: true
   :double?: true
   :title: "Top things to do in Paris"
   :image_alt: ""
   :image_url: "http://media.lonelyplanet.com/a/g/hi/t/d79818893c366ac9d63dd756a86cb968-best-places-to-stay-in-paris.jpg"
-  :post_date: "Tue Oct 31 2014 11:50:00 GMT+0100"
