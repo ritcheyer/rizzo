@@ -20,6 +20,12 @@
   window.lp.tracking = window.lp.tracking || {};
   window.lp.supports = window.lp.supports || {};
 
+  // Allow apps to pass in requirejs configuration
+  window.lp.require = {
+    paths: {},
+    shim: {}
+  }
+
   window.lp.analytics = window.lp.analytics || {
     dataLayer: {},
     eventBuffer: [],

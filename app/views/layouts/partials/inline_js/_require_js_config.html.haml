@@ -1,3 +1,6 @@
+-# Allow passing in of lp.require.paths and lp.require.shims
+= yield :app_require_config
+
 :javascript
   var require = require || {
     baseUrl: '/assets',
@@ -16,10 +19,18 @@
       nvd3: "nvd3/nv.d3",
       usabilla: "usabilla/usabilla"
     },
-    shim: {
-      infobox: {
-        exports: "InfoBox"
-      }
-    },
+    shim: {},
     waitSeconds: 30
   };
+
+  if (lp.require && lp.require.paths) {
+    for (path in lp.require.paths) {
+      require.paths[path] = lp.require.paths[path];
+    }
+  }
+
+  if (lp.require && lp.require.shim) {
+    for (shim in lp.require.shim) {
+      require.shim[shim] = lp.require.shim[shim];
+    }
+  }
