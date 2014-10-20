@@ -73,15 +73,14 @@ define([
     }.bind(this));
 
     this.$el.on("click", this.opener, function(event) {
-      if (this.viewport().width > this.mobileBreakpoint) {
-        event.preventDefault();
+      event.preventDefault();
 
-        this.trigger(":lightbox/open", {
-          listener: this.$el,
-          opener: event.currentTarget,
-          target: this.$lightboxContent
-        });
-      }
+      this.trigger(":lightbox/open", {
+        listener: this.$el,
+        opener: event.currentTarget,
+        target: this.$lightboxContent
+      });
+
     }.bind(this));
 
     this.$previous.add(this.$next).on("click", function(event) {
@@ -96,25 +95,29 @@ define([
     }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
-      $("html").addClass("lightbox--open");
-      this.$lightbox.addClass("is-active is-visible");
-
       if (data && data.opener) {
         var showPreloader,
-            $opener = $(data.opener);
+          $opener = $(data.opener);
 
-        this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data().lightboxClass);
+        if (this.viewport().width > ($opener.data().mobileBreakpoint || this.mobileBreakpoint)) {
+          $("html").addClass("lightbox--open");
+          this.$lightbox.addClass("is-active is-visible");
 
-        showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
-        if (showPreloader && !this.$lightbox.find(".js-preloader").length){
-          this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
-          this.$lightboxContent.parent().append(this.preloaderTmpl);
+          this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data().lightboxClass);
+
+          showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
+          if (showPreloader && !this.$lightbox.find(".js-preloader").length){
+            this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
+            this.$lightboxContent.parent().append(this.preloaderTmpl);
+          }
+
+          setTimeout(function() {
+            this.listenToFlyout(event, data);
+          }.bind(this), 20);
+
         }
       }
 
-      setTimeout(function() {
-        this.listenToFlyout(event, data);
-      }.bind(this), 20);
     }.bind(this));
 
     this.$el.on(":lightbox/fetchContent", function(event, url) {
