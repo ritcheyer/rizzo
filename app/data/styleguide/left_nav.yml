@@ -104,7 +104,7 @@
       :title: "Design"
       :items:
         -
-          :name: "Design palette"
+          :name: "Design Palette"
           :slug: "colours"
         -
           :name: "UI Colours"
@@ -125,7 +125,7 @@
           :name: "Interests"
           :slug: "interests-icons"
         -
-          :name: "Need to know"
+          :name: "Need to Know"
           :slug: "need-to-know-icons"
   :ui_components:
     -
@@ -135,7 +135,7 @@
           :name: "Cards"
           :slug: "cards"
         -
-          :name: "Ad units"
+          :name: "Ad Units"
           :slug: "ad-units"
         -
           :name: "Alerts"
@@ -156,7 +156,7 @@
           :name: "Preloader"
           :slug: "preloader"
         -
-          :name: "Page title"
+          :name: "Page Title"
           :slug: "page-title"
         -
           :name: "Pagination"
@@ -170,6 +170,9 @@
         -
           :name: "POI Maps"
           :slug: "poi-maps"
+        -
+          :name: "Price Label"
+          :slug: "price-label"
         -
           :name: "Slider"
           :slug: "slider"

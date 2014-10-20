@@ -36,4 +36,4 @@
       = render partial: "/components/cards/partials/footer", locals: { properties: properties }
 
   - if properties[:price_tag].present?
-    = render partial: "/components/cards/partials/price_label", locals: { properties: properties[:price_tag] }
+    = ui_component("price_label", properties: properties[:price_tag])
