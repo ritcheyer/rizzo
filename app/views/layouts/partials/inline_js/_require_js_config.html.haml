@@ -1,7 +1,5 @@
--# Allow passing in of lp.require.paths and lp.require.shims
-= yield :app_require_config
-
 :javascript
+
   var require = require || {
     baseUrl: '/assets',
     paths: {
@@ -15,13 +13,14 @@
       trackjs: "trackjs/trackjs",
       dfp: "jquery.dfp.js/jquery.dfp",
       autocomplete: "autocomplete/dist/autocomplete",
-      d3: "d3/d3",
-      nvd3: "nvd3/nv.d3",
       usabilla: "usabilla/usabilla"
     },
     shim: {},
     waitSeconds: 30
   };
+
+  // App requirejs config is passed and stored on lp.require
+  #{ yield :app_require_config }
 
   if (lp.require && lp.require.paths) {
     for (path in lp.require.paths) {
