@@ -258,7 +258,7 @@ define([
       this._setupAutoSlide();
     }
 
-    this.$listener.trigger(":slider/slideChanged",[ (index - 1) ]);
+    this.$listener.trigger(":slider/slideChanged", [ (index - 1) ]);
   };
 
   Slider.prototype._updateSlideClasses = function() {
