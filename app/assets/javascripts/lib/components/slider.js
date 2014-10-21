@@ -15,6 +15,7 @@ define([
     slides: ".js-slide",
     slidesContainer: ".js-slider-container",
     slidesViewport: ".js-slider-viewport",
+    listener: "#js-row-content",
     // the number of images to load on either side of is-current
     assetBalance: 2,
     assetReveal: false,
@@ -27,7 +28,9 @@ define([
   };
 
   function Slider(args) {
+
     this.config = $.extend({}, defaults, args);
+
     this.currentSlide = 1;
     this.$el = $(this.config.el);
     this.$slides = this.$el.find(this.config.slides);
@@ -37,7 +40,7 @@ define([
   }
 
   Slider.prototype.init = function() {
-    var transform = window.lp.supports.transform.css,
+    var transform = window.lp.supports.transform && window.lp.supports.transform.css,
         transition = this.$el.data("transition") || this.config.transition,
         transitionString = transform + " " + transition + "ms ease-in-out, left " + transition + "ms ease-in-out",
         currentSlideSpecified;
@@ -70,7 +73,6 @@ define([
     if (this.config.assetReveal) {
       this.assetReveal = new AssetReveal({ el: this.$el });
     }
-
     // This gets called in `_goToSlide`, so don't call it again.
     if (!currentSlideSpecified) {
       this._setupAutoSlide();
@@ -81,7 +83,7 @@ define([
 
   Slider.prototype._gatherElements = function() {
     this.$currentSlide = this.$slides.filter(".is-current");
-    this.$listener = $(this.config.$listener || "#js-row--content");
+    this.$listener = $(this.config.listener);
     this.$slidesContainer = this.$el.find(this.config.slidesContainer);
     this.$slidesViewport = this.$el.find(this.config.slidesViewport);
     this.$sliderControlsContainer = $(".js-slider-controls-container");
@@ -140,8 +142,8 @@ define([
 
     this.$sliderControlsContainer.addClass("is-shown");
 
-    $next = this.$sliderControlsContainer.find(".js-slider-next").attr("href", "");
-    $prev = this.$sliderControlsContainer.find(".js-slider-previous").attr("href", "");
+    $next = this.$sliderControlsContainer.find(".js-slider-next").val("");
+    $prev = this.$sliderControlsContainer.find(".js-slider-previous").val("");
 
     $next.on("click", function() {
       _this._nextSlide(true);
@@ -163,7 +165,7 @@ define([
     var _this = this;
 
     this.$slides.each(function(i) {
-      var $link = $("<a href='#" + (i + 1) + "' class='slider__pagination--link js-slider-pagination-link'></a>");
+      var $link = $("<button value='" + (i + 1) + "' class='slider__pagination--link js-slider-pagination-link'></button>");
       if (!_this.$sliderPaginationLinks) {
         _this.$sliderPaginationLinks = $link.addClass("is-current");
       } else {
@@ -172,7 +174,7 @@ define([
     });
 
     this.$sliderPaginationLinks.on("click", function(e) {
-      _this._goToSlide($(this).attr("href").replace("#", ""));
+      _this._goToSlide(this.value);
       e.preventDefault();
     });
 
@@ -256,7 +258,7 @@ define([
       this._setupAutoSlide();
     }
 
-    this.$listener.trigger(":slider/slideChanged");
+    this.$listener.trigger(":slider/slideChanged",[ (index - 1) ]);
   };
 
   Slider.prototype._updateSlideClasses = function() {

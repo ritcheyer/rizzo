@@ -84,6 +84,8 @@
   margin-top: -1.15em
   position: absolute
   top: 50%
+  border: none
+  outline: none
 
   &:hover
     opacity: 1
@@ -132,3 +134,51 @@
   margin: 5px
   &.is-current
     background: $linkblue
+
+.slider__thumbs
+  +z-layer(top)
+  +alpha-background(black,0.8,black)
+  position: absolute
+  display: none
+  bottom: 0
+  height: 60px
+  width: 100%
+  text-align: center
+
+.slider__thumbs__list
+  height: 70px
+  margin: 5px 25px 0 25px
+  overflow-x: scroll
+  overflow-y: hidden
+  white-space: nowrap
+  -ms-overflow-style: none
+  .ie8 &,.ie9 &
+    overflow-x: hidden
+
+.slider__thumb__link
+  display: inline-block
+  margin: 0 2px
+  background-color: #000
+  outline: none !important
+
+.slider__thumb
+  height: 50px
+  opacity: 0.5
+  &:hover,
+  &.is-current
+    opacity: 1
+
+.slider__thumb__arrow
+  @extend %image-replacement
+  position: absolute
+  top: 50%
+  height: 15px
+  width: 15px
+  margin-top: -7px
+  outline: none !important
+  &:hover
+    +icon-color(white)
+  &.icon--chevron-right
+    right: 6px
+  &.icon--chevron-left
+    left: 6px
