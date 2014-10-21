@@ -18,7 +18,6 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
 
     this.$container = $(this.config.container);
     this.$body = $("body");
-    this.containerPosition = this.$container.offset().top;
     this.template =
       "<div class='alert alert--{{type}} alert--{{appearance}}'>" +
       "<div class='alert__inner icon--{{icon}}--before row__inner'>" +
@@ -55,12 +54,16 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
   };
 
   Alert.prototype.scrollTo = function() {
-    this.$body.animate({ scrollTop: this.containerPosition }, 300);
+    this.$body.animate({ scrollTop: this._position() }, 300);
   };
 
   // -------------------------------------------------------------------------
   // Private
   // -------------------------------------------------------------------------
+
+  Alert.prototype._position = function() {
+    return this.$container.offset().top;
+  };
 
   Alert.prototype._render = function(message, type, isSubtle) {
     this.clear();

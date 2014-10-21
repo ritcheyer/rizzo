@@ -156,12 +156,12 @@ require([
 
         beforeEach(function() {
           spyOn(alert.$body, "animate");
-          spyOn(alert.$body, "scrollTop").andReturn(alert.containerPosition + 1);
+          spyOn(alert, "_position").andReturn(600);
           alert.scrollTo();
         });
 
         it("should call animate and scroll the page to alert container", function() {
-          expect(alert.$body.animate).toHaveBeenCalledWith({ scrollTop: alert.containerPosition }, 300);
+          expect(alert.$body.animate).toHaveBeenCalledWith({ scrollTop: 600 }, 300);
         });
       });
 
