@@ -79,6 +79,26 @@
 //
 // -----------------------------------------------------------------------------
 
++respond-to(narrow-view, false)
+
+  .nv--col--one-whole
+    width: 100%
+
+  .nv--col--one-half
+    width: percentage(1/2)
+
+  .nv--col--one-third
+    width: percentage(1/3)
+
+  .nv--col--two-thirds
+    width: percentage(2/3)
+
+  .nv--col--one-quarter
+    width: percentage(1/4)
+
+  .nv--col--three-quarters
+    width: percentage(3/4)
+
 +respond-to(medium-view, false)
 
   .mv--col--one-whole
@@ -109,6 +129,38 @@
     width: percentage(3/5)
 
   .mv--col--four-fifths
+    width: percentage(4/5)
+
++respond-to(large-view, false)
+
+  .lv--col--one-whole
+    width: 100%
+
+  .lv--col--one-half
+    width: percentage(1/2)
+
+  .lv--col--one-third
+    width: percentage(1/3)
+
+  .lv--col--two-thirds
+    width: percentage(2/3)
+
+  .lv--col--one-quarter
+    width: percentage(1/4)
+
+  .lv--col--three-quarters
+    width: percentage(3/4)
+
+  .lv--col--one-fifth
+    width: percentage(1/5)
+
+  .lv--col--two-fifths
+    width: percentage(2/5)
+
+  .lv--col--three-fifths
+    width: percentage(3/5)
+
+  .lv--col--four-fifths
     width: percentage(4/5)
 
 +respond-to(wide-view)
