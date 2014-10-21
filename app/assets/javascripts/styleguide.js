@@ -8,6 +8,7 @@ require([ "jquery" ], function($) {
     "lib/core/ad_manager",
     "lib/page/scroll_perf",
     "lib/components/slider",
+    "lib/components/thumb_slider",
     "lib/styleguide/charts",
     "lib/components/poi_map",
     "lib/components/poi_list",
@@ -31,14 +32,15 @@ require([ "jquery" ], function($) {
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand",
     "lib/styleguide/alert"
-  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, WidgetTravelInsurance) {
+  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, ThumbSlider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, WidgetTravelInsurance) {
 
     new ScrollPerf();
     new ToggleActive();
     new Konami();
     new Swipe();
     new POIList(null, new POIMap);
-    new Slider({ el: ".js-slider", assetReveal: true, thumbSlider: true ,listener: document });
+    new Slider({ el: ".js-slider", assetReveal: true ,listener: document });
+    new ThumbSlider();
     new SelectGroupManager();
     new PageHopper();
 
