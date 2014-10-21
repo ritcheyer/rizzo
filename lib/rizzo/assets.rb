@@ -22,6 +22,8 @@ module Rizzo::Assets
       'styleguide.css',
       'jquery/dist/jquery.js',
       'requirejs/require.js',
+      'd3/d3.js',
+      'nvd3/nv.d3.js',
       'nvd3/nv.d3.min.css'
     ]
   end
