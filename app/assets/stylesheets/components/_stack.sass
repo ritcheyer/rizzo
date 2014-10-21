@@ -58,3 +58,39 @@
     top: 0
     right: 0
     width: 300px
+
+.stack__results
+  @extend %clearfix
+
+.stack__column
+  box-sizing: border-box
+
+  +respond-to(400)
+    float: left
+    width: percentage(1/2)
+    padding-left: 10px
+
+  +respond-to(580)
+    width: percentage(1/3)
+
+  +respond-to(800)
+    width: percentage(1/4)
+
+  +respond-to(wide-view)
+    width: percentage(1/3)
+
+.stack__column--double
+  // Avoid horrible % rounding errors
+  margin-bottom: -1px
+
+  +respond-to(400)
+    width: 100%
+
+  +respond-to(580)
+    width: percentage(2/3)
+
+  +respond-to(800)
+    width: percentage(1/2)
+
+  +respond-to(wide-view)
+    width: percentage(2/3)
