@@ -8,7 +8,8 @@ require([ "jquery" ], function($) {
     "flamsteed",
     "trackjs",
     "polyfills/function_bind",
-    "polyfills/xdr"
+    "polyfills/xdr",
+    "sCode"
   ], function(Base, ScrollPerf, Flamsteed) {
 
     $(function() {
