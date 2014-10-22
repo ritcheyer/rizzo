@@ -19,15 +19,19 @@
     margin-left: $card-margin
 
 .card--single
-  +card-dimensions(1)
+  +card-dimensions(1, $height: $card-height-mobile)
+  +respond-to(medium-view)
+    +card-dimensions(1)
 
 .card--double
-  +card-dimensions(2)
-  // % rounding errors
-  margin-bottom: $card-margin + 1
+  +card-dimensions(1, $height: $card-width)
+  +respond-to(medium-view)
+    +card-dimensions(2)
 
 .card--triple
-  +card-dimensions(3)
+  +card-dimensions(1, $height: $card-width)
+  +respond-to(medium-view)
+    +card-dimensions(3)
 
 // -----------------------------------------------------------------------------
 // Basic card layout and styles
@@ -55,8 +59,8 @@
   +size(30px)
   +icon-color(white)
   position: absolute
-  left: 15px
-  top: 15px
+  left: $card-content-padding
+  top: $card-content-padding
 
 .card__content
   padding: $card-content-padding
@@ -117,7 +121,7 @@
   // A cheeky extra 1px to cover any seams or
   // artefacts on iDevices when zoomed out
   height: $card-footer-height + 1px
-  padding: 0 15px
+  padding: 0 $card-content-padding
   color: $feature-copy
 
   .card--no-footer &
@@ -153,29 +157,39 @@
     &.card--standard
 
       .card__figure
-        bottom: $card-content-height + ($card-content-padding * 2)
+        bottom: $card-content-height-mobile + ($card-content-padding * 2)
+        +respond-to(medium-view)
+          bottom: $card-content-height + ($card-content-padding * 2)
 
       .card__footer,
       .card__content
         background: #FFF
 
       .card__content
-        height: $card-content-height
+        height: $card-content-height-mobile
         transition: height .2s ease-out
+        +respond-to(medium-view)
+          height: $card-content-height
 
       a:hover,
       a:focus
         .card__content
-          height: $card-content-height + $card-content-hover-growth
+          height: $card-content-height-mobile + $card-content-hover-growth
+          +respond-to(medium-view)
+            height: $card-content-height + $card-content-hover-growth
 
       &.card--has-footer
         .card__content
-          height: $card-content-height - $card-footer-height
+          height: $card-content-height-mobile - $card-footer-height
+          +respond-to(medium-view)
+            height: $card-content-height - $card-footer-height
 
         a:hover,
         a:focus
           .card__content
-            height: $card-content-height - $card-footer-height + $card-content-hover-growth
+            height: $card-content-height-mobile - $card-footer-height + $card-content-hover-growth
+            +respond-to(medium-view)
+              height: $card-content-height - $card-footer-height + $card-content-hover-growth
 
     // Cover image card
     &.card--cover
@@ -203,9 +217,6 @@
           +font-size(28)
 
   &.card--no-img
-
-    .card__content
-      padding-top: 15px
 
     &.card--has-tags
       .card__content__title
