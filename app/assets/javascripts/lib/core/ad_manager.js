@@ -46,6 +46,10 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
 
       self.load();
 
+      self.$listener.on(":ads/updateTargeting", function(e, config) {
+        self.updateTargeting(config);
+      });
+
       self.$listener.on(":ads/refresh :page/updated", function(e, type) {
         self.refresh(type);
       });
@@ -144,6 +148,21 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
         return self.$adunits.eq(index).data("googleAdUnit") === undefined;
       })
       .dfp(this.pluginConfig);
+  };
+
+  AdManager.prototype.updateTargeting = function(config) {
+
+    config = this.formatKeywords(config);
+    this.$adunits.each(function(i, unit) {
+      var adUnit = $(unit).data("googleAdUnit");
+      if (adUnit) {
+        adUnit.clearTargeting();
+        for (var param in config) {
+          adUnit.setTargeting(param, config[param]);
+        }
+      }
+    });
+
   };
 
   AdManager.prototype.refresh = function(type) {
