@@ -20,14 +20,18 @@
 
 .card--single
   +card-dimensions(1)
+  +respond-to(narrow-view)
+    +card-dimensions(1, $height: 380px)
 
 .card--double
   +card-dimensions(2)
-  // % rounding errors
-  margin-bottom: $card-margin + 1
+  +respond-to(narrow-view)
+    +card-dimensions(2, $height: 380px)
 
 .card--triple
   +card-dimensions(3)
+  +respond-to(narrow-view)
+    +card-dimensions(3, $height: 380px)
 
 // -----------------------------------------------------------------------------
 // Basic card layout and styles
@@ -154,6 +158,8 @@
 
       .card__figure
         bottom: $card-content-height + ($card-content-padding * 2)
+        +respond-to(narrow-view)
+          bottom: 165px + ($card-content-padding * 2)
 
       .card__footer,
       .card__content
@@ -162,6 +168,8 @@
       .card__content
         height: $card-content-height
         transition: height .2s ease-out
+        +respond-to(narrow-view)
+          height: 165px
 
       a:hover,
       a:focus
