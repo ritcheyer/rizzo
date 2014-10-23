@@ -41,8 +41,15 @@ define(function() {
     return matches ? matches[1] : null;
   };
 
-  AdUnit.prototype.refresh = function() {
+  AdUnit.prototype.refresh = function(newConfig) {
     var slot = this.$target.data("googleAdUnit");
+    if (newConfig) {
+      slot.clearTargeting();
+      for (var param in newConfig) {
+        slot.setTargeting(param, newConfig[param]);
+      }
+    }
+
     window.googletag.pubads().refresh([ slot ]);
   };
 

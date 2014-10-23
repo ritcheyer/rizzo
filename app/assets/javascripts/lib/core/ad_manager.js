@@ -46,12 +46,8 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
 
       self.load();
 
-      self.$listener.on(":ads/updateTargeting", function(e, config) {
-        self.updateTargeting(config);
-      });
-
-      self.$listener.on(":ads/refresh :page/updated", function(e, type) {
-        self.refresh(type);
+      self.$listener.on(":ads/refresh :page/updated", function(e, data) {
+        self.refresh(data);
       });
 
       self.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
@@ -67,7 +63,7 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
 
     if (!unit) {
       currentUnit = new AdUnit($adunit);
-      $.data($adunit, "adUnit", currentUnit);
+      $adunit.data("adUnit", currentUnit);
     }
 
     if (!currentUnit.isEmpty()) {
@@ -150,34 +146,25 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
       .dfp(this.pluginConfig);
   };
 
-  AdManager.prototype.updateTargeting = function(config) {
+  AdManager.prototype.refresh = function(data) {
+    var i, len, unit, type, adsConfig;
 
-    config = this.formatKeywords(config);
-    this.$adunits.each(function(i, unit) {
-      var adUnit = $(unit).data("googleAdUnit");
-      if (adUnit) {
-        adUnit.clearTargeting();
-        for (var param in config) {
-          adUnit.setTargeting(param, config[param]);
-        }
+    if (typeof data === "string"){
+      type = data;
+    } else if (data instanceof Object) {
+      type = data.type;
+      if (data.ads){
+        adsConfig = data.ads;
       }
-    });
+    }
 
-  };
+    for (i = 0, len = this.$adunits.length; i < len; i++) {
+      unit = this.$adunits.eq(i).data("adUnit");
 
-  AdManager.prototype.refresh = function(type) {
-    var i, len, unit;
-
-    if (type) {
-      for (i = 0, len = this.$adunits.length; i < len; i++) {
-        unit = this.$adunits.eq(i).data("adUnit");
-
-        if (unit.getType() === type) {
-          unit.refresh();
-        }
+      if (unit && (!type || unit.getType() === type)) {
+        unit.refresh(adsConfig);
       }
-    } else {
-      window.googletag.pubads().refresh();
+
     }
   };
 

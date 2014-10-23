@@ -87,10 +87,7 @@ define([
       this._generateState(urlParts[0], urlParts[1]);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
       this._updateGoogleAnalytics(data);
-      if (data.ads) {
-        this.trigger(":ads/updateTargeting", data.ads);
-      }
-      this.trigger(":ads/refresh");
+      this.trigger(":ads/refresh", { ads: data.ads });
     }.bind(this));
   };
 
