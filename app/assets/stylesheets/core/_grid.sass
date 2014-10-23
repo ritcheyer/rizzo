@@ -73,6 +73,9 @@
 .col--four-fifths
   width: percentage(4/5)
 
+.col--clear
+  clear: left
+
 // -----------------------------------------------------------------------------
 //
 // Responsive grid allowing columns to be composed for multiple screen sizes
@@ -80,6 +83,9 @@
 // -----------------------------------------------------------------------------
 
 +respond-to(narrow-view, false)
+
+  .col--clear
+    clear: none
 
   .nv--col--one-whole
     width: 100%
@@ -99,7 +105,13 @@
   .nv--col--three-quarters
     width: percentage(3/4)
 
+  .nv--clear
+    clear: left
+
 +respond-to(medium-view, false)
+
+  .nv--clear
+    clear: none
 
   .mv--col--one-whole
     width: 100%
@@ -131,7 +143,13 @@
   .mv--col--four-fifths
     width: percentage(4/5)
 
+  .mv--clear
+    clear: left
+
 +respond-to(large-view, false)
+
+  .mv--clear
+    clear: none
 
   .lv--col--one-whole
     width: 100%
@@ -163,7 +181,13 @@
   .lv--col--four-fifths
     width: percentage(4/5)
 
+  .lv--clear
+    clear: left
+
 +respond-to(wide-view)
+
+  .lv--clear
+    clear: none
 
   .wv--col--one-whole
     width: 100%
@@ -195,6 +219,8 @@
   .wv--col--four-fifths
     width: percentage(4/5)
 
+  .wv--clear
+    clear: left
 
 // -----------------------------------------------------------------------------
 // Flexible, collapsible grid

@@ -67,4 +67,33 @@ module CardsHelper
     end
   end
 
+  def card_grid_helper(card_index, is_double=false, grid_columns=5, reset=false)
+    class_str = ['col--one-whole']
+
+    @grid_helper_doubles = 0 if card_index == 0 || reset
+    @grid_helper_doubles += 1 if is_double
+
+    if is_double
+      class_str << 'mv--col--two-thirds' if grid_columns >= 3
+      class_str << 'lv--col--one-half' if grid_columns >= 4
+      class_str << 'wv--col--two-fifths' if grid_columns >= 5
+    else
+      class_str << 'nv--col--one-half' if grid_columns >= 2
+      class_str << 'mv--col--one-third' if grid_columns >= 3
+      class_str << 'lv--col--one-quarter' if grid_columns >= 4
+      class_str << 'wv--col--one-fifth' if grid_columns >= 5
+    end
+
+    position_index = card_index + @grid_helper_doubles
+
+    if card_index > 0
+      class_str << 'nv--clear' if position_index % 2 == 0 && grid_columns >= 2
+      class_str << 'mv--clear' if position_index % 3 == 0 && grid_columns >= 3
+      class_str << 'lv--clear' if position_index % 4 == 0 && grid_columns >= 4
+      class_str << 'wv--clear' if position_index % 5 == 0 && grid_columns >= 5
+    end
+
+    class_str
+  end
+
 end

@@ -119,4 +119,88 @@ describe CardsHelper do
 
   end
 
+  describe "#card_grid_helper" do
+
+    describe "returns a list of class names" do
+      context "for a single width card" do
+        it "adds single column classes" do
+          result = helper.card_grid_helper(0)
+          result.should include("col--one-whole")
+          result.should include("nv--col--one-half")
+          result.should include("mv--col--one-third")
+          result.should include("lv--col--one-quarter")
+          result.should include("wv--col--one-fifth")
+        end
+      end
+
+      context "for a double width card" do
+        it "adds multiple column classes" do
+          result = helper.card_grid_helper(0, true)
+          result.should include("col--one-whole")
+          result.should include("mv--col--two-thirds")
+          result.should include("lv--col--one-half")
+          result.should include("wv--col--two-fifths")
+        end
+      end
+    end
+
+    describe "adds clear left classes to correct cards" do
+      context "for the third card" do
+        it "adds a clear for narrow view" do
+          result = helper.card_grid_helper(2, false, 5, true)
+
+          result.should     include("nv--clear")
+          result.should_not include("mv--clear")
+          result.should_not include("lv--clear")
+          result.should_not include("wv--clear")
+        end
+      end
+
+      context "for the fourth card" do
+        it "adds a clear for medium view" do
+          result = helper.card_grid_helper(3, false, 5, true)
+
+          result.should_not include("nv--clear")
+          result.should     include("mv--clear")
+          result.should_not include("lv--clear")
+          result.should_not include("wv--clear")
+        end
+      end
+
+      context "for the fifth card" do
+        it "adds a clear for narrow and large views" do
+          result = helper.card_grid_helper(4, false, 5, true)
+
+          result.should     include("nv--clear")
+          result.should_not include("mv--clear")
+          result.should     include("lv--clear")
+          result.should_not include("wv--clear")
+        end
+      end
+
+      context "for the sixth card" do
+        it "adds a clear for wide view" do
+          result = helper.card_grid_helper(5, false, 5, true)
+
+          result.should_not include("nv--clear")
+          result.should     include("wv--clear")
+          result.should_not include("mv--clear")
+          result.should_not include("lv--clear")
+        end
+      end
+
+      context "for the seventh card" do
+        it "adds a clear for narrow and medium views" do
+          result = helper.card_grid_helper(6, false, 5, true)
+
+          result.should     include("nv--clear")
+          result.should     include("mv--clear")
+          result.should_not include("lv--clear")
+          result.should_not include("wv--clear")
+        end
+      end
+    end
+
+  end
+
 end
