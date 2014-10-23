@@ -75,7 +75,7 @@ define([ "jquery", "lib/mixins/page_state" ], function($, withPageState) {
 
     $tw.length && $tw.attr("href",
       $tw.attr("href")
-        .replace(/(text=).+?(?=via)/, "text=" + data.copy.title + " " + url + " ")
+        .replace(/(text=).+?(?=via)/, "text=" + (data.copy.tweet || data.copy.title) + " " + url + " ")
     );
   };
 
