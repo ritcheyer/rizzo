@@ -2,9 +2,8 @@
   if (window.lp.enhanced && window.localStorage.getItem('_lpfont') == "true") {
     var ss = document.createElement('link'),
         firstLink = document.getElementsByTagName('link')[0],
-        fontPath = "#{font_path('fonts.css')}";
+        fontPath = window.lp.supports.woff2 ? "#{font_path('fonts_woff2.css')}" : "#{font_path('fonts.css')}";
 
-    
     ss.href= fontPath;
     ss.rel = "stylesheet";
     ss.type = "text/css";
