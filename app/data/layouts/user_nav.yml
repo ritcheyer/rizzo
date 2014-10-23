@@ -35,13 +35,13 @@
       :icon_class: "icon--user--before icon--white--before"
       :extra_class: "js-user-sign_in sign-in"
       :analytics:
-        :category: "account"
-        :action: "sign-in"
+        :lpa-category: "account"
+        :lpa-action: "sign-in"
     -
       :title: "Join"
       :slug: "https://auth.lonelyplanet.com/users/sign_up"
       :icon_class: "icon--sign-in--before icon--white--before"
       :extra_class: "js-user-sign_up"
       :analytics:
-        :category: "account"
-        :action: "join"
+        :lpa-category: "account"
+        :lpa-action: "join"
