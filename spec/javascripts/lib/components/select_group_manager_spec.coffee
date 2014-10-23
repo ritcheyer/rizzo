@@ -8,7 +8,7 @@ require ['public/assets/javascripts/lib/components/select_group_manager'], (Sele
 
       it 'binds events to the wrapping element', ->
         selectGroupManager = new SelectGroupManager()
-        expect(selectGroupManager.selectContainers.length).toBe(1)
+        expect(selectGroupManager.$selectContainers.length).toBe(1)
 
     describe 'visual', ->
       beforeEach ->
