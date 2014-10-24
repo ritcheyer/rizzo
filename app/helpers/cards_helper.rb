@@ -67,13 +67,14 @@ module CardsHelper
     end
   end
 
-  def card_grid_helper(card_index, is_double=false, grid_columns=5, reset=false)
+  def card_grid_helper(card_index: 0, is_double: false, is_mpu: false, grid_columns: 5, reset: false)
     class_str = ['col--one-whole']
 
     @grid_helper_doubles = 0 if card_index == 0 || reset
     @grid_helper_doubles += 1 if is_double
 
-    if is_double
+    if is_double || is_mpu
+      class_str << 'col--right' if is_mpu
       class_str << 'mv--col--two-thirds' if grid_columns >= 3
       class_str << 'lv--col--one-half' if grid_columns >= 4
       class_str << 'wv--col--two-fifths' if grid_columns >= 5
