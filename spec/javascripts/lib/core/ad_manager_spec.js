@@ -141,7 +141,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
 
     describe(".refresh()", function() {
 
-      it("Should call the refresh method on ad units filtered by type", function() {
+      it("With object parameter, should call the refresh method on ad units filtered by type", function() {
         var unit;
 
         function MockAdUnit(type) {
@@ -160,18 +160,30 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
           instance.$adunits = instance.$adunits.add($unit);
         });
 
-        instance.refresh("leaderboard");
+        instance.refresh({
+          type: "leaderboard"
+        });
         expect(instance.$adunits.eq(0).data("adUnit").refresh).toHaveBeenCalled();
 
-        instance.refresh("adSense");
+        instance.refresh({
+          type: "adSense"
+        });
         expect(instance.$adunits.eq(1).data("adUnit").refresh).toHaveBeenCalled();
 
-        instance.refresh("mpu");
+        instance.refresh({
+          type: "mpu"
+        });
         expect(instance.$adunits.eq(2).data("adUnit").refresh).toHaveBeenCalled();
+
+        instance.refresh({
+          type: "mpu",
+          ads: { param: "new" }
+        });
+        expect(instance.$adunits.eq(2).data("adUnit").refresh).toHaveBeenCalledWith({ param: "new" });
 
         expect(instance.$adunits.eq(0).data("adUnit").refresh.callCount).toEqual(1);
         expect(instance.$adunits.eq(1).data("adUnit").refresh.callCount).toEqual(1);
-        expect(instance.$adunits.eq(2).data("adUnit").refresh.callCount).toEqual(1);
+        expect(instance.$adunits.eq(2).data("adUnit").refresh.callCount).toEqual(2);
 
       });
 

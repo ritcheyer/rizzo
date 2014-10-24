@@ -71,7 +71,7 @@ define([
     }.bind(this))
 
     .on(":controller/reset", function() {
-      if ( this.layerResetState != -1 ) {
+      if (this.layerResetState != -1) {
         this.states = [ this.states[this.layerResetState] ];
         this.layerResetState = -1;
       } else {
@@ -87,7 +87,7 @@ define([
       this._generateState(urlParts[0], urlParts[1]);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
       this._updateGoogleAnalytics(data);
-      this.trigger(":ads/refresh");
+      this.trigger(":ads/refresh", { ads: data.ads });
     }.bind(this));
   };
 

@@ -76,6 +76,40 @@ require([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
 
     });
 
+    describe(".refresh()", function() {
+
+      beforeEach(function() {
+
+        function MockPubAds() {}
+        MockPubAds.prototype.refresh = function() {};
+
+        function MockGoogleTag() {}
+        MockGoogleTag.prototype.pubads = function() {
+          return new MockPubAds();
+        };
+        MockGoogleTag.prototype.cmd = {
+          push: function() {}
+        };
+
+        window.googletag = new MockGoogleTag();
+        spyOn(instance, "clearConfig").andReturn(true);
+        spyOn(instance, "setNewConfig").andReturn(true);
+      });
+
+      it("With new config, it should clear old config and set the new one ", function() {
+        instance.refresh({ param: "new" });
+        expect(instance.clearConfig).toHaveBeenCalled();
+        expect(instance.setNewConfig).toHaveBeenCalled();
+      });
+
+      it("without new config, just refresh ", function() {
+        instance.refresh();
+        expect(instance.clearConfig).not.toHaveBeenCalled();
+        expect(instance.setNewConfig).not.toHaveBeenCalled();
+      });
+
+    });
+
   });
 
 });

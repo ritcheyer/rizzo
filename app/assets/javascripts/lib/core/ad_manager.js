@@ -46,8 +46,8 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
 
       self.load();
 
-      self.$listener.on(":ads/refresh :page/updated", function(e, type) {
-        self.refresh(type);
+      self.$listener.on(":ads/refresh :page/updated", function(e, data) {
+        self.refresh(data);
       });
 
       self.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
@@ -63,7 +63,7 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
 
     if (!unit) {
       currentUnit = new AdUnit($adunit);
-      $.data($adunit, "adUnit", currentUnit);
+      $adunit.data("adUnit", currentUnit);
     }
 
     if (!currentUnit.isEmpty()) {
@@ -146,19 +146,15 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
       .dfp(this.pluginConfig);
   };
 
-  AdManager.prototype.refresh = function(type) {
+  AdManager.prototype.refresh = function(data) {
     var i, len, unit;
 
-    if (type) {
-      for (i = 0, len = this.$adunits.length; i < len; i++) {
-        unit = this.$adunits.eq(i).data("adUnit");
-
-        if (unit.getType() === type) {
-          unit.refresh();
+    for (i = 0, len = this.$adunits.length; i < len; i++) {
+      if (unit = this.$adunits.eq(i).data("adUnit")) {
+        if (!data.type || data.type === unit.getType()) {
+          unit.refresh(data.ads);
         }
       }
-    } else {
-      window.googletag.pubads().refresh();
     }
   };
 
