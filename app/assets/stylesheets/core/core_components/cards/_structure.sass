@@ -131,6 +131,10 @@
     &:before
       +icon-color(body-grey)
 
+.card__footer__reviewed
+  float: right
+  margin-top: 8px
+
 .card__footer__locale
   @extend %truncate-text
   margin-top: 6px
@@ -140,6 +144,9 @@
     top: 0.25em
     margin-top: -2px
     margin-bottom: -2px
+
+  .card__footer__reviewed + &
+    margin-right: 40px
 
 // -----------------------------------------------------------------------------
 // Height variations

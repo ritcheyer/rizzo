@@ -11,7 +11,7 @@ module CardsHelper
       "card--#{props[:double?] ? 'double' : 'single'}",
       "card--#{props[:image_url].present? ? 'has-img' : 'no-img'}",
       "card--#{props[:tags].present? || props[:price_tag].present? ? 'has-tags' : 'no-tags'}",
-      "card--#{props[:author_name] || props[:context_locale] ? 'has-footer' : 'no-footer'}"
+      "card--#{props[:author_name] || props[:context_locale] || (props[:tags] && props[:tags][:lp_reviewed?]) ? 'has-footer' : 'no-footer'}"
     ]
   end
 
