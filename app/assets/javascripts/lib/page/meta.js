@@ -2,14 +2,15 @@ define([ "jquery" ], function($) {
 
   "use strict";
 
-  function Meta() {
-    this.$listener = $("#js-card-holder");
+  function Meta(args) {
+    args = args || {};
+
+    this.$listener = $(args.listener || "#js-card-holder");
     this.listen();
   }
 
   Meta.prototype.listen = function() {
-    this.$listener.on(":cards/received", this._received.bind(this));
-    this.$listener.on(":page/received", this._received.bind(this));
+    this.$listener.on(":cards/received :page/received :layer/received", this._received.bind(this));
   };
 
   // Private
