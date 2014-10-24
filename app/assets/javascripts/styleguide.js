@@ -32,7 +32,7 @@ require([ "jquery" ], function($) {
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand",
     "lib/styleguide/alert"
-  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, ThumbSlider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, WidgetTravelInsurance) {
+  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, ThumbSlider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, TravelInsuranceWidget) {
 
     new ScrollPerf();
     new ToggleActive();
@@ -53,8 +53,8 @@ require([ "jquery" ], function($) {
       min: [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ]
     });
 
-    if (document.getElementById("js-travel-widget")) {
-      (new WidgetTravelInsurance).init();
+    if ($(".js-travel-widget").length) {
+      (new TravelInsuranceWidget).init();
     }
   });
 });
