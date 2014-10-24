@@ -141,40 +141,6 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
 
     describe(".refresh()", function() {
 
-      it("Should call the refresh method on ad units filtered by type", function() {
-        var unit;
-
-        function MockAdUnit(type) {
-          this.type = type;
-        }
-        MockAdUnit.prototype.getType = function() {
-          return this.type;
-        };
-
-        instance.$adunits = $([]);
-
-        [ "leaderboard", "adSense", "mpu" ].forEach(function(type) {
-          var mock = new MockAdUnit(type);
-          mock.refresh = jasmine.createSpy("refresh");
-          var $unit = $("<div>").data("adUnit", mock);
-          instance.$adunits = instance.$adunits.add($unit);
-        });
-
-        instance.refresh("leaderboard");
-        expect(instance.$adunits.eq(0).data("adUnit").refresh).toHaveBeenCalled();
-
-        instance.refresh("adSense");
-        expect(instance.$adunits.eq(1).data("adUnit").refresh).toHaveBeenCalled();
-
-        instance.refresh("mpu");
-        expect(instance.$adunits.eq(2).data("adUnit").refresh).toHaveBeenCalled();
-
-        expect(instance.$adunits.eq(0).data("adUnit").refresh.callCount).toEqual(1);
-        expect(instance.$adunits.eq(1).data("adUnit").refresh.callCount).toEqual(1);
-        expect(instance.$adunits.eq(2).data("adUnit").refresh.callCount).toEqual(1);
-
-      });
-
       it("With object parameter, should call the refresh method on ad units filtered by type", function() {
         var unit;
 

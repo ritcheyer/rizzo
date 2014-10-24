@@ -147,24 +147,14 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
   };
 
   AdManager.prototype.refresh = function(data) {
-    var i, len, unit, type, adsConfig;
-
-    if (typeof data === "string"){
-      type = data;
-    } else if (data instanceof Object) {
-      type = data.type;
-      if (data.ads){
-        adsConfig = data.ads;
-      }
-    }
+    var i, len, unit;
 
     for (i = 0, len = this.$adunits.length; i < len; i++) {
-      unit = this.$adunits.eq(i).data("adUnit");
-
-      if (unit && (!type || unit.getType() === type)) {
-        unit.refresh(adsConfig);
+      if (unit = this.$adunits.eq(i).data("adUnit")) {
+        if (!data.type || data.type === unit.getType()) {
+          unit.refresh(data.ads);
+        }
       }
-
     }
   };
 
