@@ -110,6 +110,10 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
     return $($toggle.data("toggleTarget"));
   };
 
+  $(function() {
+    new ToggleActive;
+  });
+
   return ToggleActive;
 
 });

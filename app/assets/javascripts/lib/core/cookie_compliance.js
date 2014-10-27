@@ -48,6 +48,10 @@ define([ "jquery" ], function($) {
     }
   };
 
+  $(function() {
+    new CookieCompliance;
+  });
+
   return CookieCompliance;
 
 });

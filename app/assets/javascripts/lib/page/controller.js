@@ -5,6 +5,7 @@ define([
   "lib/mixins/page_state",
   "lib/utils/deparam"
 ], function($, asEventEmitter, PushState, withPageState) {
+
   "use strict";
 
   var defaults = {

@@ -2,9 +2,9 @@ define([ "jquery" ], function($) {
 
   "use strict";
 
-  return function ShoppingCart() {
+  function ShoppingCart() {
 
-    var cartData = window.lp.getCookie && window.lp.getCookie("shopCartCookie");
+    var cartData = window.lp.getCookie("shopCartCookie");
 
     if (!cartData) {
       return;
@@ -15,6 +15,12 @@ define([ "jquery" ], function($) {
     if (cartData.A && cartData.A.length) {
       $(".js-user-basket").append("<span class='notification-badge notification-badge--basket-items wv--inline-block js-basket-items'>" + cartData.A.length + "</span>");
     }
-  };
+  }
+
+  $(function() {
+    new ShoppingCart;
+  });
+
+  return ShoppingCart;
 
 });
