@@ -21,7 +21,7 @@ define([
 
   "use strict";
 
-  $(function() {
+  $(document).ready(function() {
 
     new SelectGroupManager();
 

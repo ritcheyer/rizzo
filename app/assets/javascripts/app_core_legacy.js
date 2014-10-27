@@ -18,7 +18,7 @@ require([ "jquery" ], function($) {
     "polyfills/xdr"
   ], function(Base, Flamsteed) {
 
-    $(function() {
+    $(document).ready(function() {
 
       var secure = window.location.protocol === "https:";
 

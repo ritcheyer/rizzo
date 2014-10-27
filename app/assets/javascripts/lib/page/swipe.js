@@ -152,7 +152,7 @@ define([
     this.startPoint = null;
   };
 
-  $(function() {
+  $(document).ready(function() {
     new Swipe;
   });
 

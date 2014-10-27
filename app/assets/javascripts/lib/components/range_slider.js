@@ -112,7 +112,7 @@ define([ "jquery", "nouislider/jquery.nouislider" ], function($) {
   // Initialisation
   // ---------------------------------------------------------------------------
 
-  $(function() {
+  $(document).ready(function() {
     rangeSlider = new RangeSlider();
   });
 

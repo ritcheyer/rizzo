@@ -48,7 +48,7 @@ define([ "jquery" ], function($) {
     }
   };
 
-  $(function() {
+  $(document).ready(function() {
     new CookieCompliance;
   });
 
