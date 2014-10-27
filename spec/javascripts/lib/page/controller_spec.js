@@ -56,10 +56,6 @@ require([
     });
 
     describe("Object", function() {
-      it("is defined", function() {
-        expect(Controller).toBeDefined();
-      });
-
       it("has a state array", function() {
         expect(Controller.prototype.states).toBeDefined();
       });

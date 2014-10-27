@@ -10,14 +10,6 @@ require( [ "lib/forms/form_input" ], function(FormInput) {
 
     inputParent.append(input, label);
 
-    describe("Form Input object", function() {
-
-      it("is defined", function() {
-        expect(FormInput).toBeDefined();
-      });
-
-    }); // Form Input object
-
     describe("initialising Form Input object", function() {
 
       it("initialises when all parameters are supplied", function() {

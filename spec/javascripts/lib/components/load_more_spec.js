@@ -4,12 +4,6 @@ require([ "public/assets/javascripts/lib/components/load_more.js" ], function(Lo
 
     var LISTENER = "#js-card-holder";
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(LoadMore).toBeDefined();
-      });
-    });
-
     describe("Initialisation", function() {
       beforeEach(function() {
         loadFixtures("load_more.html");

@@ -10,12 +10,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/place_list" ], fun
       },
       LISTENER = "#js-card-holder";
 
-    describe( "Object", function() {
-      it("is defined", function() {
-        expect( PlaceList ).toBeDefined();
-      });
-    });
-
     describe( "Initialising", function() {
       beforeEach(function() {
         loadFixtures( "places_list.html" );

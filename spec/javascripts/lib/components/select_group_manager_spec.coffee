@@ -2,10 +2,6 @@ require ['public/assets/javascripts/lib/components/select_group_manager'], (Sele
 
   describe 'Select Group Manager', ->
 
-    describe 'Select Group Manager object', ->
-      it 'is defined', ->
-        expect(SelectGroupManager).toBeDefined()
-
     describe 'initialization', ->
       beforeEach ->
         loadFixtures('select_group_manager.html')

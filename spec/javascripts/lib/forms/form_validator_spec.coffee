@@ -2,10 +2,6 @@ require ['lib/forms/form_validator'], (FormValidator) ->
 
   describe 'LP Form Validation', ->
 
-    describe 'Form Validator object', ->
-      it 'is defined', ->
-        expect(FormValidator).toBeDefined()
-
     describe 'initialising a Form Validator', ->
 
       beforeEach ->

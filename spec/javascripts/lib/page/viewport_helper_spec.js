@@ -10,14 +10,6 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
       viewportHelper = withViewportHelper.call({});
     });
 
-    describe("Initialisation", function() {
-
-      it("is defined", function() {
-        expect(viewportHelper).toBeDefined();
-      });
-
-    });
-
     describe("Functionality", function() {
 
       beforeEach(function() {

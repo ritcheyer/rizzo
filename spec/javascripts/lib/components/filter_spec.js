@@ -13,12 +13,6 @@ require(["public/assets/javascripts/lib/components/filter.js"], function(Filter)
       disable_price_filters: false
     };
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(Filter).toBeDefined();
-      });
-    });
-
     describe("Initialisation", function() {
       beforeEach(function() {
         loadFixtures("filter.html");

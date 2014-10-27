@@ -2,12 +2,6 @@ require(["lib/page/scroll_perf"], function(ScrollPerf) {
   "use strict";
   describe("ScrollPerf", function() {
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(ScrollPerf).toBeDefined();
-      });
-    });
-
     describe("During initialisation", function() {
       beforeEach(function() {
         loadFixtures("scroll_perf.html");

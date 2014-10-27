@@ -1,16 +1,17 @@
-window.lp = {};
-window.lp.supports = {
-  transform: {
-    css: ""
+window.lp = {
+  supports: {
+    transform: {
+      css: ""
+    },
+    localStorage: true
   },
-  localStorage: true
-};
-window.lp.isMobile = false;
-window.lpUserStatusCallback = function() {};
-window.lp.analytics = {
-  api: {
-    trackEvent: function() {}
-  }
+  analytics: {
+    api: {
+      trackEvent: function() {}
+    }
+  },
+  isMobile: false,
+  getCookie: function() {},
 };
 
 require.config({

@@ -14,10 +14,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
     describe("Initialisation", function() {
 
-      it("is defined", function() {
-        expect(lightbox).toBeDefined();
-      });
-
       it("found the lightbox", function() {
         expect(lightbox.$lightbox.length).toBe(1);
       });

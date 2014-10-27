@@ -6,10 +6,6 @@ require ['jquery', 'public/assets/javascripts/lib/utils/image_helper.js'], ($, I
       loadFixtures('image_helper.html');
       window.image_helper = new ImageHelper()
 
-    describe 'Object', ->
-      it 'is defined', ->
-        expect(image_helper).toBeDefined()
-
     describe '.detectOrientation()', ->
 
       it 'detects landscape', ->

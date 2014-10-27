@@ -2,12 +2,6 @@ require([ "public/assets/javascripts/lib/components/toggle_active.js" ], functio
 
   describe("ToggleActive", function() {
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(ToggleActive).toBeDefined();
-      });
-    });
-
     describe("Initialisation", function() {
       beforeEach(function() {
         loadFixtures("toggle_active.html");
