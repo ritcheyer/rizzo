@@ -37,10 +37,6 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
 
     describe("Initialisation", function() {
 
-      it("is defined", function() {
-        expect(timeago).toBeDefined();
-      });
-
       it("defines a way to update strings", function() {
         expect(timeago, "updateStrings").toBeDefined();
       });

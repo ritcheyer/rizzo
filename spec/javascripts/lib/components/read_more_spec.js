@@ -2,12 +2,6 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
 
   describe("Section Toggle", function() {
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(SectionToggle).toBeDefined();
-      });
-    });
-
     describe("Initialising", function() {
       beforeEach(function() {
         loadFixtures("section_toggle.html");

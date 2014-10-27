@@ -2,10 +2,6 @@ require ['public/assets/javascripts/lib/page/client_cache.js'], (ClientCache) ->
 
   describe 'ClientCache', ->
 
-    describe 'Object', ->
-      it 'is defined', ->
-        expect(ClientCache).toBeDefined()
-
     describe 'Initialisation', ->
       beforeEach ->
         window.clientCache = new ClientCache()

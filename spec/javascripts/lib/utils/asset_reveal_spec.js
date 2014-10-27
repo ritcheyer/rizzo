@@ -8,12 +8,6 @@ require(["public/assets/javascripts/lib/utils/asset_reveal.js"], function(AssetR
       assetReveal = new AssetReveal;
     });
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(AssetReveal).toBeDefined();
-      });
-    });
-
     describe("Initialisation", function() {
       beforeEach(function() {
         spyOn(assetReveal, "_listen");

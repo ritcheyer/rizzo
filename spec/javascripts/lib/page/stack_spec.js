@@ -12,12 +12,6 @@ require([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
         content: "<div class=\"test4\">Four</div><div class=\"test5\">Four</div><div class=\"test6\">Four</div>"
       };
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(Stack).toBeDefined();
-      });
-    });
-
     describe("Initialising", function() {
       beforeEach(function() {
         loadFixtures("stack.html");

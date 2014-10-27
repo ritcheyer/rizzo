@@ -14,12 +14,6 @@ require([ "public/assets/javascripts/lib/components/availability_info.js" ], fun
       }
     };
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(AvailabilityInfo).toBeDefined();
-      });
-    });
-
     describe("Initialisation", function() {
       beforeEach(function() {
         loadFixtures("availability_info.html");

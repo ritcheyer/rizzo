@@ -7,12 +7,6 @@ require([ "public/assets/javascripts/lib/page/left_nav.js" ], function(LeftNav) 
       list: ".js-neighbourhood-item,.js-facet,.js-descendant-item,.js-stack-collection"
     };
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(LeftNav).toBeDefined();
-      });
-    });
-
     describe("Initialising", function() {
       beforeEach(function() {
         loadFixtures("stack_list.html");

@@ -3,12 +3,6 @@ require([ "public/assets/javascripts/lib/components/availability_search.js" ], f
   describe("Availability", function() {
     var LISTENER = "#js-card-holder";
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(Availability).toBeDefined();
-      });
-    });
-
     describe("Initialisation", function() {
       beforeEach(function() {
         loadFixtures("availability.html");

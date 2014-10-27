@@ -10,12 +10,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], func
         showPagination: true
       };
 
-    describe("object", function() {
-      it("is defined", function() {
-        expect(Slider).toBeDefined();
-      });
-    });
-
     describe("initialising", function() {
       beforeEach(function() {
         window.slider = new Slider(config);

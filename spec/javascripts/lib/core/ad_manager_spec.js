@@ -7,9 +7,8 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
     beforeEach(function() {
       loadFixtures("ad_iframe.html");
 
-      window.lp.getCookie = function() {
-        return [];
-      };
+      spyOn(window.lp, "getCookie").andReturn([]);
+
       window.Krux = {
         user: "foo",
         segments: []
@@ -25,7 +24,6 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
 
     afterEach(function() {
       $(".adunit").removeData("googleAdUnit adUnit");
-      window.lp.getCookie = undefined;
     });
 
     describe("._init()", function() {

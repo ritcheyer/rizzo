@@ -6,23 +6,10 @@ require([ "jquery", "public/assets/javascripts/lib/core/shopping_cart"], functio
 
     var shoppingCart;
 
-    it("is defined", function() {
-      expect(ShoppingCart).toBeDefined();
-    });
-
-    beforeEach(function() {
-      window.lp.getCookie = function() {
-        return false;
-      };
-    });
-
-    afterEach(function() {
-      window.lp.getCookie = undefined;
-    });
-
     describe("Empty basket", function() {
 
       beforeEach(function() {
+        spyOn(window.lp, "getCookie").andReturn(false);
         loadFixtures("shopping_cart.html");
         shoppingCart = new ShoppingCart();
       });

@@ -11,11 +11,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], 
         loadFixtures("datepicker.html");
       });
 
-      it("is defined", function() {
-        var datepicker = new Datepicker({});
-        expect(datepicker).toBeDefined();
-      });
-
       it("sets up the datepicker with default class names", function() {
         new Datepicker({ target: ".js-standard" });
 

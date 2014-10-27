@@ -4,11 +4,6 @@ require ['lib/forms/input_validator'], (InputValidator) ->
 
     input = $('<input type="text" />')
 
-    describe 'Input Validator object', ->
-
-      it 'is defined', ->
-        expect(InputValidator).toBeDefined()
-
     describe 'initialising an Input Validator object', ->
 
       it 'initialises when all parameters are supplied', ->

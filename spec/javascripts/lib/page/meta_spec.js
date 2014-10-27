@@ -18,12 +18,6 @@ require([ "jquery", "public/assets/javascripts/lib/page/meta.js" ], function($, 
       meta,
       listener = "#js-card-holder";
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(Meta).toBeDefined();
-      });
-    });
-
     // *****************
     // Private methods
     // ****************

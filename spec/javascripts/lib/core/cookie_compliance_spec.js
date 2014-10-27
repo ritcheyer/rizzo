@@ -7,9 +7,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/cookie_compliance" ], fu
   });
 
   describe("Cookie Compliance", function() {
-    it("is defined", function() {
-      expect(CookieCompliance).toBeDefined();
-    });
 
     it("shows a message if the user is in europe and has never seen it", function() {
       spyOn(CookieCompliance.prototype, "mustShow").andReturn(true);

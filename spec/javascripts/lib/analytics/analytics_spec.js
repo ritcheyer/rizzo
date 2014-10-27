@@ -15,18 +15,6 @@ require([ "jquery", "public/assets/javascripts/lib/analytics/analytics.js" ], fu
       window.s.channel = "test";
     });
 
-    describe("Initialisation", function() {
-
-      beforeEach(function() {
-        analytics = new Analytics({});
-      });
-
-      it("is defined", function() {
-        expect(analytics).toBeDefined();
-      });
-
-    });
-
     describe("Adding", function() {
 
       beforeEach(function() {

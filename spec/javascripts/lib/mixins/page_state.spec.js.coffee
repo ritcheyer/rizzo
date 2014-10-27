@@ -4,10 +4,6 @@ require ['public/assets/javascripts/lib/mixins/page_state.js'], (withPageState) 
 
     withPageState = new withPageState()
 
-    describe 'Object', ->
-      it 'is defined', ->
-        expect(withPageState).toBeDefined()
-
     describe 'Has Filtered', ->
 
       describe 'by subpath', ->

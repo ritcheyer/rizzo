@@ -4,12 +4,6 @@ require([ "public/assets/javascripts/lib/page/stack_intro.js" ], function(StackI
 
     var LISTENER = "#js-card-holder";
 
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(StackIntro).toBeDefined();
-      });
-    });
-
     describe("default instance", function() {
       beforeEach(function() {
         loadFixtures("stack_intro.html");
