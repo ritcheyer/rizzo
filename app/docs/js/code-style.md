@@ -25,6 +25,15 @@ Disagree with any of the settings? Make a PR and open a discussion.
 
 * Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of `badger`s
 
+* Please preface functions that are intended to be private with an underscore:
+
+```javascript
+// private function convention
+var _foo = function() {
+  // statements 
+}
+```
+
 * Declare variables at the top of their scope:
 
 ```javascript
