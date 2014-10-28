@@ -73,14 +73,15 @@ define([
     }.bind(this));
 
     this.$el.on("click", this.opener, function(event) {
-      event.preventDefault();
+      if (this._isAboveBreakpoint(event.currentTarget)) {
+        event.preventDefault();
 
-      this.trigger(":lightbox/open", {
-        listener: this.$el,
-        opener: event.currentTarget,
-        target: this.$lightboxContent
-      });
-
+        this.trigger(":lightbox/open", {
+          listener: this.$el,
+          opener: event.currentTarget,
+          target: this.$lightboxContent
+        });
+      }
     }.bind(this));
 
     this.$previous.add(this.$next).on("click", function(event) {
@@ -97,9 +98,9 @@ define([
     this.$el.on(":lightbox/open", function(event, data) {
       if (data && data.opener) {
         var showPreloader,
-          $opener = $(data.opener);
+            $opener = $(data.opener);
 
-        if (this.viewport().width > ($opener.data().mobileBreakpoint || this.mobileBreakpoint)) {
+        if (this._isAboveBreakpoint(data.opener)) {
           $("html").addClass("lightbox--open");
           this.$lightbox.addClass("is-active is-visible");
 
@@ -114,7 +115,6 @@ define([
           setTimeout(function() {
             this.listenToFlyout(event, data);
           }.bind(this), 20);
-
         }
       }
 
@@ -163,6 +163,10 @@ define([
   // -------------------------------------------------------------------------
   // Private Functions
   // -------------------------------------------------------------------------
+
+  LightBox.prototype._isAboveBreakpoint = function(opener) {
+    return this.viewport().width > ($(opener).data().mobileBreakpoint || this.mobileBreakpoint);
+  };
 
   LightBox.prototype._fetchContent = function(url) {
     this.$lightbox.addClass("is-loading");
