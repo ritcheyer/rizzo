@@ -15,17 +15,17 @@ define([ "jquery" ], function($) {
     var _this = this;
 
     this.$selectContainers
-      .on("focus", ".js-select", function(e) {
-        _this._getOverlay($(e.target)).addClass("is-selected");
+      .on("focus", ".js-select", function() {
+        _this._getOverlay($(this)).addClass("is-selected");
       })
-      .on("blur", ".js-select", function(e) {
-        _this._getOverlay($(e.target)).removeClass("is-selected");
+      .on("blur", ".js-select", function() {
+        _this._getOverlay($(this)).removeClass("is-selected");
       })
-      .on("keyup", ".js-select", function(e) {
-        $(e.target).trigger("change");
+      .on("keyup", ".js-select", function() {
+        $(this).trigger("change");
       })
       .on("change", ".js-select", function(e) {
-        var $target = $(e.target);
+        var $target = $(this);
 
         e.preventDefault();
 
@@ -51,6 +51,10 @@ define([ "jquery" ], function($) {
       $target.closest("form").submit();
     }
   };
+
+  $(document).ready(function() {
+    new SelectGroupManager;
+  });
 
   return SelectGroupManager;
 
