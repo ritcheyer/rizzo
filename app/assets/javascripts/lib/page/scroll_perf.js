@@ -94,5 +94,9 @@ define([
     document.addEventListener("click", this._onClick.bind(this));
   };
 
+  $(document).ready(function() {
+    new ScrollPerf;
+  });
+
   return ScrollPerf;
 });

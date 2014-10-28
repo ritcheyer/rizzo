@@ -152,5 +152,9 @@ define([
     this.startPoint = null;
   };
 
+  $(document).ready(function() {
+    new Swipe;
+  });
+
   return Swipe;
 });

@@ -1,4 +1,3 @@
-
 define([ "jquery", "lib/mixins/events", "lib/mixins/page_state" ], function($, asEventEmitter, withPageState) {
 
   "use strict";

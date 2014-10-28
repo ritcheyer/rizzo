@@ -1,4 +1,4 @@
-require([ "jquery" ], function($) {
+define([ "jquery" ], function($) {
   "use strict";
 
   var element = $(".js-swipe-me"),

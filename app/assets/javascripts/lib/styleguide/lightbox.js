@@ -1,4 +1,4 @@
-require([ "jquery", "lib/components/lightbox", "lib/page/controller" ], function($, LightBox, Controller) {
+define([ "jquery", "lib/components/lightbox", "lib/page/controller" ], function($, LightBox, Controller) {
   "use strict";
 
   new Controller();

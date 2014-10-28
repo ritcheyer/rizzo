@@ -1,4 +1,3 @@
-
 define([ "jquery", "lib/mixins/events", "lib/components/world_places" ], function($, asEventEmitter) {
 
   "use strict";

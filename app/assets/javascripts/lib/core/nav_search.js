@@ -56,6 +56,10 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
     window.location = $(el).attr("href");
   };
 
+  $(document).ready(function() {
+    new NavSearch;
+  });
+
   return NavSearch;
 
 });
