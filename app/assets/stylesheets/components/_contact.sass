@@ -1,10 +1,19 @@
 .btn--preloader
   position: relative
 
-.btn-subtle
-    &.btn--red
-      background-color: transparent
-      border: 1px solid $red
-      color: $red
-
-      ///
+// temporary styles because S, M, L, XL button styles are not ready yet. Josh's recommendation.
+.btn--small
+  +font-size(14)
+  padding: 11px 15px 10px 15px
+.js-friendship-button
+  float: right
+  width: 155px
+  margin-right: 10px
+  padding: 10px 15px 9px 15px
+  &.icon--body-grey
+    &:before
+      opacity: 0.5
+  &.btn--red
+    background-color: transparent
+    border: 1px solid $red
+    color: $red

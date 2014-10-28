@@ -173,8 +173,8 @@ define([
 
     function addAddedFriendStyle(obj) {
       obj
-      .removeClass("is-loading btn--red icon--add--before icon--cross--before")
-      .addClass("icon--body-grey icon--chevron-down--before icon--custom")
+      .removeClass("is-loading icon--add--before icon--white--before btn--red icon--cross--before icon--custom--before")
+      .addClass("btn--subtle icon--body-grey icon--chevron-down--before")
       .attr("method", "delete")
       .removeAttr("disabled");
 
@@ -183,8 +183,8 @@ define([
 
     function addRemoveFriendStyle(obj) {
       obj
-      .removeClass("icon--body-grey icon--chevron-down--before")
-      .addClass("btn--red icon--custom icon--cross--before");
+      .removeClass("btn--subtle icon--body-grey icon--chevron-down--before")
+      .addClass("btn--red icon--cross--before icon--custom--before");
 
       $this.$friendshipBtnStatus.text("Remove");
     }
