@@ -2,7 +2,6 @@ define([
   "jquery",
   "flamsteed",
   "lib/core/ad_manager",
-  "lib/components/select_group_manager",
 
   "sCode",
   "trackjs",
@@ -15,15 +14,14 @@ define([
   "lib/core/feature_detect",
   "polyfills/function_bind",
   "lib/core/cookie_compliance",
-  "lib/components/toggle_active"
+  "lib/components/toggle_active",
+  "lib/components/select_group_manager"
 
-], function($, Flamsteed, AdManager, SelectGroupManager) {
+], function($, Flamsteed, AdManager) {
 
   "use strict";
 
   $(document).ready(function() {
-
-    new SelectGroupManager();
 
     if (window.lp.ads) {
       new AdManager(window.lp.ads);
