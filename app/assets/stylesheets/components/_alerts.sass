@@ -21,6 +21,7 @@
     padding-left: 30px
 
 .alert__title, .alert a
+  color: inherit
   font-weight: bold
 
 .alert--block
@@ -69,8 +70,6 @@
     .alert__inner
       &:before
         +icon-color(lp-blue)
-  a
-    color: white
 
 .alert--warning
   +alert-variation($yella, false)
