@@ -127,25 +127,41 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
       });
 
-      describe("and small viewport", function() {
+      describe("with viewport below breakpoint", function() {
+
         beforeEach(function() {
           loadFixtures("lightbox.html");
           jasmine.Clock.useMock();
           lightbox = new LightBox();
-          spyOn(lightbox, "viewport").andReturn({
-            width: 400
+
+          spyOn(lightbox, "viewport").andReturn({ width: 400 });
+        });
+
+        describe("via $opener click", function() {
+          beforeEach(function() {
+            spyOnEvent("#js-row--content", ":lightbox/open");
+            $(".js-lightbox-toggle").trigger("click");
           });
 
-          $("#js-row--content").trigger(":lightbox/open", {
-            opener: lightbox.opener
+          it("should not be opened", function() {
+            expect(":lightbox/open").not.toHaveBeenTriggeredOn("#js-row--content");
           });
         });
 
-        it("should not be opened", function() {
-          expect($("#js-lightbox")).not.toHaveClass("is-active");
+        describe("via ':lightbox/open' event trigger", function() {
+          beforeEach(function() {
+            spyOnEvent("#js-row--content", ":lightbox/open");
+
+            $("#js-row--content").trigger(":lightbox/open", {
+              opener: lightbox.opener
+            });
+          });
+
+          it("should not be opened", function() {
+            expect($("#js-lightbox")).not.toHaveClass("is-active");
+          });
         });
       });
-
     });
 
     describe("Functionality", function() {
