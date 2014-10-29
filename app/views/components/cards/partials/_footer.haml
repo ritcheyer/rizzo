@@ -4,8 +4,8 @@
     = ui_component("user_attribution", properties: { image: properties[:author_avatar], name: properties[:author_name], size: "nano" })
 
   - if properties[:tags] && properties[:tags][:lp_reviewed?]
-    .card__footer__reviewed
-      %span.badge.badge--small.badge--outline.badge--blue Reviewed
+    .card__footer__reviewed.copy--icon--before.icon--tick--before
+      Reviewed
 
   - if properties[:context_locale]
     .card__footer__locale.copy--icon--before.icon--place--pin--line--before<>
