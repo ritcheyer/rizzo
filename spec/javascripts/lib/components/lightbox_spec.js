@@ -4,7 +4,19 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
   describe("LightBox", function() {
 
-    var lightbox;
+    var lightbox,
+        paginationData = {
+          pagination: {
+            next:{
+              url: "url-next",
+              title: "title"
+            },
+            prev:{
+              url: "url-prev",
+              title: "title"
+            }
+          }
+        };
 
     beforeEach(function() {
       loadFixtures("lightbox.html");
@@ -162,6 +174,46 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
           });
         });
       });
+    });
+
+    describe("Pagination", function() {
+      beforeEach(function() {
+        spyOn(LightBox.prototype, "_navigateTo");
+
+        lightbox = new LightBox();
+        spyOn(lightbox, "_renderPagination");
+      });
+
+      it("should render pagination on :layer/received", function() {
+        $("#js-card-holder").trigger(":layer/received", paginationData);
+
+        expect(lightbox._renderPagination).toHaveBeenCalledWith(paginationData);
+        expect($(".js-lightbox-previous").attr("href")).toBe(paginationData.pagination.prev.url);
+        expect($(".js-lightbox-next").attr("href")).toBe(paginationData.pagination.next.url);
+      });
+
+      it("should navigate to some other url with pagination links", function() {
+        $(".js-lightbox-next").trigger("click");
+        expect(lightbox._navigateTo).toHaveBeenCalled();
+      });
+
+    });
+
+    describe("Navigation", function() {
+      beforeEach(function() {
+        jasmine.Clock.useMock();
+        spyOn(LightBox.prototype, "_navigateTo");
+
+        lightbox = new LightBox();
+        lightbox.$el.trigger(":lightbox/renderContent", "<a class='js-lightbox-navigation' href='/url-navigate'>Some link</a>");
+        jasmine.Clock.tick(301);
+      });
+
+      it("should navigate to some other url with navigation links", function() {
+        $(".js-lightbox-navigation").trigger("click");
+        expect(lightbox._navigateTo).toHaveBeenCalled();
+      });
+
     });
 
     describe("Functionality", function() {

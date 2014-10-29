@@ -84,15 +84,13 @@ define([
       }
     }.bind(this));
 
-    this.$previous.add(this.$next).on("click", function(event) {
-      var element = this.$lightbox.find(event.target);
-      element.hasClass("js-lightbox-arrow") || (element = element.closest(".js-lightbox-arrow"));
+    this.$previous.add(this.$next).on("click", this._navigateTo.bind(this));
+
+    this.$el.on(":lightbox/navigate", function(event, data) {
       this.$lightbox.removeClass("content-ready");
-      this.$el.trigger(":lightbox/fetchContent", element.attr("href"));
+      this.$el.trigger(":lightbox/fetchContent", data.url);
       this.$lightboxControls.find(".js-lightbox-arrow").addClass("is-hidden");
       this.$lightboxContent.empty();
-
-      return false;
     }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
@@ -145,6 +143,8 @@ define([
         }.bind(this), 300);
 
         this.$lightbox.removeClass("content-ready");
+        // Clear navigation events
+        this.$lightbox.find(".js-lightbox-navigation").off("click");
 
       }
 
@@ -168,6 +168,12 @@ define([
     return this.viewport().width > ($(opener).data().mobileBreakpoint || this.mobileBreakpoint);
   };
 
+  LightBox.prototype._navigateTo = function(event) {
+    var element = this.$lightbox.find(event.currentTarget);
+    this.trigger(":lightbox/navigate", { url: element.attr("href") });
+    return false;
+  };
+
   LightBox.prototype._fetchContent = function(url) {
     this.$lightbox.addClass("is-loading");
     this.$controllerEl.trigger(":layer/request", { url: url });
@@ -175,12 +181,17 @@ define([
 
   // @content: {string} the content to dump into the lightbox.
   LightBox.prototype._renderContent = function(content) {
+    // Remove navigation events
+    this.$lightbox.find(".js-lightbox-navigation").off("click");
 
     // Waits for the end of the transition.
     setTimeout(function() {
       this.$lightboxContent.html(this.customRenderer ? this.customRenderer(content) : content);
       this.$lightbox.addClass("content-ready");
       this.trigger(":lightbox/contentReady");
+
+      this.$lightbox.find(".js-lightbox-navigation").on("click", this._navigateTo.bind(this));
+
     }.bind(this), 300);
 
     this.$lightbox.removeClass("is-loading");
