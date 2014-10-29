@@ -15,8 +15,8 @@ define([
     this.$blacklistBtn = $(".js-blacklist-button");
     this.$blacklistBtnStatus = $(".js-blacklist-button-status");
 
-    this.friendshipUrl = "/friendships/" + this.$friendshipBtn.data("user-id");
-    this.blacklistUrl = "/blacklists/" + this.$blacklistBtn.data("user-id");
+    this.friendshipUrl = "/api/friendships/" + this.$friendshipBtn.data("user-id");
+    this.blacklistUrl = "/api/blacklists/" + this.$blacklistBtn.data("user-id");
 
     this.username = this.$friendshipBtn.data("username");
 
@@ -80,7 +80,7 @@ define([
     this._btnLoading();
     $.ajax({
       type: "POST",
-      url: "/friendships",
+      url: "/api/friendships",
       dataType: "json",
       data: $.param({ friendship: { friend_id: this.$friendshipBtn.data("user-id") } }),
       success: this._added.bind(this),
@@ -101,7 +101,7 @@ define([
   Contact.prototype.block = function() {
     $.ajax({
       type: "POST",
-      url: "/blacklists",
+      url: "/api/blacklists",
       dataType: "json",
       data: $.param({ blacklist: { blacklisted_user_id: this.$blacklistBtn.data("user-id") } }),
       success: this._blocked.bind(this),
@@ -173,7 +173,7 @@ define([
 
     function addAddedFriendStyle(obj) {
       obj
-      .removeClass("is-loading icon--add--before icon--white--before btn--red icon--cross--before icon--custom--before")
+      .removeClass("is-loading icon--add--before icon--lp-blue--before btn--red icon--cross--before icon--custom--before")
       .addClass("btn--subtle icon--body-grey icon--chevron-down--before")
       .attr("method", "delete")
       .removeAttr("disabled");
