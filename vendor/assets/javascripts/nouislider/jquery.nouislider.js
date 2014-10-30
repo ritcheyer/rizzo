@@ -21,6 +21,15 @@
 /*jslint white: true */
 /*jslint sub: true */
 
+// -----------------------------------------------------------------------------
+// LP Change
+//
+// This module has been manually wrapped in define to correctly handle the
+// jquery dependency.
+//
+// Shim wouldn't work in this case as it depends on a module in a different file.
+// -----------------------------------------------------------------------------
+
 define([ "jquery" ], function($){
 
 	'use strict';
