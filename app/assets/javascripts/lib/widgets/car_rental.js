@@ -1,0 +1,431 @@
+// ------------------------------------------------------------------------------
+//
+// Car App - Imported from Landing Pages
+//
+// ------------------------------------------------------------------------------
+define([
+  "jquery",
+  "autocomplete",
+  "lib/analytics/car_rental",
+  "data/car_rental_data",
+  "data/countries",
+  "data/currencies",
+  "lib/utils/local_store",
+  "pickadate/lib/picker",
+  "pickadate/lib/picker.date",
+  "pickadate/lib/legacy"
+], function($, AutoComplete, GoogleAnalytics, dataJSON, countries, currencies, LocalStore) {
+
+  "use strict";
+
+  var CarApp,
+      $checkbox = $("#js-dropoff-different"),
+
+      $widget = $(".js-car-rental-widget"),
+
+      $pickupTime = $("#js-pickup-time"),
+
+      $pickupDate = $("#js-pickup-date"),
+      $pickupLocation = $("#js-pickup-location"),
+
+      $dropoffTime = $("#js-dropoff-time"),
+
+      $dropoffDate = $("#js-dropoff-date"),
+      $dropoffLocation = $("#js-dropoff-location"),
+
+      $currency = $("#js-driver-currency"),
+      $currencyContainer = $currency.closest(".js-select-group-manager").find(".js-select-overlay"),
+
+      $residence = $("#js-driver-country"),
+      $residenceContainer = $residence.closest(".js-select-group-manager").find(".js-select-overlay"),
+
+      $getquote = $(".js-get-quote"),
+
+      googleAnalytics = new GoogleAnalytics({
+        $locationStart: $pickupLocation,
+        $locationEnd: $dropoffLocation,
+        $dateStart: $pickupDate,
+        $dateEnd: $dropoffDate,
+        $timeStart: $pickupTime,
+        $timeEnd: $dropoffTime,
+        $locationResidence: $residence
+      }),
+      localStore, userCurrency;
+
+  CarApp = function() {
+
+    this.config = {
+      pickupDate: "",
+      pickupDateTime: "", // generated
+      pickupLocationID: "",
+      dropoffDate: "",
+      dropoffDateTime: "", // generated
+      dropoffLocationID: "",
+      residencyID: "IE",
+      currencyID: "GBP",
+      CLIENT_ID: 502590,
+      HEADER_CODE: "305E8A8B"
+    };
+
+    localStore = new LocalStore();
+    this.init();
+  };
+
+  CarApp.prototype.init = function() {
+    userCurrency = localStore.getCookie("lpCurrency");
+
+    this.initDatepickers();
+    this.initAutocompletes();
+    this.handlers();
+    this.setPickupTime();
+
+    $(document).ready(function() {
+      this.generateCountries();
+      this.generateCurrencies();
+    }.bind(this));
+  };
+
+  CarApp.prototype.generateCurrencies = function() {
+    var options = "", currency;
+
+    for (var i = 0; i < currencies.length; i++) {
+      currency = currencies[i].code;
+      options += "<option value='" + currency + "'" + (currency == userCurrency ? " selected" : "") + ">" + currencies[i].name + "</option>";
+    }
+    $currency.html(options).trigger("change");
+  };
+
+  CarApp.prototype.generateCountries = function() {
+    var options = "",
+        foundSelected = false,
+        currency;
+
+    for (var i = 0; i < countries.length; i++) {
+      var selected = "";
+
+      if (countries[i].hasOwnProperty("currency")) {
+        currency = "data-currencycode='" + countries[i].currency + "'";
+      } else {
+        currency = "";
+      }
+      if (!foundSelected && countries[i].currency == userCurrency) {
+        selected = " selected";
+        foundSelected = true;
+      }
+
+      options += "<option value='" + countries[i].code + "' " + currency + selected + ">" + countries[i].name + "</option>";
+    }
+
+    $residence.html(options).trigger("change");
+  };
+
+  CarApp.prototype.flagError = function(elem, type) {
+    switch (type) {
+      case "datepicker":
+      case "text":
+        elem.addClass("form--error");
+        break;
+      case "select":
+        elem.closest(".js-select-group-manager").find(".js-select-overlay").addClass("form--error");
+        break;
+    }
+  };
+
+  CarApp.prototype.validate = function() {
+    var errors = false,
+        $errors;
+
+    if ($pickupDate.val() === "") {
+      this.flagError($pickupDate, "datepicker");
+      errors = true;
+    }
+
+    if ($dropoffDate.val() === "") {
+      this.flagError($dropoffDate, "datepicker");
+      errors = true;
+    }
+
+    if ($pickupTime.val() === "Time") {
+      this.flagError($pickupTime, "select");
+      errors = true;
+    }
+
+    if ($dropoffTime.val() === "Time") {
+      this.flagError($dropoffTime, "select");
+      errors = true;
+    }
+
+    if ($residenceContainer.text().replace(/[ \n]/g, "") === "Countryofresidence") {
+      this.flagError($residence, "select");
+      errors = true;
+    }
+
+    if ($currencyContainer.text().replace(/[ \n]/g, "") === "Currency") {
+      this.flagError($currency, "select");
+      errors = true;
+    }
+
+    if ($pickupLocation.val() === "") {
+      this.flagError($pickupLocation, "text");
+      errors = true;
+    }
+
+    if ($checkbox.prop("checked") && $dropoffLocation.val() === "") {
+      this.flagError($dropoffLocation, "text");
+      errors = true;
+    }
+
+    // If there are errors, show an alerting div over the submit button
+    // which will fade away after 2 seconds.
+    $errors = $(".alert--error");
+    if (errors && !$errors.is(":visible")) {
+
+      $errors.show();
+
+      setTimeout(function() {
+        $errors.hide();
+      }, 2000);
+    }
+
+    return !errors;
+  };
+
+  CarApp.prototype.handlers = function() {
+    var _this = this;
+
+    $pickupDate.on("change", _this.setDropoffDate.bind(_this));
+
+    $dropoffDate.add($pickupDate).change(function() {
+      _this._clearError($(this));
+    });
+
+    $pickupLocation.add($dropoffLocation).keyup(function() {
+      _this._clearError($(this));
+    });
+
+    // checkbox click signifies a different return location
+    $checkbox.on("click", function() {
+      // Clear any error styles on the drop off location input
+      $dropoffLocation.removeClass("form--error");
+
+      if (this.checked) {
+        _this.showdropoffLocation();
+      } else {
+        _this.hidedropoffLocation();
+      }
+    });
+    _this.hidedropoffLocation();
+
+    $residence.on("change", function() {
+      var currency = $(this).find(":selected").data("currencycode") || "USD";
+
+      $residenceContainer.removeClass("form--error"); // Clear error style
+
+      $currency.children("[value=" + currency + "]").prop("selected", true);
+      $currency.trigger("change");
+    });
+
+    $currency.on("change", function() {
+      $currencyContainer.removeClass("form--error");  // Clear error style
+    });
+
+    // listen for a change in pickup time
+    $pickupTime.on("change", function() {
+      _this.setdropoffTime();
+    });
+
+    // Form submission handler
+    $getquote.on("click", function(e) {
+      if (_this.validate()) {
+        _this.config.pickupDateTime = _this.config.pickupDate + $pickupTime.val();
+        _this.config.dropoffDateTime = _this.config.dropoffDate + $dropoffTime.val();
+        googleAnalytics.track();
+        _this.constructDeepLink();
+      } else {
+        e.preventDefault();
+        return;
+      }
+    });
+  };
+
+  CarApp.prototype.initDatepickers = function() {
+    var _this = this,
+        today = new Date().getTime(); // store as UNIX timestamp
+
+    $dropoffDate.pickadate({
+      editable: false,
+      format: "d mmm yyyy",
+      onSet: function(context) {
+        var date = _this.unixToDate(context.select);
+        _this.config.dropoffDate = date + "T";
+      }
+    });
+
+    $pickupDate.pickadate({
+      editable: false,
+      min: today,
+      format: "d mmm yyyy",
+      onStart: function() {
+        this.set({ select: today });  // set today's date as the default
+        _this.setDropoffDate(today);  // then trigger a change of the pickup date
+      },
+      onSet: function(context) {
+        var date = _this.unixToDate(context.select),
+            newStartDate = new Date(context.select),
+            newMinimumEndDate = new Date(newStartDate.getTime() + 24 * 60 * 60 * 1000);
+
+        $dropoffDate.pickadate("picker").set("min", newMinimumEndDate);
+
+        _this.config.pickupDate = date + "T";
+        _this.setDropoffDate(context.select);  // trigger when the user sets the pickup date
+      }
+    });
+
+  };
+
+  CarApp.prototype.initAutocompletes = function() {
+    var _this = this;
+
+    new AutoComplete({
+      el: "#js-pickup-location",
+      template: {
+        resultsWrapper:    "<div class='autocomplete'></div>",
+        resultsContainer:  "<ul class='autocomplete__results'></ul>",
+        resultsItem:       "<li class='autocomplete__results__item' data-locationid='{{i}}'>{{n}}</li>",
+        resultsItemHighlightClass: "autocomplete__results__item--highlight"
+      },
+      threshold: 2,
+      fetch: _this.fetchFilter,
+      onItem: _this._autoSelect
+    });
+  };
+
+  CarApp.prototype.hidedropoffLocation = function() {
+    $(".dropoff-area").hide();
+    $dropoffLocation.attr("data-locationid","");
+    $widget.removeClass("drop-off-visible");
+  };
+
+  CarApp.prototype.showdropoffLocation = function() {
+    $(".dropoff-area").show();
+    $widget.addClass("drop-off-visible");
+
+    new AutoComplete({
+      el: "#js-dropoff-location",
+      template: {
+        resultsWrapper:    "<div class='autocomplete'></div>",
+        resultsContainer:  "<ul class='autocomplete__results'></ul>",
+        resultsItem:       "<li class='autocomplete__results__item' data-locationid='{{i}}'>{{n}}</li>",
+        resultsItemHighlightClass: "autocomplete__results__item--highlight"
+      },
+      threshold: 2,
+      fetch: this.fetchFilter,
+      onItem: this._autoSelect
+    });
+  };
+
+  CarApp.prototype.setDropoffDate = function(unixDate) {
+    var newDate = this.incrementUnixDate(unixDate),
+        dropPicker = $dropoffDate.pickadate({
+          format: "d mmm yyyy"
+        }),
+        picker = dropPicker.pickadate("picker"),
+        realDate = this.unixToDate(newDate);
+
+    this.config.dropoffDate = realDate + "T";
+
+    picker.set({
+      select: newDate
+    });
+  };
+
+  CarApp.prototype.incrementUnixDate = function(unixDate) {
+    var newDate = unixDate + 86400000;
+    return newDate;
+  };
+
+  CarApp.prototype.setdropoffTime = function() {
+    // get the index of the option that is selected
+    var $pickupTimeIndex = $pickupTime[0].selectedIndex;
+
+    // set the selected index of the drop-off el to match that of pick-up
+    $dropoffTime[0].selectedIndex = $pickupTimeIndex;
+
+    // call change method on select menu
+    $dropoffTime.change();
+  };
+
+  CarApp.prototype.setPickupTime = function() {
+    setTimeout(function() {
+      $pickupTime.change();
+    }, 1000);
+  };
+
+  CarApp.prototype.unixToDate = function(date) {
+    var myDate = new Date(date);
+
+    return myDate.getFullYear() + "-" + ("0" + (myDate.getMonth() + 1)).slice(-2) + "-" + ("0" + myDate.getDate()).slice(-2);
+  };
+
+  CarApp.prototype.constructDeepLink = function() {
+    var dropoffDiff = $dropoffLocation.attr("data-locationid") || $pickupLocation.attr("data-locationid"),
+        // string conatenation performs marginally better this way...
+        url = "https://www.cartrawler.com/res/affiliate/?";
+    url += "&tv=" + this.config.HEADER_CODE;
+    url += "&clientId=" + this.config.CLIENT_ID;
+    url += "&pickupLocationId=" + $pickupLocation.attr("data-locationid");
+    if (dropoffDiff) {
+      url += "&returnLocationId=" + dropoffDiff;
+    }
+    url += "&residencyId=" + $residence.find(":selected").val();
+    url += "&currencyId=" + $currency.find(":selected").val();
+    url += "&pickupDateTime=" + this.config.pickupDateTime;
+    url += "&returnDateTime=" + this.config.dropoffDateTime;
+    window.open(url);
+    return url;
+  };
+
+  // -------------------------------------------------------------------------
+  // Private Functions
+  // -------------------------------------------------------------------------
+
+  CarApp.prototype.fetchFilter = function(searchTerm, cb) {
+    var results = [],
+        term = searchTerm.toLowerCase();
+
+    for (var i = 0; i < dataJSON.length; i++) {
+      var hasAirport = dataJSON[i].hasOwnProperty("a"),
+          hasCity = dataJSON[i].hasOwnProperty("c"),
+          matchesAirport, matchesCity, matchesName;
+
+      if (hasAirport) {
+        matchesAirport = dataJSON[i].a.toLowerCase().indexOf(term) != -1;
+      }
+      if (hasCity) {
+        matchesCity = dataJSON[i].c.toLowerCase().indexOf(term) != -1;
+      }
+
+      matchesName = dataJSON[i].n.toLowerCase().indexOf(term) != -1;
+
+      if ((hasCity && matchesCity) || (hasAirport && matchesAirport) || matchesName) {
+        results.push(dataJSON[i]);
+      }
+    }
+
+    setTimeout(function() {
+      cb(results);
+    }, 1000);
+  };
+
+  CarApp.prototype._autoSelect = function(el) {
+    var selectedValue = $(el).text();
+    $(this.el).val(selectedValue).attr("data-locationid", $(el).attr("data-locationid"));
+  };
+
+  CarApp.prototype._clearError = function($el) {
+    $el.removeClass("form--error");
+  };
+
+  return CarApp;
+
+});

@@ -128,6 +128,12 @@ module.exports = function(grunt) {
       }
     },
     copy: {
+      data: {
+        expand: true,
+        cwd: "./app/assets/javascripts/data",
+        src: [ "**/*.js", "**/**/*.js" ],
+        dest: "./public/assets/javascripts/data"
+      },
       source: {
         expand: true,
         cwd: "./app/assets/javascripts/lib",
@@ -180,6 +186,7 @@ module.exports = function(grunt) {
                 pickadate: "./vendor/assets/javascripts/pickadate",
                 polyfills: "./vendor/assets/javascripts/polyfills",
                 usabilla: "./vendor/assets/javascripts/usabilla",
+                data: "./public/assets/javascripts/data",
                 lib: "./public/assets/javascripts/lib"
               }
             }
@@ -189,7 +196,11 @@ module.exports = function(grunt) {
     },
     watch: {
       scripts: {
-        files: [ "app/assets/javascripts/lib/**/*.coffee", "spec/javascripts/lib/**/*.coffee" ],
+        files: [
+          "app/assets/javascripts/data/**/*.coffee",
+          "app/assets/javascripts/lib/**/*.coffee",
+          "spec/javascripts/lib/**/*.coffee"
+        ],
         tasks: [ "shell:cleanJs", "newer:coffee", "jasmine" ],
         options: {
           nospawn: true
