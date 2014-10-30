@@ -12,11 +12,11 @@ require([ "jquery" ], function($) {
 
   require([
     "flamsteed",
+    "lib/core/ad_manager",
     "lib/page/swipe",
     "lib/core/authenticator",
     "lib/core/shopping_cart",
     "lib/components/toggle_active",
-    "lib/core/ad_manager",
     "lib/core/cookie_compliance",
     "lib/components/select_group_manager",
     "lib/core/nav_search",
@@ -24,11 +24,15 @@ require([ "jquery" ], function($) {
     "trackjs",
     "polyfills/function_bind",
     "polyfills/xdr"
-  ], function(Flamsteed) {
+  ], function(Flamsteed, AdManager) {
 
     $(document).ready(function() {
 
       var secure = window.location.protocol === "https:";
+
+      if (window.lp.ads) {
+        new AdManager(window.lp.ads);
+      }
 
       if (!secure) {
         if (window.lp.getCookie) {
