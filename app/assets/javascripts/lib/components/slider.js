@@ -15,7 +15,7 @@ define([
     slides: ".js-slide",
     slidesContainer: ".js-slider-container",
     slidesViewport: ".js-slider-viewport",
-    listener: "#js-row-content",
+    listener: "#js-row--content",
     // the number of images to load on either side of is-current
     assetBalance: 2,
     assetReveal: false,
