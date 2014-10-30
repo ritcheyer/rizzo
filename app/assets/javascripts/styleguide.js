@@ -15,7 +15,6 @@ require([ "jquery" ], function($) {
     "lib/components/page_hopper",
     "lib/components/toggle_active",
     "lib/components/select_group_manager",
-    "lib/components/widget_travel_insurance",
     "lib/styleguide/svg",
     "lib/styleguide/copy",
     "lib/styleguide/swipe",
@@ -32,7 +31,7 @@ require([ "jquery" ], function($) {
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand",
     "lib/styleguide/alert"
-  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, ThumbSlider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, TravelInsuranceWidget) {
+  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, ThumbSlider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager) {
 
     new ScrollPerf();
     new ToggleActive();
@@ -48,13 +47,12 @@ require([ "jquery" ], function($) {
       template: "styleguide"
     });
 
+    // This require directive loads in the World Nomads insurance booking widget
+    require([ "https://www.worldnomads.com/Partner/GetPartnerWidget?partnerCode=LNYPLT&source=&loadWithPanelExpanded=true&excludeStyles=true" ], function() {});
+
     var d = new Date();
     $(".input--datepicker").pickadate({
       min: [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ]
     });
-
-    if ($(".js-travel-widget").length) {
-      (new TravelInsuranceWidget).init();
-    }
   });
 });
