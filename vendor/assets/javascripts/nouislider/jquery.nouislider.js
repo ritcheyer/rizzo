@@ -21,7 +21,7 @@
 /*jslint white: true */
 /*jslint sub: true */
 
-(function( $ ){
+define([ "jquery" ], function($){
 
 	'use strict';
 
@@ -1417,4 +1417,4 @@
 		return ( rebuild ? build : create ).call( this, options );
 	};
 
-}( window['jQuery'] || window['Zepto'] ));
+});

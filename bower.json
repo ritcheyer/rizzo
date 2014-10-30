@@ -5,7 +5,6 @@
     "hogan": "latest",
     "jquery": "jquery#1.11",
     "jquery.dfp.js": "~1.1.0",
-    "nouislider": "latest",
     "pickadate": "3.3.1",
     "requirejs": "~2.1.11",
     "autocomplete": "latest",
