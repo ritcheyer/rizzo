@@ -38,7 +38,7 @@
   :image_alt: ""
   :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
 -
-  :styleguide_title: "Card with image, context text, context locale and price tag"
+  :styleguide_title: "Card with image, context text, context locale and all the tags"
   :url: "#"
   :context_text: "5 star hotel"
   :context_locale: "St-Germain & Les Invalides"
@@ -50,6 +50,9 @@
     :price: "223"
     :currency: "£"
     :scope: "per night"
+  :tags:
+    :top_choice?: true
+    :lp_reviewed?: true
 -
   :styleguide_title: "Guide card with image, context text and price tag"
   :url: "#"

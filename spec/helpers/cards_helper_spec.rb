@@ -39,14 +39,15 @@ describe CardsHelper do
         result = helper.card_classes(
           image_url: "path/to/image",
           author_name: "Joe Bloggs",
-          tags: {
-            top_choice?: true
+          price_tag: {
+            price: 123,
+            currency: "£"
           }
         )
 
         result.should include("card--has-img")
         result.should include("card--has-footer")
-        result.should include("card--has-tags")
+        result.should include("card--has-price")
       end
 
       it "should add 'no' class names when given no content" do
@@ -57,7 +58,7 @@ describe CardsHelper do
 
         result.should include("card--no-img")
         result.should include("card--no-footer")
-        result.should include("card--no-tags")
+        result.should include("card--no-price")
       end
 
     end

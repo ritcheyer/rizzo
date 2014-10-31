@@ -10,8 +10,8 @@ module CardsHelper
       "card--#{props[:cover?] ? 'cover' : 'standard'}",
       "card--#{props[:double?] ? 'double' : 'single'}",
       "card--#{props[:image_url].present? ? 'has-img' : 'no-img'}",
-      "card--#{props[:tags].present? || props[:price_tag].present? ? 'has-tags' : 'no-tags'}",
-      "card--#{props[:author_name] || props[:context_locale] ? 'has-footer' : 'no-footer'}"
+      "card--#{props[:price_tag].present? ? 'has-price' : 'no-price'}",
+      "card--#{props[:author_name].present? || props[:context_locale].present? ? 'has-footer' : 'no-footer'}"
     ]
   end
 

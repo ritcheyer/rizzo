@@ -122,7 +122,7 @@
   // artefacts on iDevices when zoomed out
   height: $card-footer-height + 1px
   padding: 0 $card-content-padding
-  color: $feature-copy
+  color: $grey-highlight
 
   .card--no-footer &
     display: none
@@ -130,6 +130,13 @@
   .copy--icon--before
     &:before
       +icon-color(body-grey)
+      width: 10px
+      opacity: .75
+
+.card__footer__reviewed
+  float: right
+  margin-top: 6px
+  padding-left: 4px
 
 .card__footer__locale
   @extend %truncate-text
@@ -201,6 +208,7 @@
       .copy--icon--before
         &:before
           +icon-color(white)
+          opacity: 1
 
       .card__content__context
         color: inherit
@@ -218,7 +226,7 @@
 
   &.card--no-img
 
-    &.card--has-tags
+    &.card--has-price
       .card__content__title
         padding-right: 40px
 
@@ -241,6 +249,7 @@
     .copy--icon--before
       &:before
         +icon-color(white)
+        opacity: 1
 
     .card__content
       top: auto
