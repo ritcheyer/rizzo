@@ -17,6 +17,15 @@ $ npm install
 $ grunt setup # sets up jscs & jshint git precommit hook for contributors, and inits the private font submodule
 ```
 
+### Note for non Lonely Planet staff
+
+Due to licensing restrictions imposed on our fonts you will have to manually create some empty files in order to run Rizzo locally:
+
+```bash
+$ touch app/assets/stylesheets/fonts/_font.sass
+$ touch app/assets/stylesheets/fonts/_font_woff2.sass
+```
+
 ## Documentation
 
 Full documentation about Rizzo and development guidelines is available at [http://rizzo.lonelyplanet.com/documentation/general/development-principles](http://rizzo.lonelyplanet.com/documentation/general/development-principles).

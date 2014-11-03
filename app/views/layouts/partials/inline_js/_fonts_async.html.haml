@@ -6,7 +6,7 @@
 
       window.onload = function() {
         var xhr = new XMLHttpRequest(),
-            fontPath = "#{font_path('fonts.css')}";
+            fontPath = window.lp.supports.woff2 ? "#{font_path('fonts_woff2.css')}" : "#{font_path('fonts.css')}";
 
         xhr.open('GET', fontPath);
 
