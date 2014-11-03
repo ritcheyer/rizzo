@@ -14,13 +14,13 @@ end
 
 Then /^the base global\-head content should be displayed$/ do
   page.should have_xpath("//meta[@content=\"width=1024\" and @name=\"viewport\"]")
-  page.should have_xpath("//link[@href=\"/assets/common_core_overrides.css\"]")
+  page.should have_xpath("//link[contains(@href, '/assets/common_core_overrides')]")
   page.should have_xpath("//script[@src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"]")
 end
 
 Then /^the responsive global\-head content should be displayed$/ do
   page.should have_xpath("//meta[@content=\"width=device-width, initial-scale=1\" and @name=\"viewport\"]")
-  page.should have_xpath("//link[@href=\"/assets/common_core_overrides.css\"]")
+  page.should have_xpath("//link[contains(@href, '/assets/common_core_overrides')]")
   page.should have_xpath("//script[@src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"]")
 end
 
@@ -75,7 +75,7 @@ end
 
 Then /^the noscript global\-head should have the correct content$/ do
   page.should have_xpath("//meta[@content=\"width=1024\" and @name=\"viewport\"]")
-  page.should have_xpath("//link[@href=\"/assets/common_core_overrides.css\"]")
+  page.should have_xpath("//link[contains(@href, '/assets/common_core_overrides')]")
   page.should have_xpath("//link[@href=\"https://secure.lonelyplanet.com/static-ui/style/app-core-legacy.css\"]")
   page.should_not have_xpath("//script[@src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"]")
   page.should_not have_xpath("//script[@src=\"https://secure.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js\"]")
@@ -105,7 +105,7 @@ end
 
 Then(/^the client\-solutions global\-head should have the correct content$/) do
   page.should_not have_xpath("//meta[@content=\"width=1024\" and @name=\"viewport\"]")
-  page.should have_xpath("//link[@href=\"/assets/common_core_no_font.css\"]")
+  page.should have_xpath("//link[contains(@href, '/assets/common_core_no_font')]")
 end
 
 Then(/^the client\-solutions global\-body\-header response should have the correct content$/) do
