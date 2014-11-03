@@ -99,6 +99,28 @@ describe CardsHelper do
 
   end
 
+  describe "#card_ab_test_show_tag" do
+
+    context "variation matches and tag is present" do
+      let(:props) { { tags: { lp_reviewed?: true } } }
+      let(:ab_variation) { :with_reviewed_tag }
+
+      it "returns true" do
+        helper.card_ab_test_show_tag(props, ab_variation).should eq(true)
+      end
+    end
+
+    context "variation does not match" do
+      let(:props) { { tags: nil } }
+      let(:ab_variation) { :with_reviewed_tag }
+
+      it "returns false" do
+        helper.card_ab_test_show_tag(props, ab_variation).should eq(false)
+      end
+    end
+
+  end
+
   describe "#card_link_data" do
     let(:tracking_data) { { category: "lodgings" } }
     let(:lightbox_data) { { lightbox: true } }
