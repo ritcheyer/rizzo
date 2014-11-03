@@ -20,6 +20,9 @@
     -
       :title: 'Travel Insurance'
       :slug: '/styleguide/widgets/travel-insurance'
+    -
+      :title: 'Social'
+      :slug: '/styleguide/widgets/social'
 -
   :title: "CSS Utilities"
   :slug: "/css-utilities"
