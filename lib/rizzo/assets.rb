@@ -17,6 +17,7 @@ module Rizzo::Assets
       'icons/active.css',
       'icons/critical.css',
       'fonts.css',
+      "fonts_woff2.css",
       'styleguide.css',
       'requirejs/require.js',
       'd3/d3.js',
