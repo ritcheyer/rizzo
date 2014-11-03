@@ -149,6 +149,10 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
   AdManager.prototype.refresh = function(data) {
     var i, len, unit;
 
+    if (!data) {
+      return window.googletag.pubads().refresh();
+    }
+
     for (i = 0, len = this.$adunits.length; i < len; i++) {
       if (unit = this.$adunits.eq(i).data("adUnit")) {
         if (!data.type || data.type === unit.getType()) {
