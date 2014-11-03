@@ -13,7 +13,7 @@ describe SocialHelper do
 
     it 'truncates long article names' do
       title = '!' * 140
-      trunc_title = ('!' * 90) + '...'
+      trunc_title = ('!' * 94) + '…'
       url = '.' * 25
       tweet = helper.tweetify(url: url, title: title)
       tweet.split.first.should == trunc_title
