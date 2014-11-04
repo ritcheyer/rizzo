@@ -153,6 +153,9 @@
           :name: "Hero Banner"
           :slug: "hero-banner"
         -
+          :name: "Month blocks"
+          :slug: "month-blocks"
+        -
           :name: "Preloader"
           :slug: "preloader"
         -
