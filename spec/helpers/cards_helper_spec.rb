@@ -65,6 +65,62 @@ describe CardsHelper do
 
   end
 
+  describe "#card_href_for_test_variation" do
+    let(:var)   { nil }
+    let(:url)   { "/path/to/thing" }
+    let(:props) { { url: url } }
+
+    context "with no variation" do
+      it "returns the original URL" do
+        result = helper.card_href_for_test_variation(props, var)
+        result.should eq(url)
+      end
+    end
+
+    context "with test variation" do
+      let(:var) { 1 }
+
+      context "when the URL has no QS" do
+        it "returns the URL appended with variation" do
+          result = helper.card_href_for_test_variation(props, var)
+          result.should eq("#{url}?rte=1")
+        end
+      end
+
+      context "when the URL has a QS" do
+        let(:url) { "/path/to/thing?foo=bar" }
+
+        it "returns the URL appended with variation" do
+          result = helper.card_href_for_test_variation(props, var)
+          result.should eq("#{url}&rte=1")
+        end
+      end
+    end
+
+  end
+
+  describe "#card_ab_test_show_tag" do
+
+    context "variation matches and tag is present" do
+      let(:props) { { tags: { lp_reviewed?: true } } }
+      let(:ab_variation) { :with_reviewed_tag }
+
+      it "returns true" do
+        helper.card_ab_test_show_tag(props, ab_variation).should eq(true)
+      end
+    end
+
+    context "variation does not match" do
+      let(:props) { { tags: nil } }
+      let(:ab_variation) { :with_reviewed_tag }
+
+      it "returns false" do
+        helper.card_ab_test_show_tag(props, ab_variation).should eq(false)
+      end
+    end
+
+  end
+
   describe "#card_link_data" do
     let(:tracking_data) { { category: "lodgings" } }
     let(:lightbox_data) { { lightbox: true } }
