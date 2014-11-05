@@ -12,6 +12,9 @@
   :slug: "/widgets"
   :submenu:
     -
+      :title: 'Car Rental'
+      :slug: '/styleguide/widgets/car-rental'
+    -
       :title: 'Flickr'
       :slug: '/styleguide/widgets/flickr'
     -

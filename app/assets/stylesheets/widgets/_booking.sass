@@ -15,6 +15,10 @@
     width: 100%
 
 .field--booking
+  .input
+    font-weight: bold
+  &:last-child
+    margin-bottom: 0
   &.field--has-label
     .field__label
       float: left
@@ -28,10 +32,9 @@
       .fieldset--pair &
         display: inline
 
-.fieldset--pair
-  .field--booking
+  .fieldset--pair &
     display: inline-block
-    margin: 3px .3%
+    margin: 3px 0
     vertical-align: top
     width: 49%
     .dropdown__value
@@ -39,6 +42,8 @@
     &.field--no-label
       .field-content
         display: inline
+    +respond-to(narrow-view)
+      margin: 3px .3%
 
 .booking-input
   background-color: $body-background-offset
@@ -76,3 +81,14 @@
   position: relative
   top: 4px
   vertical-align: middle
+
+.btn--booking
+  position: relative
+.btn--booking__error
+  background: $red
+  display: none
+  font-size: inherit
+  left: -10px
+  padding: 22px 15px
+  position: absolute
+  top: -15px
