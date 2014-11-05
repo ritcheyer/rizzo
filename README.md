@@ -29,3 +29,22 @@ $ touch app/assets/stylesheets/fonts/_font_woff2.sass
 ## Documentation
 
 Full documentation about Rizzo and development guidelines is available at [http://rizzo.lonelyplanet.com/documentation/general/development-principles](http://rizzo.lonelyplanet.com/documentation/general/development-principles).
+
+## Jasmine Tests
+There is a suite of JavaScript tests in `spec/javascripts`. These tests are currently using Jasmine v1.x from `grunt-contrib-jasmine` v0.5.x.
+
+In order to run the tests you'll need a few things installed with node.js.
+
+```shell
+npm install -g grunt-cli  # Install grunt globally
+npm install # Install packages from package.json
+```
+
+You can now run the following to run the tests with grunt...
+
+```shell
+grunt cli
+``` 
+
+It should look like...
+![](http://d.pr/i/jSY4+)
