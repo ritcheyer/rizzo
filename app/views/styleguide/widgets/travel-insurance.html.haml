@@ -42,5 +42,21 @@
           :plain
             = ui_component("widgets/travel_insurance", properties: { show_sponsor: true })
 
+    %p
+      To setup the widget, you need to require it, and call <code>.render()</code>. You can optionally use the <code>.then()</code>
+      to run a function when the widget has loaded.
+
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+            define(["lib/widgets/travel_insurance"], function(TravelInsurance) {
+              var widget = new TravelInsurance();
+              widget.render().then(function() {
+                // ...
+              });
+            });
+
 
 = ui_component("widgets/travel_insurance", properties: { show_sponsor: true })

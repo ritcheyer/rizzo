@@ -9,6 +9,7 @@ require([
   "lib/components/page_hopper",
   "lib/components/thumb_slider",
   "lib/widgets/car_rental",
+  "lib/widgets/travel_insurance",
   "lib/page/swipe",
   "lib/styleguide/svg",
   "lib/styleguide/copy",
@@ -29,15 +30,18 @@ require([
   "lib/components/toggle_active",
   "lib/styleguide/snippet-expand",
   "lib/components/select_group_manager"
-], function($, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper, ThumbSlider, CarRentalWidget) {
+], function($, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper, ThumbSlider, CarRentalWidget, TravelInsurance) {
 
   "use strict";
+
+  var travelWidget;
 
   new Konami();
   new POIList(null, new POIMap);
   new Slider({ el: ".js-slider", assetReveal: true ,listener: document });
   new ThumbSlider();
   new PageHopper();
+
 
   new AdManager({
     template: "styleguide"
@@ -48,11 +52,12 @@ require([
     min: [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ]
   });
 
-  // This require directive loads in the World Nomads insurance booking widget
-  require([ "https://www.worldnomads.com/Partner/GetPartnerWidget?partnerCode=LNYPLT&source=&loadWithPanelExpanded=true&excludeStyles=true" ], function() {});
 
   if ($(".js-car-rental-widget").length) {
     new CarRentalWidget;
   }
 
+  // This require directive loads in the World Nomads insurance booking widget
+  travelWidget = new TravelInsurance();
+  travelWidget.render();
 });
