@@ -14,14 +14,8 @@
     { label: "D" }
   ]
 
-  colors = {
-    low: "subduedgray",
-    shoulder: "softblue",
-    high: "softgreen"
-  }
-
   properties.each_with_index do |modifier, index|
-    pop_blocks[index][:modifier] = colors[modifier]
+    pop_blocks[index][:modifier] = modifier
   end
 
 = ui_component("building_blocks/pop_blocks", properties: pop_blocks)
