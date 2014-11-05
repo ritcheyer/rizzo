@@ -18,6 +18,9 @@
       :title: 'Flickr'
       :slug: '/styleguide/widgets/flickr'
     -
+      :title: 'Flights'
+      :slug: '/styleguide/widgets/flights'
+    -
       :title: 'Promo Unit'
       :slug: '/styleguide/widgets/promo'
     -
