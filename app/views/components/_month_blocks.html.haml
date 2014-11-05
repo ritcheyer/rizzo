@@ -1,21 +1,21 @@
 :ruby
   pop_blocks = [
-    { label: "J" },
-    { label: "F" },
-    { label: "M" },
-    { label: "A" },
-    { label: "M" },
-    { label: "J" },
-    { label: "J" },
-    { label: "A" },
-    { label: "S" },
-    { label: "O" },
-    { label: "N" },
-    { label: "D" }
+    { label: 'J' },
+    { label: 'F' },
+    { label: 'M' },
+    { label: 'A' },
+    { label: 'M' },
+    { label: 'J' },
+    { label: 'J' },
+    { label: 'A' },
+    { label: 'S' },
+    { label: 'O' },
+    { label: 'N' },
+    { label: 'D' }
   ]
 
   properties.each_with_index do |modifier, index|
     pop_blocks[index][:modifier] = modifier
   end
 
-= ui_component("building_blocks/pop_blocks", properties: pop_blocks)
+= ui_component('building_blocks/pop_blocks', properties: pop_blocks)

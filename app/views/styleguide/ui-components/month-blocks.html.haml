@@ -2,16 +2,18 @@
 
 .card.styleguide-intro.styleguide-block.copy--body.context--content
   .clearfix
-    %h1.copy--h1 Month blocks
+    %h1.copy--h1
+      Month blocks
     %p
       Blocks labeled with the first letter of the month of the year, supply an array of
-      12 modifiers as listed in the source
-
+      12 colours chosen from the
+      %a{href: '/styleguide/design-elements/colours'}
+        colour palette.
   %pre.styleguide.copy--body.language-ruby
     %code
       = preserve do
         :plain
-          = ui_component('month_blocks', properties: [:low, :low, :shoulder, :shoulder, :high, :high, :high, :high, :shoulder, :shoulder, :low, :low])
+          = ui_component('month_blocks', properties: ['subduedgray', 'subduedgray', 'softblue', 'softblue', 'softgreen', 'softgreen', 'softgreen', 'softgreen', 'softblue', 'softblue', 'subduedgray', 'subduedgray'])
 
   %p
     Note that the above will output the markup for the preloader. To make it visible, you need to add a class of
@@ -22,4 +24,4 @@
     Example
 
   .styleguide-month-blocks.is-loading
-    = ui_component('month_blocks', properties: [:low, :low, :shoulder, :shoulder, :high, :high, :high, :high, :shoulder, :shoulder, :low, :low])
+    = ui_component('month_blocks', properties: ['subduedgray', 'subduedgray', 'softblue', 'softblue', 'softgreen', 'softgreen', 'softgreen', 'softgreen', 'softblue', 'softblue', 'subduedgray', 'subduedgray'])
