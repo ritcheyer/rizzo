@@ -2,26 +2,8 @@
   (function() {
     var docElement = document.documentElement,
         activePath = "#{normalised_asset_path('icons/active.css')}",
-        criticalPath = "#{normalised_asset_path('icons/critical.css')}",
-        script = document.getElementsByTagName("script")[0],
-        head = script.parentNode;
-    
-    function insertStyleSheet(path) {
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.type = "text/css";
-      link.href = path;
-      // The browser will ignore unknow media attributes
-      // https://github.com/filamentgroup/loadCSS
-      link.media = "only sloths";
-      head.insertBefore(link, script);
+        criticalPath = "#{normalised_asset_path('icons/critical.css')}";
 
-      setTimeout(function() {
-        link.media = "all";
-      });
-
-    }
-    
     function supportsSVG() {
       var hasBgSize = ("background-size" in docElement.style || "backgroundSize" in docElement.style),
           hasSvg = !!window.document.createElementNS && 
@@ -29,15 +11,15 @@
                    !!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1") && 
                    !(window.opera && navigator.userAgent.indexOf('Chrome') === -1),
           enhanced = window.lp.enhanced;
-      
+
       return hasBgSize && hasSvg && enhanced;
     }
 
     if (supportsSVG()) {
-      insertStyleSheet(activePath);
+      window.lp.loadCSS(activePath);
       docElement.className += " supports-svg";
     } else {
-      insertStyleSheet(criticalPath);
+      window.lp.loadCSS(criticalPath);
       docElement.className += " no-background-size";
     }
 
