@@ -43,7 +43,7 @@ npm install # Install packages from package.json
 You can now run the following to run the tests with grunt...
 
 ```shell
-grunt cli
+grunt ci
 ``` 
 
 It should look like...
