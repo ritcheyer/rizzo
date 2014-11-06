@@ -1,9 +1,7 @@
-- ab_variation = card_ab_test_variation(params)
-
-%article{ class: card_classes(properties, ab_variation).join(" ") }
+%article{ class: card_classes(properties).join(" ") }
   .card__mask
 
-    - card_link_if(properties[:url].present?, href: card_href_for_test_variation(properties, ab_variation), data: card_link_data(properties), class: properties[:layer?] ? 'js-lightbox-toggle' : '') do
+    - card_link_if(properties[:url].present?, href: properties[:url], data: card_link_data(properties), class: properties[:layer?] ? 'js-lightbox-toggle' : '') do
 
       - if properties[:image_url].present?
         %figure.card__figure
@@ -35,7 +33,7 @@
             %p
               = properties[:description]
 
-      = render partial: "/components/cards/partials/footer", locals: { properties: properties, ab_variation: ab_variation }
+      = render partial: "/components/cards/partials/footer", locals: { properties: properties }
 
   - if properties[:price_tag].present?
     = ui_component("price_label", properties: properties[:price_tag])
