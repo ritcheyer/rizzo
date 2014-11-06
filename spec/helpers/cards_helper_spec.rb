@@ -83,7 +83,7 @@ describe CardsHelper do
       context "when the URL has no QS" do
         it "returns the URL appended with variation" do
           result = helper.card_href_for_test_variation(props, var)
-          result.should eq("#{url}?rte=1")
+          result.should eq("#{url}?ctv=1")
         end
       end
 
@@ -92,30 +92,8 @@ describe CardsHelper do
 
         it "returns the URL appended with variation" do
           result = helper.card_href_for_test_variation(props, var)
-          result.should eq("#{url}&rte=1")
+          result.should eq("#{url}&ctv=1")
         end
-      end
-    end
-
-  end
-
-  describe "#card_ab_test_show_tag" do
-
-    context "variation matches and tag is present" do
-      let(:props) { { tags: { lp_reviewed?: true } } }
-      let(:ab_variation) { :with_reviewed_tag }
-
-      it "returns true" do
-        helper.card_ab_test_show_tag(props, ab_variation).should eq(true)
-      end
-    end
-
-    context "variation does not match" do
-      let(:props) { { tags: nil } }
-      let(:ab_variation) { :with_reviewed_tag }
-
-      it "returns false" do
-        helper.card_ab_test_show_tag(props, ab_variation).should eq(false)
       end
     end
 

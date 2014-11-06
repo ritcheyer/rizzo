@@ -38,10 +38,9 @@ require([
 
   new Konami();
   new POIList(null, new POIMap);
-  new Slider({ el: ".js-slider", assetReveal: true ,listener: document });
+  new Slider({ el: ".js-slider", assetReveal: true, listener: document });
   new ThumbSlider();
   new PageHopper();
-
 
   new AdManager({
     template: "styleguide"
@@ -51,7 +50,6 @@ require([
   $(".input--datepicker").not(".js-car-rental-widget input").pickadate({
     min: [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ]
   });
-
 
   if ($(".js-car-rental-widget").length) {
     new CarRentalWidget;
