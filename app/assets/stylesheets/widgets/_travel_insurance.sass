@@ -12,6 +12,11 @@
   margin-top: 14px
 
 #wn-insurance-quote-editor
+  min-height: 435px
+  opacity: 0
+  transition: opacity 1.5s ease-in
+  &.is-ready
+    opacity: 1
   .input-group, .legacy-travellers
     input[type="text"]
       @extend %input--regular--dark
