@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/lonelyplanet/image-resizer.git
+  revision: 2b08feeadd9a8d2e25a1ea0f693fd4602bdc3216
+  specs:
+    image-resizer (0.0.1)
+
+GIT
   remote: https://github.com/lonelyplanet/requirejs-rails.git
   revision: 6e321a240dc35585141c058b8a32d136df097a29
   specs:
@@ -217,6 +223,7 @@ DEPENDENCIES
   dotenv
   haml
   haml-rails
+  image-resizer!
   lograge
   logstash-event
   pry-rails
