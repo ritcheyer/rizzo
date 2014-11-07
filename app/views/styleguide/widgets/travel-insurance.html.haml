@@ -40,7 +40,7 @@
       %code
         = preserve do
           :plain
-            = ui_component("widgets/travel_insurance", properties: { show_sponsor: true })
+            = ui_component("widgets/travel_insurance", properties: { show_sponsor: true, show_preloader: true})
 
     %p
       To setup the widget, you need to require it, and call <code>.render()</code>. You can optionally use the <code>.then()</code>
@@ -59,4 +59,4 @@
             });
 
 
-= ui_component("widgets/travel_insurance", properties: { show_sponsor: true })
+= ui_component("widgets/travel_insurance", properties: { show_sponsor: true , show_preloader: true })

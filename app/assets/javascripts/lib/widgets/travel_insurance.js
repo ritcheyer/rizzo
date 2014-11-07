@@ -4,7 +4,8 @@ define([ "jquery" ], function($) {
 
   var defaults = {
     path: "https://www.worldnomads.com/Partner/GetPartnerWidget?partnerCode=LNYPLT&source=&loadWithPanelExpanded=true&excludeStyles=true",
-    elId: "#wn-insurance-quote-editor"
+    elId: "#wn-insurance-quote-editor",
+    showPreloader: true
   };
 
   /**
@@ -38,6 +39,10 @@ define([ "jquery" ], function($) {
 
       self.config.callback && self.config.callback.call(self);
 
+      if (self.config.showPreloader){
+        self.$el.parent(".booking-widget__inner").removeClass("is-loading");
+        self.$el.addClass("is-ready");
+      }
       dfd.resolve();
     });
 
