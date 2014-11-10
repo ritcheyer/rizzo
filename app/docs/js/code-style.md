@@ -133,3 +133,18 @@ object.nodeType
 
 thing == null
 ```
+
+### Chaining
+When using a function that chains (particularly, but not only limited to jQuery), the following style should be used...
+
+```js
+$(selector)
+  .methodA()
+  .find("some-other-thing")
+    .methodA()  // indent if you do a change in element
+    .methodB()
+  .end() // Come back when you end that chain group
+  .methodD()
+```
+
+Keep in mind, don't overuse chaining, but it can be helpful in certain circumstances. Big long chains can be hard to debug, so keep that in mind.
