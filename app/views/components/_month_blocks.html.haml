@@ -1,0 +1,21 @@
+:ruby
+  segments = [
+    { label: 'J' },
+    { label: 'F' },
+    { label: 'M' },
+    { label: 'A' },
+    { label: 'M' },
+    { label: 'J' },
+    { label: 'J' },
+    { label: 'A' },
+    { label: 'S' },
+    { label: 'O' },
+    { label: 'N' },
+    { label: 'D' }
+  ]
+
+  properties.each_with_index do |modifier, index|
+    segments[index][:modifier] = modifier
+  end
+
+= ui_component('building_blocks/segment_graph', properties: segments)
