@@ -10,6 +10,7 @@ require([
   "lib/components/thumb_slider",
   "lib/widgets/car_rental",
   "lib/widgets/travel_insurance",
+  "lib/widgets/flights",
   "lib/page/swipe",
   "lib/styleguide/svg",
   "lib/styleguide/copy",
@@ -30,7 +31,7 @@ require([
   "lib/components/toggle_active",
   "lib/styleguide/snippet-expand",
   "lib/components/select_group_manager"
-], function($, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper, ThumbSlider, CarRentalWidget, TravelInsurance) {
+], function($, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper, ThumbSlider, CarRentalWidget, TravelInsurance, FlightsWidget) {
 
   "use strict";
 
@@ -53,6 +54,9 @@ require([
 
   if ($(".js-car-rental-widget").length) {
     new CarRentalWidget;
+  }
+  if ($(".js-flights-widget").length) {
+    (new FlightsWidget).init();
   }
 
   // This require directive loads in the World Nomads insurance booking widget
