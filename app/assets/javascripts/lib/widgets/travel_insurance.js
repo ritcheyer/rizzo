@@ -40,7 +40,7 @@ define([ "jquery" ], function($) {
       self.config.callback && self.config.callback.call(self);
 
       if (self.config.showPreloader){
-        self.$el.parent(".booking-widget__inner").removeClass("is-loading");
+        self.$el.closest(".booking-widget__inner").removeClass("is-loading");
         self.$el.addClass("is-ready");
       }
       dfd.resolve();
