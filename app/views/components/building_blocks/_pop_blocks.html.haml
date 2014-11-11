@@ -1,7 +1,0 @@
-.pop-blocks
-  - properties.each_with_index do |segment, index|
-    - index += 1
-    .pop-block{class: "pop-block--#{index} #{index == properties.length ? 'pop-block--last' : ''}"}>
-      .pop-block__segment{class: "pop-block__segment--#{segment[:modifier]}"}
-      .pop-block__label.copy--caption
-        = segment[:label]

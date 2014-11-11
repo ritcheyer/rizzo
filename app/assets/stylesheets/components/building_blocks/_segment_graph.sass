@@ -1,9 +1,9 @@
-.pop-block
+.segment-graph
   display: inline-block
   vertical-align: top
   width: 32px
 
-.pop-block__segment
+.segment-graph__segment
   height: 33px
   opacity: 0.9
   position: relative
@@ -16,19 +16,19 @@
     height: 33px
     text-align: center
     width: 1px
-  .pop-block--1 &
+  .segment-graph-item--1 &
     border-radius: 4px 0 0 4px
     &:before
       display: none
-  .pop-block--last &
+  .segment-graph-item--last &
     border-radius: 0 4px 4px 0
 
 @for $i from 1 through length($color-palette-names)
   $color: nth($color-palette-names, $i)
-  .pop-block__segment--#{$color}
+  .segment-graph__segment--#{$color}
     background: #{nth($color-palette, $i)}
 
-.pop-block__label
+.segment-graph__label
   +font-size(13)
   color: $lightgray
   font-weight: bold

@@ -1,5 +1,5 @@
 :ruby
-  pop_blocks = [
+  segments = [
     { label: 'J' },
     { label: 'F' },
     { label: 'M' },
@@ -15,7 +15,7 @@
   ]
 
   properties.each_with_index do |modifier, index|
-    pop_blocks[index][:modifier] = modifier
+    segments[index][:modifier] = modifier
   end
 
-= ui_component('building_blocks/pop_blocks', properties: pop_blocks)
+= ui_component('building_blocks/segment_graph', properties: segments)
