@@ -165,6 +165,7 @@ describe CardsHelper do
           result.should include("mv--col--one-third")
           result.should include("lv--col--one-quarter")
           result.should include("wv--col--one-fifth")
+          result.should include("cv--col--one-sixth")
         end
       end
 
@@ -175,6 +176,7 @@ describe CardsHelper do
           result.should include("mv--col--two-thirds")
           result.should include("lv--col--one-half")
           result.should include("wv--col--two-fifths")
+          result.should include("cv--col--one-third")
         end
       end
 
@@ -186,6 +188,7 @@ describe CardsHelper do
           result.should include("mv--col--two-thirds")
           result.should include("lv--col--one-half")
           result.should include("wv--col--two-fifths")
+          result.should include("cv--col--one-third")
         end
       end
     end
@@ -199,6 +202,7 @@ describe CardsHelper do
           result.should_not include("mv--clear")
           result.should_not include("lv--clear")
           result.should_not include("wv--clear")
+          result.should_not include("cv--clear")
         end
       end
 
@@ -210,6 +214,7 @@ describe CardsHelper do
           result.should     include("mv--clear")
           result.should_not include("lv--clear")
           result.should_not include("wv--clear")
+          result.should_not include("cv--clear")
         end
       end
 
@@ -221,6 +226,7 @@ describe CardsHelper do
           result.should_not include("mv--clear")
           result.should     include("lv--clear")
           result.should_not include("wv--clear")
+          result.should_not include("cv--clear")
         end
       end
 
@@ -232,19 +238,61 @@ describe CardsHelper do
           result.should     include("wv--clear")
           result.should_not include("mv--clear")
           result.should_not include("lv--clear")
+          result.should_not include("cv--clear")
         end
       end
 
       context "for the seventh card" do
-        it "adds a clear for narrow and medium views" do
+        it "adds a clear for narrow, medium and cinema views" do
           result = helper.card_grid_helper(card_index: 6, reset: true)
 
           result.should     include("nv--clear")
           result.should     include("mv--clear")
           result.should_not include("lv--clear")
           result.should_not include("wv--clear")
+          result.should     include("cv--clear")
         end
       end
+
+      context "with ad rail" do
+
+        context "for a double width card" do
+          it "adds multiple column classes" do
+            result = helper.card_grid_helper(is_double: true, reset: true, has_rail: true)
+            result.should include("col--one-whole")
+            result.should include("mv--col--two-thirds")
+            result.should include("lv--col--one-half")
+            result.should include("wv--col--two-thirds")
+            result.should include("cv--col--one-half")
+          end
+        end
+
+        context "for the fourth card" do
+          it "adds a clear for medium view" do
+            result = helper.card_grid_helper(card_index: 3, reset: true, has_rail: true)
+
+            result.should_not include("nv--clear")
+            result.should     include("mv--clear")
+            result.should_not include("lv--clear")
+            result.should     include("wv--clear")
+            result.should_not include("cv--clear")
+          end
+        end
+
+        context "for the fifth card" do
+          it "adds a clear for narrow and large views" do
+            result = helper.card_grid_helper(card_index: 4, reset: true, has_rail: true)
+
+            result.should     include("nv--clear")
+            result.should_not include("mv--clear")
+            result.should     include("lv--clear")
+            result.should_not include("wv--clear")
+            result.should     include("cv--clear")
+          end
+        end
+
+      end
+
     end
 
   end
