@@ -86,7 +86,7 @@ module CardsHelper
       if has_rail
         class_names += ['wv--col--two-thirds', 'cv--col--one-half']
       else
-        class_names += ['wv--col--two-fifths', 'cv--col--one-third']
+        class_names += ['wv--col--two-fifths']
       end
     else
       class_names += ['nv--col--one-half', 'mv--col--one-third', 'lv--col--one-quarter']
@@ -94,7 +94,7 @@ module CardsHelper
       if has_rail
         class_names += ['wv--col--one-third', 'cv--col--one-quarter']
       else
-        class_names += ['wv--col--one-fifth', 'cv--col--one-sixth']
+        class_names += ['wv--col--one-fifth']
       end
     end
 
@@ -115,8 +115,9 @@ module CardsHelper
       class_str << 'nv--clear' if position_index % 2 == 0
       class_str << 'mv--clear' if position_index % 3 == 0
       class_str << 'lv--clear' if position_index % 4 == 0
-      class_str << 'wv--clear' if (has_rail && position_index % 3 == 0) || (!has_rail && position_index % 5 == 0)
-      class_str << 'cv--clear' if (has_rail && position_index % 4 == 0) || (!has_rail && position_index % 6 == 0)
+      class_str << 'wv--clear' if has_rail && position_index % 3 == 0
+      class_str << 'cv--clear' if has_rail && position_index % 4 == 0
+      class_str << 'wv--clear' if !has_rail && position_index % 5 == 0
     end
 
     class_str

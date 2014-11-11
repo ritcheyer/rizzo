@@ -165,7 +165,6 @@ describe CardsHelper do
           result.should include("mv--col--one-third")
           result.should include("lv--col--one-quarter")
           result.should include("wv--col--one-fifth")
-          result.should include("cv--col--one-sixth")
         end
       end
 
@@ -176,7 +175,6 @@ describe CardsHelper do
           result.should include("mv--col--two-thirds")
           result.should include("lv--col--one-half")
           result.should include("wv--col--two-fifths")
-          result.should include("cv--col--one-third")
         end
       end
 
@@ -188,7 +186,6 @@ describe CardsHelper do
           result.should include("mv--col--two-thirds")
           result.should include("lv--col--one-half")
           result.should include("wv--col--two-fifths")
-          result.should include("cv--col--one-third")
         end
       end
     end
@@ -202,7 +199,6 @@ describe CardsHelper do
           result.should_not include("mv--clear")
           result.should_not include("lv--clear")
           result.should_not include("wv--clear")
-          result.should_not include("cv--clear")
         end
       end
 
@@ -214,7 +210,6 @@ describe CardsHelper do
           result.should     include("mv--clear")
           result.should_not include("lv--clear")
           result.should_not include("wv--clear")
-          result.should_not include("cv--clear")
         end
       end
 
@@ -226,7 +221,6 @@ describe CardsHelper do
           result.should_not include("mv--clear")
           result.should     include("lv--clear")
           result.should_not include("wv--clear")
-          result.should_not include("cv--clear")
         end
       end
 
@@ -238,7 +232,6 @@ describe CardsHelper do
           result.should     include("wv--clear")
           result.should_not include("mv--clear")
           result.should_not include("lv--clear")
-          result.should_not include("cv--clear")
         end
       end
 
@@ -250,7 +243,6 @@ describe CardsHelper do
           result.should     include("mv--clear")
           result.should_not include("lv--clear")
           result.should_not include("wv--clear")
-          result.should     include("cv--clear")
         end
       end
 
