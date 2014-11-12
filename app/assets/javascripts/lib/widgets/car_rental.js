@@ -68,7 +68,6 @@ define([
     };
 
     localStore = new LocalStore();
-    this.init();
   };
 
   CarApp.prototype.init = function() {

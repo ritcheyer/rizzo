@@ -53,7 +53,7 @@ require([
   });
 
   if ($(".js-car-rental-widget").length) {
-    new CarRentalWidget;
+    (new CarRentalWidget).init();
   }
   if ($(".js-flights-widget").length) {
     (new FlightsWidget).init();
