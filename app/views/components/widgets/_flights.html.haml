@@ -1,4 +1,4 @@
-.booking-widget.booking-widget--flights.js-flights-widget
+.booking-widget.booking-widget--flights.js-flights-widget{ class: properties[:widget_class] }
   .booking-widget__inner
 
     %h1.copy--h1.booking-title Flights
@@ -8,21 +8,19 @@
     %form#js-flights-form
       .flights-widget__from-to
         %fieldset.fieldset--pair
-          .field.field--booking#from-input
-            %label From
-            = ui_component('forms/text_input', properties: { class: "js-city-input js-from-city input--regular--dark", id: "js-from-city", name: "js-from-city" })
-            %input.js-from-airport{ type: "hidden" }
           .field.field--booking
-            %label To
-            = ui_component('forms/text_input', properties: { class: "js-city-input js-to-city input--regular--dark", id: "js-to-city", name: "js-to-city" })
-            %input.js-to-airport{ type: "hidden" }
-
-        %fieldset.fieldset--pair
-          .field.field--booking
-            #depart-date.date-group__container.input__container.icon--calendar--after
+            .clearfix
+              %label From
+              = ui_component('forms/text_input', properties: { class: "js-city-input js-from-city input--regular--dark", id: "js-from-city", name: "js-from-city" })
+              %input.js-from-airport{ type: "hidden" }
+            .field--booking__date.input__container.icon--calendar--after
               = ui_component('forms/date_input', properties: { class: "js-input js-av-start input--regular--dark", id: "flight-depart-date", name: "departure_date", placeholder: "Departure Date" })
           .field.field--booking
-            #return-date.date-group__container.input__container.icon--calendar--after
+            .clearfix
+              %label To
+              = ui_component('forms/text_input', properties: { class: "js-city-input js-to-city input--regular--dark", id: "js-to-city", name: "js-to-city" })
+              %input.js-to-airport{ type: "hidden" }
+            .field--booking__date.input__container.icon--calendar--after
               = ui_component('forms/date_input', properties: { class: "js-input js-av-end input--regular--dark", id: "flight-return-date", name: "return_date", placeholder: "Return Date" })
 
       %fieldset.fieldset--pair
