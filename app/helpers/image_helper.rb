@@ -16,7 +16,7 @@ module ImageHelper
   end
 
   def srcset_url(opts={}, src, retina)
-    std_format = ImageResizer::Format.from_hash(retina_opts)
+    std_format = ImageResizer::Format.from_hash(opts)
     std_url = ImageResizer.url_for(src, std_format)
 
     if retina
