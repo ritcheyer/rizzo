@@ -16,6 +16,7 @@ gem 'rake'
 gem 'sanitize'
 gem 'dotenv'
 gem 'redcarpet'
+gem 'image-resizer', git: 'https://github.com/lonelyplanet/image-resizer.git', require: 'image_resizer'
 
 group :test do
   gem 'rspec', '~> 2.10.0'
