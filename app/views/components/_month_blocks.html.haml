@@ -14,8 +14,8 @@
     { label: 'D' }
   ]
 
-  properties.each_with_index do |modifier, index|
+  properties[:segments].each_with_index do |modifier, index|
     segments[index][:modifier] = modifier
   end
 
-= ui_component('building_blocks/segment_graph', properties: segments)
+= ui_component('building_blocks/segment_graph', properties: {segments: segments, class: 'month-blocks'})
