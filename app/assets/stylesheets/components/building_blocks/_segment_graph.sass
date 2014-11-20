@@ -8,6 +8,7 @@
   position: relative
   height: 75%
   &:before
+    +z-layer()
     background: rgba($lightgray, 0.1)
     border-left: 1px solid rgba($lightgray, 0.2)
     content: ""
@@ -18,7 +19,6 @@
     text-align: center
     top: 0
     width: 1px
-    z-index: 1
   .segment-graph-item--1 &
     border-radius: 4px 0 0 4px
     &:before
