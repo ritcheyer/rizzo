@@ -1,5 +1,5 @@
-@mixin card-dimensions($span, $width: $card-width, $height: $card-height, $margin: $card-margin)
-  $width: ($width * $span) + ($margin * ($span - 1))
+@mixin card-dimensions($span, $width: $card-width, $height: $card-height, $gutter: $card-gutter)
+  $width: ($width * $span) + ($gutter * ($span - 1))
   $ratio: (1 / $width) * $height
 
   padding-top: percentage($ratio)
@@ -11,12 +11,12 @@
 .card
   @extend %rounded-corners
   position: relative
-  margin-bottom: $card-margin
+  margin-bottom: $card-gutter
   background: #FFF
 
   .results &
     float: left
-    margin-left: $card-margin
+    margin-left: $card-gutter
 
 .card--single
   +card-dimensions(1, $height: $card-height-mobile)
