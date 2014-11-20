@@ -1,20 +1,23 @@
 .segment-graph-item
   display: inline-block
+  height: 100%
   vertical-align: top
-  width: 32px
 
 .segment-graph__segment
-  height: 33px
   opacity: 0.9
   position: relative
-  width: 32px
+  height: 75%
   &:before
+    +z-layer()
     background: rgba($lightgray, 0.1)
     border-left: 1px solid rgba($lightgray, 0.2)
     content: ""
-    display: inline-block
-    height: 33px
+    display: block
+    height: 100%
+    left: 0
+    position: absolute
     text-align: center
+    top: 0
     width: 1px
   .segment-graph-item--1 &
     border-radius: 4px 0 0 4px
@@ -31,5 +34,6 @@
 .segment-graph__label
   +font-size(13)
   color: $lightgray
+  height: 25%
   font-weight: bold
   text-align: center
