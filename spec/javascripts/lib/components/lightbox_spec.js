@@ -139,6 +139,26 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
       });
 
+      describe("prerendering content", function() {
+        beforeEach(function() {
+          loadFixtures("lightbox.html");
+          lightbox = new LightBox();
+          spyOn(lightbox, "viewport").andReturn({
+            width: 600
+          });
+
+          $("#js-row--content").trigger(":lightbox/open", {
+            opener: ".js-lightbox-with-prerender"
+          });
+        });
+
+        it("should have prerendered content", function() {
+          expect($(".js-lightbox-content .my-title").html()).toContain("Prerendered title");
+          expect($(".js-lightbox-content .my-content").html()).toContain("Prerendered content");
+        });
+
+      });
+
       describe("with viewport below breakpoint", function() {
 
         beforeEach(function() {
