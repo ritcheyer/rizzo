@@ -230,7 +230,7 @@ module.exports = function(grunt) {
   });
 
   // This loads in all the grunt tasks auto-magically.
-  require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
+  require("matchdep").filterDev("grunt-!(template-jasmine-requirejs)").forEach(grunt.loadNpmTasks);
 
   // Tasks
   grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine", "shell:killPhantom" ]);
