@@ -86,18 +86,21 @@ define([
     this.$previous.add(this.$next).on("click", this._navigateTo.bind(this));
 
     this.$el.on(":lightbox/navigate", function(event, data) {
-      this.$lightbox.removeClass("content-ready");
+      if (data.title && data.content) {
+        this._prerenderContent(data);
+      } else {
+        this.$lightbox.removeClass("content-ready");
+        this.$lightboxContent.empty();
+      }
       this.$el.trigger(":lightbox/fetchContent", data.url);
       this.$lightboxControls.find(".js-lightbox-arrow").addClass("is-hidden");
-      this.$lightboxContent.empty();
     }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
       if (data && data.opener) {
         var showPreloader,
             $opener = $(data.opener),
-            prerenderTitle = $opener.find(".js-prerender-title").html(),
-            prerenderContent = $opener.find(".js-prerender-content").html();
+            prerenderData = this._getPrerenderedContent($opener);
 
         if (this._isAboveBreakpoint(data.opener)) {
           $("html").addClass("lightbox--open");
@@ -111,8 +114,8 @@ define([
             this.$lightboxContent.parent().append(this.preloaderTmpl);
           }
 
-          if (prerenderTitle && prerenderContent) {
-            this._prerenderContent({ title: prerenderTitle, content: prerenderContent });
+          if (prerenderData.title && prerenderData.content) {
+            this._prerenderContent(prerenderData);
           } else {
             this.$lightbox.addClass("is-loading");
           }
@@ -176,13 +179,22 @@ define([
   };
 
   LightBox.prototype._navigateTo = function(event) {
-    var element = this.$lightbox.find(event.currentTarget);
-    this.trigger(":lightbox/navigate", { url: element.attr("href") });
+    var $element = this.$lightbox.find(event.currentTarget),
+        data = $.extend({}, { url: $element.attr("href") }, this._getPrerenderedContent($element));
+
+    this.trigger(":lightbox/navigate", data);
     return false;
   };
 
   LightBox.prototype._fetchContent = function(url) {
     this.$controllerEl.trigger(":layer/request", { url: url });
+  };
+
+  LightBox.prototype._getPrerenderedContent = function($element) {
+    return {
+      title: $element.find(".js-prerender-title").html(),
+      content: $element.find(".js-prerender-content").html()
+    };
   };
 
   LightBox.prototype._prerenderContent = function(data) {
@@ -191,7 +203,7 @@ define([
       if (!$template) return;
       this.layerPrerenderTmpl = $template;
     }
-    this.$lightboxContent.append(Template.render(this.layerPrerenderTmpl, data));
+    this.$lightboxContent.html(Template.render(this.layerPrerenderTmpl, data));
     this.$lightboxContent.find(".js-preloader").append(this.preloaderTmpl);
     this.$lightbox.addClass("content-ready");
   };
@@ -221,6 +233,7 @@ define([
         $element.removeClass("is-hidden");
         $element.attr("href", obj.url);
         $element.find(".js-lightbox-arrow__text").html(obj.title);
+        $element.find(".js-prerender-content").html(obj.content);
       } else {
         $element.addClass("is-hidden");
       }
