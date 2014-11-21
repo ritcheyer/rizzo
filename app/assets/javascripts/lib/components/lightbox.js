@@ -57,7 +57,6 @@ define([
   // -------------------------------------------------------------------------
 
   LightBox.prototype.init = function() {
-
     this.listen();
   };
 
@@ -96,7 +95,9 @@ define([
     this.$el.on(":lightbox/open", function(event, data) {
       if (data && data.opener) {
         var showPreloader,
-            $opener = $(data.opener);
+            $opener = $(data.opener),
+            prerenderTitle = $opener.find(".js-prerender-title").html(),
+            prerenderContent = $opener.find(".js-prerender-content").html();
 
         if (this._isAboveBreakpoint(data.opener)) {
           $("html").addClass("lightbox--open");
@@ -108,6 +109,12 @@ define([
           if (showPreloader && !this.$lightbox.find(".js-preloader").length){
             this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
             this.$lightboxContent.parent().append(this.preloaderTmpl);
+          }
+
+          if (prerenderTitle && prerenderContent) {
+            this._prerenderContent({ title: prerenderTitle, content: prerenderContent });
+          } else {
+            this.$lightbox.addClass("is-loading");
           }
 
           setTimeout(function() {
@@ -175,8 +182,18 @@ define([
   };
 
   LightBox.prototype._fetchContent = function(url) {
-    this.$lightbox.addClass("is-loading");
     this.$controllerEl.trigger(":layer/request", { url: url });
+  };
+
+  LightBox.prototype._prerenderContent = function(data) {
+    if (!this.layerPrerenderTmpl) {
+      var $template = $("#tmpl-layer-prerender").text();
+      if (!$template) return;
+      this.layerPrerenderTmpl = $template;
+    }
+    this.$lightboxContent.append(Template.render(this.layerPrerenderTmpl, data));
+    this.$lightboxContent.find(".js-preloader").append(this.preloaderTmpl);
+    this.$lightbox.addClass("content-ready");
   };
 
   // @content: {string} the content to dump into the lightbox.

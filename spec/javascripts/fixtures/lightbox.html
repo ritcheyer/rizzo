@@ -5,6 +5,10 @@
   <div class='preloader'>
   </div>
 </script>
+<script id="tmpl-layer-prerender" type="text-mustache">
+  <div class='my-title'>{{title}}</div>
+  <div class='my-content'>{{content}}</div>
+</script>
 <div id="js-card-holder">
   <div id="js-row--content">
     <div id="js-lightbox" class="lightbox">
@@ -29,5 +33,10 @@
       </div>
     </div>
     <a href="#" class="js-lightbox-spec js-lightbox-toggle" data-lightbox-class="lightbox-foo" data-toggle-target=".lightbox">show lightbox</a>
+    <a href="#" class="js-lightbox-spec js-lightbox-with-prerender">
+      <div class="js-prerender-title">Prerendered title</div>
+      <div class="js-prerender-content">Prerendered content</div>
+    </a>
+
   </div>
 </div>

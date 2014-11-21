@@ -23,7 +23,7 @@
           %p.card__content__context{ class: properties[:context_icon] ? "copy--icon--before icon--#{card_icon(properties)}--before" : "" }
             = properties[:context_text]
 
-        %h1.card__content__title
+        %h1.card__content__title.js-prerender-title
           = properties[:title]
 
         .card__content__desc
@@ -32,6 +32,10 @@
           - elsif properties[:description]
             %p
               = properties[:description]
+
+        - if properties[:long_description]
+          .js-prerender-content.is-hidden
+            = properties[:long_description]
 
       = render partial: "/components/cards/partials/footer", locals: { properties: properties }
 
