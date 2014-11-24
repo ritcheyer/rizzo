@@ -74,6 +74,6 @@ social_media:
     :href: "#"
   -
     :styleguide_title: "Pinterest"
-    :type: "pinterest btn--icon icon--pinterest--before icon--white--before"
+    :type: "pinterest btn--social-icon btn--medium icon--pinterest--before icon--white--before"
     :text: "Pinterest"
     :href: "#"
