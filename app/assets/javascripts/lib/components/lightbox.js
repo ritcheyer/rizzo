@@ -233,6 +233,9 @@ define([
         $element.removeClass("is-hidden");
         $element.attr("href", obj.url);
         $element.find(".js-lightbox-arrow__text").html(obj.title);
+        /* jshint ignore:start */
+        $element.find(".js-lightbox__tooltip__image").attr("src", obj.featured_image_url);
+        /* jshint ignore:end */
         $element.find(".js-prerender-content").html(obj.content);
       } else {
         $element.addClass("is-hidden");
@@ -242,6 +245,10 @@ define([
     if (data.pagination) {
       setupArrow(this.$next, data.pagination.next);
       setupArrow(this.$previous, data.pagination.prev);
+      this.$lightbox.addClass("lightbox--show-pagination");
+      window.setTimeout(function() {
+        this.$lightbox.removeClass("lightbox--show-pagination");
+      }.bind(this), 3000);
     }
   };
 

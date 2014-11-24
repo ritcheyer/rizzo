@@ -7,12 +7,16 @@
   .lightbox__controls-wrapper
     .lightbox__controls.js-lightbox-controls
 
-      %a.js-lightbox-arrow.js-lightbox-previous.arrow--left.is-hidden.icon--chevron-left--after.icon--white--after
-        %span.tooltip--container.tooltip--hover
-          %span.js-lightbox-arrow__text.js-prerender-title.lightbox-arrow__text.tooltip.tooltip--above.icon--tapered-arrow-down--after
-          %span.js-prerender-content.is-hidden
+      %a.lightbox__controls__arrow.js-lightbox-arrow.js-lightbox-previous.arrow--left.is-hidden.icon--chevron-left--after.icon--white--after
+        %div.lightbox__tooltip.icon--tapered-arrow-down--after.icon--white--after
+          .lightbox__tooltip__inner
+            %img.lightbox__tooltip__image.js-lightbox__tooltip__image
+            .lightbox__tooltip__text.js-lightbox-arrow__text.js-prerender-title.icon--tapered-arrow-down--after
+            %span.js-prerender-content.is-hidden
 
-      %a.js-lightbox-arrow.js-lightbox-next.arrow--right.is-hidden.icon--chevron-right--before.icon--white--before
-        %span.tooltip--container.tooltip--hover
-          %span.js-lightbox-arrow__text.js-prerender-title.lightbox-arrow__text.tooltip.tooltip--above.icon--tapered-arrow-down--after
-          %span.js-prerender-content.is-hidden
+      %a.lightbox__controls__arrow.js-lightbox-arrow.js-lightbox-next.arrow--right.is-hidden.icon--chevron-right--before.icon--white--before
+        %div.lightbox__tooltip.icon--tapered-arrow-down--after.icon--white--after
+          .lightbox__tooltip__inner
+            %img.lightbox__tooltip__image.js-lightbox__tooltip__image
+            .lightbox__tooltip__text.js-lightbox-arrow__text.js-prerender-title.icon--tapered-arrow-down--after
+            %span.js-prerender-content.is-hidden
