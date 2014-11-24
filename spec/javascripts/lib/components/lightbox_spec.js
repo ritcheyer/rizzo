@@ -207,7 +207,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       it("should render pagination on :layer/received", function() {
         $("#js-card-holder").trigger(":layer/received", paginationData);
 
-        expect(lightbox._renderPagination).toHaveBeenCalledWith(paginationData);
         expect($(".js-lightbox-previous").attr("href")).toBe(paginationData.pagination.prev.url);
         expect($(".js-lightbox-next").attr("href")).toBe(paginationData.pagination.next.url);
       });
@@ -217,21 +216,20 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         expect(lightbox._navigateTo).toHaveBeenCalled();
       });
 
-    });
-
-    describe("Navigation", function() {
-      beforeEach(function() {
-        jasmine.Clock.useMock();
-        spyOn(LightBox.prototype, "_navigateTo");
-
-        lightbox = new LightBox();
-        lightbox.$el.trigger(":lightbox/renderContent", "<a class='js-lightbox-navigation' href='/url-navigate'>Some link</a>");
-        jasmine.Clock.tick(301);
+      it("shouldn't prerender content if not all available", function(){
+        $("#js-row--content").trigger(":lightbox/navigate", paginationData.pagination.next);
+        expect($(".js-lightbox-content").html()).toBe("");
+        expect($("#js-lightbox")).not.toHaveClass("content-ready");
       });
 
-      it("should navigate to some other url with navigation links", function() {
-        $(".js-lightbox-navigation").trigger("click");
-        expect(lightbox._navigateTo).toHaveBeenCalled();
+      it("should prerender content if available", function(){
+        var data = jQuery.extend({}, paginationData);
+        data.pagination.next.content = "Some next content";
+        $("#js-row--content").trigger(":lightbox/navigate", data.pagination.next);
+
+        expect($(".js-lightbox-content").html()).toContain("Some next content");
+        expect($("#js-lightbox")).toHaveClass("content-ready");
+
       });
 
     });
