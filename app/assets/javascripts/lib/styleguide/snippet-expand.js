@@ -8,7 +8,7 @@ define([ "jquery" ], function($) {
 
     if (this.firstChild.getBoundingClientRect().height > this.getBoundingClientRect().height) {
       var $button = $("<span/>")
-        .addClass("btn btn--white snippet-expand")
+        .addClass("btn btn--medium btn--white snippet-expand")
         .text("Expand snippet")
         .data("alt", "Close snippet");
 
