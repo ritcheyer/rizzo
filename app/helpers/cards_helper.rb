@@ -9,6 +9,7 @@ module CardsHelper
       "card--#{props[:fixed?] ? 'fixed' : 'flexible'}",
       "card--#{props[:cover?] ? 'cover' : 'standard'}",
       "card--#{props[:double?] ? 'double' : 'single'}",
+      "card--#{props[:stubby?] ? 'stubby' : 'control'}",
       "card--#{props[:image_url].present? ? 'has-img' : 'no-img'}",
       "card--#{props[:price_tag].present? ? 'has-price' : 'no-price'}",
       "card--#{props[:author_name].present? || props[:context_locale].present? || (props[:tags] && props[:tags][:lp_reviewed?]) ? 'has-footer' : 'no-footer'}"

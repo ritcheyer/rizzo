@@ -20,16 +20,16 @@
 
 .card--single
   +card-dimensions(1)
+  &.card--stubby
+    +card-dimensions(1, $width: $card-stubby-width, $height: $card-stubby-height)
 
 .card--double
-  +card-dimensions(1, $height: $card-width)
-  +respond-to(medium-view)
-    +card-dimensions(2)
+  +card-dimensions(2)
+  &.card--stubby
+    +card-dimensions(2, $width: $card-stubby-width, $height: $card-stubby-height)
 
 .card--triple
-  +card-dimensions(1, $height: $card-width)
-  +respond-to(medium-view)
-    +card-dimensions(3)
+  +card-dimensions(3)
 
 // -----------------------------------------------------------------------------
 // Basic card layout and styles
@@ -52,6 +52,10 @@
 .card__figure__img
   height: 100%
   min-width: 100%
+
+  .card--stubby &
+    min-height: 100%
+    height: auto
 
 .card__figure__icon
   +size(30px)
@@ -170,21 +174,32 @@
 
       .card__content
         height: $card-content-height
-        transition: height .2s ease-out
+        transition: padding .2s ease-out
 
       a:hover,
       a:focus
         .card__content
-          height: $card-content-height + $card-content-hover-growth
+          padding-bottom: $card-content-hover-growth
 
       &.card--has-footer
         .card__content
           height: $card-content-height - $card-footer-height
 
-        a:hover,
-        a:focus
+      &.card--stubby
+
+        .card__figure
+          bottom: $card-stubby-content-height + ($card-content-padding * 2)
+
+        .card__content
+          height: $card-stubby-content-height
+
+        &.card--has-footer
+
           .card__content
-            height: $card-content-height - $card-footer-height + $card-content-hover-growth
+            height: $card-stubby-content-height - $card-footer-height
+
+        .card__content__desc
+          display: none
 
     // Cover image card
     &.card--cover
