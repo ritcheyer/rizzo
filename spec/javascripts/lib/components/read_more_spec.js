@@ -54,7 +54,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
         window.SectionToggle = new SectionToggle({
           maxHeight: 100
         });
-        expect(window.SectionToggle.$el.find(".btn--clear").length).toBe(1);
+        expect(window.SectionToggle.$el.find(".btn--outline").length).toBe(1);
         expect(window.SectionToggle.$wrapper).toHaveClass("read-more-block");
       });
 
@@ -64,7 +64,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
           shadow: true
         });
         expect(window.SectionToggle.$el.find(".read-more__handler").length).toBe(1);
-        expect(window.SectionToggle.$el.find(".btn--clear").length).toBe(1);
+        expect(window.SectionToggle.$el.find(".btn--outline").length).toBe(1);
         expect(window.SectionToggle.$wrapper).toHaveClass("read-more-block");
       });
 
@@ -73,7 +73,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
           maxHeight: 100,
           style: "inline"
         });
-        expect(window.SectionToggle.$el.find(".btn--clear").length).toBe(1);
+        expect(window.SectionToggle.$el.find(".btn--outline").length).toBe(1);
         expect(window.SectionToggle.$wrapper).toHaveClass("read-more-inline");
       });
 
@@ -95,7 +95,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
           maxHeight: 100
         });
         window.SectionToggle.transitionEnabled = false;
-        window.SectionToggle.$el.find(".btn--clear").click();
+        window.SectionToggle.$el.find(".btn--outline").click();
       });
 
       it("opens the toggle area when the toggle button is clicked", function() {
@@ -156,7 +156,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
             maxHeight: 100,
             tolerance: 10
           });
-          expect(window.SectionToggle.$el.find(".btn--clear").length).toBe(1);
+          expect(window.SectionToggle.$el.find(".btn--outline").length).toBe(1);
           expect(window.SectionToggle.$wrapper).toHaveClass("read-more-block");
         });
 
