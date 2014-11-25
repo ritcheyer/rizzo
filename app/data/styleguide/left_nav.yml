@@ -116,17 +116,20 @@
       :title: "Icons"
       :items:
         -
-          :name: "Interface"
-          :slug: "interface-icons"
-        -
           :name: "Destination"
           :slug: "destination-icons"
         -
           :name: "Interests"
           :slug: "interests-icons"
         -
+          :name: "Interface"
+          :slug: "interface-icons"
+        -
           :name: "Need to Know"
           :slug: "need-to-know-icons"
+        -
+          :name: "Weather"
+          :slug: "weather-icons"
   :ui_components:
     -
       :title: "Components"
