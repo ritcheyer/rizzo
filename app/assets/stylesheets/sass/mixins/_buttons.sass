@@ -9,11 +9,9 @@
 @mixin btn-font-size($font-size)
   +font-size($font-size)
   &.btn--caps
-    text-transform: UPPERCASE
     +font-size($font-size - 2)
   &.btn--icon-only
-    +font-size($font-size + 3)
-    background-size: $font-size + 10px
+    background-size: $font-size + 6px
   &.btn--icon:before
     +size(#{$font-size}px)
   &.btn--social-icon:before
@@ -26,17 +24,11 @@
 //
 // [/doc]
 // -----------------------------------------------------------------------------
-@mixin btn-color($primary, $secondary: white)
-  $highlight: mix($primary, white, 80%)
+@mixin btn-color($primary, $secondary: white, $highlight: mix($primary, white, 80%))
   background-color: $primary
   color: $secondary
   &.btn--outline
-    background-color: transparent
-    border: 1px solid
     color: $primary
-    &:hover
-      border-color: transparent
-
   &:hover
     background-color: $highlight
     color: $secondary

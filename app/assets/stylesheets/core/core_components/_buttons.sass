@@ -22,7 +22,7 @@
 
 .btn--full-width
   display: block
-  width: 100%
+  width: 100% // Ensure inputs also stretch full width
 
 .btn--small
   +btn-font-size(13)
@@ -41,13 +41,18 @@
   padding: 0 40px
 
 // -----------------------------------------------------------------------------
+// Buttons font modifiers
+// -----------------------------------------------------------------------------
+
+.btn--caps
+  text-transform: UPPERCASE
+
+// -----------------------------------------------------------------------------
 // Buttons with icons
 // -----------------------------------------------------------------------------
 
 .btn--icon-only
   @extend %image-replacement
-  padding: 0
-  width: 2.2em
 
 .btn--icon:before
   display: inline-block
@@ -56,7 +61,7 @@
 
 .btn--social-icon:before
   display: inline-block
-  vertical-align: sub
+  vertical-align: sub // Different vertical align because social icons are a bit bigger
   margin-right: 4px
 
 .btn--icon--minus:before
@@ -79,11 +84,9 @@
 
 .btn
   &.is-disabled, &[disabled]
-    +btn-color($input-border, $lightgray)
+    +btn-color($input-border, $lightgray, $subduedgray)
     cursor: default
     opacity: .75
-    &:hover
-      background-color: $subduedgray
 
 .btn--linkblue
   +btn-color($linkblue)
@@ -155,6 +158,12 @@
     &:before, &:after
       +icon-color(white)
 
+.btn--outline
+  background-color: transparent
+  border: 1px solid
+  &:hover
+    border-color: transparent
+
 // -----------------------------------------------------------------------------
 // Social Media
 // -----------------------------------------------------------------------------
@@ -179,8 +188,8 @@
   @extend %btn--social
   background: $pinterest
 
-
 // TODO: This is only temp
-// .btn
-//   @extend .btn--large
-//   @extend .btn--linkblue
+// until all the buttons has changed to the new class names
+.btn
+  @extend .btn--large
+  @extend .btn--linkblue
