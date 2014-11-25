@@ -1,5 +1,5 @@
-@mixin card-dimensions($span, $width: $card-width, $height: $card-height, $margin: $card-margin)
-  $width: ($width * $span) + ($margin * ($span - 1))
+@mixin card-dimensions($span, $width: $card-width, $height: $card-height, $gutter: $card-gutter)
+  $width: ($width * $span) + ($gutter * ($span - 1))
   $ratio: (1 / $width) * $height
 
   padding-top: percentage($ratio)
@@ -11,27 +11,25 @@
 .card
   @extend %rounded-corners
   position: relative
-  margin-bottom: $card-margin
+  margin-bottom: $card-gutter
   background: #FFF
 
   .results &
     float: left
-    margin-left: $card-margin
+    margin-left: $card-gutter
 
 .card--single
-  +card-dimensions(1, $height: $card-height-mobile)
-  +respond-to(medium-view)
-    +card-dimensions(1)
+  +card-dimensions(1)
+  &.card--stubby
+    +card-dimensions(1, $width: $card-stubby-width, $height: $card-stubby-height)
 
 .card--double
-  +card-dimensions(1, $height: $card-width)
-  +respond-to(medium-view)
-    +card-dimensions(2)
+  +card-dimensions(2)
+  &.card--stubby
+    +card-dimensions(2, $width: $card-stubby-width, $height: $card-stubby-height)
 
 .card--triple
-  +card-dimensions(1, $height: $card-width)
-  +respond-to(medium-view)
-    +card-dimensions(3)
+  +card-dimensions(3)
 
 // -----------------------------------------------------------------------------
 // Basic card layout and styles
@@ -55,6 +53,10 @@
   height: 100%
   min-width: 100%
 
+  .card--stubby &
+    min-height: 100%
+    height: auto
+
 .card__figure__icon
   +size(30px)
   +icon-color(white)
@@ -72,9 +74,9 @@
 
 .card__content__pin
   .card--no-img &
-    width: 24px
-    height: 35px
-    margin-bottom: 8px
+    width: 22px
+    height: 32px
+    margin-bottom: 6px
 
   .card--has-img &
     display: none
@@ -164,39 +166,41 @@
     &.card--standard
 
       .card__figure
-        bottom: $card-content-height-mobile + ($card-content-padding * 2)
-        +respond-to(medium-view)
-          bottom: $card-content-height + ($card-content-padding * 2)
+        bottom: $card-content-height + ($card-content-padding * 2)
 
       .card__footer,
       .card__content
         background: #FFF
 
       .card__content
-        height: $card-content-height-mobile
-        transition: height .2s ease-out
-        +respond-to(medium-view)
-          height: $card-content-height
+        height: $card-content-height
+        transition: padding .2s ease-out
 
       a:hover,
       a:focus
         .card__content
-          height: $card-content-height-mobile + $card-content-hover-growth
-          +respond-to(medium-view)
-            height: $card-content-height + $card-content-hover-growth
+          padding-bottom: $card-content-hover-growth
 
       &.card--has-footer
         .card__content
-          height: $card-content-height-mobile - $card-footer-height
-          +respond-to(medium-view)
-            height: $card-content-height - $card-footer-height
+          height: $card-content-height - $card-footer-height
 
-        a:hover,
-        a:focus
+      // Overwrites for A/B test
+      &.card--stubby
+
+        .card__figure
+          bottom: $card-stubby-content-height + ($card-content-padding * 2)
+
+        .card__content
+          height: $card-stubby-content-height
+
+        &.card--has-footer
+
           .card__content
-            height: $card-content-height-mobile - $card-footer-height + $card-content-hover-growth
-            +respond-to(medium-view)
-              height: $card-content-height - $card-footer-height + $card-content-hover-growth
+            height: $card-stubby-content-height - $card-footer-height
+
+        .card__content__desc
+          display: none
 
     // Cover image card
     &.card--cover
