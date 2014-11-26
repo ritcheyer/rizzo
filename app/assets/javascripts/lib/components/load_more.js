@@ -85,7 +85,7 @@ define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
 
   LoadMore.prototype._add = function() {
     var container = $("<div>").css("text-align", "center");
-    this.$btn = $("<a>").attr("id", "js-load-more").addClass("btn btn--grey btn--full-width").text(this.config.title);
+    this.$btn = $("<a>").attr("id", "js-load-more").addClass("btn btn--darkgray btn--large btn--full-width").text(this.config.title);
     this.$el.append(container.append(this.$btn));
   };
 

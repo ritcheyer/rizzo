@@ -4,7 +4,7 @@
   = ui_component("navigation/secondary", properties: @app.secondary_nav_items)
 
 - content_for :app_require_config do
-  = raw(js_hash({d3: requirejs_config_path("d3/d3"), nvd3: requirejs_config_path("nvd3/nv.d3")}, "window.lp.require.paths"))
+  = raw(js_hash({d3: requirejs_config_path("d3/d3"), nvd3: requirejs_config_path("nvd3/nv.d3"), zeroclipboard: requirejs_config_path("zeroclipboard/dist/ZeroClipboard") }, "window.lp.require.paths"))
 
 %script#tmpl-preloader{ type: 'text-mustache' }
   = ui_component('preloader')

@@ -7,7 +7,7 @@ define([ "jquery" ], function($) {
     wrapper: ".js-read-more-wrapper",
     text: [ "Read more", "Read less" ],
     toggleIcons: [ "icon--chevron-down--after", "icon--chevron-up--after" ],
-    toggleStyle: "btn btn--slim btn--clear js-handler icon--lp-blue--after",
+    toggleStyle: "btn btn--small btn--darkgray btn--outline btn--icon js-handler icon--lp-blue--after",
     maxHeight: 2500,
     tolerance: 0
   };
