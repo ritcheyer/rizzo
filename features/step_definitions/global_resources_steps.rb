@@ -1,3 +1,7 @@
+Then(/^I should not see a 500$/) do
+  page.status_code.should == 200
+end
+
 Then(/^the Core layout should be displayed$/) do
   page.should have_selector 'html.no-freight'
   page.should_not have_selector 'body.responsive'

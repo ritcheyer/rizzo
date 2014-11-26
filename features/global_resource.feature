@@ -3,6 +3,10 @@ Feature: Global Resources
   As the lp global service
   I should be able to serve the global-head, body-header and global-footer snippets
 
+  Scenario: it serves the style guide
+    Given I go to "/styleguide"
+    Then I should not see a 500
+
   Scenario: it serves the legacy header and footer
     Given I go to "/layouts/legacy"
     Then the Legacy layout should be displayed
