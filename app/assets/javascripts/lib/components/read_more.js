@@ -6,8 +6,8 @@ define([ "jquery" ], function($) {
     selector: ".js-read-more",
     wrapper: ".js-read-more-wrapper",
     text: [ "Read more", "Read less" ],
-    toggleIcons: [ "icon--chevron-down--after", "icon--chevron-up--after" ],
-    toggleStyle: "btn btn--small btn--darkgray btn--outline btn--icon js-handler icon--lp-blue--after",
+    toggleIcons: [ "icon--chevron-down--before", "icon--chevron-up--before" ],
+    toggleStyle: "btn btn--clear btn--small btn--icon js-handler",
     maxHeight: 2500,
     tolerance: 0
   };
