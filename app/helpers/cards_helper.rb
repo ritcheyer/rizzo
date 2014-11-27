@@ -102,7 +102,7 @@ module CardsHelper
     class_names
   end
 
-  def card_grid_helper(card_index: 0, is_double: false, is_mpu: false, has_rail: false, reset: false)
+  def card_grid_helper(card_index: 0, is_double: false, is_mpu: false, is_row: false, has_rail: false, reset: false)
     class_str = card_grid_classes(is_double: is_double || is_mpu, has_rail: has_rail)
 
     @grid_helper_doubles = 0 if card_index == 0 || reset
@@ -119,6 +119,11 @@ module CardsHelper
       class_str << 'wv--clear' if has_rail && position_index % 3 == 0
       class_str << 'cv--clear' if has_rail && position_index % 4 == 0
       class_str << 'wv--clear' if !has_rail && position_index % 5 == 0
+
+      if is_row
+        class_str << 'mv--hide wv--hide' if has_rail && position_index % 3 == 0
+        class_str << 'wv--hide' if !has_rail && position_index % 4 == 0
+      end
     end
 
     class_str
