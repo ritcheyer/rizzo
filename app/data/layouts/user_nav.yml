@@ -41,7 +41,7 @@
       :title: "Join"
       :slug: "https://auth.lonelyplanet.com/users/sign_up"
       :icon_class: "icon--sign-in--before icon--white--before"
-      :extra_class: "js-user-sign_up"
+      :extra_class: "js-user-sign_up btn--linkblue"
       :analytics:
         :lpa-category: "account"
         :lpa-action: "join"
