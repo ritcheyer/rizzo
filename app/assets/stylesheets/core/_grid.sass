@@ -76,6 +76,9 @@
 .col--clear
   clear: left
 
+.col--hide
+  display: none
+
 // -----------------------------------------------------------------------------
 //
 // Responsive grid allowing columns to be composed for multiple screen sizes
@@ -86,6 +89,9 @@
 
   .col--clear
     clear: none
+
+  .col--hide
+    display: initial
 
   .nv--col--one-whole
     width: 100%
@@ -108,10 +114,16 @@
   .nv--clear
     clear: left
 
+  .nv--hide
+    display: none
+
 +respond-to(medium-view, false)
 
   .nv--clear
     clear: none
+
+  .nv--hide
+    display: initial
 
   .mv--col--one-whole
     width: 100%
@@ -146,10 +158,16 @@
   .mv--clear
     clear: left
 
+  .mv--hide
+    display: none
+
 +respond-to(large-view, false)
 
   .mv--clear
     clear: none
+
+  .mv--hide
+    display: initial
 
   .lv--col--one-whole
     width: 100%
@@ -184,10 +202,16 @@
   .lv--clear
     clear: left
 
+  .lv--hide
+    display: none
+
 +respond-to(wide-view)
 
   .lv--clear
     clear: none
+
+  .lv--hide
+    display: initial
 
   .wv--col--one-whole
     width: 100%
@@ -222,10 +246,16 @@
   .wv--clear
     clear: left
 
-+respond-to(cinema-view)
+  .wv--hide
+    display: none
+
++respond-to(cinema-view, false)
 
   .wv--clear
     clear: none
+
+  .wv--hide
+    display: initial
 
   .cv--col--one-whole
     width: 100%
@@ -265,6 +295,9 @@
 
   .cv--clear
     clear: left
+
+  .cv--hide
+    display: none
 
 // -----------------------------------------------------------------------------
 // Flexible, collapsible grid

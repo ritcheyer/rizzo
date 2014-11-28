@@ -246,6 +246,13 @@ describe CardsHelper do
         end
       end
 
+      context "when using rows" do
+        it "hides the 5th card for wide views" do
+          result = helper.card_grid_helper(card_index: 4, reset: true, is_row: true)
+          result.should include("wv--hide")
+        end
+      end
+
       context "with ad rail" do
 
         context "for a double width card" do
@@ -280,6 +287,13 @@ describe CardsHelper do
             result.should     include("lv--clear")
             result.should_not include("wv--clear")
             result.should     include("cv--clear")
+          end
+        end
+
+        context "when using rows" do
+          it "hides the 4th card for wide views" do
+            result = helper.card_grid_helper(card_index: 3, reset: true, has_rail: true, is_row: true)
+            result.should include("mv--hide wv--hide")
           end
         end
 
