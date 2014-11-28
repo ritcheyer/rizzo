@@ -74,7 +74,8 @@ $submenu__vertical-padding: 14px
   &:after
     position: absolute
     filter: drop-shadow(0px -1px 0px rgba(0, 0, 0, 0.1))
-
+  .place-title-nav__submenu &
+    padding-top: 5px
   .responsive &
     box-shadow: none
     &:after
@@ -98,6 +99,9 @@ $submenu__vertical-padding: 14px
     border-radius: 0 0 4px 4px
   &:hover
     background-color: $body-background-offset
+  &.has-image
+    position: relative
+    padding: 10px 12px 11px 50px
   .responsive &
     padding: $submenu__vertical-padding 20px
     text-transform: uppercase
@@ -112,6 +116,19 @@ $submenu__vertical-padding: 14px
       &:hover
         background-color: $body-background-offset
         color: $body-copy
+
+.nav__submenu__item--text
+  .has-image &
+    +font-size(15px)
+
+.nav__submenu__item--image
+  +size(40px)
+  position: absolute
+  top: 0
+  left: 1px
+
+.nav__submenu__button
+  padding: 5px
 
 .nav__submenu__title
   +font-size(16)
