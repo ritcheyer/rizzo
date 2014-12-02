@@ -13,6 +13,11 @@
     %p.js-example-three
       %a.btn.btn--linkblue.btn--large.btn--icon.icon--sight--before.icon--white--before.js-custom-opener-three.sg-lightbox-toggle{ href: "#" } fetchContent Example
 
+    %p.copy--caption
+      Note that when preloading and fetching content via AJAX, you can specify an empty
+      %code js-flash-messages
+      container within your preloader template for showing errors like 404s or 500s.
+
 .styleguide-block.styleguide-block__description.card.copy--body
 
   %h2.copy--h2.styleguide-block__heading
@@ -70,7 +75,7 @@
           <a href="#" class="js-lightbox-toggle" data-lightbox-class"some-custom-class" data-lightbox-showpreloader="true">show lightbox</a>
 
   %p
-    You can add a 
+    You can add a
     %code
       mobileBreakpoint
     parameter to set a specific breakpoint based on the window width. The Lightbox by default won't open on devices with small screens (< 500px), unless this parameter is set.
@@ -172,10 +177,9 @@
   %h2.copy--h2.styleguide-block__heading
     Navigation within the lightbox
   %p
-    You can have links inside the lightbox to navigate to another url, without closing the lightbox. 
+    You can have links inside the lightbox to navigate to another url, without closing the lightbox.
   %p
-    In order to do that, add the links within the content of the ligthbox and give them the js-lightbox-navigation class with the href pointing to the url to load.    
+    In order to do that, add the links within the content of the ligthbox and give them the js-lightbox-navigation class with the href pointing to the url to load.
     %code
       js-lightbox-navigation
     These links will load the url in the href of the link on the lightbox
-    

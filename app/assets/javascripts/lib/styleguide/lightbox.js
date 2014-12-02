@@ -28,7 +28,7 @@ define([ "jquery", "lib/components/lightbox", "lib/page/controller" ], function(
   });
 
   $(".js-example-three").on(":lightbox/open", function( ) {
-    $(".js-example-three").trigger( ":lightbox/fetchContent", "/styleguide/js-components/lightbox-content" );
+    $(".js-example-three").trigger( ":lightbox/fetchContent", "/foo/bar" );
   });
 
 });

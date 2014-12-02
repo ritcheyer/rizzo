@@ -81,7 +81,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
         });
 
-        it("should't have preloader", function() {
+        it("shouldn't have preloader", function() {
           jasmine.Clock.tick(301);
           expect($("#js-lightbox").find(".preloader").length).toBe(0);
         });
@@ -121,7 +121,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
           expect($("#js-lightbox")).toHaveClass("lightbox-bar");
         });
 
-        it("should't have preloader", function() {
+        it("shouldn't have preloader", function() {
           jasmine.Clock.tick(301);
           expect($("#js-lightbox").find(".preloader").length).toBe(1);
         });
@@ -155,6 +155,18 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         it("should have prerendered content", function() {
           expect($(".js-lightbox-content .my-title").html()).toContain("Prerendered title");
           expect($(".js-lightbox-content .my-content").html()).toContain("Prerendered content");
+        });
+
+        it("handles errors appropriately", function() {
+          var $lightbox;
+
+          $("#js-row--content").trigger(":layer/error", [ "404", "not found" ]);
+
+          $lightbox = $("#js-lightbox");
+
+          expect($lightbox.find(".alert--warning").length).toBe(1);
+          expect($lightbox.find(".alert__title").html()).toBe("The following error was encountered while fetching the rest of this content: ");
+          expect($lightbox.find(".alert__content").html()).toBe("404 - not found");
         });
 
       });
@@ -245,7 +257,20 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
         expect($(".js-lightbox-content").html()).toBe("Test content here.");
         expect($("#js-lightbox")).toHaveClass("content-ready");
+      });
 
+      it("handles errors appropriately", function() {
+        var $lightbox;
+
+        $("#js-row--content").trigger(":layer/error", [ "404", "not found" ]);
+
+        $lightbox = $("#js-lightbox");
+
+        jasmine.Clock.tick(301);
+
+        expect($lightbox.find(".alert--error").length).toBe(1);
+        expect($lightbox.find(".alert__title").html()).toBe("404 - ");
+        expect($lightbox.find(".alert__content").html()).toBe("not found");
       });
 
     });

@@ -36,19 +36,34 @@ define([
     this.$el.on(":cards/request", function(event, data, analytics) {
       this._updateState(data);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
-      this._callServer(this._createRequestUrl(), this.replace, analytics);
+      this._callServer({
+        analytics: analytics,
+        callback: this.replace,
+        eventType: event.type,
+        url: this._createRequestUrl()
+      });
     }.bind(this))
 
     .on(":cards/append", function(event, data, analytics) {
       this._updateState(data);
-      this._callServer(this._createRequestUrl(), this.append, analytics);
+      this._callServer({
+        analytics: analytics,
+        callback: this.append,
+        eventType: event.type,
+        url: this._createRequestUrl()
+      });
     }.bind(this))
 
     .on(":page/request", function(event, data, analytics) {
       var urlParts = data.url.split("?");
       this._generateState(urlParts[0], urlParts[1]);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
-      this._callServer(this._createJSONUrl(data.url), this.newPage, analytics);
+      this._callServer({
+        analytics: analytics,
+        callback: this.newPage,
+        eventType: event.type,
+        url: this._createJSONUrl(data.url)
+      });
     }.bind(this))
 
     .on(":layer/request", function(event, data) {
@@ -62,7 +77,11 @@ define([
       urlParts = data.url.split("?");
       this._generateState(urlParts[0], urlParts[1]);
       this.pushState.navigate(this._serializeState(), this._currentRoot(), replaceState);
-      this._callServer(this._createJSONUrl(data.url), this.newLayer);
+      this._callServer({
+        callback: this.newLayer,
+        eventType: event.type,
+        url: this._createJSONUrl(data.url)
+      });
     }.bind(this))
 
     .on(":controller/back", function() {
@@ -123,14 +142,17 @@ define([
     this.trigger(":layer/received", [ data, this._currentState() ]);
   };
 
-  Controller.prototype._callServer = function(url, callback, analytics, dataType) {
-    callback = callback.bind(this);
+  Controller.prototype._callServer = function(opts) {
+    var callback = opts.callback.bind(this);
 
     return $.ajax({
-      url: url,
-      dataType: dataType || "json",
+      url: opts.url,
+      dataType: opts.dataType || "json",
+      error: function(jqXHR, status, err) {
+        this.trigger(opts.eventType.split("/")[0] + "/error", [ jqXHR.status, err ] );
+      }.bind(this),
       success: function(data) {
-        callback(data, analytics);
+        callback(data, opts.analytics);
       }
     });
   };

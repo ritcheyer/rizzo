@@ -5,12 +5,13 @@
 // ------------------------------------------------------------------------------
 define([
   "jquery",
+  "lib/utils/alert",
   "lib/mixins/flyout",
   "lib/mixins/events",
   "lib/utils/template",
   "lib/page/viewport_helper",
   "polyfills/function_bind"
-], function($, asFlyout, asEventEmitter, Template, withViewportHelper) {
+], function($, Alert, asFlyout, asEventEmitter, Template, withViewportHelper) {
 
   "use strict";
 
@@ -88,9 +89,11 @@ define([
     this.$el.on(":lightbox/navigate", function(event, data) {
       if (data.title && data.content) {
         this._prerenderContent(data);
+        this.$lightbox.data("prerendered", true);
       } else {
         this.$lightbox.removeClass("content-ready");
         this.$lightboxContent.empty();
+        this.$lightbox.data("prerendered", false);
       }
       this.$el.trigger(":lightbox/fetchContent", data.url);
       this.$lightboxControls.find(".js-lightbox-arrow").addClass("is-hidden");
@@ -116,8 +119,10 @@ define([
 
           if (prerenderData.title && prerenderData.content) {
             this._prerenderContent(prerenderData);
+            this.$lightbox.data("prerendered", true);
           } else {
             this.$lightbox.addClass("is-loading");
+            this.$lightbox.data("prerendered", false);
           }
 
           setTimeout(function() {
@@ -167,6 +172,34 @@ define([
     this.$controllerEl.on(":layer/received", function(event, data) {
       this._renderPagination(data);
       this._renderContent(data.content || data);
+    }.bind(this));
+
+    this.$controllerEl.on(":layer/error", function(event, status, msg) {
+      var alert = new Alert({
+            scrollTo: false
+          }),
+          alertContainer, alertMsg;
+
+      if (this.$lightbox.data("prerendered")) {
+        alertContainer = this.$lightboxContent.find(".js-flash-messages");
+        alertMsg = {
+          title: "The following error was encountered while fetching the rest of this content: ",
+          content: status + " - " + msg
+        };
+
+        if (alertContainer.length) {
+          alert.warning(alertMsg);
+        } else {
+          this.$lightboxContent.prepend(alert.getHtml(alertMsg, "warning"));
+        }
+      } else {
+        alertMsg = {
+          title: status + " - ",
+          content: msg
+        };
+
+        this._renderContent(alert.getHtml(alertMsg, "error"));
+      }
     }.bind(this));
   };
 
