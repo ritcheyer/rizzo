@@ -174,34 +174,29 @@ define([
       this._renderContent(data.content || data);
     }.bind(this));
 
-    this.$controllerEl.on(":layer/error", function(event, status, msg) {
-      var alert = new Alert({
-            scrollTo: false
-          }),
-          alertContainer, alertMsg;
+    this.$controllerEl.on(":layer/error", function() {
+      var alert, alertMsg;
 
       if (this.$lightbox.data("prerendered")) {
-        alertContainer = this.$lightboxContent.find(".js-flash-messages");
-        alertMsg = {
-          title: "The following error was encountered while fetching the rest of this content: ",
-          content: status + " - " + msg
-        };
+        alert = new Alert({
+          isSubtle: true,
+          scrollTo: false
+        });
+        alertMsg = alert.getHtml({
+          title: "Sorry, there was an error fetching the rest of this content."
+        }, "warning");
 
-        if (alertContainer.length) {
-          alert.warning(alertMsg);
-        } else {
-          this.$lightboxContent.prepend(alert.getHtml(alertMsg, "warning"));
-        }
-
-        this.$lightboxContent.find(".js-preloader").remove();
+        this.$lightbox.find(".js-preloader").replaceWith(alertMsg);
       } else {
-        alertMsg = {
-          title: status + " - ",
-          content: msg
-        };
-
-        this._renderContent(alert.getHtml(alertMsg, "error"));
+        alert = new Alert({
+          scrollTo: false
+        });
+        alertMsg = alert.getHtml({
+          title: "Sorry, there was an error fetching this content."
+        }, "error");
+        this._renderContent(alertMsg);
       }
+
     }.bind(this));
   };
 
