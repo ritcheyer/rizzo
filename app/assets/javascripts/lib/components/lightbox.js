@@ -192,6 +192,8 @@ define([
         } else {
           this.$lightboxContent.prepend(alert.getHtml(alertMsg, "warning"));
         }
+
+        this.$lightboxContent.find(".js-preloader").remove();
       } else {
         alertMsg = {
           title: status + " - ",
