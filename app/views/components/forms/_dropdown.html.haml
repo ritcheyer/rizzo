@@ -5,12 +5,20 @@
     selected_title = properties[:options].find{ |option| option[:value] == properties[:selected] || option[:title] == properties[:selected] }.try(:[], :title)
   end
 
+  select_properties = {
+    id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: no_options
+  }
+
+  if properties[:required]
+    select_properties[:required] = ""
+  end
+
 .dropdown.js-select-group-manager{ class: "#{properties[:class]}#{no_options ? ' is-disabled' : ''}#{!tooltip.nil? ? ' tooltip--container' : ''}" }
   %label.dropdown__value.js-select-overlay.icon--chevron-down--after{ for: properties[:id] }
     - unless no_options
       = selected_title || properties[:placeholder] || properties[:options].first[:title] || ""
 
-  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: no_options}
+  %select.dropdown__select.js-select{ select_properties }
 
     - if no_options
       %option{ value: "" }<
