@@ -202,7 +202,7 @@ define([
     this.trigger(":lightbox/navigate", {
       url: $element.attr("href"),
       opener: $element,
-      target: this.$lightboxContent
+      target: this.$lightbox
     });
 
     return false;
