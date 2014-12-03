@@ -15,27 +15,15 @@
     %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/components/_buttons.sass'}
       buttons.sass
 
-.styleguide-block.styleguide-block__buttons
+.styleguide-block.styleguide-block__buttons.context--content
 
-  .grid-wrapper--30
-    .col--one-half.context--content
-      .copy--h3 Colour variations
-      - colors.each_with_index do | color, i |
+
+
+  .copy--h3 Colour variations
+  .grid-wrapper--10.styleguide-block
+    - colors.each_with_index do | color, i |
       - color[:modifiers] = "btn--medium"
-        .styleguide-block__description.card.copy--body{class: color[:type] == "white" ? "theme--dark" : nil}
-          .styleguide-block__items.clearfix
-
-            %h2.copy--h2.styleguide-block__heading.split--left
-              = color[:styleguide_title]
-
-            .styleguide-block__item.split--right{class: " styleguide-block__item--#{i}"}
-              = ui_component("button", button: color)
-
-          %pre.styleguide.copy--body.language-markup
-            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: color)))}
-      .copy--h3 Outline buttons
-      - colors.each_with_index do | color, i |
-      - color[:modifiers] = "btn--medium btn--outline"
+      .col--one-half
         .styleguide-block__description.card.copy--body{class: color[:type] == "white" ? "theme--dark" : nil}
           .styleguide-block__items.clearfix
 
@@ -48,17 +36,16 @@
           %pre.styleguide.copy--body.language-markup
             %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: color)))}
 
+  .copy--h3 Size and Style variations
+  .grid-wrapper--10.styleguide-block
+    - i = 0
+    - modifier_classes = variation.delete(:modifiers)
 
-    .col--one-half.context--content
-      .copy--h3 Size and Style variations
+    - while i < modifier_classes.length
+      - variation[:modifiers] =  modifier_classes[i]
+      - heading = variation[:modifiers].split(' ').last.split('btn--').last
 
-      - i = 0
-      - modifier_classes = variation.delete(:modifiers)
-
-      - while i < modifier_classes.length
-        - variation[:modifiers] =  modifier_classes[i]
-        - heading = variation[:modifiers].split(' ').last.split('btn--').last
-
+      .col--one-half
         .styleguide-block__description.card.context--content
           .styleguide-block__items.clearfix
 
@@ -72,10 +59,11 @@
             %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: variation)))}
         - i += 1
 
-    .col--one-half.context--content
-      .copy--h3 Social Media
 
-      - social_media.each_with_index do | button, i |
+  .copy--h3 Social Media
+  .grid-wrapper--10.styleguide-block
+    - social_media.each_with_index do | button, i |
+      .col--one-half
         .styleguide-block__description.card.copy--body
           .styleguide-block__items.clearfix
 
