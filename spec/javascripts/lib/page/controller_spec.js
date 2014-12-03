@@ -2,6 +2,8 @@ require([
   "public/assets/javascripts/lib/page/controller.js"
 ], function(Controller) {
 
+  "use strict";
+
   describe("Controller", function() {
     var LISTENER, analytics, appendParams, deserialized, newParams, serialized;
 
@@ -163,10 +165,15 @@ require([
     });
 
     describe("calling the server", function() {
+      var spyEvent;
+
       beforeEach(function() {
         window.controller = new Controller();
         spyOn($, "ajax");
-        controller._callServer("http://www.lonelyplanet.com/foo.json?foo=bar", function(){});
+        controller._callServer({
+          url: "http://www.lonelyplanet.com/foo.json?foo=bar",
+          callback: function() {}
+        });
       });
 
       it("enters the ajax function", function() {
@@ -188,7 +195,12 @@ require([
       });
 
       it("requests data from the server", function() {
-        expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.replace, controller.analytics);
+        expect(controller._callServer).toHaveBeenCalledWith({
+          analytics: controller.analytics,
+          callback: controller.replace,
+          eventType: ":cards/request",
+          url: "http://www.lonelyplanet.com/foo.json?foo=bar"
+        });
       });
     });
 
@@ -207,7 +219,12 @@ require([
       });
 
       it("requests data from the server", function() {
-        expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.append, controller.analytics);
+        expect(controller._callServer).toHaveBeenCalledWith({
+          analytics: controller.analytics,
+          callback: controller.append,
+          eventType: ":cards/append",
+          url: "http://www.lonelyplanet.com/foo.json?foo=bar"
+        });
       });
     });
 

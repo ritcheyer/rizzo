@@ -10,7 +10,8 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
       error: "cross",
       warning: "caution",
       announcement: "loudspeaker"
-    }
+    },
+    scrollTo: true
   };
 
   function Alert(args) {
@@ -57,6 +58,16 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
     this.$body.animate({ scrollTop: this._position() }, 300);
   };
 
+  Alert.prototype.getHtml = function(message, type, isSubtle) {
+    return Template.render(this.template, {
+      type: type,
+      appearance: (isSubtle || this.config.isSubtle) ? "subtle" : "block",
+      icon: this.config.icons[type],
+      title: message.title ? message.title : "",
+      content: message.content ? message.content : ""
+    });
+  };
+
   // -------------------------------------------------------------------------
   // Private
   // -------------------------------------------------------------------------
@@ -67,18 +78,8 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
 
   Alert.prototype._render = function(message, type, isSubtle) {
     this.clear();
-    this.$container.html(this._getHtml(message, type, isSubtle));
-    this.scrollTo();
-  };
-
-  Alert.prototype._getHtml = function(message, type, isSubtle) {
-    return Template.render(this.template, {
-      type: type,
-      appearance: (isSubtle || this.config.isSubtle) ? "subtle" : "block",
-      icon: this.config.icons[type],
-      title: message.title ? message.title : "",
-      content: message.content ? message.content : ""
-    });
+    this.$container.html(this.getHtml(message, type, isSubtle));
+    this.config.scrollTo && this.scrollTo();
   };
 
   return Alert;

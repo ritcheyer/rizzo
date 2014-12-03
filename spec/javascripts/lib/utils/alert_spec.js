@@ -163,6 +163,15 @@ require([
         it("should call animate and scroll the page to alert container", function() {
           expect(alert.$body.animate).toHaveBeenCalledWith({ scrollTop: 600 }, 300);
         });
+
+        it("should be bypassable", function() {
+          alert = new Alert({ scrollTo: false });
+          spyOn(alert, "scrollTo");
+          alert._render({ title: "Yay!", content: "You did it!" }, "error");
+
+          expect(alert.scrollTo).not.toHaveBeenCalled();
+        });
+
       });
 
       describe("clear()", function() {
