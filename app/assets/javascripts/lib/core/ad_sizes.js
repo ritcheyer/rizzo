@@ -34,6 +34,9 @@ define(function() {
     "traffic-driver": [
       { browser: [ 0, 0 ], ad_sizes: [ 192, 380 ] }
     ],
+    "traffic-driver-rail": [
+      { browser: [ 0, 0 ], ad_sizes: [ 300, 100 ] }
+    ],
     background: [
       { browser: [ 980, 0 ], ad_sizes: [ 1, 1 ] }
     ]
