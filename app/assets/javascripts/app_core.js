@@ -43,7 +43,7 @@ define([
     }
 
     new PlaceTitleNav({
-      el: ".place-title"
+      el: ".js-place-title"
     });
 
     // Navigation tracking
