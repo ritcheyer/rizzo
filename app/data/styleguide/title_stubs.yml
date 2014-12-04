@@ -82,18 +82,22 @@ titles:
           :title: "Africa"
           :slug: "http://www.lonelyplanet.com/africa"
           :show_responsive_toggle: true
+          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Antarctica"
           :slug: "http://www.lonelyplanet.com/antarctica"
           :show_responsive_toggle: true
+          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Asia"
           :slug: "http://www.lonelyplanet.com/asia"
           :show_responsive_toggle: true
+          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Caribbean"
           :slug: "http://www.lonelyplanet.com/caribbean"
           :show_responsive_toggle: true
+          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
 
   -
     :styleguide_title: "Page title as a H1, with submenu"

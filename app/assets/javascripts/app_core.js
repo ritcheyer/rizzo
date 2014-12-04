@@ -2,6 +2,7 @@ define([
   "jquery",
   "flamsteed",
   "lib/core/ad_manager",
+  "lib/components/place_title_nav",
 
   "sCode",
   "trackjs",
@@ -17,7 +18,7 @@ define([
   "lib/components/toggle_active",
   "lib/components/select_group_manager"
 
-], function($, Flamsteed, AdManager) {
+], function($, Flamsteed, AdManager, PlaceTitleNav) {
 
   "use strict";
 
@@ -40,6 +41,10 @@ define([
         window.Sailthru.setup({ domain: "horizon.lonelyplanet.com" });
       });
     }
+
+    new PlaceTitleNav({
+      el: ".place-title"
+    });
 
     // Navigation tracking
     $("#js-primary-nav").on("click", ".js-nav-item", function() {

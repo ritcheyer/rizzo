@@ -13,8 +13,13 @@
   &:hover
     max-width: none
   .nav__submenu__trigger--icon
-    margin-top: 3px
-    margin-left: 3px
+    display: none
+
+  &.nav__submenu__trigger
+    .nav__submenu__trigger--icon
+      display: block
+      margin-top: 3px
+      margin-left: 3px
 
 .place-title--text
   @extend %truncate-text

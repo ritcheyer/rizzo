@@ -1,23 +1,20 @@
-.split--left.row__title--secondary
-  
+.split--left.row__title--secondary  
   .place-title{class: "icon--#{ properties[:icon] || "place--pin"}--before"}<>
-    .place-title--wrapper.nav__submenu__trigger
-      - if properties[:primary_submenu]          
-        %span.icon--chevron-down.nav__submenu__trigger--icon
-        = render "components/navigation/submenu", item: properties[:primary_submenu], class_name: 'place-title__submenu primary-submenu', show_responsive_toggle: !defined?(primary), button_text: properties[:primary_button_text], button_path: properties[:primary_button_path]       
+    .place-title--wrapper{ class: "#{ properties[:primary_submenu] ? 'nav__submenu__trigger' : '' }"}      
+      %span.icon--chevron-down.nav__submenu__trigger--icon
+      = render "components/navigation/submenu", item: properties[:primary_submenu], class_name: 'place-title__submenu', show_responsive_toggle: !defined?(primary), button_text: properties[:primary_button_text], button_url: properties[:primary_button_url]       
 
       - if properties[:no_place_link] == true || !properties[:slug]
-        %span.place-title-heading.place-title--text<> #{properties[:title]}
+        %span.place-title-heading.place-title--text.js-place-title-nav{ data: {slug: "/#{properties[:slug] ? properties[:slug].sub(/^\//, '') : ''}"}}<> #{properties[:title]}
       - else
-        %a.place-title-heading.place-title--text{href: "/#{properties[:slug].sub(/^\//, '')}"}<> #{properties[:title]}              
+        %a.place-title-heading.place-title--text.js-place-title-nav{data: {slug: "/#{properties[:slug].sub(/^\//, '')}"}, href: "/#{properties[:slug].sub(/^\//, '')}"}<> #{properties[:title]}              
 
     - if properties[:parent]
       %span.place-title__separator<> /
-      .place-title--wrapper.nav__submenu__trigger
-        - if properties[:parent_submenu]
-          %span.icon--chevron-down.nav__submenu__trigger--icon          
-          = render "components/navigation/submenu", item: properties[:parent_submenu], class_name: 'place-title__submenu parent-submenu', show_responsive_toggle: !defined?(primary), button_text: properties[:parent_button_text], button_path: properties[:parent_button_path]       
+      .place-title--wrapper{ class: "#{ properties[:parent_submenu] ? 'nav__submenu__trigger' : '' }"}      
+        %span.icon--chevron-down.nav__submenu__trigger--icon          
+        = render "components/navigation/submenu", item: properties[:parent_submenu], class_name: 'place-title__submenu', show_responsive_toggle: !defined?(primary), button_text: properties[:parent_button_text], button_url: properties[:parent_button_url]       
 
-        %a.place-title__parent.place-title--text{href: "/#{properties[:parent_slug].sub(/^\//, '')}"}<>
+        %a.place-title__parent.place-title--text.js-place-title-nav{data: {slug: "/#{properties[:parent_slug].sub(/^\//, '')}"}, href: "/#{properties[:parent_slug].sub(/^\//, '')}"}<>
           = properties[:parent]        
 
