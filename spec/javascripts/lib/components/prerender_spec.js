@@ -44,7 +44,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/prerender.js" ], f
 
         expect($("#target .my-title").html()).toContain("Next prerendered title");
         expect($("#target .my-content").html()).toContain("Next prerendered content");
-        expect($("#target .js-prerender-panel").attr("style")).toContain("left: 1400px");
+        expect($("#target .js-prerender-panel").attr("style")).toContain("left: 1800px");
         expect($("#target .js-prerender-container").attr("style")).toContain("translateX(-1600px)")
       });
 
@@ -53,7 +53,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/prerender.js" ], f
 
         expect($("#target .my-title").html()).toContain("Previous prerendered title");
         expect($("#target .my-content").html()).toContain("Previous prerendered content");
-        expect($("#target .js-prerender-panel").attr("style")).toContain("right: 1400px");
+        expect($("#target .js-prerender-panel").attr("style")).toContain("right: 1800px");
         expect($("#target .js-prerender-container").attr("style")).toContain("translateX(1600px)")
       });
 

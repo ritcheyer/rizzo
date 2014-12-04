@@ -1,15 +1,16 @@
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //
 // Prerender some content into a target element whilst waiting for further data
 // from the server.
 //
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 define([
   "jquery",
   "lib/utils/template",
-  "lib/mixins/page_state"
-], function($, Template, withPageState) {
+  "lib/mixins/page_state",
+  "lib/utils/on_transition_end"
+], function($, Template, withPageState, onTransitionEnd) {
 
   "use strict";
 
@@ -21,9 +22,9 @@ define([
 
   withPageState.call(Prerender.prototype);
 
-  // -------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   // Subscribe to Events
-  // -------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
 
   Prerender.prototype.listen = function() {
 
@@ -32,20 +33,20 @@ define([
 
   };
 
-  // -------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   // Private Functions
-  // -------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
 
   Prerender.prototype._getContainerDimensions = function() {
-    return $(".js-prerender-container").find(".js-article-content")[0].getBoundingClientRect();
-  };
-
-  Prerender.prototype._getElementHtml = function($element) {
-    return $element[0].outerHTML;
+    return $(".js-prerender-container").find(".js-layer-content")[0].getBoundingClientRect();
   };
 
   Prerender.prototype._useElementIfAvailable = function($element, selector) {
     return $element.find(selector).length ? $element.find(selector) : $element;
+  };
+
+  Prerender.prototype._getNextPreviousHtml = function($element) {
+    return $element.find(".js-prerender-content")[0].outerHTML;
   };
 
   Prerender.prototype._getNewContent = function($element) {
@@ -62,33 +63,38 @@ define([
 
   Prerender.prototype._prerenderNextPrevious = function(event, data) {
     var direction = $(data.opener).data("direction");
+    if (!direction) return this._prerenderContent(null, data);
 
-    if (!direction) {
-      return this._prerenderContent(null, data);
-    }
+    var transitionAmounts = this._getPrerenderTransitionAmounts(direction),
+        $prerenderPanel = this._useElementIfAvailable(this._getNewContent($(data.opener)), ".js-prerender-panel"),
+        $prerenderContainer = $(data.target).find(".js-prerender-container");
 
-    var $newContent = this._getNewContent($(data.opener)),
-        transition = this._getPrerenderTransitionAmounts(direction, this._getContainerDimensions()),
-        $content = this._useElementIfAvailable($newContent, ".js-prerender-panel"),
-        $target = this._useElementIfAvailable($(data.target), ".js-prerender-container"),
-        $contentHTML = this._getElementHtml($content.find(".js-prerender-content"));
+    // Add our prerendered content into an offscreen panel and then
+    // transition it into place, mimicking the movement
 
-    $target
-      .append($content.addClass("prerender-panel").css(transition.panel))
-      .addClass("will-transition").css(transition.container);
+    $prerenderContainer
+      .append($prerenderPanel.css(transitionAmounts.panel))
+      .addClass("will-transition").css(transitionAmounts.container);
 
-    setTimeout(function() {
-      $target.find(".js-article-content").html($contentHTML);
-      $target.find(".js-lightbox-wrapper").scrollTop(0);
-      $content.remove();
-      $target.removeClass("will-transition").css("transform", "translateX(0)");
-    }, 500);
+    // Copy the html into the original panel and move it back into place,
+    // removing the dummy panel. This allows us to not maintain state.
 
-    this.$listener.trigger(":prerender/complete");
+    onTransitionEnd({
+      $listener: $prerenderContainer,
+      delay: 500,
+      fn: function() {
+        this.$listener.trigger(":prerender/complete");
+        $prerenderContainer.find(".js-layer-content").html(this._getNextPreviousHtml($prerenderPanel));
+        $prerenderPanel.remove();
+        $prerenderContainer.removeClass("will-transition").css("transform", "translateX(0)");
+      }.bind(this)
+    });
+
   };
 
-  Prerender.prototype._getPrerenderTransitionAmounts = function(direction, panelDimensions) {
-    var offset = this.getViewPort() + panelDimensions.left;
+  Prerender.prototype._getPrerenderTransitionAmounts = function(direction) {
+    var panelDimensions = this._getContainerDimensions(),
+        offset = this.getViewPort() + panelDimensions.left;
     if (direction == "next") {
       return {
         panel: { left: offset },

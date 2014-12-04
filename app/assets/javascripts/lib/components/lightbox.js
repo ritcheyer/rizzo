@@ -185,7 +185,9 @@ define([
 
     this.$listener.on(":prerender/complete", function() {
       this.$lightbox.addClass("content-ready").removeClass("is-loading");
+      this.$lightboxWrapper.scrollTop(0);
     }.bind(this));
+
   };
 
   // -------------------------------------------------------------------------
