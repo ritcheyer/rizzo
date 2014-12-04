@@ -20,7 +20,7 @@
             .accessibility Top Pick
 
         - if properties[:context_text]
-          %p.card__content__context{ class: properties[:context_icon] ? "copy--icon--before icon--#{card_icon(properties)}--before" : "" }
+          .card__content__context{ class: properties[:context_icon] ? "copy--icon--before icon--#{card_icon(properties)}--before" : "" }
             = properties[:context_text]
 
         %h1.card__content__title.js-prerender-title

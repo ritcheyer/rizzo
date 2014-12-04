@@ -11,12 +11,15 @@
 .card
   @extend %rounded-corners
   position: relative
-  margin-bottom: $card-gutter
   background: #FFF
 
   .results &
     float: left
+    margin-bottom: $card-gutter
     margin-left: $card-gutter
+
+  .stack__row &
+    margin-bottom: 0
 
 .card--single
   +card-dimensions(1)
