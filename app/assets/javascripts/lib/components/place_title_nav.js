@@ -4,14 +4,16 @@ define([
 ], function($, Template) {
 
   "use strict";
+  function PlaceTitleNav() {
+    this.$el = $(".js-place-title");
 
-  // @args = {}
-  // el: {string} selector for parent element
-  function PlaceTitleNav( args ) {
-    this.$el = $(args.el);
-    this.$list = $(args.list);
+    if (!this.navItemTemplate) {
+      var $template = $("#tmpl-nav-item").text();
+      if (!$template) return;
+      this.navItemTemplate = $template;
+    }
 
-    this.$el.length && this.init();
+    this.$el.length && this.navItemTemplate && this.init();
   }
 
   PlaceTitleNav.prototype.init = function() {
@@ -36,14 +38,7 @@ define([
   };
 
   PlaceTitleNav.prototype.renderSubMenu = function(menuItem, data) {
-    if (data && data.length > 0) {
-
-      if (!this.navItemTemplate) {
-        var $template = $("#tmpl-nav-item").text();
-        if (!$template) return;
-        this.navItemTemplate = $template;
-      }
-
+    if (data && data.length ) {
       var html = "";
       for (var i = 0; i < data.length; i++) {
         html += Template.render(this.navItemTemplate, data[i]);
@@ -54,6 +49,8 @@ define([
 
   };
 
-  return PlaceTitleNav;
+  $(document).ready(function() {
+    new PlaceTitleNav;
+  });
 
 });

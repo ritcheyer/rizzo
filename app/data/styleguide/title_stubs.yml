@@ -49,10 +49,6 @@ titles:
     :parent: "Israel and the Palestinian Territories"
     :parent_slug: "/israel-and-the-palestinian-territories/"
     :show_responsive_toggle: true
-    :primary_button_text: 'See All'
-    :primary_button_path: '/places'
-    :parent_button_text: 'See All parent'
-    :parent_button_path: '/places'
 
     :primary_submenu:
       :submenu:

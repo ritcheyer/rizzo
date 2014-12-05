@@ -1,14 +1,14 @@
 // ----------------------------------------------------------------------------
 //
 // Place title nav is a component that allows us to show long place names on hover
-// and also can have a subnav to navigate throw siblings of the current section/subsection
+// and also can have a subnav to navigate throw child places of the current section/subsection
 //
 // ----------------------------------------------------------------------------
 
 .place-title__wrapper
+  @extend %inline-block
   text-overflow: ellipsis
   white-space: nowrap
-  display: inline-block
   max-width: 130px
   &:hover
     max-width: none
@@ -73,7 +73,7 @@
     text-decoration: none
 
 .place-title__heading__description
-  font-weight: lighter
+  font-weight: normal
 
 .place-title__parent
   line-height: 26px
