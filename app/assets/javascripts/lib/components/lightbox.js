@@ -59,8 +59,7 @@ define([
   // -------------------------------------------------------------------------
 
   LightBox.prototype.init = function() {
-    var prerender = new Prerender;
-    this.prerenderingContent = !!prerender.template;
+    this.prerender = new Prerender;
     this.listen();
   };
 
@@ -162,14 +161,14 @@ define([
 
     this.$controllerEl.on(":layer/error", function() {
       var alert = new Alert({
-            isSubtle: this.prerenderingContent,
+            isSubtle: !!this.prerender.template,
             scrollTo: false
           }),
           alertMsg = alert.getHtml({
             title: "Sorry, there was an error fetching the rest of this content."
           }, "warning");
 
-      this._renderContent(alertMsg);
+      this.$lightbox.find(".js-preloader").replaceWith(alertMsg);
     }.bind(this));
 
     this.$listener.on(":prerender/complete", function() {

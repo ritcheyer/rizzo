@@ -27,10 +27,8 @@ define([
   // ---------------------------------------------------------------------------
 
   Prerender.prototype.listen = function() {
-
     this.$listener.on(":lightbox/open", this._prerenderContent.bind(this));
     this.$listener.on(":lightbox/navigate", this._prerenderNextPrevious.bind(this));
-
   };
 
   // ---------------------------------------------------------------------------
@@ -76,7 +74,7 @@ define([
       .append($prerenderPanel.css(transitionAmounts.panel))
       .addClass("will-transition").css(transitionAmounts.container);
 
-    // Copy the html into the original panel and move it back into place,
+    // Copy the html into the original panel and move it back instantly,
     // removing the dummy panel. This allows us to not maintain state.
 
     onTransitionEnd({
