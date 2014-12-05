@@ -6,8 +6,9 @@
 //
 // ------------------------------------------------------------------------------
 define([
-  "jquery"
-], function($) {
+  "jquery",
+  "lib/core/feature_detect"
+], function($, features) {
 
   "use strict";
 
@@ -27,7 +28,7 @@ define([
 
     this.$window = $(window);
 
-    this.init();
+    features.touch() && this.init();
   };
 
   Swipe.prototype.init = function() {
