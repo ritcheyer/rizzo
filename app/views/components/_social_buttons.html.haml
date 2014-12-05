@@ -7,7 +7,7 @@
 
 .nav--inline
 
-  .social
+  .social{ role: 'complementary', aria: { label: 'Share this page' } }
     - if show.include? 'facebook'
       %a.social__item.social__item--facebook.js-facebook-share{ href: "https://www.facebook.com/sharer/sharer.php?u=#{encoded_url}", target: "_blank", data: {lpa_category: 'share', lpa_action: 'facebook', lpa_label: "#{properties[:url]}"} }
         %span.accessibility Share on Facebook
