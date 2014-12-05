@@ -8,9 +8,8 @@ define([
     this.$el = $(".js-place-title");
 
     if (!this.navItemTemplate) {
-      var $template = $("#tmpl-nav-item").text();
-      if (!$template) return;
-      this.navItemTemplate = $template;
+      this.navItemTemplate = $("#tmpl-nav-item").text();
+      if (!this.navItemTemplate) return;
     }
 
     this.$el.length && this.navItemTemplate && this.init();
@@ -52,5 +51,7 @@ define([
   $(document).ready(function() {
     new PlaceTitleNav;
   });
+
+  return PlaceTitleNav;
 
 });
