@@ -105,7 +105,7 @@ module CardsHelper
   def card_grid_helper(card_index: 0, is_double: false, is_mpu: false, is_row: false, has_rail: false, reset: false)
     class_str = card_grid_classes(is_double: is_double || is_mpu, has_rail: has_rail)
 
-    @grid_helper_doubles = 0 if card_index == 0 || reset
+    @grid_helper_doubles = 0 if  @grid_helper_doubles.nil? || card_index == 0 || reset
     @grid_helper_doubles += 1 if is_double
 
     class_str << 'col--right' if is_mpu
