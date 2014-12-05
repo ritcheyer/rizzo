@@ -51,6 +51,9 @@ $submenu__vertical-padding: 14px
   top: 54%
   margin-left: $submenu__left-offset
 
+  &.place-title__submenu
+    top: 35%
+
   .responsive &
     margin-left: 0
     padding: 0
@@ -75,8 +78,9 @@ $submenu__vertical-padding: 14px
     position: absolute
     filter: drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.1))
 
-  .place-title-nav__submenu &
-    padding-top: 5px
+  .place-title__submenu &
+    +css-arrow-central(top, $size: 20px)
+    padding-top: 10px
   .responsive &
     box-shadow: none
     &:after
@@ -95,6 +99,10 @@ $submenu__vertical-padding: 14px
   border-bottom: 1px solid $subduedgray
   &:first-child
     border-radius: 4px 4px 0 0
+  .place-title__submenu &
+    &:first-child
+      border-radius: 0
+
   &:last-child
     border-bottom: 0
     border-radius: 0 0 4px 4px
@@ -130,7 +138,9 @@ $submenu__vertical-padding: 14px
   left: 1px
 
 .nav__submenu__button
-  padding: 5px
+  padding: 10px
+  .btn
+    text-transform: uppercase
 
 .nav__submenu__title
   +font-size(16)
