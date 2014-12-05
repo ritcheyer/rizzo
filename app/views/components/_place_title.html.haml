@@ -2,7 +2,7 @@
   .place-title.js-place-title{class: "icon--#{ properties[:icon] || "place--pin"}--before"}<>
     .place-title__wrapper{ class: "#{ properties[:primary_submenu] ? 'nav__submenu__trigger' : '' }"}      
       %span.icon--chevron-down.nav__submenu__trigger--icon
-      = render "components/navigation/submenu", item: properties[:primary_submenu], class_name: 'place-title__submenu', show_responsive_toggle: !defined?(primary), button_text: 'See All', button_url: "/#{properties[:slug].sub(/^\//, '')}/places"       
+      = render "components/navigation/submenu", item: properties[:primary_submenu], class_name: 'place-title__submenu', show_responsive_toggle: !defined?(primary), button_text: 'See All', button_url: "/#{properties[:slug] ? "#{properties[:slug].sub(/^\//, '')}/places" : ''}"       
 
       - if properties[:no_place_link] == true || !properties[:slug]
         %span.place-title__heading.place-title--text.js-place-title-nav{ data: {slug: "/#{properties[:slug] ? properties[:slug].sub(/^\//, '') : ''}"}}<> #{properties[:title]}
