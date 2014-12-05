@@ -15,6 +15,7 @@ define([
   "polyfills/function_bind",
   "lib/core/cookie_compliance",
   "lib/components/toggle_active",
+  "lib/components/place_title_nav",
   "lib/components/select_group_manager"
 
 ], function($, Flamsteed, AdManager) {
