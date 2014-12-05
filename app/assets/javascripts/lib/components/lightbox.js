@@ -59,7 +59,8 @@ define([
   // -------------------------------------------------------------------------
 
   LightBox.prototype.init = function() {
-    new Prerender;
+    var prerender = new Prerender;
+    this.prerenderingContent = !!prerender.template;
     this.listen();
   };
 
@@ -107,7 +108,7 @@ define([
       this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data().lightboxClass);
 
       showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
-      if (showPreloader && !this.$lightbox.find(".js-preloader").length){
+      if (showPreloader && !this.$lightbox.find(".js-preloader").length) {
         this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
         this.$lightboxContent.parent().append(this.preloaderTmpl);
       }
@@ -160,27 +161,15 @@ define([
     }.bind(this));
 
     this.$controllerEl.on(":layer/error", function() {
-      var alert, alertMsg;
+      var alert = new Alert({
+            isSubtle: this.prerenderingContent,
+            scrollTo: false
+          }),
+          alertMsg = alert.getHtml({
+            title: "Sorry, there was an error fetching the rest of this content."
+          }, "warning");
 
-      if (this.$lightbox.data("prerendered")) {
-        alert = new Alert({
-          isSubtle: true,
-          scrollTo: false
-        });
-        alertMsg = alert.getHtml({
-          title: "Sorry, there was an error fetching the rest of this content."
-        }, "warning");
-
-        this.$lightbox.find(".js-preloader").replaceWith(alertMsg);
-      } else {
-        alert = new Alert({
-          scrollTo: false
-        });
-        alertMsg = alert.getHtml({
-          title: "Sorry, there was an error fetching this content."
-        }, "error");
-        this._renderContent(alertMsg);
-      }
+      this._renderContent(alertMsg);
     }.bind(this));
 
     this.$listener.on(":prerender/complete", function() {

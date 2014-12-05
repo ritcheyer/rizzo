@@ -27,6 +27,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/prerender.js" ], f
           expect($("#target .my-content").html()).toContain(sampleData.content);
         });
       });
+
     });
 
     describe("Pagination", function() {
