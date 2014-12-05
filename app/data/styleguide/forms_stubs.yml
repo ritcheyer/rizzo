@@ -105,6 +105,7 @@ dropdown_components:
     :styleguide_title: "Dropdown"
     :id: "input_id"
     :name: "text_name"
+    :label: "Select label"
     :options:
       - :title: 'one'
       - :title: 'two'
@@ -115,7 +116,7 @@ dropdown_components:
 
   -
     :styleguide_title: "Select field"
-    :label: "Select legend"
+    :label: "Select label"
     :id: "select_id"
     :fields:
       -
@@ -131,7 +132,7 @@ dropdown_components:
 
   -
     :styleguide_title: "Select field"
-    :label: "Multiple Select legend"
+    :label: "Multiple Select label"
     :id: "multiple_select_id"
     :fields:
       -
