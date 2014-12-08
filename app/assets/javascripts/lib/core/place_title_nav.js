@@ -22,7 +22,7 @@ define([
   };
 
   PlaceTitleNav.prototype.getUrl = function(menuItem) {
-    return $(menuItem).attr("data-slug") + "/navitems";
+    return $(menuItem).attr("data-slug") + "/navitems.json";
   };
 
   PlaceTitleNav.prototype.fetchNavItems = function(menuItem) {
