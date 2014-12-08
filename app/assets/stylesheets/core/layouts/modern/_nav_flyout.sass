@@ -83,12 +83,12 @@ $submenu__vertical-padding: 14px
     padding-top: 10px
   .responsive &
     box-shadow: none
-    &:after
+    &, &:after
       display: none
     +respond-to(wide-view)
       // We can't use `@extend %fly-out-shadow` within a mixin, thus:
       box-shadow: 0 2px 2px 0 rgba($darkgray,0.25)
-      &:after
+      &, &:after
         display: block
 
 .nav__submenu__item
@@ -110,7 +110,9 @@ $submenu__vertical-padding: 14px
     background-color: $body-background-offset
   &.has-image
     position: relative
-    padding: 10px 12px 11px 50px
+    // Unfortunately required to overcome a `.responsive &` specificity issue
+    &, .responsive &
+      padding: 10px 12px 11px 50px
   .responsive &
     padding: $submenu__vertical-padding 20px
     text-transform: uppercase

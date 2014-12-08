@@ -16,11 +16,15 @@
     display: none
 
   &.nav__submenu__trigger
+    margin-right: 15px
     .nav__submenu__trigger--icon
       +size(12px)
-      display: block
-      margin-top: 6px
-      margin-left: 3px
+      position: absolute
+      top: 8px
+      right: -15px
+      margin-top: 0
+      +respond-to(wide-view)
+        display: block
 
 .place-title--text
   @extend %truncate-text
@@ -41,17 +45,10 @@
   .responsive &
     +font-size(16)
     padding: 7px 6px 7px 22px
-    text-overflow: none
-    overflow: visible
-    white-space: normal
     margin-left: 20px
     &:before
       +size(18px)
       top: 10px
-    +respond-to(medium-view)
-      text-overflow: ellipsis
-      overflow: hidden
-      white-space: nowrap
     +respond-to(wide-view)
       +font-size(20)
       padding-top: 0
@@ -60,11 +57,11 @@
       &:before
         +size(20px)
         top: 3px
+
   .no-background-size &
     padding-left: 0
     &:before
       display: none
-
 
 .place-title__heading
   font-weight: bold
