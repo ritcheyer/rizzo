@@ -5,13 +5,12 @@ define([], function() {
 
   return function(args) {
     var $listener = args.$listener,
-      delay = args.delay,
+        delay = args.delay,
 
-      // Ignore any bubbled events
-      fn = function(e) {
-        if ($listener[0] != e.target) return;
-        args.fn();
-      };
+        // Ignore any bubbled events
+        fn = function(e) {
+          $listener[0] == e.target && args.fn();
+        };
 
     if (window.lp.supports.transitionend) {
       $listener.on(window.lp.supports.transitionend, fn);

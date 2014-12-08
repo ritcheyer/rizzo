@@ -69,14 +69,12 @@ define([
 
     // Add our prerendered content into an offscreen panel and then
     // transition it into place, mimicking the movement
-
     $prerenderContainer
       .append($prerenderPanel.css(transitionAmounts.panel))
       .addClass("will-transition").css(transitionAmounts.container);
 
     // Copy the html into the original panel and move it back instantly,
     // removing the dummy panel. This allows us to not maintain state.
-
     onTransitionEnd({
       $listener: $prerenderContainer,
       delay: 500,
@@ -93,6 +91,7 @@ define([
   Prerender.prototype._getPrerenderTransitionAmounts = function(direction) {
     var panelDimensions = this._getContainerDimensions(),
         offset = this.getViewPort() + panelDimensions.left;
+
     if (direction == "next") {
       return {
         panel: { left: offset },

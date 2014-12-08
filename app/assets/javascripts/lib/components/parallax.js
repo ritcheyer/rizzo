@@ -18,7 +18,7 @@ define([
 
   HeroParallax = function( args ) {
     this.$els = args.$els || $(".js-bg-parallax");
-    if (this.viewport().width <= 1024 || !this.$els.length) { return; }
+    if (this.viewport().width <= 1024 || !this.$els.length) return;
 
     this.$listener = $("#js-row--content");
     this.calculateInitialPosition( true );
