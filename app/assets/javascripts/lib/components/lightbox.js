@@ -104,7 +104,7 @@ define([
       $("html").addClass("lightbox--open");
       this.$lightbox.addClass("is-active is-visible");
 
-      this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data().lightboxClass);
+      this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data() && $opener.data().lightboxClass);
 
       showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
       if (showPreloader && !this.$lightbox.find(".js-preloader").length) {
