@@ -190,29 +190,29 @@
     &:before
       position: absolute
 
-  &.nav__item--primary .nav__icon
-    padding-left: 60px
-    &:before
-      +size(22px)
-      top: -3px
-      left: 5px
-    +respond-to(wide-view)
-      padding-left: 0
+.nav__item--primary .nav__icon
+  padding-left: 60px
+  &:before
+    +size(22px)
+    top: -3px
+    left: 5px
+  +respond-to(wide-view)
+    padding-left: 0
 
-  &.nav__submenu__item .nav__icon
-    padding-left: 30px
+.nav__submenu__item .nav__icon
+  padding-left: 30px
+  &:before
+    +size(20px)
+    top: -4px
+    left: -2px
+  +respond-to(wide-view)
     &:before
-      +size(20px)
-      top: -4px
-      left: -2px
-    +respond-to(wide-view)
-      &:before
-        left: 0
+      left: 0
 
-  .nav--primary--user &
-    .nav__icon
-      padding-left: 0
-      .responsive &
-        padding-left: 60px
-        +respond-to(wide-view)
-          padding: 0
+.nav--primary--user .nav__icon
+  .nav__icon
+    padding-left: 0
+    .responsive &
+      padding-left: 60px
+      +respond-to(wide-view)
+        padding: 0

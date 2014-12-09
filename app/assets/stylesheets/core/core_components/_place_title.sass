@@ -5,6 +5,8 @@
 //
 // ----------------------------------------------------------------------------
 
+$submenu-item-padding: 11px 10px 10px 50px
+
 .place-title__wrapper
   @extend %inline-block
   text-overflow: ellipsis
@@ -16,7 +18,9 @@
     display: none
 
   &.nav__submenu__trigger
-    margin-right: 15px
+    +respond-to(wide-view)
+      margin-right: 15px
+
     .nav__submenu__trigger--icon
       +size(12px)
       position: absolute
@@ -25,6 +29,32 @@
       margin-top: 0
       +respond-to(wide-view)
         display: block
+
+  .place-title__submenu__item
+    position: relative
+    padding: $submenu-item-padding
+
+  .place-title__submenu__item--no-image
+    padding: 0
+    .nav__submenu__item__text
+      padding: $submenu-item-padding
+
+  .nav__submenu__item--image,
+  .nav__icon:before
+    +size(40px)
+    position: absolute
+    top: 0
+    left: 0
+
+  .nav__submenu__item__text
+    +font-size(15px)
+
+  .nav__icon:before
+    background-size: 45%
+    background-color: $body-background-offset
+    background-position: 50% 50%
+    .no-background-size &
+      background-image: none
 
 .place-title--text
   @extend %truncate-text

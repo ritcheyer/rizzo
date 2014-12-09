@@ -108,11 +108,7 @@ $submenu__vertical-padding: 14px
     border-radius: 0 0 4px 4px
   &:hover
     background-color: $body-background-offset
-  &.has-image
-    position: relative
-    // Unfortunately required to overcome a `.responsive &` specificity issue
-    &, .responsive &
-      padding: 10px 12px 11px 50px
+
   .responsive &
     padding: $submenu__vertical-padding 20px
     text-transform: uppercase
@@ -128,16 +124,8 @@ $submenu__vertical-padding: 14px
         background-color: $body-background-offset
         color: $body-copy
 
-.nav__submenu__item--text
+.nav__submenu__item__text
   @extend %truncate-text
-  .has-image &
-    +font-size(15px)
-
-.nav__submenu__item--image
-  +size(40px)
-  position: absolute
-  top: 0
-  left: 1px
 
 .nav__submenu__button
   padding: 10px
