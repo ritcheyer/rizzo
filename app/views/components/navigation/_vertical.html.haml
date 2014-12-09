@@ -14,10 +14,9 @@
           .media__img
             %img.vertical-nav__item-thumbnail{ src: item[:image_url], alt: item[:image_alt] }
           .media__body
-            %p.vertical-nav__item-text.copy--h5
-              = item_title
+            %p.vertical-nav__item-text.copy--h5= item_title
 
       - else
         = item_title
         - if item[:count]
-          %span{ class: 'nav--left__item__facet' } = "(#{item[:count]})"
+          %span{ class: 'nav--left__item__facet' }= "(#{item[:count]})"
