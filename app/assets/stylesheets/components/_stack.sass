@@ -61,8 +61,14 @@
     width: 300px
 
   .adunit
+    display: table
+    margin-left: auto
+    margin-right: auto
+    min-width: 300px
     background: $subduedgray
     +respond-to(wide-view)
+      display: block
+      min-width: 0
 
   .adunit--mpu
     min-height: 250px
@@ -71,7 +77,10 @@
     min-height: 100px
 
 .stack__rail__section
-  margin-bottom: 40px
+  margin-top: 20px
+  +respond-to(wide-view)
+    margin-top: 0
+    margin-bottom: 40px
 
 .stack__rail__heading
   margin-bottom: 10px
