@@ -41,7 +41,7 @@ define([ "jquery" ], function($) {
   };
 
   Breadcrumbs.prototype._updateNavBar = function(place) {
-    $("#js-secondary-nav .place-title-heading").attr("href", "/" + place.slug).text(place.name);
+    $("#js-secondary-nav .place-title__heading").attr("href", "/" + place.slug).text(place.name);
   };
 
   Breadcrumbs.prototype._updateBreadcrumbs = function(html) {

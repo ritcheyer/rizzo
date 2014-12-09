@@ -23,10 +23,15 @@ define([
         var userCountry = $.grep(countries, function(currency) {
               return currency.Code === request.getResponseHeader("X-GeoIp-Countrycode");
             }),
-            userCurrency = userCountry[0].Currency;
+            userCurrency, $currencySelect;
 
-        $("#currency").val(userCurrency);
-        $("#currency-label").text(userCurrency);
+        if (userCountry.length && userCountry[0].Currency) {
+          userCurrency = userCountry[0].Currency;
+          $currencySelect = $(".js-currency-select");
+
+          $currencySelect.find(".js-select").val(userCurrency);
+          $currencySelect.find(".js-select-overlay").text(userCurrency);
+        }
       }
     });
   }

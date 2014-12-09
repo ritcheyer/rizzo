@@ -13,7 +13,7 @@
     %code
       = preserve do
         :plain
-          = ui_component('month_blocks', properties: ['subduedgray', 'subduedgray', 'softblue', 'softblue', 'softgreen', 'softgreen', 'softgreen', 'softgreen', 'softblue', 'softblue', 'subduedgray', 'subduedgray'])
+          = ui_component('month_blocks', properties: {segments:['subduedgray', 'subduedgray', 'softblue', 'softblue', 'softgreen', 'softgreen', 'softgreen', 'softgreen', 'softblue', 'softblue', 'subduedgray', 'subduedgray']})
 
   %p
     Note that the above will output the markup for the preloader. To make it visible, you need to add a class of
@@ -24,4 +24,4 @@
     Example
 
   .styleguide-month-blocks.is-loading
-    = ui_component('month_blocks', properties: ['subduedgray', 'subduedgray', 'softblue', 'softblue', 'softgreen', 'softgreen', 'softgreen', 'softgreen', 'softblue', 'softblue', 'subduedgray', 'subduedgray'])
+    = ui_component('month_blocks', properties: {segments:['subduedgray', 'subduedgray', 'softblue', 'softblue', 'softgreen', 'softgreen', 'softgreen', 'softgreen', 'softblue', 'softblue', 'subduedgray', 'subduedgray']})

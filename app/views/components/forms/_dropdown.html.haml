@@ -1,21 +1,31 @@
 :ruby
-  no_options = properties[:options].nil? || properties[:options].empty?
   tooltip = properties[:tooltip]
+
   if properties[:selected]
     selected_title = properties[:options].find{ |option| option[:value] == properties[:selected] || option[:title] == properties[:selected] }.try(:[], :title)
   end
 
-.dropdown.js-select-group-manager{ class: "#{properties[:class]}#{no_options ? ' is-disabled' : ''}#{!tooltip.nil? ? ' tooltip--container' : ''}" }
-  %label.dropdown__value.js-select-overlay.icon--chevron-down--after{ for: properties[:id] }
-    - unless no_options
-      = selected_title || properties[:placeholder] || properties[:options].first[:title] || ""
+  label_text = properties[:label] || properties[:placeholder] || properties[:options].first[:title]
 
-  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: no_options}
+  select_properties = {
+    id: properties[:id],
+    name: properties[:name],
+    data: properties[:data],
+    class: properties[:dropdown_class],
+    disabled: properties[:disabled],
+    required: properties[:required]
+  }
 
-    - if no_options
-      %option{ value: "" }<
-        Nothing to select
-    - elsif properties[:placeholder]
+.dropdown.js-select-group-manager{ class: "#{properties[:class]}#{properties[:disabled] ? ' is-disabled' : ''}#{!tooltip.nil? ? ' tooltip--container' : ''}" }
+  %label.accessibility{ for: properties[:id] }
+    = label_text
+
+  %div.dropdown__value.js-select-overlay.icon--chevron-down--after{ aria: { hidden: true } }
+    = selected_title || label_text
+
+  %select.dropdown__select.js-select{ select_properties }
+
+    - if properties[:placeholder]
       %option{ value: "" }<
         = properties[:placeholder]
 
@@ -23,4 +33,4 @@
       %option{value: option[:value] || option[:title], disabled: option[:disabled], data: option[:data], selected: (properties[:selected] && (properties[:selected] == option[:value] || properties[:selected] == option[:title])) ? 'selected' : false}<
         = option[:title]
 
-  = render :partial => 'components/forms/partials/tooltip', :locals => { tooltip: tooltip }
+  = render partial: 'components/forms/partials/tooltip', locals: { tooltip: tooltip }

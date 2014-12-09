@@ -20,11 +20,12 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
     beforeEach(function() {
       loadFixtures("lightbox.html");
-      lightbox = new LightBox();
-
     });
 
     describe("Initialisation", function() {
+      beforeEach(function() {
+        lightbox = new LightBox();
+      });
 
       it("found the lightbox", function() {
         expect(lightbox.$lightbox.length).toBe(1);
@@ -139,37 +140,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
       });
 
-      describe("prerendering content", function() {
-        beforeEach(function() {
-          loadFixtures("lightbox.html");
-          lightbox = new LightBox();
-          spyOn(lightbox, "viewport").andReturn({
-            width: 600
-          });
-
-          $("#js-row--content").trigger(":lightbox/open", {
-            opener: ".js-lightbox-with-prerender"
-          });
-        });
-
-        it("should have prerendered content", function() {
-          expect($(".js-lightbox-content .my-title").html()).toContain("Prerendered title");
-          expect($(".js-lightbox-content .my-content").html()).toContain("Prerendered content");
-        });
-
-        it("handles errors appropriately", function() {
-          var $lightbox = $("#js-lightbox");
-
-          $lightbox.append("<div class='js-preloader' />");
-
-          $("#js-row--content").trigger(":layer/error", [ "404", "not found" ]);
-
-          expect($lightbox.find(".alert--warning").length).toBe(1);
-          expect($lightbox.find(".alert__title").html()).toBe("Sorry, there was an error fetching the rest of this content.");
-        });
-
-      });
-
       describe("with viewport below breakpoint", function() {
 
         beforeEach(function() {
@@ -210,9 +180,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
     describe("Pagination", function() {
       beforeEach(function() {
         spyOn(LightBox.prototype, "_navigateTo");
-
         lightbox = new LightBox();
-        spyOn(lightbox, "_renderPagination");
       });
 
       it("should render pagination on :layer/received", function() {
@@ -227,27 +195,12 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         expect(lightbox._navigateTo).toHaveBeenCalled();
       });
 
-      it("shouldn't prerender content if not all available", function() {
-        $("#js-row--content").trigger(":lightbox/navigate", paginationData.pagination.next);
-        expect($(".js-lightbox-content").html()).toBe("");
-        expect($("#js-lightbox")).not.toHaveClass("content-ready");
-      });
-
-      it("should prerender content if available", function() {
-        var data = $.extend({}, paginationData);
-        data.pagination.next.content = "Some next content";
-        $("#js-row--content").trigger(":lightbox/navigate", data.pagination.next);
-
-        expect($(".js-lightbox-content").html()).toContain("Some next content");
-        expect($("#js-lightbox")).toHaveClass("content-ready");
-
-      });
-
     });
 
     describe("Functionality", function() {
       beforeEach(function() {
         jasmine.Clock.useMock();
+        lightbox = new LightBox();
       });
 
       it("can update the lightbox contents", function() {
@@ -258,17 +211,28 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         expect($("#js-lightbox")).toHaveClass("content-ready");
       });
 
+    });
+
+    describe("Error handling", function() {
+
+      beforeEach(function() {
+        jasmine.Clock.useMock();
+        lightbox = new LightBox({ showPreloader: true });
+        spyOn(lightbox, "_isAboveBreakpoint").andReturn(true);
+      });
+
       it("handles errors appropriately", function() {
         var $lightbox;
 
+        $("#js-row--content").trigger(":lightbox/open", {opener: "foo"});
         $("#js-row--content").trigger(":layer/error", [ "404", "not found" ]);
 
         $lightbox = $("#js-lightbox");
 
         jasmine.Clock.tick(301);
 
-        expect($lightbox.find(".alert--error").length).toBe(1);
-        expect($lightbox.find(".alert__title").html()).toBe("Sorry, there was an error fetching this content.");
+        expect($lightbox.find(".alert--warning").length).toBe(1);
+        expect($lightbox.find(".alert__title").html()).toBe("Sorry, there was an error fetching the rest of this content.");
       });
 
     });

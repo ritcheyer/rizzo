@@ -26,18 +26,18 @@ There are two core Lonely Planet layouts which are available via http endpoints:
 
 #### global-head
 
-This should be requested within the <head> of your application.
+This should be requested within the `<head>` tag of your application.
 
 [Modern Route](/modern/head) | [Legacy Route](/global-head)
 
 #### global-body-header
 
-This should be requested immediately after the opening <body> tag
+This should be requested immediately after the opening `<body>` tag
 
 [Modern Route](/modern/body-header) | [Legacy Route](/global-body-header)
 
 #### global-body-footer
 
-This should be requests after your application code and before the closing <body> tag.
+This should be requests after your application code and before the closing `<body>` tag.
 
 [Modern Route](/modern/body-footer) | [Legacy Route](/global-body-footer)

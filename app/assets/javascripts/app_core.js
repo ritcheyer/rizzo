@@ -12,6 +12,7 @@ define([
   "lib/core/authenticator",
   "lib/core/shopping_cart",
   "lib/core/feature_detect",
+  "lib/core/place_title_nav",
   "polyfills/function_bind",
   "lib/core/cookie_compliance",
   "lib/components/toggle_active",

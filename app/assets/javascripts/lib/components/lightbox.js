@@ -10,8 +10,9 @@ define([
   "lib/mixins/events",
   "lib/utils/template",
   "lib/page/viewport_helper",
+  "lib/components/prerender",
   "polyfills/function_bind"
-], function($, Alert, asFlyout, asEventEmitter, Template, withViewportHelper) {
+], function($, Alert, asFlyout, asEventEmitter, Template, withViewportHelper, Prerender) {
 
   "use strict";
 
@@ -58,6 +59,7 @@ define([
   // -------------------------------------------------------------------------
 
   LightBox.prototype.init = function() {
+    this.prerender = new Prerender;
     this.listen();
   };
 
@@ -69,6 +71,7 @@ define([
 
     this.$lightbox.on("click", ".js-lightbox-close", function(event) {
       event.preventDefault();
+      this.$el.trigger(":lightbox/close");
       this._closeFlyout(this.$el);
     }.bind(this));
 
@@ -87,50 +90,32 @@ define([
     this.$previous.add(this.$next).on("click", this._navigateTo.bind(this));
 
     this.$el.on(":lightbox/navigate", function(event, data) {
-      if (data.title && data.content) {
-        this._prerenderContent(data);
-        this.$lightbox.data("prerendered", true);
-      } else {
-        this.$lightbox.removeClass("content-ready");
-        this.$lightboxContent.empty();
-        this.$lightbox.data("prerendered", false);
-      }
       this.$el.trigger(":lightbox/fetchContent", data.url);
       this.$lightboxControls.find(".js-lightbox-arrow").addClass("is-hidden");
     }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
-      if (data && data.opener) {
-        var showPreloader,
-            $opener = $(data.opener),
-            prerenderData = this._getPrerenderedContent($opener);
+      if (!(data && data.opener)) return;
+      if (!this._isAboveBreakpoint(data.opener)) return;
 
-        if (this._isAboveBreakpoint(data.opener)) {
-          $("html").addClass("lightbox--open");
-          this.$lightbox.addClass("is-active is-visible");
+      var showPreloader,
+          $opener = $(data.opener);
 
-          this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data().lightboxClass);
+      $("html").addClass("lightbox--open");
+      this.$lightbox.addClass("is-active is-visible");
 
-          showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
-          if (showPreloader && !this.$lightbox.find(".js-preloader").length){
-            this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
-            this.$lightboxContent.parent().append(this.preloaderTmpl);
-          }
+      this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data() && $opener.data().lightboxClass);
 
-          if (prerenderData.title && prerenderData.content) {
-            this._prerenderContent(prerenderData);
-            this.$lightbox.data("prerendered", true);
-          } else {
-            this.$lightbox.addClass("is-loading");
-            this.$lightbox.data("prerendered", false);
-          }
-
-          setTimeout(function() {
-            this.listenToFlyout(event, data);
-          }.bind(this), 20);
-        }
+      showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
+      if (showPreloader && !this.$lightbox.find(".js-preloader").length) {
+        this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
+        this.$lightboxContent.parent().append(this.preloaderTmpl);
       }
+      this.$lightbox.addClass("is-loading");
 
+      setTimeout(function() {
+        this.listenToFlyout(event, data);
+      }.bind(this), 20);
     }.bind(this));
 
     this.$el.on(":lightbox/fetchContent", function(event, url) {
@@ -175,29 +160,22 @@ define([
     }.bind(this));
 
     this.$controllerEl.on(":layer/error", function() {
-      var alert, alertMsg;
+      var alert = new Alert({
+            isSubtle: !!this.prerender.template,
+            scrollTo: false
+          }),
+          alertMsg = alert.getHtml({
+            title: "Sorry, there was an error fetching the rest of this content."
+          }, "warning");
 
-      if (this.$lightbox.data("prerendered")) {
-        alert = new Alert({
-          isSubtle: true,
-          scrollTo: false
-        });
-        alertMsg = alert.getHtml({
-          title: "Sorry, there was an error fetching the rest of this content."
-        }, "warning");
-
-        this.$lightbox.find(".js-preloader").replaceWith(alertMsg);
-      } else {
-        alert = new Alert({
-          scrollTo: false
-        });
-        alertMsg = alert.getHtml({
-          title: "Sorry, there was an error fetching this content."
-        }, "error");
-        this._renderContent(alertMsg);
-      }
-
+      this.$lightbox.find(".js-preloader").replaceWith(alertMsg);
     }.bind(this));
+
+    this.$listener.on(":prerender/complete", function() {
+      this.$lightbox.addClass("content-ready").removeClass("is-loading");
+      this.$lightboxWrapper.scrollTop(0);
+    }.bind(this));
+
   };
 
   // -------------------------------------------------------------------------
@@ -209,33 +187,19 @@ define([
   };
 
   LightBox.prototype._navigateTo = function(event) {
-    var $element = this.$lightbox.find(event.currentTarget),
-        data = $.extend({}, { url: $element.attr("href") }, this._getPrerenderedContent($element));
+    var $element = this.$lightbox.find(event.currentTarget);
 
-    this.trigger(":lightbox/navigate", data);
+    this.trigger(":lightbox/navigate", {
+      url: $element.attr("href"),
+      opener: $element,
+      target: this.$lightbox
+    });
+
     return false;
   };
 
   LightBox.prototype._fetchContent = function(url) {
     this.$controllerEl.trigger(":layer/request", { url: url });
-  };
-
-  LightBox.prototype._getPrerenderedContent = function($element) {
-    return {
-      title: $element.find(".js-prerender-title").html(),
-      content: $element.find(".js-prerender-content").html()
-    };
-  };
-
-  LightBox.prototype._prerenderContent = function(data) {
-    if (!this.layerPrerenderTmpl) {
-      var $template = $("#tmpl-layer-prerender").text();
-      if (!$template) return;
-      this.layerPrerenderTmpl = $template;
-    }
-    this.$lightboxContent.html(Template.render(this.layerPrerenderTmpl, data));
-    this.$lightboxContent.find(".js-preloader").append(this.preloaderTmpl);
-    this.$lightbox.addClass("content-ready");
   };
 
   // @content: {string} the content to dump into the lightbox.
