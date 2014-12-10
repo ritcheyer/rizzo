@@ -138,48 +138,34 @@
     background-color: $body-background
 
 // ----------------------------------------------------------------------------
-// Interstitial
+// HTML Traffic Driver
 // ----------------------------------------------------------------------------
 
-.ad-interstitial-wrap
-  +z-layer(top)
-  position: fixed
-  top: 0
-  right: 0
-  left: 0
-  bottom: 0
-  display: block
-  background: #333
-  background: rgba(0, 0, 0, .8)
-  transition: opacity .5s ease
-  zoom: 1
+.traffic-driver
+  overflow: hidden
 
-.ad-interstitial
-  +z-layer(modal)
+.traffic-driver__link:hover
+  text-decoration: none
+
+.traffic-driver__content
+  position: relative
+  height: 50px
+  padding: 10px
+
+.traffic-driver__title
+  text-transform: uppercase
+  font-weight: bold
+  color: $titlegray
+
+.traffic-driver__logo,
+.traffic-driver__badge
   position: absolute
-  display: none // Gets shown later via JS when there's content.
-  margin: 0 auto
-  padding: 25px 10px
-  border: 1px solid $subduedgray
-  background: white
-  .enhanced &
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, .5)
+  bottom: 10px
 
-  iframe
-    border: none
-
-  .close
-    position: absolute
-    right: 10px
-    top: 5px
-
-  .countdown
-    position: absolute
-    left: 0
-    bottom: 5px
-    display: block
-    text-align: center
-    width: 100%
+.traffic-driver__logo
+  right: 10px
+  max-width: 60px
+  max-height: 20px
 
 // ----------------------------------------------------------------------------
 // Paraphernalia
