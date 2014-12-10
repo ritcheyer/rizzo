@@ -77,7 +77,6 @@ $card--page-padding-x: 25px
 
 .card--page__header
   padding: $card--page-padding-y $card--page-padding-x
-  min-height: 55px
   .copy--h1
     line-height: 1.1em
     margin: 0
@@ -87,6 +86,9 @@ $card--page-padding-x: 25px
 .card--page__header--headline
   padding-top: $card--page-padding-x
   padding-bottom: $card--page-padding-x
+  // When in a layer we add breadcrumbs which needs to sit near the header
+  .layer-breadcrumbs + .article &
+    padding-top: 0
 
 .card--page__breadcrumb
   position: relative
