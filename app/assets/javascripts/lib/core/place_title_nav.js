@@ -9,7 +9,8 @@ define([
 
     if (!this.navItemTemplate) {
       this.navItemTemplate = $("#tmpl-nav-item").text();
-      if (!this.navItemTemplate) return;
+      this.navItemTemplateNoImage = $("#tmpl-nav-item-no-image").text();
+      if (!(this.navItemTemplate && this.navItemTemplateNoImage)) return;
     }
 
     this.$el.length && this.navItemTemplate && this.init();
@@ -38,9 +39,15 @@ define([
 
   PlaceTitleNav.prototype.renderSubMenu = function(menuItem, data) {
     if (data && data.length ) {
-      var html = "";
+      var html = "",
+          template;
+
       for (var i = 0; i < data.length; i++) {
-        html += Template.render(this.navItemTemplate, data[i]);
+        /* jshint ignore:start */
+        template = data[i].image_url ? this.navItemTemplate : this.navItemTemplateNoImage;
+        /* jshint ignore:end */
+
+        html += Template.render(template, data[i]);
       }
       $(menuItem).parent().addClass("nav__submenu__trigger")
         .find(".nav__submenu__content").prepend(html);

@@ -6,7 +6,7 @@
 
     - if defined?(button_text) && button_text
       .nav__submenu__button
-        %a.btn.btn--linkblue.btn--large.btn--full-width{ href: button_url }
+        %a.btn.btn--linkblue.btn--medium.btn--full-width{ href: button_url }
           = button_text
 
 -# Responsive Trigger - Desktop nav uses hover
@@ -14,5 +14,3 @@
   .nav__submenu__trigger--responsive.wv--hidden.js-toggle-active{ data: { toggle_target: ".js-secondary-nav-submenu", toggle_class: "is-visible", toggle_me: "true" } }
     %div.nav__submenu__trigger--icon.icon--chevron-down.icon--body-grey
     %div.nav__submenu__trigger--icon.icon--chevron-up.icon--body-grey
-
-= render "components/navigation/nav_item_tmpl"
