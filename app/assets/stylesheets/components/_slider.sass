@@ -61,6 +61,11 @@
 .slider__img
   +best-fit-media
 
+.slider__img--portrait
+  .no-transform-support &, .supports-transform &
+    width: auto
+    height: 100%
+
 .slider__controls-container
   @extend %clearfix
   @extend %transition--base
@@ -146,7 +151,7 @@
   width: 100%
   text-align: center
   opacity: 0
-  &.is-ready 
+  &.is-ready
     height: 60px
     opacity: 1
 
