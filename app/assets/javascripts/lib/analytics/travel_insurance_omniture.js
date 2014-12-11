@@ -32,11 +32,11 @@ require([ "jquery", "lib/analytics/analytics" ], function($, Analytics) {
     }
   };
 
-  $(".nomads-links a").click(function() {
+  $(".nomads-links a").on("click", function() {
     analytics.track({ events: "event42" });
   });
 
-  $(".article--row a").click(function() {
+  $(".article--row a").on("click", function() {
     window.s.linkTrackVars = "eVar54";
     window.s.eVar54 = omniCode;
     window.s.events = "event45";
