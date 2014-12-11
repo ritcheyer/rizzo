@@ -32,6 +32,7 @@ require([ "jquery", "lib/analytics/analytics" ], function($, Analytics) {
     }
   };
 
+  // The following should really be using `.js-` prepended classes, but that's all in the Landing Pages repo.
   $(".nomads-links a").on("click", function() {
     analytics.track({ events: "event42" });
   });
