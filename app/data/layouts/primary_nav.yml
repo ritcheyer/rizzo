@@ -10,6 +10,8 @@
     :title: "Destinations"
     :slug: "http://www.lonelyplanet.com/destinations"
     :icon_class: "icon--place--pin--line--before icon--white--before"
+    :button_text: "View countries"
+    :button_url: "/places"
     :submenu:
       -
         :title: "Africa"
