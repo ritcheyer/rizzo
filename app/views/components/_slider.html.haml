@@ -10,7 +10,7 @@
   .slider__viewport.js-slider-viewport.js-onswipe.is-loading
     .slider__container.js-slider-container
       - properties[:images].each_with_index do |image, i|
-        - image_class = image[:orientation] == "VERTICAL" || "PORTRAIT" ? "slider__img slider__img--portrait" : "slider__img"
+        - image_class = ["VERTICAL", "PORTRAIT"].include?(image[:orientation]) ? "slider__img slider__img--portrait" : "slider__img"
         - if i == 0 || !properties[:lazyLoad]
           .slider__slide.js-slide.is-loaded{ class: i == 0 ? "is-current" : "" }
             %img.slider__img{ src: image[:src], alt: image[:alt], data: { thumb: image[:thumb] } }
