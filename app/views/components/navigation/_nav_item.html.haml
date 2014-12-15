@@ -21,7 +21,7 @@
       = item[:title]
 
   - if item[:submenu]
-    = render "components/navigation/submenu", item: item, show_responsive_toggle: !defined?(primary)
+    = render "components/navigation/submenu", item: item, show_responsive_toggle: !defined?(primary), button_text: item[:button_text], button_url: item[:button_url]
 
 - else
   %span.nav__item{class: [nav_type, item[:extra_class]]}
