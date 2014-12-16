@@ -8,11 +8,15 @@
 
   -
     :title: "Destinations"
-    :slug: "http://www.lonelyplanet.com/destinations"
+    :slug: "http://www.lonelyplanet.com/places"
     :icon_class: "icon--place--pin--line--before icon--white--before"
     :button_text: "View countries"
     :button_url: "/places"
     :submenu:
+      -
+        :title: "Best in travel"
+        :slug: "http://www.lonelyplanet.com/best-in-travel"
+        :badge: "Featured"
       -
         :title: "Africa"
         :slug: "http://www.lonelyplanet.com/africa"
