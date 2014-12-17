@@ -5,8 +5,6 @@
     selected_title = properties[:options].find{ |option| option[:value] == properties[:selected] || option[:title] == properties[:selected] }.try(:[], :title)
   end
 
-  label_text = properties[:label] || properties[:placeholder] || properties[:options].first[:title]
-
   select_properties = {
     id: properties[:id],
     name: properties[:name],
@@ -17,11 +15,13 @@
   }
 
 .dropdown.js-select-group-manager{ class: "#{properties[:class]}#{properties[:disabled] ? ' is-disabled' : ''}#{!tooltip.nil? ? ' tooltip--container' : ''}" }
-  %label.accessibility{ for: properties[:id] }
-    = label_text
+  
+  - if properties[:label]
+    %label.accessibility{ for: properties[:id] }
+      = properties[:label]
 
-  %div.dropdown__value.js-select-overlay.icon--chevron-down--after{ aria: { hidden: true } }
-    = selected_title || label_text
+  .dropdown__value.js-select-overlay.icon--chevron-down--after{ aria: { hidden: true } }
+    = selected_title || properties[:placeholder] || properties[:options].first.try(:[], :title)
 
   %select.dropdown__select.js-select{ select_properties }
 
