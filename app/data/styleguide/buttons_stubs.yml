@@ -47,15 +47,17 @@ variation:
   :text: "Submit"
   :href: "#"
   :modifiers:
+    - "btn--linkblue btn--x-small"
     - "btn--linkblue btn--small"
     - "btn--linkblue btn--medium"
     - "btn--linkblue btn--large"
     - "btn--linkblue btn--x-large"
-    - "btn--medium btn--outline"
-    - "btn--medium is-disabled"
+    - "btn--linkblue btn--medium btn--caps"
+    - "btn--linkblue btn--full-width"
     - "btn--medium btn--linkblue icon--globe--before icon--white--before btn--icon"
     - "btn--medium btn--linkblue icon--globe icon--white btn--icon-only"
-    - "btn--linkblue btn--full-width"
+    - "btn--medium btn--outline"
+    - "btn--medium is-disabled"
 
 social_media:
   -

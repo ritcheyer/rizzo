@@ -9,7 +9,7 @@
   box-sizing: border-box
   cursor: pointer
   font-weight: bold
-  line-height: 2em
+  line-height: 2.5em
   overflow: hidden
   text-align: center
   border: none
@@ -24,9 +24,14 @@
   display: block
   width: 100% // Ensure inputs also stretch full width
 
+.btn--x-small
+  +btn-font-size(13)
+  padding: 0 10px
+  line-height: 2em
+
 .btn--small
   +btn-font-size(13)
-  padding: 0 14px
+  padding: 0 15px
 
 .btn--medium
   +btn-font-size(14)
@@ -46,6 +51,7 @@
 
 .btn--caps
   text-transform: UPPERCASE
+  letter-spacing: 0.02em
 
 // -----------------------------------------------------------------------------
 // Buttons with icons
@@ -93,7 +99,7 @@
   +btn-color($linkblue)
 
 .btn--yella
-  +btn-color($yella, $body-copy)
+  +btn-color($yella, $titlegray)
 
 .btn--darkgray
   +btn-color($darkgray)
@@ -163,7 +169,7 @@
   background-color: transparent
   border: 1px solid
   &:hover
-    border-color: transparent
+    opacity: .5
 
 // -----------------------------------------------------------------------------
 // Social Media
