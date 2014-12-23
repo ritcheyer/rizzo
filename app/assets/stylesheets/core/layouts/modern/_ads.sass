@@ -28,26 +28,41 @@
 
 .ad-leaderboard
   padding: 16px 0
-  line-height: 100px
-  text-align: center
 
   .responsive &
     padding: 12px 0
-    line-height: 60px
     +respond-to(728)
       padding: 16px 0
-      line-height: 100px
 
 .ad-leaderboard__inner
-  @extend %inline-block
-  display: inline-block
+  position: relative
+  display: table
+  margin-left: auto
+  margin-right: auto
+  +respond-to(728 + 180)
+    padding-left: 90px
+    padding-right: 90px
+
+.sponsor-logo
+  margin-top: 10px
+  +respond-to(728 + 180)
+    position: absolute
+    top: 0
+    left: 0
+    margin-top: 0
+
+.sponsor-logo__logo
+  display: inline
+  max-width: 80px
+  max-height: 40px
+  margin-right: 5px
   vertical-align: middle
+  +respond-to(728 + 180)
+    display: block
+    margin: 0 0 5px
 
 .row--leaderboard--header
   background-color: $row-leaderboard
-
-  .ad-leaderboard__inner
-    background-color: $row-primary--darker
 
 .row--leaderboard--footer
   background: darken($body-background, 2.5%)
@@ -103,39 +118,6 @@
 
 .ad-adSense--leaderboard
   margin-top: 20px
-
-// ----------------------------------------------------------------------------
-// Page wallpaper
-// ----------------------------------------------------------------------------
-
-.ad-oneByOne
-  display: none
-
-.ad-wallpaper
-  position: relative
-  background-repeat: no-repeat
-  background-position-x: center
-  background-position-y: 60px !important
-  cursor: pointer
-
-  &:after
-    @extend %empty-abs-generated-content
-    +z-layer(below)
-    top: 1150px
-    height: 150px
-    width: 100%
-
-    .enhanced &
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), $body-background)
-
-  .row__inner--content,
-  .row__inner--secondary
-    padding-right: 22px
-    padding-left: 22px
-    cursor: default
-
-  .row__inner--content
-    background-color: $body-background
 
 // ----------------------------------------------------------------------------
 // HTML Traffic Driver
