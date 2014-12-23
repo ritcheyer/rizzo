@@ -4,9 +4,11 @@ module AdHelper
 
   def ad_sense_properties(type)
     if type == "leaderboard"
-      return { height: 90, width: 728, ad_slot: 8090484046, id: AD_SENSE_ID }
+      return { ad_slot: 8090484046, id: AD_SENSE_ID, style: "display: inline-block; width: 728px; height: 90px;" }
+    elsif type == "responsive"
+      return { ad_slot: 3297975641, id: AD_SENSE_ID , style: "display: block;", ad_format: "auto", }
     end
-    { height: 312, width: 162, ad_slot: 2903404846, id: AD_SENSE_ID }
+    { ad_slot: 2903404846, id: AD_SENSE_ID , style: "display: inline-block; width: 162px; height: 312px;" }
   end
 
   def ad_unit_data(type, props)

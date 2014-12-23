@@ -5,11 +5,15 @@ describe AdHelper do
   describe '#ad_sense_properties' do
 
     it 'returns the correct dimensions for a default ad' do
-      helper.ad_sense_properties("default").should == { width: 162, height: 312, ad_slot: 2903404846, id: "ca-pub-7817033512402772"}
+      helper.ad_sense_properties("default").should == { ad_slot: 2903404846, id: "ca-pub-7817033512402772", style: "display: inline-block; width: 162px; height: 312px;"}
     end
 
     it 'returns the correct dimensions for a leaderboard ad' do
-      helper.ad_sense_properties("leaderboard").should == { width: 728, height: 90, ad_slot: 8090484046, id: "ca-pub-7817033512402772"}
+      helper.ad_sense_properties("leaderboard").should == { ad_slot: 8090484046, id: "ca-pub-7817033512402772", style: "display: inline-block; width: 728px; height: 90px;"}
+    end
+
+    it 'returns the correct dimensions for a responsive ad' do
+      helper.ad_sense_properties("responsive").should == { ad_slot: 3297975641, id: "ca-pub-7817033512402772", style: "display: block;", ad_format: "auto"}
     end
 
   end
