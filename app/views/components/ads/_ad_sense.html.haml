@@ -7,5 +7,5 @@
     (adsbygoogle = window.adsbygoogle || []).push({});
 
 #js-ad-adSense{class: type == "leaderboard" ? "ad-adSense--leaderboard" : false}
-  %ins{class: "adsbygoogle", style: "display:inline-block;width:#{adsense[:width]}px;height:#{adsense[:height]}px", data: {ad_client: adsense[:id], ad_slot: adsense[:ad_slot] }}
-  
+
+  %ins{class: "adsbygoogle", style: adsense[:style], data: {ad_client: adsense[:id], ad_slot: adsense[:ad_slot], ad_format: adsense[:ad_format]}}
