@@ -11,9 +11,9 @@ define([
   "data/countries",
   "data/currencies",
   "lib/utils/local_store",
-  "pickadate/lib/picker",
-  "pickadate/lib/picker.date",
-  "pickadate/lib/legacy"
+  "picker",
+  "pickerDate",
+  "pickerLegacy"
 ], function($, AutoComplete, GoogleAnalytics, dataJSON, countries, currencies, LocalStore) {
 
   "use strict";
