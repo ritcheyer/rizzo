@@ -28,10 +28,10 @@
     = render 'layouts/partials/inline_js/tynt'
 
 - if legacy_lp
-  = smart_stylesheet('common_core_overrides')
+  = smart_stylesheet('core_legacy')
   = static_ui_stylesheet('app-core-legacy', (defined? secure) ? secure : false)
 - else
-  = smart_stylesheet('common_core_no_font')
+  = smart_stylesheet('core')
 
 = yield :stylesheets
 = yield :pagination_links_rels
