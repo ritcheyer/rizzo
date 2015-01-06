@@ -24,8 +24,18 @@ define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
   asEventEmitter.call(Stack.prototype);
 
   Stack.prototype._init = function() {
+    var _this = this;
+
     this._listen();
     this._broadcast();
+
+    $(LISTENER).find(".js-card__image").each(function(i, image) {
+      var $image = $(image);
+
+      if (_this._isPortrait($image.width(), $image.height())) {
+        $image.addClass("is-portrait");
+      }
+    });
   };
 
   Stack.prototype._listen = function() {
@@ -106,6 +116,10 @@ define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
     var $cards = $(newCards).addClass("is-invisible");
     this.$el.append($cards);
     this._show($cards);
+  };
+
+  Stack.prototype._isPortrait = function(width, height) {
+    return height > width;
   };
 
   Stack.prototype._show = function($cards) {
