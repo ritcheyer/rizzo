@@ -106,6 +106,18 @@ require([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
       });
     });
 
+    describe("isPortrait", function() {
+      beforeEach(function() {
+        loadFixtures("stack.html");
+        window.stack = new Stack(config);
+      });
+
+      it("returns true for portrait images", function() {
+        expect(stack._isPortrait(100, 50)).toBe(false);
+        expect(stack._isPortrait(50, 100)).toBe(true);
+      });
+    });
+
     describe("on cards request", function() {
       beforeEach(function() {
         loadFixtures("stack.html");

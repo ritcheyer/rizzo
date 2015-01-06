@@ -34,14 +34,11 @@ define(function() {
     "traffic-driver": [
       { browser: [ 0, 0 ], ad_sizes: [ 192, 380 ] }
     ],
-    "traffic-driver-html": [
-      { browser: [ 0, 0 ], ad_sizes: [ 1, 1 ] }
+    "traffic-driver-rail": [
+      { browser: [ 0, 0 ], ad_sizes: [ 300, 100 ] }
     ],
-    "sponsor-logo-html": [
-      { browser: [ 0, 0 ], ad_sizes: [ 2, 2 ] }
-    ],
-    "tourist-board-html": [
-      { browser: [ 0, 0 ], ad_sizes: [ 3, 3 ] }
+    background: [
+      { browser: [ 980, 0 ], ad_sizes: [ 1, 1 ] }
     ]
   };
 
