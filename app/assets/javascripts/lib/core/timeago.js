@@ -9,11 +9,13 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
   "use strict";
 
   var defaults = {
-    context: null,
+    context: "#js-row--content",
     breakpoint: 600,
-    refreshMillis: 60000,
-    fullTimeagoSelector: ".js-timeago-full",
-    responsiveTimeagoSelector: ".js-timeago",
+    refreshMillis: 3000,
+    selectors: {
+      full: ".js-timeago-full",
+      responsive: ".js-timeago",
+    }
   },
 
   MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
@@ -44,30 +46,56 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
         hours: "%dh",
         day: "%dd",
         days: "%dd",
-        month: this._getMonthName,
-        months: this._getMonthName,
-        year: this._getFullYear,
-        years: this._getFullYear
+        month: this._getMonthName.bind(this),
+        months: this._getMonthName.bind(this),
+        year: this._getFullYear.bind(this),
+        years: this._getFullYear.bind(this)
       }
     };
 
-    this.$fullTimeagos = $(this.config.fullTimeagoSelector, this.config.context);
-    this.$responsiveTimeagos = $(this.config.responsiveTimeagoSelector, this.config.context);
+    this.$fullTimeagos = $(this.config.selectors.full, this.config.context);
+    this.$responsiveTimeagos = $(this.config.selectors.responsive, this.config.context);
 
-    if (this.$fullTimeagos.length || this.$responsiveTimeagos.length) {
-      this._init();
-    }
+    (this.$fullTimeagos.length || this.$responsiveTimeagos.length) && this.init();
   }
 
-  TimeAgo.prototype._init = function() {
-    this.updateStrings();
-    this._refreshOnInterval();
-    this._refreshOnResize();
+  TimeAgo.prototype.init = function() {
+    // Disable original refresh function in order to use selector-based strings.
+    $.timeago.settings.refreshMillis = 0;
+
+    this.updateAll();
+    this.setCustomRefresh();
   };
+
+  TimeAgo.prototype.updateAll = function() {
+    this.$fullTimeagos.length && this.updateFull();
+    this.$responsiveTimeagos.length && this.updateResponsive();
+  };
+
+  TimeAgo.prototype.updateFull = function() {
+    $.timeago.settings.strings = this.strings.full;
+    this.$fullTimeagos.timeago("updateFromDOM");
+  };
+
+  TimeAgo.prototype.updateResponsive = function() {
+    $.timeago.settings.strings = this._isAboveBreakpoint() ? this.strings.full : this.strings.short;
+    this.$responsiveTimeagos.timeago("updateFromDOM");
+  };
+
+  TimeAgo.prototype.setCustomRefresh = function() {
+    // Refresh all on interval
+    setInterval(this.updateAll.bind(this), this.config.refreshMillis);
+    // Refresh responsive strings on window resize
+    this.$responsiveTimeagos.length && $(window).resize(debounce(this.updateResponsive.bind(this), 300));
+  };
+
+  // -------------------------------------------------------------------------
+  // Private
+  // -------------------------------------------------------------------------
 
   TimeAgo.prototype._getMonthName = function(number, distanceMillis) {
     return MONTH_NAMES[new Date(Date.now() - distanceMillis).getMonth()];
-  }.bind(this);
+  };
 
   TimeAgo.prototype._getFullYear = function(number, distanceMillis) {
     return new Date(Date.now() - distanceMillis).getFullYear().toString();
@@ -75,28 +103,6 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
 
   TimeAgo.prototype._isAboveBreakpoint = function() {
     return document.documentElement.clientWidth >= this.config.breakpoint;
-  };
-
-  TimeAgo.prototype.updateStrings = function() {
-    $.extend($.timeago.settings.strings, this._isAboveBreakpoint() ? this.strings.full : this.strings.short);
-    $(this.config.responsiveTimeagoSelector, this.config.context).timeago();
-
-    $.extend($.timeago.settings.strings, this.strings.full);
-    $(this.config.fullTimeagoSelector, this.config.context).timeago();
-  };
-
-  TimeAgo.prototype._refreshOnInterval = function() {
-    var _this = this;
-
-    // Had to disable original refresh function
-    // in order to extend to proper strings
-    // basing on selectors in "_updateStrings"
-    $.timeago.settings.refreshMillis = 0;
-    setInterval(function() { _this.updateStrings(); }, this.config.refreshMillis);
-  };
-
-  TimeAgo.prototype._refreshOnResize = function() {
-    $(window).resize(debounce(this.updateStrings.bind(this), 300));
   };
 
   return TimeAgo;
