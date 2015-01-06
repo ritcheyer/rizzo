@@ -10,9 +10,9 @@
       :title: "Rizzo"
       :items:
         -
-          :name: "Common Core"
+          :name: "Core"
           :slug: "core"
-          :css_path: "common_core_no_font"
+          :css_path: "core"
         -
           :name: "Fonts"
           :slug: "fonts"

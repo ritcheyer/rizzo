@@ -5,12 +5,10 @@ module Rizzo::Assets
 
   def self.precompile
     [
-      'common_core.css',
-      'common_core_ie.css',
-      'common_core_no_font.css',
-      'common_core_no_font_ie.css',
-      'common_core_overrides.css',
-      'common_core_overrides_ie.css',
+      'core.css',
+      'core_ie.css',
+      'core_legacy.css',
+      'core_legacy_ie.css',
       'omniture/s_code.js',
       'prism.js',
       'prism.css',
@@ -28,8 +26,8 @@ module Rizzo::Assets
 
   def self.precompile_as_engine
     [
-      'common_core_no_font.css',
-      'common_core_no_font_ie.css',
+      'core.css',
+      'core_ie.css',
       'omniture/s_code.js',
       'requirejs/require.js',
       'icons/active.css',
