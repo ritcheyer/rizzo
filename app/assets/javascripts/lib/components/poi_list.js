@@ -45,7 +45,7 @@ define([
     }
 
     if (map.marker) {
-      map.marker.setIcon(this._createMarkerImage(null, "dot"));
+      map.marker.setIcon(this._createMarkerImage("mark", "tiny"));
 
       map.$el.on(":map/pois-added", function() {
         map.setupTooltip();
