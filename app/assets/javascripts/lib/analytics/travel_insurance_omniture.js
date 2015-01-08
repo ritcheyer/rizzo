@@ -31,16 +31,4 @@ require([ "jquery", "lib/analytics/analytics" ], function($, Analytics) {
       window.s.t();
     }
   };
-
-  // The following should really be using `.js-` prepended classes, but that's all in the Landing Pages repo.
-  $(".nomads-links a").on("click", function() {
-    analytics.track({ events: "event42" });
-  });
-
-  $(".article--row a").on("click", function() {
-    window.s.linkTrackVars = "eVar54";
-    window.s.eVar54 = omniCode;
-    window.s.events = "event45";
-    window.s.tl(this, "o", omniCode);
-  });
 });
