@@ -2,8 +2,7 @@ require([ "jquery", "lib/analytics/analytics" ], function($, Analytics) {
 
   "use strict";
 
-  var omniCode = "LP highlights Insurance",
-      analytics = new Analytics();
+  var analytics = new Analytics();
 
   analytics.trackView();
 
