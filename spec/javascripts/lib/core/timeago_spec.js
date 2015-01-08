@@ -37,40 +37,34 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
 
     describe("Initialisation", function() {
 
-      it("defines a way to update strings", function() {
-        expect(timeago, "updateStrings").toBeDefined();
+      it("should be defined", function() {
+        expect(timeago).toBeDefined();
       });
 
-      it("defines a way to determine if screen width breakpoint was crossed", function() {
-        expect(timeago, "_isAboveBreakpoint").toBeDefined();
+      it("should find all elements", function() {
+        expect(timeago.$fullTimeagos.length).toEqual(1);
+        expect(timeago.$responsiveTimeagos.length).toEqual(1);
       });
-
-      it("finds correct nodes", function() {
-        expect(timeago.$fullTimeagos.length).toBe(1);
-        expect(timeago.$responsiveTimeagos.length).toBe(1);
-      });
-
     });
 
     describe("Screen width > breakpoint", function() {
 
       beforeEach(function() {
         spyOn(timeago, "_isAboveBreakpoint").andReturn(true);
-        timeago.updateStrings();
+        timeago.updateAll();
       });
 
       it("each occurence should have full strings", function() {
         expect($(".js-timeago").text()).toMatch(fullStrings);
         expect($(".js-timeago-full").text()).toMatch(fullStrings);
       });
-
     });
 
     describe("Screen width < breakpoint", function() {
 
       beforeEach(function() {
         spyOn(timeago, "_isAboveBreakpoint").andReturn(false);
-        timeago.updateStrings();
+        timeago.updateAll();
       });
 
       it("should have full strings if selector is '.js-timeago-full'", function() {
@@ -80,7 +74,7 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
       it("should have short strings if selector is '.js-timeago'", function() {
         // shortStrings regexp matches full strings AND short strings
         // cause (beside month names) it contains single characters only.
-        // The two tests below make sure the match is right.
+        // These two tests make sure the match is right.
         expect($(".js-timeago").text()).not.toMatch(fullStrings);
         expect($(".js-timeago").text()).toMatch(shortStrings);
       });

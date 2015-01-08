@@ -58,10 +58,6 @@ require([
         expect(userFeed._tabsInstance.constructor.name).toBe("Tabs");
       });
 
-      it("should call 'new TimeAgo()' and assign instance to 'this._timeagoInstance'", function() {
-        expect(userFeed._timeagoInstance.constructor.name).toBe("TimeAgo");
-      });
-
       it("should call 'this._fetchFeed()'", function() {
         expect(userFeed._fetchFeed).toHaveBeenCalled();
       });
@@ -411,7 +407,6 @@ require([
         beforeEach(function() {
           spyOn(userFeed, "_updateActivities");
           spyOn(userFeed, "_updateMessages");
-          spyOn(userFeed._timeagoInstance, "updateStrings");
           spyOn(userFeed, "_responsifyTabsContentHeight");
           spyOn(userFeed, "_fetchFeed");
 
@@ -433,8 +428,11 @@ require([
             it("should call proper methods", function() {
               expect(userFeed._updateActivities).toHaveBeenCalledWith(fetchedFeed);
               expect(userFeed._updateMessages).toHaveBeenCalledWith(fetchedFeed);
-              expect(userFeed._timeagoInstance.updateStrings).toHaveBeenCalled();
               expect(userFeed._responsifyTabsContentHeight).toHaveBeenCalled();
+            });
+
+            it("should call 'new TimeAgo()'", function() {
+              expect(userFeed._timeagoInstance.constructor.name).toBe("TimeAgo");
             });
 
             it("should setTimeout properly", function() {
@@ -459,7 +457,7 @@ require([
               expect(userFeed._updateActivities).not.toHaveBeenCalled();
               expect(userFeed._updateMessages).not.toHaveBeenCalled();
               expect(userFeed._fetchFeed).not.toHaveBeenCalled();
-              expect(userFeed._timeagoInstance.updateStrings).not.toHaveBeenCalled();
+              expect(userFeed._timeagoInstance).not.toBeDefined();
               expect(userFeed._responsifyTabsContentHeight).not.toHaveBeenCalled();
             });
 

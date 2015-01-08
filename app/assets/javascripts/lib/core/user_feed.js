@@ -71,7 +71,6 @@ define([
 
   UserFeed.prototype.init = function() {
     this._tabsInstance = new Tabs({ selector: _selectors.feedContent });
-    this._timeagoInstance = new TimeAgo({ context: _selectors.feedContent });
 
     this._fetchFeed();
   };
@@ -258,7 +257,7 @@ define([
     if (clientWidth >= 980) {
       this._updateActivities(fetchedFeed);
       this._updateMessages(fetchedFeed);
-      this._timeagoInstance.updateStrings();
+      this._timeagoInstance = new TimeAgo({ context: _selectors.feedContent });
       this._responsifyTabsContentHeight();
 
       setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
