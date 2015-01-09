@@ -24,6 +24,19 @@ $card--page-padding-x: 25px
       background-size: 100%
 
 // -----------------------------------------------------------------------------
+//  General layout
+// -----------------------------------------------------------------------------
+
+.card--page__content,
+.card--page__hero-content
+  padding: $card--page-padding-y $card--page-padding-x
+
+  .responsive &
+    padding: $card--page-padding-y-small $card--page-padding-x-small
+    +respond-to(medium-view)
+      padding: $card--page-padding-y $card--page-padding-x
+
+// -----------------------------------------------------------------------------
 //  Hero
 // -----------------------------------------------------------------------------
 
@@ -33,21 +46,25 @@ $card--page-padding-x: 25px
   height: 300px
   border-radius: 4px 4px 0 0
   .responsive &
-    height: 160px
+    height: 200px
     +respond-to(medium-view)
-      height: 200px
-    +respond-to(wide-view)
-      height: 300px
+      height: 240px
+    +respond-to(large-view)
+      height: 320px
   &:after
     @extend %empty-abs-generated-content
-    +image-overlay--gradient($stop: 50%)
+    +image-overlay--gradient($stop: 80%)
     top: 0
     left: 0
     width: 100%
     height: 100%
 
   > img
-    width: 100%
+    height: 100%
+    +respond-to(420)
+      width: 100%
+      height: auto
+      min-height: 100%
 
 .card--page__hero-content
   +z-layer
@@ -55,19 +72,19 @@ $card--page-padding-x: 25px
   left: 0
   right: 0
   bottom: 0
-  padding: $card--page-padding-y $card--page-padding-x
   color: white
-  .responsive &
-    padding: $card--page-padding-y-small $card--page-padding-x-small
-    +respond-to(medium-view)
-      padding: $card--page-padding-y $card--page-padding-x
-
-.card--page__hero-cta
-  float: right
-  white-space: nowrap
 
 .card--page__hero-name
   +font-size(32)
+  margin-bottom: 10px
+  +respond-to(large-view)
+    float: left
+    margin-right: 160px
+
+.card--page__hero-cta
+  white-space: nowrap
+  +respond-to(large-view)
+    float: right
 
 // -----------------------------------------------------------------------------
 //  Header
@@ -119,7 +136,6 @@ $card--page-padding-x: 25px
 
 .card--page__content
   @extend %clearfix
-  padding: $card--page-padding-y $card--page-padding-x
 
   .card--page__header + &
     border-top: 1px solid $body-background
