@@ -1,8 +1,21 @@
-.hero-banner.row{ class: properties[:image_info] ? 'hero-banner--flickr' : 'js-bg-parallax' }
+- image_info = properties[:image_info]
+
+.hero-banner.js-story-container{ class: image_info.present? ? 'hero-banner--flickr' : 'js-bg-parallax' }
   = safe_image_tag(properties[:image_url], class: "hero-banner__image", alt: properties[:title])
 
-  .hero-banner__content.row__inner
+  - if properties[:image_caption].present? && properties[:image_caption]
+    .hero-banner__image-story__cover
+    .hero-banner__image-story__toggle.arrow--up.js-toggle-active{ data: { toggle_target: ".js-story-container" } }
+      .hero-banner__image-story__expand.icon--chevron-up.icon--white
+      .hero-banner__image-story__contract.icon--cross.icon--white
+    .hero-banner__image-story.theme--dark
+      .hero-banner__image-story__content.row__inner
+        %h4.copy--h4
+          Story behind the picture
+        %p.copy--body
+          = properties[:image_caption]
 
+  .hero-banner__content.row__inner
     - unless properties[:image_info]
       .hero-banner__text
         %p.hero-banner__lead-in
@@ -17,24 +30,20 @@
           %p.hero-banner__strapline
             = properties[:strapline]
 
-    - if properties[:image_info].present? && properties[:image_info][:attribution].present?
-      - image_info = properties[:image_info]
-      .hero-banner__image-content
-        .hero-banner__image-footer
-          %a.hero-banner__source{href: image_info[:attribution_url]}
-            %img{src: image_info[:attribution_image_url], class: 'hero-banner__avatar', alt: image_info[:attribution]}
-            %span.hero-banner__source-text
-              by
-            %span.hero-banner__username
-              = image_info[:attribution]
-          .hero-banner__image-title
-            = image_info[:title]
+    - if image_info.present?
+      - if image_info[:attribution].present?
+        .hero-banner__image-content
+          .hero-banner__image-footer
+            .hero-banner__source
+              = ui_component('user_attribution', properties: { url: image_info[:attribution_url], image: image_info[:attribution_image_url], name: image_info[:attribution], theme: "dark" } )
+            .hero-banner__image-title
+              = image_info[:title]
+      - else
+        .hero-banner__image-content
+          .hero-banner__image-footer
+            .hero-banner__image-title
+              = image_info[:caption]
 
-    - elsif image_info = properties[:image_info]
-      .hero-banner__image-content
-        .hero-banner__image-footer
-          .hero-banner__image-title
-            = image_info[:title]
 
     - if properties[:sponsored]
       .hero-banner__sponsor.ad-sponsorTile.is-closed
