@@ -1,19 +1,19 @@
 - image_info = properties[:image_info]
 
-.hero-banner.row.js-story-container{ class: image_info.present? ? 'hero-banner--flickr' : 'js-bg-parallax' }
+.hero-banner.js-story-container{ class: image_info.present? ? 'hero-banner--flickr' : 'js-bg-parallax' }
   = safe_image_tag(properties[:image_url], class: "hero-banner__image", alt: properties[:title])
 
-  - if image_info.present? && image_info[:caption]
+  - if properties[:image_caption].present? && properties[:image_caption]
     .hero-banner__image-story__cover
     .hero-banner__image-story__toggle.arrow--up.js-toggle-active{ data: { toggle_target: ".js-story-container" } }
       .hero-banner__image-story__expand.icon--chevron-up.icon--white
       .hero-banner__image-story__contract.icon--cross.icon--white
     .hero-banner__image-story.theme--dark
-      .hero-banner__image-story__content
+      .hero-banner__image-story__content.row__inner
         %h4.copy--h4
           Story behind the picture
         %p.copy--body
-          = image_info[:caption]
+          = properties[:image_caption]
 
   .hero-banner__content.row__inner
     - unless properties[:image_info]
