@@ -11,6 +11,7 @@
     +z-layer(middle)
     +image-overlay--gradient($color-end: $darkgray, $opacity-end: 0.1, $stop: 100%)
     content: ''
+    display: block
     position: absolute
     width: 100%
     height: 100%
@@ -33,7 +34,6 @@
   +z-layer(middle)
   position: relative
   height: 100%
-  // width: auto
   color: white
 
 .hero-banner__text
@@ -189,7 +189,8 @@
 
 .hero-banner__image-title
   +font-size(18)
-  float: right
+  position: absolute
+  right: 0
 
   .responsive &
     float: none
@@ -205,6 +206,7 @@
 
 .hero-banner__image
   +hardware-acceleration()
+  display: block
   position: absolute
   width: 100%
   &.hero-banner__image-initial-position

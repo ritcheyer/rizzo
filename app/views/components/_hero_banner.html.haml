@@ -34,14 +34,10 @@
       - if image_info[:attribution].present?
         .hero-banner__image-content
           .hero-banner__image-footer
-            %a.hero-banner__source{href: image_info[:attribution_url]}
-              %img{src: image_info[:attribution_image_url], class: 'hero-banner__avatar', alt: image_info[:attribution]}
-              %span.hero-banner__source-text
-                by
-              %span.hero-banner__username
-                = image_info[:attribution]
-              .hero-banner__image-title
-                = image_info[:title]
+            .hero-banner__source
+              = ui_component('user_attribution', properties: { url: image_info[:attribution_url], image: image_info[:attribution_image_url], name: image_info[:attribution], theme: "dark" } )
+            .hero-banner__image-title
+              = image_info[:title]
       - else
         .hero-banner__image-content
           .hero-banner__image-footer
