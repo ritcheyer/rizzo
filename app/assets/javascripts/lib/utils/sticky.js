@@ -10,7 +10,8 @@ define([
   function Sticky($target, options) {
     var defaults = {
       minWidth: 1024,
-      threshold: 60
+      threshold: 60,
+      offset: 0
     };
 
     this.$target = $target;
@@ -22,15 +23,12 @@ define([
 
   Sticky.prototype.init = function() {
     this.reset();
-    this.isActive = true;
     $(window).on("resize.sticky", debounce(this._onResize.bind(this), 100));
   };
 
   Sticky.prototype.teardown = function() {
     $(window).off(".sticky");
     this.unstick();
-
-    this.isActive = false;
   };
 
   Sticky.prototype.stick = function() {
@@ -38,8 +36,8 @@ define([
 
     this.$target
       .addClass("is-sticky")
-      .removeClass("at-bottom")
-      .css({ position: "fixed", left: this._leftPosition() });
+      .removeClass("is-at-bottom")
+      .css({ position: "fixed", top: this.options.offset, left: this._leftPosition() });
   };
 
   Sticky.prototype.unstick = function(bottom) {
@@ -47,8 +45,8 @@ define([
 
     this.$target
       .removeClass("is-sticky")
-      .css({ position: "", left: "" })
-      .addClass(bottom ? "at-bottom" : null);
+      .css({ position: "", top: "", left: "" })
+      .addClass(bottom ? "is-at-bottom" : null);
   };
 
   Sticky.prototype.refresh = function() {
@@ -92,16 +90,12 @@ define([
   };
 
   Sticky.prototype._onResize = function() {
-    if (this.isActive) {
-      if (!this._minWidth() || !this._minHeight()) {
-        this.teardown();
-      } else if (this.isSticky) {
-        this.refresh();
-      }
+    if (!this.isSticky) return;
+
+    if (!this._minWidth() || !this._minHeight()) {
+      this.unstick();
     } else {
-      if (this._minWidth() && this._minHeight()) {
-        this.init();
-      }
+      this.refresh();
     }
   };
 
@@ -152,14 +146,14 @@ define([
   };
 
   Sticky.prototype._limitTop = function() {
-    return this._window().scrollY < this._offsets().parent.top;
+    return this._window().scrollY < (this._offsets().parent.top - this.options.offset);
   };
 
   Sticky.prototype._limitBottom = function() {
     var heights = this._heights(),
         offsets = this._offsets();
 
-    return (this._window().scrollY + heights.target) >= (offsets.parent.top + heights.parent);
+    return (this._window().scrollY + heights.target) >= (offsets.parent.top + heights.parent - this.options.offset);
   };
 
   return Sticky;
