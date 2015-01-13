@@ -12,7 +12,7 @@ module SocialHelper
       hashtags = hashtags.join(',')
     end
 
-    title = truncate(title, length: max_length - short_url_length - suffix.length - (hashtags ? hashtags.length : 0) - emission.length, separator: ' ', omission: emission)
+    title = truncate(title.sub('\'', '%27'), length: max_length - short_url_length - suffix.length - (hashtags ? hashtags.length : 0) - emission.length, separator: ' ', omission: emission)
 
     out = "#{title} #{url} #{suffix}"
 
