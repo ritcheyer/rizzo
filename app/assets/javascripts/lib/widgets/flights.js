@@ -7,9 +7,9 @@
 define([
   "jquery",
   "data/currencies",
-  "pickadate/lib/picker",
-  "pickadate/lib/picker.date",
-  "pickadate/lib/legacy",
+  "picker",
+  "pickerDate",
+  "pickerLegacy",
   "lib/widgets/flights_autocomplete",
   "lib/analytics/flights_omniture",
   "lib/analytics/flights",

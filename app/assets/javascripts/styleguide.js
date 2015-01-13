@@ -18,20 +18,20 @@ require([
   "lib/styleguide/alert",
   "lib/page/scroll_perf",
   "lib/styleguide/swipe",
-  "pickadate/lib/legacy",
-  "pickadate/lib/picker",
   "lib/styleguide/konami",
   "lib/styleguide/colours",
   "lib/components/lightbox",
   "lib/styleguide/lightbox",
   "lib/components/parallax",
   "lib/styleguide/typography",
-  "pickadate/lib/picker.date",
   "lib/utils/last_input_device",
   "lib/components/range_slider",
   "lib/components/toggle_active",
   "lib/styleguide/snippet-expand",
-  "lib/components/select_group_manager"
+  "lib/components/select_group_manager",
+  "picker",
+  "pickerDate",
+  "pickerLegacy",
 ], function($, ZeroClipboard, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper, ThumbSlider, CarRentalWidget, TravelInsurance, FlightsWidget) {
 
   "use strict";

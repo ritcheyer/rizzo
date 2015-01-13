@@ -16,6 +16,8 @@ window.lp = {
 
 require.config({
   paths: {
-    picker: "vendor/assets/javascripts/pickadate/lib/picker"
+    picker: "vendor/assets/javascripts/pickadate/lib/picker",
+    pickerDate: "vendor/assets/javascripts/pickadate/lib/picker.date",
+    pickerLegacy: "vendor/assets/javascripts/pickadate/lib/legacy"
   }
 });
