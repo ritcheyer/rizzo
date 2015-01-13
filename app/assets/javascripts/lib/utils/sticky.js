@@ -16,11 +16,14 @@ define([
     this.$target = $target;
     this.$parent = $target.offsetParent();
     this.options = $.extend({}, defaults, options);
+
+    this.init();
   }
 
   Sticky.prototype.init = function() {
     this.reset();
     this.isActive = true;
+    $(window).on("resize.sticky", debounce(this._onResize.bind(this), 100));
   };
 
   Sticky.prototype.teardown = function() {
@@ -36,9 +39,7 @@ define([
     this.$target
       .addClass("is-sticky")
       .removeClass("at-bottom")
-      .css({ position: "fixed", left: this._leftOffset() });
-
-    $(window).on("resize.stickyResize orientationchange.stickyResize", debounce(this._onResize.bind(this), 100));
+      .css({ position: "fixed", left: this._leftPosition() });
   };
 
   Sticky.prototype.unstick = function(bottom) {
@@ -48,8 +49,6 @@ define([
       .removeClass("is-sticky")
       .css({ position: "", left: "" })
       .addClass(bottom ? "at-bottom" : null);
-
-    $(window).off(".stickyResize");
   };
 
   Sticky.prototype.refresh = function() {
@@ -58,7 +57,7 @@ define([
     this._onScroll();
 
     if (wasSticky && this.isSticky) {
-      this.$target.css("left", this._leftOffset());
+      this.$target.css("left", this._leftPosition());
     }
   };
 
@@ -106,16 +105,25 @@ define([
     }
   };
 
+  Sticky.prototype._window = function() {
+    // This is only a function so we can stub it out
+    return {
+      scrollY: window.scrollY,
+      innerWidth: window.innerWidth,
+      innerHeight: window.innerHeight
+    };
+  };
+
   Sticky.prototype._widths = function() {
     return {
-      parent: this.$parent.width(),
-      target: this.$target.outerHeight(true)
+      parent: this.$parent.outerWidth(),
+      target: this.$target.outerWidth(true)
     };
   };
 
   Sticky.prototype._heights = function() {
     return {
-      parent: this.$parent.height(),
+      parent: this.$parent.outerHeight(),
       target: this.$target.outerHeight(true)
     };
   };
@@ -127,31 +135,31 @@ define([
     };
   };
 
-  Sticky.prototype._leftOffset = function() {
+  Sticky.prototype._leftPosition = function() {
     var widths = this._widths();
     return this._offsets().parent.left + widths.parent - widths.target;
   };
 
   Sticky.prototype._minWidth = function() {
-    return window.innerWidth > this.options.minWidth;
+    return this._window().innerWidth > this.options.minWidth;
   };
 
   Sticky.prototype._minHeight = function() {
     var heights = this._heights(),
         totalHeight = heights.target + this.options.threshold;
 
-    return totalHeight < window.innerHeight && totalHeight < heights.parent;
+    return totalHeight < this._window().innerHeight && totalHeight < heights.parent;
   };
 
   Sticky.prototype._limitTop = function() {
-    return window.scrollY < this._offsets().parent.top;
+    return this._window().scrollY < this._offsets().parent.top;
   };
 
   Sticky.prototype._limitBottom = function() {
     var heights = this._heights(),
         offsets = this._offsets();
 
-    return (window.scrollY + heights.target) >= (offsets.parent.top + heights.parent);
+    return (this._window().scrollY + heights.target) >= (offsets.parent.top + heights.parent);
   };
 
   return Sticky;
