@@ -4,7 +4,7 @@ module SocialHelper
     max_length = args[:max_length] || 138
     short_url_length = args[:short_url_length] || 25
 
-    title = args[:title].sub('\'', '%27') || ''
+    title = args[:title] || ''
     emission = '…'
     url = args[:url] || 'http://www.lonelyplanet.com'
     suffix = args[:suffix] || 'via @lonelyplanet'
@@ -12,7 +12,7 @@ module SocialHelper
       hashtags = hashtags.join(',')
     end
 
-    title = truncate(title, length: max_length - short_url_length - suffix.length - (hashtags ? hashtags.length : 0) - emission.length, separator: ' ', omission: emission)
+    title = truncate(title.sub('\'', '%27'), length: max_length - short_url_length - suffix.length - (hashtags ? hashtags.length : 0) - emission.length, separator: ' ', omission: emission)
 
     out = "#{title} #{url} #{suffix}"
 
