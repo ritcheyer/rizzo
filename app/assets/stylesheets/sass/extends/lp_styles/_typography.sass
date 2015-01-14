@@ -5,9 +5,11 @@
 // -----------------------------------------------------------------------------
 
 %heading--1
-  +font-size(32)
+  +font-size(24)
   color: $header-blue
   line-height: 1.15em
+  +respond-to(medium-view)
+    +font-size(32)
 
 %heading--2
   +font-size(20)
@@ -33,9 +35,11 @@
   letter-spacing: 0.1em
 
 %text--feature
-  +font-size(24)
+  +font-size(18)
   color: $feature-copy
   line-height: 1.3em
+  +respond-to(medium-view)
+    +font-size(24)
 
 %text--body
   +font-size(16)
@@ -50,7 +54,7 @@
 %text--caption
   +font-size(13)
   display: block
-  
+
 %text--disclaimer
   +font-size(12)
   color: $bodygray
