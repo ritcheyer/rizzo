@@ -13,29 +13,6 @@ require([ "public/assets/javascripts/lib/utils/throttle.js" ], function(throttle
       expect(typeof result).toBe("function");
     });
 
-    it("Should execute the given callback after the given wait", function() {
-      var instance,
-          callbackInc = 0,
-          callbackProp = false;
-
-      runs(function() {
-        instance = throttle(function() {
-          callbackInc++;
-          callbackProp = true;
-        }, 10);
-
-        instance();
-      });
-
-      waitsFor(function() {
-        return callbackInc === 1;
-      }, "Callback should be executed", 20);
-
-      runs(function() {
-        expect(callbackProp).toBe(true);
-      });
-    });
-
     it("Should execute callback only once per wait time", function() {
       var instance,
           bounceInc = 0,
@@ -55,7 +32,7 @@ require([ "public/assets/javascripts/lib/utils/throttle.js" ], function(throttle
       });
 
       waitsFor(function() {
-        return bounceInc === 5;
+        return bounceInc === 6;
       }, "Callback should be bounced", 100);
 
       runs(function() {

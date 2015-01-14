@@ -108,7 +108,7 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
         it("calculates when target has reached the bottom of it's container", function() {
           spyOn(instance, "_window").andReturn({
-            scrollY: 200
+            scrollY: 201
           });
 
           expect(instance._limitBottom()).toBe(true);
