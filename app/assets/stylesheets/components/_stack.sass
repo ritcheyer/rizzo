@@ -42,26 +42,33 @@
 // -----------------------------------------------------------------------------
 
 .stack--with-rail
+  @extend %clearfix
   position: relative
-  margin-top: 25px
   margin-left: 0
 
   +respond-to(wide-view)
-    // This takes the ad rail out of context so
-    // you don't have to think about it.
-    // Just focus on the content area!
-    padding-right: 340px
+    margin-top: 25px
 
-.stack__rail
+.stack__wrapper
+  width: 100%
+  box-sizing: border-box
 
   +respond-to(wide-view)
-    position: absolute
-    top: 0
-    right: 0
+    float: left
+    padding-right: 340px
+
+.stack__content
+  position: relative
+
+.stack__rail
+  +respond-to(wide-view)
+    float: right
+    margin-left: -300px
     width: 300px
 
     &.is-at-bottom
-      top: auto
+      position: absolute
+      right: 0
       bottom: 0
 
   .adunit
@@ -89,9 +96,6 @@
 .stack__rail__heading
   margin-bottom: 10px
   color: $body-copy
-
-.stack__content
-  position: relative
 
 // -----------------------------------------------------------------------------
 // Stack rows

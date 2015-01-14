@@ -97,8 +97,8 @@ define([
   Sticky.prototype._window = function() {
     // This is only a function so we can stub it out in tests
     return {
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
+      scrollY: $(window).scrollTop(),
+      scrollX: $(window).scrollLeft(),
       innerWidth: window.innerWidth,
       innerHeight: window.innerHeight
     };
