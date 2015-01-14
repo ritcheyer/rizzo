@@ -1,9 +1,8 @@
 define([
   "jquery",
-  "lib/utils/debounce",
   "lib/components/slider",
   "lib/analytics/analytics",
-], function($, debounce, Slider, Analytics) {
+], function($, Slider, Analytics) {
 
   "use strict";
 

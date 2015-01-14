@@ -1,6 +1,6 @@
-require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce) {
+require([ "public/assets/javascripts/lib/utils/throttle.js" ], function(throttle) {
 
-  describe("Debounce", function() {
+  describe("Throttle", function() {
 
     var interval;
 
@@ -9,7 +9,7 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
     });
 
     it("Should return a function", function() {
-      var result = debounce(new Function, 200)
+      var result = throttle(new Function, 200)
       expect(typeof result).toBe("function");
     });
 
@@ -19,7 +19,7 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
           callbackProp = false;
 
       runs(function() {
-        instance = debounce(function() {
+        instance = throttle(function() {
           callbackInc++;
           callbackProp = true;
         }, 10);
@@ -36,13 +36,13 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
       });
     });
 
-    it("Should not execute the given callback if bounced", function() {
+    it("Should execute callback only once per wait time", function() {
       var instance,
           bounceInc = 0,
           callbackInc = 0;
 
       runs(function() {
-        instance = debounce(function() {
+        instance = throttle(function() {
           callbackInc++;
         }, 20);
 
@@ -59,7 +59,7 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
       }, "Callback should be bounced", 100);
 
       runs(function() {
-        expect(callbackInc).toBe(0);
+        expect(callbackInc).toBe(2);
       });
 
     });
@@ -69,7 +69,7 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
 
       runs(function() {
         callback = jasmine.createSpy();
-        instance = debounce(callback, 10);
+        instance = throttle(callback, 10);
         instance("foo", "bar");
       });
 
@@ -99,7 +99,7 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
           this.prop = changeTo;
         }
 
-        instance = debounce(callback, 10, scope);
+        instance = throttle(callback, 10, scope);
 
         instance("changed");
       });
