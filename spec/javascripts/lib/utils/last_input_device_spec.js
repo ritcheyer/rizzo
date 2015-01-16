@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/utils/last_input_device.js" ], function() {
+define([ "public/assets/javascripts/lib/utils/last_input_device.js" ], function() {
 
   "use strict";
 

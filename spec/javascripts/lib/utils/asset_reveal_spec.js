@@ -1,4 +1,4 @@
-require(["public/assets/javascripts/lib/utils/asset_reveal.js"], function(AssetReveal) {
+define(["public/assets/javascripts/lib/utils/asset_reveal.js"], function(AssetReveal) {
 
   describe("AssetReveal", function() {
     var assetReveal;

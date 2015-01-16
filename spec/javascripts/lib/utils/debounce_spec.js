@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce) {
+define([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce) {
 
   describe("Debounce", function() {
 
@@ -13,105 +13,92 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
       expect(typeof result).toBe("function");
     });
 
-    it("Should execute the given callback after the given wait", function() {
+    describe("Execute the callback after the given wait", function() {
       var instance,
-          callbackInc = 0,
-          callbackProp = false;
+          callbackInc = 0;
 
-      runs(function() {
+      beforeEach(function(done) {
         instance = debounce(function() {
           callbackInc++;
-          callbackProp = true;
+          done();
         }, 10);
 
         instance();
       });
 
-      waitsFor(function() {
-        return callbackInc === 1;
-      }, "Callback should be executed", 20);
-
-      runs(function() {
-        expect(callbackProp).toBe(true);
+      it("has triggered the callback", function() {
+        expect(callbackInc).toBe(1);
       });
     });
 
-    it("Should not execute the given callback if bounced", function() {
+    describe("Do not execute the given callback when bounced", function() {
       var instance,
           bounceInc = 0,
           callbackInc = 0;
 
-      runs(function() {
+      beforeEach(function(done) {
         instance = debounce(function() {
           callbackInc++;
         }, 20);
 
         function bounce() {
+          if (bounceInc == 4) return done();
+
           bounceInc++;
           instance();
-        };
+        }
 
         interval = setInterval(bounce, 10);
       });
 
-      waitsFor(function() {
-        return bounceInc === 5;
-      }, "Callback should be bounced", 100);
-
-      runs(function() {
+      it("has not triggered the callback", function() {
         expect(callbackInc).toBe(0);
       });
 
     });
 
-    it("Should apply callback with arguments", function() {
-      var instance, callback;
+    describe("Applying callback with arguments", function() {
+      var instance, spy;
 
-      runs(function() {
-        callback = jasmine.createSpy();
-        instance = debounce(callback, 10);
+      beforeEach(function(done) {
+        spy = jasmine.createSpy();
+
+        instance = debounce(function() {
+          spy.apply(this, arguments);
+          done();
+        }, 10);
+
         instance("foo", "bar");
       });
 
-      waitsFor(function() {
-        return callback.wasCalled;
-      }, "Callback should be executed", 20);
-
-      runs(function() {
-        expect(callback).toHaveBeenCalledWith("foo", "bar");
+      it("has triggered the callback with arguments applied", function() {
+        expect(spy).toHaveBeenCalledWith("foo", "bar");
       });
 
     });
 
-    it("Should apply callback with a given scope", function() {
-      var instance, callback, scope,
-          callbackInc = 0,
-          callbackProp = false;
+    describe("Applying callback with a given scope", function() {
+      var instance, callback, scope;
 
-      runs(function() {
+      beforeEach(function(done) {
         scope = {
           prop: "change me"
         };
 
         callback = function(changeTo) {
-          callbackInc++;
-          callbackProp = true;
           this.prop = changeTo;
-        }
+          done();
+        };
 
         instance = debounce(callback, 10, scope);
 
         instance("changed");
       });
 
-      waitsFor(function() {
-        return callbackInc === 1;
-      }, "Callback should be executed", 20);
-
-      runs(function() {
-        expect(callbackProp).toBe(true);
+      it("has changed the value within the given scope", function() {
         expect(scope.prop).toBe("changed");
       });
+
     });
 
   });
