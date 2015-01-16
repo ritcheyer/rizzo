@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
+define([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
 
   describe("Stack", function() {
 
@@ -176,8 +176,9 @@ require([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
     });
 
     describe("when the user clicks a disabled card", function() {
+      var spyEvent;
+
       beforeEach(function() {
-        var spyEvent;
         loadFixtures("stack_disabled.html");
         window.stack = new Stack(config);
         spyEvent = spyOnEvent(stack.$el, ":search/hide");
@@ -185,13 +186,14 @@ require([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
       });
 
       it("triggers the search/hide event", function() {
-        expect(":search/hide").toHaveBeenTriggeredOn(stack.$el);
+        expect(spyEvent).toHaveBeenTriggered();
       });
     });
 
     describe("when the user wants to clear all filters", function() {
+      var spyEvent;
+
       beforeEach(function() {
-        var spyEvent;
         loadFixtures("stack.html");
         window.stack = new Stack(config);
         spyEvent = spyOnEvent(stack.$el, ":filter/reset");
@@ -199,13 +201,14 @@ require([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
       });
 
       it("triggers the filter/reset event", function() {
-        expect(":filter/reset").toHaveBeenTriggeredOn(stack.$el);
+        expect(spyEvent).toHaveBeenTriggered();
       });
     });
 
     describe("when the user clicks to adjust their dates", function() {
+      var spyEvent;
+
       beforeEach(function() {
-        var spyEvent;
         loadFixtures("stack.html");
         window.stack = new Stack(config);
         spyEvent = spyOnEvent(stack.$el, ":search/change");
@@ -213,7 +216,7 @@ require([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
       });
 
       it("triggers the search/change event", function() {
-        expect(":search/change").toHaveBeenTriggeredOn(stack.$el);
+        expect(spyEvent).toHaveBeenTriggered();
       });
     });
 

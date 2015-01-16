@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], function($, Pushstate) {
+define([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], function($, Pushstate) {
 
   "use strict";
 
@@ -47,7 +47,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], functio
     describe("initialisation without support for history.pushState", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        spyOn(pushstate, "_supportsHistory").andReturn(false);
+        spyOn(pushstate, "_supportsHistory").and.returnValue(false);
         spyOn(pushstate, "_onHashChange");
         pushstate.popStateFired = false;
         pushstate._initHistory();
@@ -61,7 +61,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], functio
     describe("creating the url", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        spyOn(pushstate, "getParams").andReturn(serialized.newUrlWithSearchAndFilters);
+        spyOn(pushstate, "getParams").and.returnValue(serialized.newUrlWithSearchAndFilters);
       });
 
       describe("with pushState support", function() {
@@ -79,7 +79,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], functio
 
       describe("without pushState support", function() {
         beforeEach(function() {
-          spyOn(pushstate, "_supportsHistory").andReturn(false);
+          spyOn(pushstate, "_supportsHistory").and.returnValue(false);
         });
         it("creates a hashbang url with the document root", function() {
           var newUrl;
@@ -108,8 +108,8 @@ require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], functio
     describe("updating hash bang", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        spyOn(pushstate, "_supportsHistory").andReturn(false);
-        spyOn(pushstate, "_supportsHash").andReturn(true);
+        spyOn(pushstate, "_supportsHistory").and.returnValue(false);
+        spyOn(pushstate, "_supportsHash").and.returnValue(true);
         spyOn(pushstate, "setHash");
         pushstate.navigate("", "/test");
       });
@@ -124,11 +124,11 @@ require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], functio
     describe("when we dont support pushState", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        spyOn(pushstate, "_supportsHistory").andReturn(false);
+        spyOn(pushstate, "_supportsHistory").and.returnValue(false);
       });
       describe("when we have a hash", function() {
         beforeEach(function() {
-          spyOn(pushstate, "getHash").andReturn("#!/testing");
+          spyOn(pushstate, "getHash").and.returnValue("#!/testing");
           spyOn(pushstate, "setUrl");
         });
         describe("and history navigation is enabled", function() {
@@ -153,8 +153,8 @@ require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], functio
       });
       describe("when we dont have a hash and history navigation is enabled", function() {
         beforeEach(function() {
-          spyOn(pushstate, "getHash").andReturn("");
-          spyOn(pushstate, "getUrl").andReturn("www.lonelyplanet.com/testing");
+          spyOn(pushstate, "getHash").and.returnValue("");
+          spyOn(pushstate, "getUrl").and.returnValue("www.lonelyplanet.com/testing");
           spyOn(pushstate, "setUrl");
           pushstate.allowHistoryNav = true;
           pushstate._onHashChange();
@@ -185,7 +185,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], functio
     describe("after first load", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        spyOn(pushstate, "getUrl").andReturn("http://www.lonelyplanet.com/england/london?search=foo");
+        spyOn(pushstate, "getUrl").and.returnValue("http://www.lonelyplanet.com/england/london?search=foo");
         spyOn(pushstate, "setUrl");
         pushstate.popStateFired = false;
         pushstate.currentUrl = "http://www.lonelyplanet.com/england/london";
@@ -200,7 +200,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], functio
     describe("returning to the first page", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        spyOn(pushstate, "getUrl").andReturn("http://www.lonelyplanet.com/england/london");
+        spyOn(pushstate, "getUrl").and.returnValue("http://www.lonelyplanet.com/england/london");
         spyOn(pushstate, "setUrl");
         pushstate.popStateFired = true;
         pushstate.currentUrl = "http://www.lonelyplanet.com/england/london";

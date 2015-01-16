@@ -1,4 +1,4 @@
-require([
+define([
   "jquery",
   "public/assets/javascripts/lib/page/swipe.js"
 ], function($, Swipe) {
@@ -106,27 +106,25 @@ require([
       });
 
       describe("ends", function() {
-        it("fires a swipe event!", function() {
-          var swooped = false;
 
+        beforeEach(function(done) {
           window.swipe.difference = {
             x: 200,
             y: 0
           };
 
-          waitsFor(function() {
-            return swooped;
-          }, "swipe fired", 1000);
-
           $(".js-onswipe").on(":swipe/right", function() {
-            swooped = true;
+            // Callback was being called synchronously =S
+            setTimeout(done, 100);
           });
 
           window.swipe._gestureEnds({
             target: ".target",
             originalEvent: {}
           });
+        });
 
+        it("fires a swipe event!", function() {
           expect(window.swipe.difference).toBe(null);
         });
 
