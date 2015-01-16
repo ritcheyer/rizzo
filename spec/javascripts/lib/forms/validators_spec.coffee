@@ -1,4 +1,4 @@
-require ['lib/forms/validators'], (Validators) ->
+define ['lib/forms/validators'], (Validators) ->
 
   inputText = null
 

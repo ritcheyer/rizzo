@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/mixins/flyout.js" ], function($, asFlyout) {
+define([ "jquery", "public/assets/javascripts/lib/mixins/flyout.js" ], function($, asFlyout) {
 
   "use strict";
 
