@@ -1,52 +1,45 @@
-require([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(TravelInsurance) {
+define([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(TravelInsurance) {
 
   "use strict";
 
   describe("TravelInsurance", function() {
+
     define("wnmock", function() {
       return {};
     });
 
-    it("pulls in the world nomad widget", function() {
-      var ready = false;
+    describe("pulling in the World Nomad widget", function() {
+      var widget;
 
-      runs(function() {
-        var widget = new TravelInsurance({
+      beforeEach(function(done) {
+        widget = new TravelInsurance({
           path: "wnmock",
-          callback: function() {
-            ready = true;
-          }
-        }).render();
+          callback: done
+        });
+
+        widget.render()
       });
 
-      waitsFor(function() {
-        return ready;
-      });
-
-      runs(function() {
-        expect(ready).toBeTruthy();
+      it("has loaded", function() {
+        expect(widget.$el).toBeDefined();
       });
     });
 
-    it("should return a promise when rendering", function() {
-      var ready = false;
+    describe("should return a promise when rendering", function() {
+      var widget;
 
-      runs(function() {
-        var widget = new TravelInsurance({
+      beforeEach(function(done) {
+        widget = new TravelInsurance({
           path: "wnmock"
         });
-        
+
         widget.render().then(function() {
-          ready = true;
+          done();
         });
       });
 
-      waitsFor(function() {
-        return ready;
-      });
-
-      runs(function() {
-        expect(ready).toBeTruthy();
+      it("has resolved", function() {
+        expect(widget.$el).toBeDefined();
       });
     });
 
