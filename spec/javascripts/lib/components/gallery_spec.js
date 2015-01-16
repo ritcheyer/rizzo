@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], function($, Gallery) {
+define([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], function($, Gallery) {
 
   "use strict";
 
@@ -6,14 +6,17 @@ require([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], fun
 
     var gallery;
 
-    beforeEach(function () {
+    beforeEach(function() {
       loadFixtures("gallery.html");
       gallery = new Gallery();
     });
 
     describe("After navigation", function() {
+      var spyEvent;
+
       beforeEach(function() {
-        spyOnEvent(gallery.$listener, ":ads/refresh");
+        spyEvent = spyOnEvent(gallery.$listener, ":ads/refresh");
+
         spyOn(gallery.analytics, "track");
         spyOn(gallery, "_updateImageInfo");
         spyOn(gallery, "_updateSlug");
@@ -27,7 +30,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], fun
         expect(gallery.analytics.track).toHaveBeenCalled();
         expect(gallery._updateSlug).toHaveBeenCalled();
         expect(gallery._updateGoogleAnalytics).toHaveBeenCalled();
-        expect(":ads/refresh").toHaveBeenTriggeredOn(gallery.$listener);
+        expect(spyEvent).toHaveBeenTriggered();
       });
 
     });

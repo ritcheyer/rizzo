@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], function($, Slider) {
+define([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], function($, Slider) {
   "use strict";
   describe("Slider", function() {
 
@@ -142,34 +142,40 @@ require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], func
     });
 
     describe("hidden dynamically loaded content", function() {
+      var spyEvent;
+
       beforeEach(function() {
         loadFixtures("slider_hidden_content.html");
         config.deferLoading = true;
         window.slider = new Slider(config);
-        spyOnEvent($(window.slider.$el), ":asset/uncomment");
+        spyEvent = spyOnEvent($(window.slider.$el), ":asset/uncomment");
       });
 
       it("loads hidden content", function() {
         expect($(".slider__slide:nth-of-type(3) img").length).toBe(0);
         $(".slider__control--next").trigger("click");
-        expect(":asset/uncomment").toHaveBeenTriggeredOn($(window.slider.$el), [ $(".slider__slide").slice(1), "[data-uncomment]" ]);
+        expect(spyEvent).toHaveBeenTriggered();
       });
     });
 
     describe("auto sliding", function() {
       beforeEach(function() {
-        jasmine.Clock.useMock();
+        jasmine.clock().install();
         loadFixtures("slider.html");
         config.autoSlideDelay = 200;
         window.slider = new Slider(config);
       });
 
+      afterEach(function() {
+        jasmine.clock().uninstall();
+      });
+
       it("automatically slides after the given delay and does so at least more than once", function() {
         expect($(".js-slide").eq(0)).toHaveClass("is-current");
-        jasmine.Clock.tick(201);
+        jasmine.clock().tick(201);
         expect($(".js-slide").eq(0)).not.toHaveClass("is-current");
         expect($(".js-slide").eq(1)).toHaveClass("is-current");
-        jasmine.Clock.tick(201);
+        jasmine.clock().tick(201);
         expect($(".js-slide").eq(1)).not.toHaveClass("is-current");
         expect($(".js-slide").eq(2)).toHaveClass("is-current");
       });

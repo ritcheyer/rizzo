@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/components/range_slider.js'], (RangeSlider) ->
+define ['public/assets/javascripts/lib/components/range_slider.js'], (RangeSlider) ->
 
   describe 'RangeSlider', ->
 

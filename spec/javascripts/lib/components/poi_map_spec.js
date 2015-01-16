@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], function($, POIMap) {
+define([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], function($, POIMap) {
 
   "use strict";
 
@@ -13,15 +13,15 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], fun
 
       mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker", "Size", "Point" ]);
 
-      mockAPI.Map.andCallFake(function() {
+      mockAPI.Map.and.callFake(function() {
         return jasmine.createSpyObj("Google Map Instance", [ "setCenter", "panBy" ]);
       });
 
-      mockAPI.Marker.andCallFake(function() {
+      mockAPI.Marker.and.callFake(function() {
         return jasmine.createSpyObj("Google Maps Marker", [ "setIcon", "getPosition" ]);;
       });
 
-      spyOn(instance, "_googleMapsOptions").andReturn({
+      spyOn(instance, "_googleMapsOptions").and.returnValue({
         center: null
       });
     });
@@ -43,7 +43,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], fun
     describe("Loading and displaying JS maps", function() {
 
       it("should set the component state to loading", function() {
-        spyOn(instance, "_loadGoogleMaps").andReturn(null);
+        spyOn(instance, "_loadGoogleMaps").and.returnValue(null);
 
         instance.toggle();
 
@@ -52,14 +52,14 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], fun
       });
 
       it("should build and open the JS map when Google Maps has loaded", function() {
-        spyOn(instance, "_loadGoogleMaps").andCallFake(function() {
+        spyOn(instance, "_loadGoogleMaps").and.callFake(function() {
           window.google = {
             maps: mockAPI
           };
           window.mapsCallback && window.mapsCallback();
         });
 
-        spyOn(instance, "_googleMapsMarker").andCallFake(function() {
+        spyOn(instance, "_googleMapsMarker").and.callFake(function() {
           return {
             url: "marker.png",
             origin: { x: 10, y: 10 },

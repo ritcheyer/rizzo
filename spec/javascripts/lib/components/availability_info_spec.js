@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/availability_info.js" ], function(AvailabilityInfo) {
+define([ "public/assets/javascripts/lib/components/availability_info.js" ], function(AvailabilityInfo) {
 
   describe("AvailabilityInfo", function() {
     var LISTENER, params;
@@ -174,7 +174,7 @@ require([ "public/assets/javascripts/lib/components/availability_info.js" ], fun
 
       describe("when the user has not entered dates", function() {
         beforeEach(function() {
-          spyOn(avInfo, "hasSearched").andReturn(false);
+          spyOn(avInfo, "hasSearched").and.returnValue(false);
           $(LISTENER).trigger(":cards/received", ["", params]);
         });
 
@@ -187,8 +187,8 @@ require([ "public/assets/javascripts/lib/components/availability_info.js" ], fun
 
       describe("when the user has entered dates", function() {
         beforeEach(function() {
-          spyOn(avInfo, "hasSearched").andReturn(true);
-          spyOn(avInfo, "_isHidden").andReturn(true);
+          spyOn(avInfo, "hasSearched").and.returnValue(true);
+          spyOn(avInfo, "_isHidden").and.returnValue(true);
           $(LISTENER).trigger(":cards/received", ["", params]);
         });
 
@@ -228,8 +228,9 @@ require([ "public/assets/javascripts/lib/components/availability_info.js" ], fun
     });
 
     describe("on change", function() {
+      var spyEvent;
+
       beforeEach(function() {
-        var spyEvent;
         loadFixtures("availability_info.html");
         window.avInfo = new AvailabilityInfo({
           el: ".js-availability-info"
@@ -240,7 +241,7 @@ require([ "public/assets/javascripts/lib/components/availability_info.js" ], fun
       });
 
       it("triggers the info/change event", function() {
-        expect(":search/change").toHaveBeenTriggeredOn(avInfo.$el);
+        expect(spyEvent).toHaveBeenTriggered();
       });
 
       it("hides", function() {
@@ -251,4 +252,3 @@ require([ "public/assets/javascripts/lib/components/availability_info.js" ], fun
   });
 
 });
-

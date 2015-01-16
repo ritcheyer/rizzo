@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/social_toolbar.js" ], function($, SocialToolbar) {
+define([ "jquery", "public/assets/javascripts/lib/components/social_toolbar.js" ], function($, SocialToolbar) {
 
   "use strict";
 
@@ -10,7 +10,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/social_toolbar.js"
     beforeEach(function() {
       loadFixtures("social_toolbar.html");
       window.socialToolbar = new SocialToolbar();
-      spyOn(window.socialToolbar, "getUrl").andReturn(newUrl);
+      spyOn(window.socialToolbar, "getUrl").and.returnValue(newUrl);
     });
 
     describe("Toggling visibility", function() {

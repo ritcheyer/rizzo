@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/prerender.js" ], function($, Prerender) {
+define([ "jquery", "public/assets/javascripts/lib/components/prerender.js" ], function($, Prerender) {
 
   "use strict";
 
@@ -33,11 +33,11 @@ require([ "jquery", "public/assets/javascripts/lib/components/prerender.js" ], f
     describe("Pagination", function() {
 
       beforeEach(function(){
-        spyOn(prerender, "_getContainerDimensions").andReturn({
+        spyOn(prerender, "_getContainerDimensions").and.returnValue({
           width: 1000,
           left: 200
         });
-        spyOn(prerender, "getViewPort").andReturn(1600);
+        spyOn(prerender, "getViewPort").and.returnValue(1600);
       })
 
       it("can paginate right", function(){

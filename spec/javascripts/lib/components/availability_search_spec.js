@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/availability_search.js" ], function(Availability) {
+define([ "public/assets/javascripts/lib/components/availability_search.js" ], function(Availability) {
 
   describe("Availability", function() {
     var LISTENER = "#js-card-holder";
@@ -184,7 +184,7 @@ require([ "public/assets/javascripts/lib/components/availability_search.js" ], f
 
       describe("if the user has searched", function() {
         beforeEach(function() {
-          spyOn(av, "hasSearched").andReturn(true);
+          spyOn(av, "hasSearched").and.returnValue(true);
 
           $(LISTENER).trigger(":cards/received", {
             pagination: {
@@ -208,7 +208,7 @@ require([ "public/assets/javascripts/lib/components/availability_search.js" ], f
 
       describe("if the user has not already searched", function() {
         beforeEach(function() {
-          spyOn(av, "hasSearched").andReturn(false);
+          spyOn(av, "hasSearched").and.returnValue(false);
 
           $(LISTENER).trigger(":cards/received", {
             pagination: {
@@ -239,8 +239,8 @@ require([ "public/assets/javascripts/lib/components/availability_search.js" ], f
           el: ".js-availability-card"
         });
 
-        spyOn(av, "_setDefaultDates").andReturn(true);
-        spyOn(av, "_getSearchData").andReturn("foo");
+        spyOn(av, "_setDefaultDates").and.returnValue(true);
+        spyOn(av, "_getSearchData").and.returnValue("foo");
       });
 
       it("triggers the page request event with the search data", function() {
