@@ -1,4 +1,4 @@
-require([
+define([
   "jquery",
   "public/assets/javascripts/lib/core/user_feed",
   "public/assets/javascripts/lib/components/tabs"
@@ -104,8 +104,8 @@ require([
           });
 
           it("should call 'css()' on tabs content with proper arguments", function() {
-            expect(userFeed.$tabsContent.css.argsForCall[0][0]).toEqual("max-height");
-            expect(userFeed.$tabsContent.css.argsForCall[0][1]).toMatch(/[0-9]/);
+            expect(userFeed.$tabsContent.css.calls.argsFor(0)[0]).toEqual("max-height");
+            expect(userFeed.$tabsContent.css.calls.argsFor(0)[1]).toMatch(/[0-9]/);
           });
 
           describe("then leave flyout", function() {
@@ -410,7 +410,11 @@ require([
           spyOn(userFeed, "_responsifyTabsContentHeight");
           spyOn(userFeed, "_fetchFeed");
 
-          jasmine.Clock.useMock();
+          jasmine.clock().install();
+        });
+
+        afterEach(function() {
+          jasmine.clock().uninstall();
         });
 
         describe("with any truthy argument", function() {
@@ -436,7 +440,7 @@ require([
             });
 
             it("should setTimeout properly", function() {
-              jasmine.Clock.tick(userFeed.config.fetchInterval + 1);
+              jasmine.clock().tick(userFeed.config.fetchInterval + 1);
               expect(userFeed._fetchFeed).toHaveBeenCalled();
             });
 
@@ -493,14 +497,14 @@ require([
 
         beforeEach(function() {
           spyOn($, "ajax");
-          spyOn(userFeed._updateFeed, "bind").andReturn(true);
+          spyOn(userFeed._updateFeed, "bind").and.returnValue(true);
 
           userFeed._fetchFeed();
         });
 
         afterEach(function() {
           // reset spies to 'notHaveBeenCalled'
-          userFeed._updateFeed.bind.reset();
+          userFeed._updateFeed.bind.calls.reset();
         });
 
         it("should call '$.ajax()' with proper arguments", function() {

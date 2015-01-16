@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], function($, Authenticator) {
+define([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], function($, Authenticator) {
 
   "use strict";
 
@@ -23,7 +23,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       $("#js-user-nav-template").html($("#jasmine-fixtures").html());
 
       // We don't need to test the actual ajax request, and this now being a `jsonp` request, it breaks Phantom.
-      spyOn($, "ajax").andReturn("");
+      spyOn($, "ajax").and.returnValue("");
 
       auth = new Authenticator();
     });

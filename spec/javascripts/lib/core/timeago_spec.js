@@ -1,4 +1,4 @@
-require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
+define([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
 
   "use strict";
 
@@ -50,7 +50,7 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
     describe("Screen width > breakpoint", function() {
 
       beforeEach(function() {
-        spyOn(timeago, "_isAboveBreakpoint").andReturn(true);
+        spyOn(timeago, "_isAboveBreakpoint").and.returnValue(true);
         timeago.updateAll();
       });
 
@@ -63,7 +63,7 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
     describe("Screen width < breakpoint", function() {
 
       beforeEach(function() {
-        spyOn(timeago, "_isAboveBreakpoint").andReturn(false);
+        spyOn(timeago, "_isAboveBreakpoint").and.returnValue(false);
         timeago.updateAll();
       });
 
@@ -82,7 +82,7 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
       describe("Timestamp is older than 1 month", function() {
 
         beforeEach(function() {
-          spyOn(Date, "now").andReturn(1423954800000); // 2015.02.15 00:00
+          spyOn(Date, "now").and.returnValue(1423954800000); // 2015.02.15 00:00
         });
 
         it("should return correct month name", function() {

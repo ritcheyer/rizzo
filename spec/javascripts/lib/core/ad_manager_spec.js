@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager) {
+define([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager) {
 
   describe("Ad Manager", function() {
 
@@ -7,7 +7,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
     beforeEach(function() {
       loadFixtures("ad_iframe.html");
 
-      spyOn(window.lp, "getCookie").andReturn([]);
+      spyOn(window.lp, "getCookie").and.returnValue([]);
 
       window.Krux = {
         user: "foo",
@@ -26,26 +26,16 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
       $(".adunit").removeData("googleAdUnit adUnit");
     });
 
-    describe("._init()", function() {
+    describe(".init()", function() {
 
-      it("Loads and instantiates jQuery DFP", function() {
+      beforeEach(function(done) {
+        spyOn(instance, "load").and.callFake(done);
+        instance.init();
+      });
 
-        spyOn(instance, "_adCallback").andReturn(null);
-        spyOn(instance, "load").andReturn(null);
-
-        runs(function() {
-          instance._init();
-        });
-
-        waitsFor(function() {
-          return $.hasOwnProperty("dfp");
-        }, "DFP should be loaded", 1000);
-
-        runs(function() {
-          expect(instance.load).toHaveBeenCalled();
-          expect(instance.pluginConfig).toBeDefined();
-        });
-
+      it("has loaded jQuery DFP", function() {
+        expect($.hasOwnProperty("dfp")).toBe(true);
+        expect(instance.pluginConfig).toBeDefined();
       });
 
     });
@@ -80,20 +70,20 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
     describe(".getNetworkID()", function() {
 
       it("Should return the default network ID if no cookie and no URL parameter are set", function() {
-        spyOn(instance, "_networkCookie").andReturn(null);
-        spyOn(instance, "_networkParam").andReturn(null);
+        spyOn(instance, "_networkCookie").and.returnValue(null);
+        spyOn(instance, "_networkParam").and.returnValue(null);
         expect(instance.getNetworkID()).toBe(9885583);
       });
 
       it("Should return the network ID specified in a cookie", function() {
-        spyOn(instance, "_networkCookie").andReturn(123456);
-        spyOn(instance, "_networkParam").andReturn(null);
+        spyOn(instance, "_networkCookie").and.returnValue(123456);
+        spyOn(instance, "_networkParam").and.returnValue(null);
         expect(instance.getNetworkID()).toBe(123456);
       });
 
       it("Should return the network ID specified in the URL", function() {
-        spyOn(instance, "_networkCookie").andReturn(null);
-        spyOn(instance, "_networkParam").andReturn(78910);
+        spyOn(instance, "_networkCookie").and.returnValue(null);
+        spyOn(instance, "_networkParam").and.returnValue(78910);
         expect(instance.getNetworkID()).toBe(78910);
       });
 
@@ -101,45 +91,31 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
 
     describe(".load()", function() {
 
-      it("Should load all ads", function() {
-
-        runs(function() {
-          spyOn(instance, "load").andCallThrough();
-        });
-
-        waitsFor(function() {
-          return instance.load.callCount > 0;
-        }, "DFP should instantiate ads", 250);
-
-        runs(function() {
-          expect($(".adunit").hasClass("display-none")).toBe(true);
-        });
-
+      beforeEach(function() {
+        spyOn($.fn, "dfp").and.stub();
       });
 
-      it("Should not reload already loaded ads", function() {
+      it("instantiates new ad units", function() {
+        instance.load();
+        expect($.fn.dfp.calls.mostRecent().object.length).toBe(1);
+      });
 
-        runs(function() {
-          $(".adunit").data("adUnit", true);
-          spyOn(instance, "_adCallback").andReturn(null);
-          spyOn(instance, "load").andCallThrough();
+      describe("Does not reload ads", function() {
+        beforeEach(function() {
+          $(".adunit").data("googleAdUnit", true);
         });
 
-        waitsFor(function() {
-          return instance.load.callCount > 0;
-        }, "DFP should instantiate ads", 250);
-
-        runs(function() {
-          expect(instance._adCallback).not.toHaveBeenCalled();
+        it("does not instantiate ", function() {
+          instance.load();
+          expect($.fn.dfp.calls.mostRecent().object.length).toBe(0);
         });
-
       });
 
     });
 
     describe(".refresh()", function() {
 
-      it("With object parameter, should call the refresh method on ad units filtered by type", function() {
+      it("should call the refresh method on ad units filtered by type with object param", function() {
         var unit;
 
         function MockAdUnit(type) {
@@ -179,9 +155,9 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
         });
         expect(instance.$adunits.eq(2).data("adUnit").refresh).toHaveBeenCalledWith({ param: "new" });
 
-        expect(instance.$adunits.eq(0).data("adUnit").refresh.callCount).toEqual(1);
-        expect(instance.$adunits.eq(1).data("adUnit").refresh.callCount).toEqual(1);
-        expect(instance.$adunits.eq(2).data("adUnit").refresh.callCount).toEqual(2);
+        expect(instance.$adunits.eq(0).data("adUnit").refresh.calls.count()).toEqual(1);
+        expect(instance.$adunits.eq(1).data("adUnit").refresh.calls.count()).toEqual(1);
+        expect(instance.$adunits.eq(2).data("adUnit").refresh.calls.count()).toEqual(2);
 
       });
 

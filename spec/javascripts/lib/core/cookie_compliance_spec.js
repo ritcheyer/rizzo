@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/core/cookie_compliance" ], function($, CookieCompliance) {
+define([ "jquery", "public/assets/javascripts/lib/core/cookie_compliance" ], function($, CookieCompliance) {
 
   "use strict";
 
@@ -9,7 +9,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/cookie_compliance" ], fu
   describe("Cookie Compliance", function() {
 
     it("shows a message if the user is in europe and has never seen it", function() {
-      spyOn(CookieCompliance.prototype, "mustShow").andReturn(true);
+      spyOn(CookieCompliance.prototype, "mustShow").and.returnValue(true);
       expect($(".js-cookie-compliance")).toHaveClass("is-closed");
       new CookieCompliance();
       expect($(".js-cookie-compliance")).toHaveClass("is-open");
@@ -17,8 +17,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/cookie_compliance" ], fu
     });
 
     it("doesn't show if the user is in the united states", function() {
-      spyOn(CookieCompliance.prototype, "seen").andReturn(false);
-      spyOn(CookieCompliance.prototype, "inEurope").andReturn(false);
+      spyOn(CookieCompliance.prototype, "seen").and.returnValue(false);
+      spyOn(CookieCompliance.prototype, "inEurope").and.returnValue(false);
       expect($(".js-cookie-compliance")).toHaveClass("is-closed");
       new CookieCompliance();
       expect($(".js-cookie-compliance")).not.toHaveClass("is-open");
@@ -26,8 +26,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/cookie_compliance" ], fu
     });
 
     it("doesn't show if the user has already seen it", function() {
-      spyOn(CookieCompliance.prototype, "seen").andReturn(true);
-      spyOn(CookieCompliance.prototype, "inEurope").andReturn(true);
+      spyOn(CookieCompliance.prototype, "seen").and.returnValue(true);
+      spyOn(CookieCompliance.prototype, "inEurope").and.returnValue(true);
       expect($(".js-cookie-compliance")).toHaveClass("is-closed");
       new CookieCompliance();
       expect($(".js-cookie-compliance")).not.toHaveClass("is-open");
