@@ -21,6 +21,9 @@ module Rizzo
     config.assets.enabled = true
     config.assets.version = '1.0'
     config.assets.precompile += Rizzo::Assets.precompile
+    config.requirejs.build_config += %w(
+      generateSourceMaps
+    )
 
   end
 end
