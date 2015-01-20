@@ -33,9 +33,7 @@ define([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(Tr
           path: "wnmock"
         });
 
-        widget.render().then(function() {
-          done();
-        });
+        widget.render().then(done);
       });
 
       it("has resolved", function() {

@@ -59,7 +59,7 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
           spyOn(instance, "_broadcast").and.callFake(done);
         });
 
-        it("", function() {
+        it("has prevented the default action", function() {
           expect(e.isDefaultPrevented()).toBe(true);
         });
       });
@@ -73,7 +73,7 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
           spyOn(instance, "_broadcast").and.callFake(done);
         });
 
-        it("", function() {
+        it("has not prevented the default action", function() {
           expect(e.isDefaultPrevented()).not.toBe(true);
         });
       });
@@ -90,24 +90,18 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
 
       describe(":toggleActive/click", function() {
         beforeEach(function(done) {
-          $("#evented").one(":toggleActive/click", function() {
-            done();
-          });
-
-          $("#evented").trigger("click");
+          $("#evented").one(":toggleActive/click", done).trigger("click");
         });
 
-        it("has triggered the event (otherwise this spec would time out)", function() {
+        // If the event hadn't been triggered then this spec would time out...
+        it("has triggered the event", function() {
           expect($("#evented").hasClass("is-active")).not.toEqual(beforeState);
         });
       });
 
       describe(":toggleActive/update", function() {
         beforeEach(function(done) {
-          instance.$context.one(":toggleActive/ready", function() {
-            done();
-          });
-
+          instance.$context.one(":toggleActive/ready", done);
           $("#evented").trigger(":toggleActive/update", $("#evented").get(0));
         });
 
