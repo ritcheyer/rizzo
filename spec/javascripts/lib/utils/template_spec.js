@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/utils/template" ], function(Template) {
+define([ "public/assets/javascripts/lib/utils/template" ], function(Template) {
 
   "use strict";
 

@@ -1,4 +1,4 @@
-require([
+define([
   "public/assets/javascripts/lib/page/controller.js"
 ], function(Controller) {
 
@@ -78,7 +78,7 @@ require([
     describe("generating application state", function() {
       beforeEach(function() {
         window.controller = new Controller();
-        spyOn(controller, "getParams").andReturn(serialized.urlParams);
+        spyOn(controller, "getParams").and.returnValue(serialized.urlParams);
       });
 
       it("updates the application state object with the search parameters", function() {
@@ -90,7 +90,7 @@ require([
     describe("updating application state", function() {
       beforeEach(function() {
         window.controller = new Controller();
-        spyOn(controller, "getParams").andReturn(serialized.newUrlWithSearchAndFilters);
+        spyOn(controller, "getParams").and.returnValue(serialized.newUrlWithSearchAndFilters);
         controller._generateState();
       });
 
@@ -103,8 +103,8 @@ require([
     describe("creating the request url", function() {
       beforeEach(function() {
         window.controller = new Controller();
-        spyOn(controller, "_serializeState").andReturn(serialized.newUrlWithSearchAndFilters);
-        spyOn(controller, "getDocumentRoot").andReturn("/foo");
+        spyOn(controller, "_serializeState").and.returnValue(serialized.newUrlWithSearchAndFilters);
+        spyOn(controller, "getDocumentRoot").and.returnValue("/foo");
       });
 
       it("serializes the application state with the document root", function() {
@@ -185,8 +185,8 @@ require([
       beforeEach(function() {
         window.controller = new Controller();
         spyOn(controller, "_callServer");
-        spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar");
-        spyOn(controller.pushState, "navigate").andReturn(false);
+        spyOn(controller, "_createRequestUrl").and.returnValue("http://www.lonelyplanet.com/foo.json?foo=bar");
+        spyOn(controller.pushState, "navigate").and.returnValue(false);
         $(LISTENER).trigger(":cards/request", newParams, analytics);
       });
 
@@ -208,7 +208,7 @@ require([
       beforeEach(function() {
         window.controller = new Controller();
         spyOn(controller, "_callServer");
-        spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar");
+        spyOn(controller, "_createRequestUrl").and.returnValue("http://www.lonelyplanet.com/foo.json?foo=bar");
         $(LISTENER).trigger(":cards/append", {
           page: 2
         }, analytics);
@@ -268,8 +268,8 @@ require([
     describe("on layer request", function() {
       beforeEach(function() {
         window.controller = new Controller();
-        spyOn(controller, "_callServer").andReturn(true);
-        spyOn(controller.pushState, "navigate").andReturn(false);
+        spyOn(controller, "_callServer").and.returnValue(true);
+        spyOn(controller.pushState, "navigate").and.returnValue(false);
         $(LISTENER).trigger(":layer/request", { url: serialized.url });
       });
 
@@ -291,8 +291,8 @@ require([
     describe("on several layer requests", function() {
       beforeEach(function() {
         window.controller = new Controller();
-        spyOn(controller, "_callServer").andReturn(true);
-        spyOn(controller.pushState, "navigate").andReturn(false);
+        spyOn(controller, "_callServer").and.returnValue(true);
+        spyOn(controller.pushState, "navigate").and.returnValue(false);
         //Update path, so current state is 1
         $(LISTENER).trigger(":controller/updatePath", { url: serialized.url });
         //Trigger layer

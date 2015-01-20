@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/page/stack_intro.js" ], function(StackIntro) {
+define([ "public/assets/javascripts/lib/page/stack_intro.js" ], function(StackIntro) {
 
   describe("StackIntro", function() {
 

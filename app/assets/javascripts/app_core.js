@@ -25,7 +25,7 @@ define([
   $(document).ready(function() {
 
     if (window.lp.ads) {
-      new AdManager(window.lp.ads);
+      new AdManager(window.lp.ads).init();
     }
 
     if (window.location.protocol !== "https:") {

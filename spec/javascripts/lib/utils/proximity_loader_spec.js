@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/utils/proximity_loader.js" ], function(ProximityLoader) {
+define([ "public/assets/javascripts/lib/utils/proximity_loader.js" ], function(ProximityLoader) {
 
   var config = {
     list: ".js-loader-one, .js-loader-two, .js-loader-three",
@@ -22,7 +22,7 @@ require([ "public/assets/javascripts/lib/utils/proximity_loader.js" ], function(
 
     describe("._init()", function() {
       beforeEach(function() {
-        spyOn(instance, "_getViewportEdge").andReturn(0);
+        spyOn(instance, "_getViewportEdge").and.returnValue(0);
         instance._init();
       });
 
@@ -49,7 +49,7 @@ require([ "public/assets/javascripts/lib/utils/proximity_loader.js" ], function(
       var viewportHeights = [0, 200, 500];
 
       beforeEach(function() {
-        spyOn(instance, "_getViewportEdge").andReturn(viewportHeights.shift());
+        spyOn(instance, "_getViewportEdge").and.returnValue(viewportHeights.shift());
         instance._init();
       });
 

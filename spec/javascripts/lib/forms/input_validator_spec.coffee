@@ -1,4 +1,4 @@
-require ['lib/forms/input_validator'], (InputValidator) ->
+define ['lib/forms/input_validator'], (InputValidator) ->
 
   describe 'LP Input Validator', ->
 

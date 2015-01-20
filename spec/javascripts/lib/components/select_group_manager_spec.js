@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/select_group_manager" ], function(SelectGroupManager) {
+define([ "public/assets/javascripts/lib/components/select_group_manager" ], function(SelectGroupManager) {
 
   describe("Select Group Manager", function() {
 

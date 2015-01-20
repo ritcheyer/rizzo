@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/load_more.js" ], function(LoadMore) {
+define([ "public/assets/javascripts/lib/components/load_more.js" ], function(LoadMore) {
 
   describe("Load More Button", function() {
 
@@ -281,7 +281,7 @@ require([ "public/assets/javascripts/lib/components/load_more.js" ], function(Lo
         });
         var spyEvent = spyOnEvent(lm.$el, ":cards/append");
         spyOn(lm, "_block");
-        spyOn(lm, "_serialize").andReturn("foo");
+        spyOn(lm, "_serialize").and.returnValue("foo");
         lm.currentPage = 4;
         lm.$btn.trigger("click");
       });

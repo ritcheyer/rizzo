@@ -1,102 +1,113 @@
-require([ "public/assets/javascripts/lib/components/toggle_active.js" ], function(ToggleActive) {
+define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function(ToggleActive) {
 
   describe("ToggleActive", function() {
 
+    var instance;
+
+    beforeEach(function() {
+      loadFixtures("toggle_active.html");
+      instance = new ToggleActive();
+    });
+
     describe("Initialisation", function() {
-      beforeEach(function() {
-        loadFixtures("toggle_active.html");
-        window.toggleActive = new ToggleActive();
-        spyOn(window.toggleActive, "_toggle").andCallThrough();
-      });
 
       it("Initially adds the is-not-active class", function() {
         expect($(".foo")).toHaveClass("is-not-active");
       });
 
-      it("Toggles the is-active and is-not-active classes.", function() {
-        runs(function() {
+      describe("Toggles class names.", function() {
+        beforeEach(function(done) {
           $("#normal").trigger("click");
+          spyOn(instance, "_broadcast").and.callFake(done);
         });
 
-        waitsFor(function() {
-          return window.toggleActive._toggle.calls.length === 1;
-        }, "Callback to be called", 100);
-
-        runs(function() {
+        it("toggles the is-active and is-not-active class names", function() {
           expect($(".foo")).toHaveClass("is-active");
           expect($(".foo")).not.toHaveClass("is-not-active");
         });
       });
 
-      it("Toggles a custom class.", function() {
-        runs(function() {
+      describe("Custom class.", function() {
+        beforeEach(function(done) {
           $("#custom-class").trigger("click");
+          spyOn(instance, "_broadcast").and.callFake(done);
         });
 
-        waitsFor(function() {
-          return window.toggleActive._toggle.calls.length === 1;
-        }, "Callback to be called", 100);
-
-        runs(function() {
+        it("toggles a custom class", function() {
           expect($(".foo")).toHaveClass("custom-class");
         });
       });
 
-      it("Toggles the is-active classes on both the clicked element and the target.", function() {
-        runs(function() {
+      describe("Toggle both.", function() {
+        beforeEach(function(done) {
           $("#both").trigger("click");
+          spyOn(instance, "_broadcast").and.callFake(done);
         });
 
-        waitsFor(function() {
-          return window.toggleActive._toggle.calls.length === 1;
-        }, "Callback to be called", 100);
-
-        runs(function() {
+        it("toggles the is-active classes on both the clicked element and the target", function() {
           expect($("#both")).toHaveClass("is-active");
           expect($("#both")).not.toHaveClass("is-not-active");
         });
       });
 
-      it("Prevents the default click event for anchor elements", function() {
-        var e = $.Event("click");
-        $("#is-cancellable").trigger(e);
-        expect(e.isDefaultPrevented()).toBe(true);
+      describe("Prevents the default click event for anchor elements", function() {
+        var e;
+
+        beforeEach(function(done) {
+          e = $.Event("click");
+          $("#is-cancellable").trigger(e);
+          spyOn(instance, "_broadcast").and.callFake(done);
+        });
+
+        it("has prevented the default action", function() {
+          expect(e.isDefaultPrevented()).toBe(true);
+        });
       });
 
-      it("Does not prevent the default click event for non-anchor elements", function() {
-        var e = $.Event("click");
-        $("#not-cancellable").trigger(e);
-        expect(e.isDefaultPrevented()).not.toBe(true);
+      describe("Does not prevent the default click event for non-anchor elements", function() {
+        var e;
+
+        beforeEach(function(done) {
+          e = $.Event("click");
+          $("#not-cancellable").trigger(e);
+          spyOn(instance, "_broadcast").and.callFake(done);
+        });
+
+        it("has not prevented the default action", function() {
+          expect(e.isDefaultPrevented()).not.toBe(true);
+        });
       });
+
     });
 
-    describe("works with events", function() {
+    describe("Works with events", function() {
+      var beforeState, spyEvent;
+
       beforeEach(function() {
-        loadFixtures("toggle_active.html");
-        window.toggleActive = new ToggleActive();
-        spyOn(window.toggleActive, "_toggle").andCallThrough();
-        var spyEvent = spyOnEvent($("#evented"), ":toggleActive/click");
+        beforeState = $("#evented").hasClass("is-active");
+        spyEvent = spyOnEvent($("#evented"), ":toggleActive/click");
       });
 
-      it("on click it triggers :toggleActive/click", function() {
-        runs(function() {
-          $("#evented").trigger("click");
+      describe(":toggleActive/click", function() {
+        beforeEach(function(done) {
+          $("#evented").one(":toggleActive/click", done).trigger("click");
         });
 
-        waitsFor(function() {
-          return window.toggleActive._toggle.calls.length === 1;
-        }, "Callback to be called", 100);
-
-        runs(function() {
-          expect(":toggleActive/click").toHaveBeenTriggeredOn($("#evented"));
+        // If the event hadn't been triggered then this spec would time out...
+        it("has triggered the event", function() {
+          expect($("#evented").hasClass("is-active")).not.toEqual(beforeState);
         });
       });
 
-      it("on update", function() {
-        var target = document.querySelector("#evented");
-        var beforeState = $("#evented").hasClass("is-active");
-        $("#js-row--content").trigger(":toggleActive/update", target);
-        expect($("#evented").hasClass("is-active")).not.toEqual(beforeState);
+      describe(":toggleActive/update", function() {
+        beforeEach(function(done) {
+          instance.$context.one(":toggleActive/ready", done);
+          $("#evented").trigger(":toggleActive/update", $("#evented").get(0));
+        });
+
+        it("has listened to the event", function() {
+          expect($("#evented").hasClass("is-active")).not.toEqual(beforeState);
+        });
       });
     });
 

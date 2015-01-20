@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/core/shopping_cart"], function ($, ShoppingCart) {
+define([ "jquery", "public/assets/javascripts/lib/core/shopping_cart" ], function($, ShoppingCart) {
 
   "use strict";
 
@@ -9,7 +9,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/shopping_cart"], functio
     describe("Empty basket", function() {
 
       beforeEach(function() {
-        spyOn(window.lp, "getCookie").andReturn(false);
+        spyOn(window.lp, "getCookie").and.returnValue(false);
         loadFixtures("shopping_cart.html");
         shoppingCart = new ShoppingCart();
       });
@@ -31,7 +31,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/shopping_cart"], functio
       beforeEach(function() {
         loadFixtures("shopping_cart.html");
         var cartData = JSON.stringify({"D":78,"F":2653,"A":["5904","5904-DIGITAL_ONLY"]});
-        spyOn(window.lp, "getCookie").andReturn(cartData);
+        spyOn(window.lp, "getCookie").and.returnValue(cartData);
         shoppingCart = new ShoppingCart();
       });
 

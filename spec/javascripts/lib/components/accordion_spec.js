@@ -1,4 +1,4 @@
-require(["public/assets/javascripts/lib/components/accordion.js"], function(Accordion) {
+define(["public/assets/javascripts/lib/components/accordion.js"], function(Accordion) {
 
   describe("Accordion", function() {
 

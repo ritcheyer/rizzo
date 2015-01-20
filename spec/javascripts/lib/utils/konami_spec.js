@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/utils/konami.js" ], function($, Konami) {
+define([ "jquery", "public/assets/javascripts/lib/utils/konami.js" ], function($, Konami) {
 
   "use strict";
 

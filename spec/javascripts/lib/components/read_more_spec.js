@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/read_more.js" ], function(SectionToggle) {
+define([ "public/assets/javascripts/lib/components/read_more.js" ], function(SectionToggle) {
 
   describe("Section Toggle", function() {
 
@@ -29,7 +29,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
     describe("When the total height of the area is smaller than the max height", function() {
       beforeEach(function() {
         loadFixtures("section_toggle.html");
-        spyOn(SectionToggle.prototype, "getFullHeight").andReturn(50);
+        spyOn(SectionToggle.prototype, "getFullHeight").and.returnValue(50);
         spyOn(SectionToggle.prototype, "addToggle");
         spyOn(SectionToggle.prototype, "setWrapperState");
         window.SectionToggle = new SectionToggle({
@@ -47,7 +47,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
     describe("When the total height of the area is larger than the max height", function() {
       beforeEach(function() {
         loadFixtures("section_toggle.html");
-        spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150);
+        spyOn(SectionToggle.prototype, "getFullHeight").and.returnValue(150);
       });
 
       it("appends a block-style toggle button by default", function() {
@@ -90,7 +90,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
     describe("When the Read more button is clicked while closed", function() {
       beforeEach(function() {
         loadFixtures("section_toggle.html");
-        spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150);
+        spyOn(SectionToggle.prototype, "getFullHeight").and.returnValue(150);
         window.SectionToggle = new SectionToggle({
           maxHeight: 100
         });
@@ -108,7 +108,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
     describe("When the Read more button is clicked while open", function() {
       beforeEach(function() {
         loadFixtures("section_toggle.html");
-        spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150);
+        spyOn(SectionToggle.prototype, "getFullHeight").and.returnValue(150);
         window.SectionToggle = new SectionToggle({
           maxHeight: 100
         });
@@ -129,7 +129,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
       describe("When the total height of the area is larger than the max height but within tolerance", function() {
         beforeEach(function() {
           loadFixtures("section_toggle.html");
-          spyOn(SectionToggle.prototype, "getFullHeight").andReturn(120);
+          spyOn(SectionToggle.prototype, "getFullHeight").and.returnValue(120);
           spyOn(SectionToggle.prototype, "addToggle");
           spyOn(SectionToggle.prototype, "setWrapperState");
           window.SectionToggle = new SectionToggle({
@@ -148,7 +148,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
       describe("When the total height of the area is larger than the max height plus tolerance", function() {
         beforeEach(function() {
           loadFixtures("section_toggle.html");
-          spyOn(SectionToggle.prototype, "getFullHeight").andReturn(120);
+          spyOn(SectionToggle.prototype, "getFullHeight").and.returnValue(120);
         });
 
         it("appends a block-style toggle button by default", function() {

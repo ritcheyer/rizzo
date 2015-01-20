@@ -1,4 +1,4 @@
-require( [ "lib/forms/form_input" ], function(FormInput) {
+define( [ "lib/forms/form_input" ], function(FormInput) {
 
   var formInput = null;
 

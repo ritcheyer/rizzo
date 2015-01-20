@@ -1,4 +1,4 @@
-require ['jquery', 'public/assets/javascripts/lib/utils/image_helper.js'], ($, ImageHelper) ->
+define ['jquery', 'public/assets/javascripts/lib/utils/image_helper.js'], ($, ImageHelper) ->
 
   describe 'ImageHelper', ->
 
@@ -82,22 +82,20 @@ require ['jquery', 'public/assets/javascripts/lib/utils/image_helper.js'], ($, I
           expect(img.className.match(/is\-landscape|portrait|squarish/)).not.toBeNull()
           expect(img.className.match(/is\-taller|wider|equal/)).not.toBeNull()
 
-      it 'Waits for images to load if it has no dimensions', ->
+      it 'Waits for images to load if they have no dimensions', ->
         $img = $('.img-onload')
 
-        runs ->
+        beforeEach (done) ->
           image_helper.processImages
             img: '.img-onload'
             container: '.img-onload-container'
 
-          $img.eq(0).css({ width: 1000, height: 600 }).trigger('load')
-          $img.eq(1).css({ width: 600, height: 1000 }).trigger('load')
+          $img.eq(0).css({ width: 1000, height: 600 }).triggerHandler('load')
+          $img.eq(1).css({ width: 600, height: 1000 }).triggerHandler('load')
 
-        waitsFor ->
-          $img.eq(0).width() and $img.eq(1).width()
-        , 'The image to load'
+          done()
 
-        runs ->
+        it 'processes the images', ->
           expect($img.eq(0).hasClass('is-landscape'))
           expect($img.eq(0).hasClass('is-wider'))
           expect($img.eq(1).hasClass('is-portrait'))

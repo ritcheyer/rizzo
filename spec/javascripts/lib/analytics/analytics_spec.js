@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/analytics/analytics.js" ], function($, Analytics) {
+define([ "jquery", "public/assets/javascripts/lib/analytics/analytics.js" ], function($, Analytics) {
 
   "use strict";
 
@@ -59,7 +59,7 @@ require([ "jquery", "public/assets/javascripts/lib/analytics/analytics.js" ], fu
     describe("Restoring", function() {
 
       beforeEach(function() {
-        analytics.prevConfig = {foo: "bar"};
+        analytics.prevConfig = { foo: "bar" };
         analytics.config = stub;
         spyOn(analytics, "_copy");
         analytics._copy();

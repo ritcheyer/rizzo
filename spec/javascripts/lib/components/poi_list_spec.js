@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], function($, POIList) {
+define([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], function($, POIList) {
 
   "use strict";
 
@@ -9,19 +9,19 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
     beforeEach(function() {
       loadFixtures("poi_list.html");
 
-      jasmine.Clock.useMock();
+      jasmine.clock().install();
 
       mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker", "Point", "Size", "Animation", "LatLngBounds" ]);
 
-      mockAPI.Map.andCallFake(function() {
+      mockAPI.Map.and.callFake(function() {
         return jasmine.createSpyObj("Google Map Instance", [ "setCenter", "panBy", "fitBounds" ]);
       });
 
-      mockAPI.Marker.andCallFake(function() {
+      mockAPI.Marker.and.callFake(function() {
         return jasmine.createSpyObj("Google Maps Marker", [ "setIcon", "getPosition", "setVisible", "setZIndex" ]);
       });
 
-      mockAPI.LatLngBounds.andCallFake(function() {
+      mockAPI.LatLngBounds.and.callFake(function() {
         return jasmine.createSpyObj("Google Maps LatLngBounds", [ "extend" ]);
       });
 
@@ -46,11 +46,12 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
 
     afterEach(function() {
       window.google = window.mapsCallback = instance = undefined;
+      jasmine.clock().uninstall();
     });
 
     describe("Initialisation", function() {
       beforeEach(function() {
-        spyOn(instance, "_addPOIs").andCallThrough();
+        spyOn(instance, "_addPOIs").and.callThrough();
       });
 
       it("should wait until POIMap is initialized", function() {
@@ -63,7 +64,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
 
       it("should collect POI data", function() {
         $(".js-poi-map").trigger(":map/open");
-        jasmine.Clock.tick(1000);
+        jasmine.clock().tick(1000);
 
         expect(instance.poiData.length).toBe(4);
       });
@@ -73,12 +74,12 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
       beforeEach(function() {
         spyOn(instance, "centerAroundMarkers");
         $(".js-poi-map").trigger(":map/open");
-        jasmine.Clock.tick(1000);
+        jasmine.clock().tick(1000);
       });
 
       it("should create all the markers", function() {
         // Parent POI maps component will also call Marker
-        expect(window.google.maps.Marker.callCount - 1).toBe(4);
+        expect(window.google.maps.Marker.calls.count() - 1).toBe(4);
         expect(instance.poiMarkers.length).toBe(4);
       });
 
@@ -90,7 +91,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
     describe("Tooltip", function() {
       beforeEach(function() {
         $(".js-poi-map").trigger(":map/open");
-        jasmine.Clock.tick(1000);
+        jasmine.clock().tick(1000);
         $(".js-poi-map").trigger(":map/pois-added");
       });
 
@@ -102,22 +103,22 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
     describe("POI Highlight", function() {
       beforeEach(function() {
         $(".js-poi-map").trigger(":map/open");
-        jasmine.Clock.tick(1000);
+        jasmine.clock().tick(1000);
 
-        spyOn(instance, "_getIcon").andCallThrough();
+        spyOn(instance, "_getIcon").and.callThrough();
       });
 
       it("should select poi on click", function() {
         instance.selectPOI(0);
 
-        expect(instance._getIcon.mostRecentCall.args[1]).toBe("large");
+        expect(instance._getIcon.calls.mostRecent().args[1]).toBe("large");
         expect(instance.$pois.eq(0)).toHaveClass("is-selected");
       });
 
       it("should reset the selected poi", function() {
         instance.resetSelectedPOI();
 
-        expect(instance._getIcon.mostRecentCall.args[1]).toBe("small");
+        expect(instance._getIcon.calls.mostRecent().args[1]).toBe("small");
         expect(instance.$pois.eq(0)).not.toHaveClass("is-selected");
       });
     });

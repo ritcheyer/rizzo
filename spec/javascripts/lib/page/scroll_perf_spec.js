@@ -1,11 +1,13 @@
-require(["lib/page/scroll_perf"], function(ScrollPerf) {
+define([ "lib/page/scroll_perf" ], function(ScrollPerf) {
+
   "use strict";
+
   describe("ScrollPerf", function() {
 
     describe("During initialisation", function() {
       beforeEach(function() {
         loadFixtures("scroll_perf.html");
-        window.cover = document.getElementById('js-pointer-cover');
+        window.cover = document.getElementById("js-pointer-cover");
         window.coverStyle = cover.style;
       });
 
@@ -34,12 +36,12 @@ require(["lib/page/scroll_perf"], function(ScrollPerf) {
         loadFixtures("scroll_perf.html");
         window.scrollPerf = new ScrollPerf;
         window.button = document.getElementById("js-button");
-        spyOn(scrollPerf, "_elementFromPoint").andReturn(button);
+        spyOn(scrollPerf, "_elementFromPoint").and.returnValue(button);
       });
 
       it("sends events to the element below", function() {
-        scrollPerf._proxyClick([0,0]);
-        expect(button).toHaveData('clicked', true);
+        scrollPerf._proxyClick([ 0, 0 ]);
+        expect(button).toHaveData("clicked", true);
       });
     });
 
@@ -79,18 +81,18 @@ require(["lib/page/scroll_perf"], function(ScrollPerf) {
         expect(coverStyle.pointerEvents).toBe("auto");
       });
 
-      it("resets the cover's pointer-events to none after 100ms", function() {
-        scrollPerf._onScroll();
+      describe("resets the cover's pointer-events to none after 100ms", function() {
 
-        waits(100);
+        beforeEach(function(done) {
+          scrollPerf._onScroll();
+          setTimeout(done, 100);
+        });
 
-        runs(function() {
+        it("has reset pointer events", function() {
           expect(coverStyle.pointerEvents).toBe("none");
         });
       });
     });
-
-
 
   });
 });

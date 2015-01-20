@@ -1,9 +1,8 @@
-require([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], function($, Datepicker) {
+define([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], function($, Datepicker) {
 
   "use strict";
 
   describe("Datepicker", function() {
-
 
     describe("Initialisation", function() {
 

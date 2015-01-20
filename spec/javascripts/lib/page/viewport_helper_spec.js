@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], function($, withViewportHelper) {
+define([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], function($, withViewportHelper) {
 
   "use strict";
 
@@ -13,7 +13,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
     describe("Functionality", function() {
 
       beforeEach(function() {
-        spyOn(viewportHelper, "_getWindow").andReturn({
+        spyOn(viewportHelper, "_getWindow").and.returnValue({
           height: function() { return 600; },
           scrollLeft: function() { return 100; },
           scrollTop: function() { return 100; },

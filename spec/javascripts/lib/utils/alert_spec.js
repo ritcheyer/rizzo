@@ -1,4 +1,4 @@
-require([
+define([
   "jquery",
   "lib/utils/alert"
 ], function($, Alert) {
@@ -156,7 +156,7 @@ require([
 
         beforeEach(function() {
           spyOn(alert.$body, "animate");
-          spyOn(alert, "_position").andReturn(600);
+          spyOn(alert, "_position").and.returnValue(600);
           alert.scrollTo();
         });
 

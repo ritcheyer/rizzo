@@ -24,10 +24,10 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
   function AdManager(config) {
     this.config = $.extend({}, defaultConfig, config);
     this.$listener = $(this.config.listener);
-    this._init();
+    return this;
   }
 
-  AdManager.prototype._init = function() {
+  AdManager.prototype.init = function() {
     var self = this;
 
     this.pluginConfig = {

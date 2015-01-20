@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/page/client_cache.js'], (ClientCache) ->
+define ['public/assets/javascripts/lib/page/client_cache.js'], (ClientCache) ->
 
   describe 'ClientCache', ->
 
@@ -48,24 +48,24 @@ require ['public/assets/javascripts/lib/page/client_cache.js'], (ClientCache) ->
           beforeEach ->
             clientCache.cacheStore = []
 
-          it 'returns null', ->
+          it 'returns undefined', ->
             cachedData = clientCache.fetch("/test")
-            expect(cachedData).toEqual(null)
+            expect(cachedData).toEqual(undefined)
 
         describe 'with an expired cache', ->
           beforeEach ->
             clientCache.cacheStore = [{url: "/test", data: {content: "some test content"}, extras: {}}]
-            spyOn(clientCache, "_isCacheAlive").andReturn(false)
+            spyOn(clientCache, "_isCacheAlive").and.returnValue(false)
 
           it 'fetches data to the cache store', ->
             cachedData = clientCache.fetch("/test")
-            expect(cachedData).toEqual(null)
+            expect(cachedData).toEqual(undefined)
 
 
     describe "Cache expiry", ->
       beforeEach ->
         window.clientCache = new ClientCache()
-        spyOn(clientCache, "_getCurrentTime").andReturn(12345)
+        spyOn(clientCache, "_getCurrentTime").and.returnValue(12345)
 
       it 'returns an expired cache', ->
         clientCache.expiryTime = 12344
@@ -95,7 +95,7 @@ require ['public/assets/javascripts/lib/page/client_cache.js'], (ClientCache) ->
 
       describe 'When the cache has space', ->
         beforeEach ->
-          spyOn(clientCache, "_spaceInCache").andReturn(true)
+          spyOn(clientCache, "_spaceInCache").and.returnValue(true)
           clientCache.cacheStore = [1]
           clientCache.store("/bar", "new page")
 
@@ -105,7 +105,7 @@ require ['public/assets/javascripts/lib/page/client_cache.js'], (ClientCache) ->
 
       describe 'When the cache is full', ->
         beforeEach ->
-          spyOn(clientCache, "_spaceInCache").andReturn(false)
+          spyOn(clientCache, "_spaceInCache").and.returnValue(false)
           clientCache.cacheStore = [1,2,3]
           clientCache.store("/bar", "new page")
 

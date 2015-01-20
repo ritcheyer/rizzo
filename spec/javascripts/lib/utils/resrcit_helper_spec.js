@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/utils/resrcit_helper.js" ], function(ResrcIt) {
+define([ "public/assets/javascripts/lib/utils/resrcit_helper.js" ], function(ResrcIt) {
 
   "use strict";
 

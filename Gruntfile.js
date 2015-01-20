@@ -162,13 +162,14 @@ module.exports = function(grunt) {
     },
     jasmine: {
       rizzo: {
-        src: [ "./public/assets/javascripts/lib/**/*.js", "!./public/assets/javascripts/lib/styleguide/*.js" ],
         options: {
-          helpers: [ "./spec/javascripts/helpers/**/*.js", "./vendor/assets/javascripts/jquery/dist/jquery.js" ],
           host: "http://127.0.0.1:8888/",
-          specs: "./public/assets/javascripts/spec/**/*.js",
+          helpers: "./spec/javascripts/helpers/**/*.js",
           template: require("grunt-template-jasmine-requirejs"),
+          specs: "./public/assets/javascripts/spec/**/*_spec.js",
+          vendor: "./vendor/assets/javascripts/jquery/dist/jquery.js",
           templateOptions: {
+            version: "./vendor/assets/javascripts/requirejs/require.js",
             requireConfig: {
               baseUrl: "./",
               paths: {

@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
+define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
   describe("Sticky", function() {
 
@@ -20,11 +20,11 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
       describe("._leftPosition", function() {
         it("returns the left position of the target relative to the document", function() {
-          spyOn(instance, "_offsets").andReturn({
+          spyOn(instance, "_offsets").and.returnValue({
             parent: { left: 25 }
           });
 
-          spyOn(instance, "_widths").andReturn({
+          spyOn(instance, "_widths").and.returnValue({
             target: 100,
             parent: 200
           });
@@ -35,7 +35,7 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
       describe("._minWidth", function() {
         it("calculates if there is enough horizontal space", function() {
-          spyOn(instance, "_window").andReturn({
+          spyOn(instance, "_window").and.returnValue({
             innerWidth: 250
           });
 
@@ -48,11 +48,11 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
       describe("._minHeight", function() {
         it("calculates there to be enough vertical space", function() {
-          spyOn(instance, "_window").andReturn({
+          spyOn(instance, "_window").and.returnValue({
             innerHeight: 400
           });
 
-          spyOn(instance, "_heights").andReturn({
+          spyOn(instance, "_heights").and.returnValue({
             target: 100,
             parent: 200
           });
@@ -61,7 +61,7 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
         });
 
         it("calculates there to be not enough vertical space", function() {
-          spyOn(instance, "_heights").andReturn({
+          spyOn(instance, "_heights").and.returnValue({
             target: 100,
             parent: 100
           });
@@ -72,13 +72,13 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
       describe("._limitTop", function() {
         beforeEach(function() {
-          spyOn(instance, "_offsets").andReturn({
+          spyOn(instance, "_offsets").and.returnValue({
             parent: { top: 100 }
           });
         });
 
         it("calculates when the window has not scrolled past the top of the target's container", function() {
-          spyOn(instance, "_window").andReturn({
+          spyOn(instance, "_window").and.returnValue({
             scrollY: 0
           });
 
@@ -86,7 +86,7 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
         });
 
         it("calculates when the window has scrolled past the top of the target's container", function() {
-          spyOn(instance, "_window").andReturn({
+          spyOn(instance, "_window").and.returnValue({
             scrollY: 200
           });
 
@@ -96,18 +96,18 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
       describe("._limitBottom", function() {
         beforeEach(function() {
-          spyOn(instance, "_heights").andReturn({
+          spyOn(instance, "_heights").and.returnValue({
             target: 100,
             parent: 200
           });
 
-          spyOn(instance, "_offsets").andReturn({
+          spyOn(instance, "_offsets").and.returnValue({
             parent: { top: 100 }
           });
         });
 
         it("calculates when target has reached the bottom of it's container", function() {
-          spyOn(instance, "_window").andReturn({
+          spyOn(instance, "_window").and.returnValue({
             scrollY: 201
           });
 
@@ -115,7 +115,7 @@ require([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
         });
 
         it("calculates when target has not reached the bottom of it's container", function() {
-          spyOn(instance, "_window").andReturn({
+          spyOn(instance, "_window").and.returnValue({
             scrollY: 150
           });
 

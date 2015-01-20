@@ -1,4 +1,4 @@
-require([ "lib/utils/local_store" ], function(LocalStore) {
+define([ "lib/utils/local_store" ], function(LocalStore) {
 
   "use strict";
 

@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/tabs.js" ], function($, Tabs) {
+define([ "jquery", "public/assets/javascripts/lib/components/tabs.js" ], function($, Tabs) {
 
   "use strict";
 

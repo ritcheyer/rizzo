@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/page/left_nav.js" ], function(LeftNav) {
+define([ "public/assets/javascripts/lib/page/left_nav.js" ], function(LeftNav) {
 
   describe("LeftNav", function() {
 

@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
+define([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
 
   describe("Ad Unit", function() {
 
@@ -17,7 +17,7 @@ require([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
       it("Should remove 'is-closed' class from closest ancestor", function() {
         var $fixture = $(".is-closed");
 
-        spyOn(instance, "isEmpty").andReturn(false);
+        spyOn(instance, "isEmpty").and.returnValue(false);
 
         expect($fixture.hasClass("is-closed")).toBe(false);
       });
@@ -27,14 +27,14 @@ require([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
       });
 
       it("Should trigger :ads/visible event if !isEmpty()", function() {
-        spyOn(instance, "isEmpty").andReturn(false);
+        spyOn(instance, "isEmpty").and.returnValue(false);
         var SpyEvent = spyOnEvent(instance.$target, ":ads/visible");
         instance._init();
         expect(SpyEvent).toHaveBeenTriggered();
       });
 
       it("Should trigger :ads/hidden event if isEmpty()", function() {
-        spyOn(instance, "isEmpty").andReturn(true);
+        spyOn(instance, "isEmpty").and.returnValue(true);
         var SpyEvent = spyOnEvent(instance.$target, ":ads/hidden");
         instance._init();
         expect(SpyEvent).toHaveBeenTriggered();
@@ -92,8 +92,8 @@ require([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
         };
 
         window.googletag = new MockGoogleTag();
-        spyOn(instance, "clearConfig").andReturn(true);
-        spyOn(instance, "setNewConfig").andReturn(true);
+        spyOn(instance, "clearConfig").and.returnValue(true);
+        spyOn(instance, "setNewConfig").and.returnValue(true);
       });
 
       it("With new config, it should clear old config and set the new one ", function() {
