@@ -20,13 +20,9 @@
 
 .card--single
   +card-dimensions(1)
-  &.card--stubby
-    +card-dimensions(1, $width: $card-stubby-width, $height: $card-stubby-height)
 
 .card--double
   +card-dimensions(2)
-  &.card--stubby
-    +card-dimensions(2, $width: $card-stubby-width, $height: $card-stubby-height)
 
 .card--triple
   +card-dimensions(3)
@@ -52,10 +48,6 @@
 .card__figure__img
   height: 100%
   min-width: 100%
-
-  .card--stubby &
-    min-height: 100%
-    height: auto
 
 .card__figure__icon
   +size(30px)
@@ -185,23 +177,6 @@
       &.card--has-footer
         .card__content
           height: $card-content-height - $card-footer-height
-
-      // Overwrites for A/B test
-      &.card--stubby
-
-        .card__figure
-          bottom: $card-stubby-content-height + ($card-content-padding * 2)
-
-        .card__content
-          height: $card-stubby-content-height
-
-        &.card--has-footer
-
-          .card__content
-            height: $card-stubby-content-height - $card-footer-height
-
-        .card__content__desc
-          display: none
 
     // Cover image card
     &.card--cover
