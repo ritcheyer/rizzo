@@ -31,7 +31,7 @@ require([ "jquery" ], function($) {
       var secure = window.location.protocol === "https:";
 
       if (window.lp.ads) {
-        new AdManager(window.lp.ads);
+        new AdManager(window.lp.ads).init();
       }
 
       if (!secure) {
