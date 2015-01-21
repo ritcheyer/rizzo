@@ -10,16 +10,13 @@ body
 
 .grid--main-layout
 
-  .responsive &
-    margin-left: 0
+  +respond-to(wide-view)
+    margin-left: -10px
+
+  > [class*="col--"]
+    padding-left: 0
     +respond-to(wide-view)
-      margin-left: -10px
-
-    > [class*="col--"]
-      padding-left: 0
-      +respond-to(wide-view)
-        padding-left: 10px
-
+      padding-left: 10px
 
 // ----------------------------------------------------------------------------
 //
@@ -83,21 +80,14 @@ body
 // ----------------------------------------------------------------------------
 
 .row--faux-banner
-  display: none
-  .responsive &
-    display: block
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    background-color: $navblue
-    height: $primary-nav-height
-    +respond-to(wide-view)
-      display: none
-  .minimal &
-    +respond-to(wide-view)
-      display: block
-
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  background-color: $navblue
+  height: $primary-nav-height
+  +respond-to(wide-view)
+    display: none
 
 // ----------------------------------------------------------------------------
 //
@@ -107,11 +97,10 @@ body
 
 .row--content
   +z-layer
-  margin-bottom: 40px
+  @extend %transition--nav
   // Ensure that nav dropdowns sit above any content
   position: relative
-  .responsive &
-    @extend %transition--nav
+  margin-bottom: 40px
 
 
 // ----------------------------------------------------------------------------

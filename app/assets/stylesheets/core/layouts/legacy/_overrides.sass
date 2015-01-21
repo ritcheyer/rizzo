@@ -55,6 +55,7 @@ ul
 
 .row--primary
   @extend %lp-font-stack
+  position: relative
   min-width: 1020px
   margin-bottom: 0 !important
   z-index: 20
@@ -375,3 +376,12 @@ body
 
 [class^="badge--"]
   font-size: 11px
+
+// Hide the last primary nav item in small/screen + non-responsive
+// This is only relevant for non-responsive pages.
+.nav__item--primary
+  .nav--primary:last-child
+    display: none
+
+    +respond-to(1050)
+      display: inline-block
