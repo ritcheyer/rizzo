@@ -118,11 +118,6 @@ define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
 
       if (i !== $cards.length) {
         $image = $cards.eq(i).removeClass("is-invisible").find(".js-card__image");
-
-        if (_this._isPortrait($image.width(), $image.height())) {
-          $image.addClass("is-portrait");
-        }
-
         i++;
       } else {
         _this.trigger(":page/changed");
