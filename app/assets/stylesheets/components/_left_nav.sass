@@ -36,6 +36,7 @@
   &:hover
     text-decoration: none
     background-color: mix($lpblue,#fff,2%)
+
   &:focus
     outline: 0
     background-color: mix($lpblue,#fff,10%)
@@ -52,6 +53,11 @@
   &:last-child
     border-bottom: none
     border-radius: 0 0 4px 4px
+
+  &.disabled
+    color: $disabled
+    cursor: auto
+    opacity: 0.4
 
   &.is-active
     &, &:hover
