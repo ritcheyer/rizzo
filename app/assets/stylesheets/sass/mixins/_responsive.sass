@@ -12,7 +12,7 @@
 //
 // [/doc]
 // -----------------------------------------------------------------------------
-@mixin respond-to($screen-width, $fallback: true)
+@mixin respond-to($screen-width, $fallback: true, $legacy-support: false)
 
   // We have to set up a blank variable here or sass errors out
   $breakpoint: ''
@@ -37,6 +37,10 @@
 
   @else
     @media only screen and (min-width : #{$breakpoint}px)
+      @content
+
+  @if ($legacy-support)
+    .ie7 &, .ie8 &
       @content
 
 // -----------------------------------------------------------------------------
