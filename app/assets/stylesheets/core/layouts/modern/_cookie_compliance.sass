@@ -10,10 +10,10 @@
   background-color: $dark-blue-gray
   overflow: hidden
   color: #fff
-  .responsive &
-    text-align: center
-    +respond-to(wide-view)
-      text-align: left
+  text-align: center
+  +respond-to(wide-view)
+    text-align: left
+
   .split--left
     max-width: 75%
 
@@ -26,13 +26,11 @@
     font-weight: bold
 
   .cookie-buttons
-    padding-top: 7px
-    .responsive &
-      padding-top: 0
-      text-align: center
-      +respond-to(wide-view)
-        padding-top: 7px
-        text-align: right
+    padding-top: 0
+    text-align: center
+    +respond-to(wide-view)
+      padding-top: 7px
+      text-align: right
 
   .btn
     +font-size(12)

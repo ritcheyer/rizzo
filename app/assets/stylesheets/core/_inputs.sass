@@ -62,30 +62,25 @@ input[type="submit"]
 
 .search--primary
   background-color: transparent
-  margin: 10px 0
   position: relative
+  width: 75%
+  margin: 12px auto 0
+
+  +respond-to(wide-view)
+    width: auto
+    margin: 10px 0
+
   @if $is-ie
     float: left
-  .responsive &
-    width: 75%
-    margin: 12px auto 0
-    +respond-to(wide-view)
-      width: auto
-      margin: 10px 0
 
 .search--primary--mobile
-  display: none
-  .responsive &
-    display: block
-    +respond-to(wide-view)
-      display: none
+  +respond-to(wide-view)
+    display: none
 
 .search--primary--wv
-  @extend %inline-block
-  .responsive &
-    display: none
-    +respond-to(wide-view)
-      display: inline-block
+  display: none
+  +respond-to(wide-view)
+    display: inline-block
 
 .search__input--primary
   transition: width 0.2s ease, background-color 0.2s ease
@@ -98,25 +93,26 @@ input[type="submit"]
   vertical-align: top
   &:focus
     color: $body-copy
+    box-shadow: none
     background-color: white
     background-position: right 6px top -24px
     +placeholder
       color: $body-copy
-  .responsive &
+
+  +respond-to(wide-view)
+    width: 150px
     &:focus
-      box-shadow: none
-    +respond-to(wide-view)
       width: 150px
-      &:focus
-        width: 150px
-      +placeholder()
-        text-indent: -9999px
-    +respond-to(larger-than-ipad)
-      width: 150px
-      &:focus
-        width: 200px
-      +placeholder()
-        text-indent: 0px
+    +placeholder()
+      text-indent: -9999px
+
+  +respond-to(larger-than-ipad)
+    width: 150px
+    &:focus
+      width: 200px
+    +placeholder()
+      text-indent: 0px
+
 
   +placeholder()
     color: $row-primary--darker
@@ -124,6 +120,9 @@ input[type="submit"]
   .ie8 &
     line-height: 16px
     padding: 7px 10px
+    width: 100px
+    &:focus
+      width: 100px
 
 .search__input__icon
   @extend %image-replacement
