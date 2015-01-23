@@ -19,6 +19,7 @@ paths:
 
 modules:
   - name: 'infobox'
+  - name: 'app_core_external'
   - name: 'app_core'
     exclude:
       - 'infobox'
