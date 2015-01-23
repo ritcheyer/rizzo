@@ -24,7 +24,7 @@ define([
             geoIPCountryCode = request.getResponseHeader("X-GeoIP-CountryCode");
 
         userCountry = $.grep(countries, function(currency) {
-          return currency.Code === geoIPCountryCode;
+          return currency.code === geoIPCountryCode;
         });
 
         if (userCountry.length && userCountry[0].Currency) {
