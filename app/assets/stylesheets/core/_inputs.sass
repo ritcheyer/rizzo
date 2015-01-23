@@ -111,7 +111,7 @@ input[type="submit"]
     &:focus
       width: 200px
     +placeholder()
-      text-indent: 0px
+      text-indent: 0
 
 
   +placeholder()
@@ -120,9 +120,7 @@ input[type="submit"]
   .ie8 &
     line-height: 16px
     padding: 7px 10px
-    width: 100px
-    &:focus
-      width: 100px
+    width: 100px !important
 
 .search__input__icon
   @extend %image-replacement
@@ -165,9 +163,9 @@ input[type="submit"]
       @extend %rounded-corners
       list-style: none
       top: 4px
-      left: 0px
+      left: 0
       width: 100%
-      margin: 0px
+      margin: 0
       background-color: white
       position: absolute
       background-color: white
@@ -175,7 +173,7 @@ input[type="submit"]
       +css-arrow-central(top, $size: 30px)
       &:after
         position: absolute
-        filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
+        filter: drop-shadow(0 -1px 0 rgba(0,0,0,.3))
       .btn--small
         width: 90%
         margin: 13px auto
@@ -199,7 +197,7 @@ input[type="submit"]
         position: relative
         text-decoration: none
         &:last-child
-          border: 0px
+          border: 0
         &:before
           width: 20px
           height: 20px
