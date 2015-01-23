@@ -12,7 +12,7 @@
 //
 // [/doc]
 // -----------------------------------------------------------------------------
-@mixin respond-to($screen-width, $fallback: true, $legacy-support: false)
+@mixin respond-to($screen-width, $fallback: true)
 
   // We have to set up a blank variable here or sass errors out
   $breakpoint: ''
@@ -39,9 +39,20 @@
     @media only screen and (min-width : #{$breakpoint}px)
       @content
 
-  @if ($legacy-support)
-    .ie7 &, .ie8 &
-      @content
+// -----------------------------------------------------------------------------
+// [doc]
+//
+// Enable styles at a certain viewport with legacy
+//  .ie7 and .ie8 style output
+//
+//
+// [/doc]
+// -----------------------------------------------------------------------------
+@mixin respond-to-legacy-support($screen-width)
+  +respond-to($screen-width)
+    @content
+  .ie7 &, .ie8 &
+    @content
 
 // -----------------------------------------------------------------------------
 // [doc]
