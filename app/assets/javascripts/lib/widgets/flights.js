@@ -89,8 +89,8 @@ define([
 
     date = new Date(Date.parse(date));
 
-    day = (date.getDate() < 10 ? "0" : "") + date.getDate(),
-    month = date.getMonth() + 1,
+    day = this._zeroise(date.getDate()),
+    month = this._zeroise(date.getMonth() + 1),
     year = date.getFullYear();
 
     return year + "-" + month + "-" + day;
@@ -229,6 +229,14 @@ define([
       }
     });
 
+  };
+
+  // -------------------------------------------------------------------------
+  // Private
+  // -------------------------------------------------------------------------
+
+  FlightsWidget.prototype._zeroise = function(num) {
+    return (num < 10) ? "0" + num : num;
   };
 
   return FlightsWidget;
