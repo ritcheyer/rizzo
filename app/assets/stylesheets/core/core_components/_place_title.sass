@@ -62,31 +62,23 @@ $submenu-item-padding: 11px 10px 10px 50px
 
 .place-title
   @extend %left-icon
-  +font-size(18)
+  +font-size(16)
   line-height: 1em
-  margin-right: 20px
+  margin-left: 20px
   // Fix the text-overflow bug in firefox to avoid the final letter being clipped
-  padding-right: 6px
-  padding-left: 22px
+  padding: 7px 6px 7px 22px
   &:before
-    +size(20px)
-    top: 3px
+    +size(18px)
+    top: 10px
 
-  .responsive &
-    +font-size(16)
-    padding: 7px 6px 7px 22px
-    margin-left: 20px
+  +respond-to(wide-view)
+    +font-size(20)
+    padding-top: 0
+    padding-bottom: 0
+    margin-left: 0
     &:before
-      +size(18px)
-      top: 10px
-    +respond-to(wide-view)
-      +font-size(20)
-      padding-top: 0
-      padding-bottom: 0
-      margin-left: 0
-      &:before
-        +size(20px)
-        top: 3px
+      +size(20px)
+      top: 3px
 
   .no-background-size &
     padding-left: 0
