@@ -79,14 +79,14 @@
     line-height: 0
     pointer-events: none
     position: absolute
-    right: 12px
+    right: 17px
     top: 13px
     width: 13px
     height: 13px
     background-position: top right
-  .responsive &
-    &:after
-      right: 17px
+    +respond-to(wide-view)
+      right: 12px
+
   // Let's take the closest unicode character we have (non-freight)
   // Let's take the closest unicode character we have (no-svg)
   .no-js &, .no-background-size &
