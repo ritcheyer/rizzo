@@ -40,14 +40,13 @@ $card--page-padding-x: 25px
 .card--page__hero
   position: relative
   overflow: hidden
-  height: 300px
   border-radius: 4px 4px 0 0
-  .responsive &
-    height: 200px
-    +respond-to(medium-view)
-      height: 240px
-    +respond-to(large-view)
-      height: 320px
+  height: 200px
+  +respond-to(medium-view)
+    height: 240px
+  +respond-to(large-view)
+    height: 320px
+
   &:after
     @extend %empty-abs-generated-content
     +image-overlay--gradient($stop: 80%)
@@ -138,12 +137,11 @@ $card--page-padding-x: 25px
     border-top: 1px solid $body-background
 
 .card--page__fill
-  .responsive &
-    margin-left: $card--page-padding-x * -1
-    margin-right: $card--page-padding-x * -1
-    +respond-to(medium-view)
-      margin-left: auto
-      margin-right: auto
+  margin-left: $card--page-padding-x * -1
+  margin-right: $card--page-padding-x * -1
+  +respond-to(medium-view)
+    margin-left: auto
+    margin-right: auto
 
 // We cannot guarantee that the content will be decorated with classes
 .card--page__content--intro
@@ -162,14 +160,3 @@ $card--page-padding-x: 25px
 
   .card--page__content + &
     border-top: 1px solid $body-background
-
-// -----------------------------------------------------------------------------
-//  Related
-// -----------------------------------------------------------------------------
-
-.card--page__related
-  border-radius: 0 0 4px 4px
-  .responsive &
-    border-radius: 0
-    +respond-to(wide-view)
-      border-radius: 0 0 4px 4px

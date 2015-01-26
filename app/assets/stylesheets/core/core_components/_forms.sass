@@ -18,23 +18,20 @@
   padding: 10px 10px 10px 0
   .field--radio &
     padding: 0 10px 0 0
-  .responsive &
-    +respond-to(medium-view)
-      width: 35%
+  +respond-to(medium-view)
+    width: 35%
 
 .field__content
-  .responsive &
-    +respond-to(medium-view)
-      width: 65%
+  +respond-to(medium-view)
+    width: 65%
 
 .field__label,
 .field__content
   @extend %clearfix
   display: inline-block
   width: 100%
-  .responsive &
-    +respond-to(medium-view)
-      float: left
+  +respond-to(medium-view)
+    float: left
 
 .field__input--error,
 .field__input--valid
