@@ -63,11 +63,6 @@
     margin-left: -300px
     width: 300px
 
-    &.is-at-bottom
-      position: absolute
-      right: 0
-      bottom: 0
-
   .adunit
     display: table
     margin-left: auto
@@ -83,6 +78,15 @@
 
   .adunit--traffic-driver-rail
     min-height: 100px
+
+.stack__rail__sticky
+  +respond-to(wide-view)
+    width: 300px
+
+    &.is-at-bottom
+      position: absolute
+      right: 0
+      bottom: 0
 
 .stack__rail__section
   margin-top: 20px
