@@ -7,8 +7,10 @@
 %body
 
   .wrapper.js-wrapper
-    .nav-container
-      .row.row--primary
+    .row.row--primary
+      .row--faux-banner
+
+      .nav-container.m-hidden-menu
         .split--left
           .wv--nav--inline.nav--primary#js-nav--primary
             %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{href: 'http://rizzo.lonelyplanet.com/styleguide'}
@@ -19,7 +21,7 @@
     .row.row--content#js-row--content
 
       .row.row--secondary#js-secondary-nav
-        .row__inner.row__inner--secondary
+        .row__inner.row__inner--secondary.row__inner--full-width
           = yield :secondary
 
       .row__inner.row__inner--content
