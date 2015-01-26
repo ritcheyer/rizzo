@@ -13,16 +13,16 @@ define([
   "use strict";
 
   var API_KEY = "lp994363056324023341132625613270",
-      userCountry;
+      userCountry, geoIPCountryCode;
 
   function FlightsWidgetAutocomplete() {
     $.ajax({
       type: "GET",
       url: "http://www.lonelyplanet.com",
       success: function(data, textStatus, request) {
-        var userCurrency, $currencySelect,
-            geoIPCountryCode = request.getResponseHeader("X-GeoIP-CountryCode");
+        var userCurrency, $currencySelect;
 
+        geoIPCountryCode = request.getResponseHeader("X-GeoIP-CountryCode");
         userCountry = $.grep(countries, function(currency) {
           return currency.code === geoIPCountryCode;
         });
@@ -59,8 +59,8 @@ define([
   };
 
   FlightsWidgetAutocomplete.prototype.buildUrl = function() {
-    var currency = this.getCurrency(countries, userCountry);
-    return "http://partners.api.skyscanner.net/apiservices/xd/autosuggest/v1.0/" + userCountry + "/" + currency + "/";
+    var currency = this.getCurrency(countries, geoIPCountryCode);
+    return "http://partners.api.skyscanner.net/apiservices/xd/autosuggest/v1.0/" + geoIPCountryCode + "/" + currency + "/";
   };
 
   FlightsWidgetAutocomplete.prototype.fetchCountries = function(searchTerm, callback) {
