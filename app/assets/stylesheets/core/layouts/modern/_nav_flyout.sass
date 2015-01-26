@@ -17,20 +17,16 @@ $submenu__vertical-padding: 14px
   position: relative
   &:hover
     .nav__submenu
+      display: none
+      +respond-to(wide-view)
+        display: block
+
+  &.is-visible
+    .nav__submenu
       display: block
+
   > .nav__item
     display: block
-
-  .responsive &
-    &:hover
-      .nav__submenu
-        display: none
-        +respond-to(wide-view)
-          display: block
-
-    &.is-visible
-      .nav__submenu
-        display: block
 
 .nav__submenu__trigger--icon
   +size(15px)
@@ -42,86 +38,72 @@ $submenu__vertical-padding: 14px
 // padding around the submenu gives the submenu flyout more area to hover over
 .nav__submenu
   +z-layer(middle)
-  position: absolute
   display: none
-  width: $submenu--width
-  padding: $submenu__padding
+
   // Centralise the submenu relative to its parent
   left: 50%
   top: 54%
-  margin-left: $submenu__left-offset
 
   // `.responsive &` needed to override specificity for now
   &.place-title__submenu, .responsive &.place-title__submenu
     top: 25px
     padding-top: 5px
 
-  .responsive &
-    margin-left: 0
-    padding: 0
-    position: static
-    width: auto
-    +respond-to(wide-view)
-      position: absolute
-      padding: $submenu__padding
-      margin-left: $submenu__left-offset
-      width: $submenu--width
+  +respond-to(wide-view)
+    position: absolute
+    padding: $submenu__padding
+    margin-left: $submenu__left-offset
+    width: $submenu--width
 
 .nav__submenu__content
   +css-arrow-central(top, $size: 30px)
   @extend %transition--base
-  @extend %fly-out-shadow
   @extend %rounded-corners
-  background-color: white
   position: relative
-  .row--secondary &
-    border-top: 1px solid $subduedgray
+  display: none
+  background-color: white
   &:after
     position: absolute
+    display: none
     filter: drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.1))
+
+  +respond-to(wide-view)
+    // We can't use `@extend %fly-out-shadow` within a mixin, thus:
+    box-shadow: 0 2px 2px 0 rgba($darkgray,0.25)
+    &, &:after
+      display: block
+
+  .row--secondary &
+    border-top: 1px solid $subduedgray
 
   .place-title__submenu &
     +css-arrow-central(top, $size: 20px)
 
-  .responsive &
-    box-shadow: none
-    &, &:after
-      display: none
-    +respond-to(wide-view)
-      // We can't use `@extend %fly-out-shadow` within a mixin, thus:
-      box-shadow: 0 2px 2px 0 rgba($darkgray,0.25)
-      &, &:after
-        display: block
-
 .nav__submenu__item
   color: $body-copy
   font-weight: normal
-  padding: $submenu__padding__item
-  text-transform: none
+  padding: $submenu__vertical-padding 20px
+  text-transform: uppercase
   border-bottom: 1px solid $subduedgray
+  background-color: $responsive-nav-subnav-bg
+  &:hover
+    color: $lpblue
+
   &:first-child
     border-radius: 4px 4px 0 0
     overflow: hidden
+
   &:last-child
     border-bottom: 0
     border-radius: 0 0 4px 4px
-  &:hover
-    background-color: $body-background-offset
 
-  .responsive &
-    padding: $submenu__vertical-padding 20px
-    text-transform: uppercase
-    background-color: $responsive-nav-subnav-bg
+  +respond-to(wide-view)
+    background-color: transparent
+    padding: $submenu__padding__item
+    text-transform: none
     &:hover
-      color: $lpblue
-
-    +respond-to(wide-view)
-      background-color: transparent
-      padding: $submenu__padding__item
-      text-transform: none
-      &:hover
-        background-color: $body-background-offset
-        color: $body-copy
+      background-color: $body-background-offset
+      color: $body-copy
 
   .nav__item__badge
     float: right

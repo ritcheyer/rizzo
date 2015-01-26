@@ -6,10 +6,8 @@
 
 .row--primary
   +z-layer(middle)
-  position: relative
-  .responsive &
-    position: static
-    margin-bottom: $primary-nav-height
+  position: static
+  margin-bottom: $primary-nav-height
 
 // ----------------------------------------------------------------------------
 //
@@ -51,69 +49,57 @@
 
 .nav--primary
   // Move the nav to the right of the absolutely positioned logo
-  margin-left: 117px
-  .responsive &
-    margin-left: 0
-    +respond-to(wide-view)
-      margin-left: 117px
+  margin-left: 0
+  +respond-to(wide-view)
+    margin-left: 117px
 
 .nav__item--primary
-  +font-size(13)
-  padding: 21px 4px 18px
-  text-transform: uppercase
-  &.btn--small
-    &, .responsive &
-      +font-size(13)
-      margin: 13px 6px 10px 0
-      padding: 2px 12px
-  .responsive &
-    +font-size(18)
-    padding: 17px 10px
-    border-bottom: 1px solid $offscreen-nav-border
-    position: relative
-    text-transform: none
+  +font-size(18)
+  padding: 17px 10px
+  border-bottom: 1px solid $offscreen-nav-border
+  position: relative
+  text-transform: none
+  &:before
+    @extend %empty-abs-generated-content
+    width: 50px
+    border-right: 1px solid $offscreen-nav-border
+    left: 0
+    top: 0
+    height: 100%
+    color: $offscreen-nav-border
+    background-position: center
+    background-size: 40%
+
+  +respond-to(wide-view)
+    +font-size(13)
+    padding: 21px 4px 18px
+    border: none
+    text-transform: uppercase
     &:before
-      @extend %empty-abs-generated-content
-      width: 50px
-      border-right: 1px solid $offscreen-nav-border
-      display: block
-      left: 0
-      top: 0
-      height: 100%
-      color: $offscreen-nav-border
-      background-position: center
-      background-size: 40%
-    +respond-to(wide-view)
-      +font-size(13)
-      padding: 21px 4px 18px
+      width: 0
       border: none
-      text-transform: uppercase
-      &:before
-        width: 0
-        border: none
+
+  &.btn--small
+    +font-size(13)
+    margin: 13px 6px 10px 0
+    padding: 2px 12px
 
   &, & > .nav__item
-    font-weight: bold
     color: $nav-primary-type
-    .responsive &
-      font-weight: normal
-      +respond-to(wide-view)
-        font-weight: bold
+    font-weight: normal
+    +respond-to(wide-view)
+      font-weight: bold
+
+  .nav--primary &:last-child
+    +respond-to(970)
+      display: none
+
+    +respond-to(1050)
+      display: inline-block
 
   .nav__item--primary--signout--mobile
     +respond-to(wide-view)
       display: none
-
-  // Hide the last primary nav item in small/screen + non-responsive
-  // This is only relevant for non-responsive pages.
-  // Move to _overrides when only legacy is fixed-width
-  .nav--primary &:last-child
-    display: none
-    .responsive &
-      display: inline-block
-
-    +respond-to(1050)
-      display: inline-block
 
 .nav__item--sign-in,
 .nav__item--join
@@ -129,52 +115,40 @@
 .nav--primary--user
   margin-right: 20px
 
-  .responsive.show-nav &
+  .show-nav &
     margin-right: 0
 
 .nav__item--user
   color: $nav-primary-type
-  margin-top: 10px
   padding-right: 25px
+  margin-top: 0
+  height: 50px
+  +respond-to(990)
+    background: none
+  +respond-to(wide-view)
+    margin-top: 10px
+    height: auto
+
   &:hover
     color: #fff
-  .responsive &
-    margin-top: 0
-    height: 50px
-    +respond-to(990)
-      background: none
-    +respond-to(wide-view)
-      margin-top: 10px
-      height: auto
+
 
 .nav__item--user-avatar
-  border-radius: 17px
-  height: 34px
-  width: 34px
-  .responsive &
-    border-radius: 0px
-    height: 50px
-    width: 50px
-    +respond-to(wide-view)
-      border-radius: 17px
-      height: 34px
-      width: 34px
+  +size(50px)
+  +respond-to(wide-view)
+    +size(34px)
+    border-radius: 17px
 
 .nav__item--user-menu
   background: $offscreen-nav-user-background
-  display: none
-
-  .responsive &
-    display: block
-    +respond-to(wide-view)
-      display: none
+  +respond-to(wide-view)
+    display: none
 
 .nav__item--user-menu--wv
-  display: inline
-  .responsive &
-    display: none
-    +respond-to(wide-view)
-      display: inline
+  display: none
+  +respond-to(wide-view)
+    display: inline
+
 .nav__item--primary
   &.sign_up
     color: white
@@ -211,8 +185,6 @@
 
 .nav--primary--user .nav__icon
   .nav__icon
-    padding-left: 0
-    .responsive &
-      padding-left: 60px
-      +respond-to(wide-view)
-        padding: 0
+    padding-left: 60px
+    +respond-to(wide-view)
+      padding: 0

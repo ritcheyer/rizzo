@@ -7,8 +7,7 @@
 .user-feed,
   left: -200px
   cursor: default
-  &, .responsive & // because .nav__submenu overwrites width when .responsive used
-    width: 360px 
+  width: 360px
 
 .user-feed__container
   +css-arrow(top, 30px, 317px)
@@ -83,12 +82,10 @@
       display: block
       padding-bottom: 5px
     .activity-list__time
-      &, .responsive & // same as above
-        position: absolute
-        bottom: 0
-        left: 0
-        margin: 0 0 15px 15px
-        color: $bodygray
+      position: absolute
+      bottom: 15px
+      left: 15px
+      color: $bodygray
       &:before
         +size(1.1em)
         display: inline-block
