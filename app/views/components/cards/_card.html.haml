@@ -1,7 +1,7 @@
 %article{ class: card_classes(properties).join(" ") }
   .card__mask
 
-    - card_link_if(properties[:url].present?, href: properties[:url], data: card_link_data(properties), class: properties[:layer?] ? 'js-lightbox-toggle' : '') do
+    - card_link_if(properties[:url].present?, href: properties[:url], target: properties[:target], data: card_link_data(properties), class: properties[:layer?] ? 'js-lightbox-toggle' : '') do
 
       - if properties[:image_url].present?
         %figure.card__figure
