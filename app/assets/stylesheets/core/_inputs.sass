@@ -257,7 +257,7 @@ input[type="submit"]
 //
 // -----------------------------------------------------------------------------
 
-.newsletter--footer
+.newsletter-footer
   +font-size(14)
   margin-bottom: 20px
   +respond-to(wide-view)
@@ -267,11 +267,16 @@ input[type="submit"]
   .btn--green
     font-weight: bold
 
-.newsletter--placeholder
+.newsletter-footer__placeholder
   position: static
   display: block
   margin-bottom: 5px
   font-weight: bold
+
+.newsletter-footer__btn
+  width: 100%
+  +respond-to(wide-view)
+    width: auto
 
 .input--small--newsletter
   +font-size(16) // Prevent zoom on iOS
