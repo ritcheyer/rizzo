@@ -218,12 +218,11 @@ input[type="submit"]
 // -----------------------------------------------------------------------------
 
 .form--language
-  .responsive &
-    text-align: center
-    label
-      text-align: left
-    +respond-to(wide-view)
-      text-align: left
+  text-align: center
+  label
+    text-align: left
+  +respond-to(wide-view)
+    text-align: left
 
 .form--language__label
   margin-right: 10px
@@ -242,8 +241,6 @@ input[type="submit"]
   border: none
   // Container is large enough so we can remove new formatting context
   overflow: visible
-  .responsive &
-    top: 0
 
 .submit--language
   display: none
@@ -260,23 +257,29 @@ input[type="submit"]
 //
 // -----------------------------------------------------------------------------
 
-.newsletter--footer
+.newsletter-footer
   +font-size(14)
-  .responsive &
-    margin-bottom: 20px
-    +respond-to(wide-view)
-      margin-bottom: 0
-      width: 100%
+  margin-bottom: 20px
+  +respond-to(wide-view)
+    margin-bottom: 0
+    width: 100%
+
   .btn--green
     font-weight: bold
 
-.newsletter--placeholder
+.newsletter-footer__placeholder
   position: static
   display: block
   margin-bottom: 5px
   font-weight: bold
 
+.newsletter-footer__btn
+  width: 100%
+  +respond-to(wide-view)
+    width: auto
+
 .input--small--newsletter
+  +font-size(16) // Prevent zoom on iOS
   @extend %rounded-corners
   background-color: #fff
   color: $body-copy
@@ -285,8 +288,6 @@ input[type="submit"]
   color: $body-copy
   +placeholder()
     color: $body-copy
-  .responsive &
-    +font-size(16) // Prevent zoom on iOS
   .ie7 &
     width: auto
 
@@ -294,8 +295,7 @@ input[type="submit"]
   margin: 7px 0
 
 .dropdown__value--country
+  +font-size(16) // Prevent zoom on iOS
   border: none
   padding-top: 11px
   padding-bottom: 11px
-  .responsive &
-    +font-size(16) // Prevent zoom on iOS

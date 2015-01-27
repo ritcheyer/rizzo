@@ -1,6 +1,6 @@
 %nav.row.row--sitemap#js-footer-nav(role="navigation" aria-label="Sitemap" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
   %h6.accessibility Sitemap
-  .row__inner.row--sitemap__inner.row__inner--full-width
+  .row__inner.row--sitemap__inner
 
     .col--footer--last
       %span.title--footer.title--list--footer
@@ -12,8 +12,8 @@
         %strong
           20% discount
         on your next guidebook purchase
-      %form.newsletter--footer(action='//www.lonelyplanet.com/newsletter/form-submission.php' method='post')
-        %label.polyfill--placeholder.newsletter--placeholder Email
+      %form.newsletter-footer(action='//www.lonelyplanet.com/newsletter/form-submission.php' method='post')
+        %label.polyfill--placeholder.newsletter-footer__placeholder Email
         %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='sailthru_email' placeholder='your@email.com' required='required')
         %input(type='hidden' name='Source' value='homepagefooter')
         %input(type='hidden' name='type' value='subscribe')
@@ -24,7 +24,7 @@
             - footer_newsletter_country_items.each do |country|
               %option(value="#{country[:title]}")
                 = country[:title]
-        %input.btn.btn--green.btn--large{type: "submit", title: "Subscribe Newsletter", value: "Sign up", data: {lpa_category: "account", lpa_action: "newsletter"}}
+        %input.btn.btn--green.btn--large.newsletter-footer__btn{type: "submit", title: "Subscribe Newsletter", value: "Sign up", data: {lpa_category: "account", lpa_action: "newsletter"}}
 
     .col--footer
       %input{type: "checkbox", id: 'ac-destinations', class: "accordion__input"}

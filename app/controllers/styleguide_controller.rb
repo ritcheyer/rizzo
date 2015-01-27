@@ -9,6 +9,7 @@ class StyleguideController < ActionController::Base
   end
 
   def show
+    @fixed_width_layout = true
     render "/styleguide/#{params[:section]}", locals: get_layout_config(:styleguide)
   end
 

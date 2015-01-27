@@ -5,14 +5,12 @@
 // ----------------------------------------------------------------------------
 
 .row--breadcrumbs
-  .responsive &
-    margin-bottom: 10px
+  margin-bottom: 10px
+
+  .nav--inline
+    padding-left: 10px
     +respond-to(wide-view)
-      margin-bottom: 0
-    .nav--inline
-      padding-left: 24px
-      +respond-to(wide-view)
-        padding-left: 0
+      padding-left: 0
 
 .breadcrumbs--icon
   padding-left: 1.2em
@@ -25,33 +23,38 @@
 
 .nav__item--breadcrumbs
   @extend %left-icon
-  padding: 20px 8px 18px 20px
+  padding: 5px 8px 0 20px
   line-height: 24px
   color: $body-copy
-  .responsive &
-    padding: 5px 8px 0 20px
-    +respond-to(medium-view)
-      padding: 20px 8px 18px 20px
+
+  +respond-to(medium-view)
+    padding: 20px 8px 18px 20px
+
   &:before
     height: 12px
     width: 12px
     margin-top: 4px
+
   &.current
     font-weight: bold
     &:hover
       text-decoration: none
+
   .stack &,
   .nav--inline &
     font-weight: normal
     padding: 0 0.2em 0 0.75em
+
     &.current
       font-weight: bold
+
     &:before
       content: '/'
       // This stops the lower-left most part of the / from being cut off.
       padding: 0 0.25em
       top: -0.33em
       font-weight: normal
+
     &:first-child
       padding-left: 0
       &:before
@@ -74,10 +77,6 @@ a.nav__item--breadcrumbs
   width: 24px
   height: 24px
   top: -4px
-  .responsive &
-    margin-left: -24px
-    +respond-to(wide-view)
-      margin-left: 0
 
   .ie7 &
     @extend .nav__item--breadcrumbs
