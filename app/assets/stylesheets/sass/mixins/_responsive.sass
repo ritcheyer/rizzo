@@ -42,6 +42,21 @@
 // -----------------------------------------------------------------------------
 // [doc]
 //
+// Enable styles at a certain viewport with legacy
+//  .ie7 and .ie8 style output
+//
+//
+// [/doc]
+// -----------------------------------------------------------------------------
+@mixin respond-to-legacy-support($screen-width)
+  +respond-to($screen-width)
+    @content
+  .ie7 &, .ie8 &
+    @content
+
+// -----------------------------------------------------------------------------
+// [doc]
+//
 // Calculate padding for a proportional wrapper
 //
 // Force an intrinsic ratio based on the width of the containing block to used as a
