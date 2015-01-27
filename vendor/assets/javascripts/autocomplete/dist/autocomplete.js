@@ -146,7 +146,7 @@ define([ "jquery" ], function($) {
       this.$resultsPanel.on("mousedown", resultsItem, function(e) {
         e.preventDefault();
         e.stopPropagation();
-        _this.config.onItem(this, e);
+        _this.config.onItem(this, e, _this.config.el);
         _this.clearResults();
       });
 
@@ -255,7 +255,7 @@ define([ "jquery" ], function($) {
       var el = this.$resultsItemList[this.resultIndex];
 
       if (el) {
-        this.config.onItem(el);
+        this.config.onItem(el, null, this.config.el);
         this.clearResults();
       }
     },
