@@ -27,6 +27,8 @@
   :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
+  :target: "_blank"
+
 -
   :styleguide_title: "Card with kind, image, context text and context icon"
   :url: "#"
