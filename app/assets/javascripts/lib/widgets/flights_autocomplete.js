@@ -22,7 +22,7 @@ define([
       success: function(data, textStatus, request) {
         var userCurrency, $currencySelect;
 
-        geoIPCountryCode = request.getResponseHeader("X-GeoIP-CountryCode");
+        geoIPCountryCode = request.getResponseHeader("X-GeoIP-CountryCode") || "GB";
         userCountry = $.grep(countries, function(currency) {
           return currency.code === geoIPCountryCode;
         });
@@ -98,12 +98,12 @@ define([
     });
   };
 
-  FlightsWidgetAutocomplete.prototype.onSelectCity = function(el) {
+  FlightsWidgetAutocomplete.prototype.onSelectCity = function(el, event, currentField) {
     var selectedCode = $(el).data("airport").slice(0, -4),
         selectedValue = $(el).text();
 
     selectedValue = selectedValue.substring(0, selectedValue.indexOf(")"));
-    if (this.el === "#js-from-city") {
+    if (currentField === "#js-from-city") {
       this.$fromAirport.val(selectedCode);
       this.$fromCity.val(selectedValue + ")");
     } else {
