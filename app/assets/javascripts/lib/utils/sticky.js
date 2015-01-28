@@ -14,12 +14,16 @@ define([
       // If there's only 60px below the target for it to move into, why bother?
       threshold: 60,
       // Viewport offset to add to the top of the target element.
-      offset: 0
+      offset: 0,
+      // The element that gets stuck.
+      sticky: ".js-sticky"
     };
+
+    this.options = $.extend({}, defaults, options);
 
     this.$target = $target;
     this.$parent = $target.offsetParent();
-    this.options = $.extend({}, defaults, options);
+    this.$sticky = $target.find(this.options.sticky);
 
     this.init();
   }
@@ -35,22 +39,22 @@ define([
   };
 
   Sticky.prototype.stick = function() {
-    this.$target
+    this.$sticky
       .addClass("is-sticky")
       .removeClass("is-at-bottom")
       .css({ position: "fixed", top: this.options.offset, left: this._leftPosition() });
   };
 
   Sticky.prototype.unstick = function(bottom) {
-    this.$target
+    this.$sticky
       .removeClass("is-sticky")
       .css({ position: "", top: "", left: "" })
       .addClass(bottom ? "is-at-bottom" : null);
   };
 
   Sticky.prototype.refresh = function() {
-    if (this.$target.hasClass("is-sticky")) {
-      this.$target.css("left", this._leftPosition());
+    if (this.$sticky.hasClass("is-sticky")) {
+      this.$sticky.css("left", this._leftPosition());
     }
   };
 
@@ -68,7 +72,7 @@ define([
   };
 
   Sticky.prototype._onScroll = function() {
-    if (this.$target.hasClass("is-sticky")) {
+    if (this.$sticky.hasClass("is-sticky")) {
       this._limitTop() && this.unstick();
       this._limitBottom() && this.unstick(true);
       return;
@@ -85,7 +89,7 @@ define([
   };
 
   Sticky.prototype._onResize = function() {
-    if (!this.$target.hasClass("is-sticky")) return;
+    if (!this.$sticky.hasClass("is-sticky")) return;
 
     if (!this._minWidth() || !this._minHeight()) {
       this.unstick();
@@ -104,17 +108,10 @@ define([
     };
   };
 
-  Sticky.prototype._widths = function() {
-    return {
-      parent: this.$parent.outerWidth(),
-      target: this.$target.outerWidth(true)
-    };
-  };
-
   Sticky.prototype._heights = function() {
     return {
       parent: this.$parent.outerHeight(),
-      target: this.$target.outerHeight(true)
+      sticky: this.$sticky.outerHeight(true)
     };
   };
 
@@ -128,8 +125,7 @@ define([
   Sticky.prototype._leftPosition = function() {
     // Fixed positioning is relative to the viewport, not the element's offset
     // parent. This function calculates where the element would be if it was.
-    var widths = this._widths();
-    return this._offsets().parent.left + widths.parent - widths.target;
+    return this._offsets().target.left;
   };
 
   Sticky.prototype._minWidth = function() {
@@ -138,7 +134,7 @@ define([
 
   Sticky.prototype._minHeight = function() {
     var heights = this._heights(),
-        totalHeight = heights.target + this.options.threshold;
+        totalHeight = heights.sticky + this.options.threshold;
 
     // Tests if both the container and window have space to scroll into.
     return totalHeight < this._window().innerHeight && totalHeight < heights.parent;
@@ -152,7 +148,7 @@ define([
     var heights = this._heights(),
         offsets = this._offsets();
 
-    return (this._window().scrollY + heights.target) > (offsets.parent.top + heights.parent - this.options.offset);
+    return (this._window().scrollY + heights.sticky) > (offsets.parent.top + heights.parent - this.options.offset);
   };
 
   return Sticky;

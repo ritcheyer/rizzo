@@ -7,7 +7,7 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
     beforeEach(function() {
       loadFixtures("sticky.html");
-      instance = new Sticky($("#sticky"), options);
+      instance = new Sticky($("#sticky-target"), options);
       instance.init();
     });
 
@@ -17,21 +17,6 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
     });
 
     describe("Calculations and dimensions", function() {
-
-      describe("._leftPosition", function() {
-        it("returns the left position of the target relative to the document", function() {
-          spyOn(instance, "_offsets").and.returnValue({
-            parent: { left: 25 }
-          });
-
-          spyOn(instance, "_widths").and.returnValue({
-            target: 100,
-            parent: 200
-          });
-
-          expect(instance._leftPosition()).toBe(125);
-        });
-      });
 
       describe("._minWidth", function() {
         it("calculates if there is enough horizontal space", function() {
@@ -53,7 +38,7 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
           });
 
           spyOn(instance, "_heights").and.returnValue({
-            target: 100,
+            sticky: 100,
             parent: 200
           });
 
@@ -62,7 +47,7 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
 
         it("calculates there to be not enough vertical space", function() {
           spyOn(instance, "_heights").and.returnValue({
-            target: 100,
+            sticky: 100,
             parent: 100
           });
 
@@ -77,7 +62,7 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
           });
         });
 
-        it("calculates when the window has not scrolled past the top of the target's container", function() {
+        it("calculates when the window has not scrolled past the top of the target's offset parent", function() {
           spyOn(instance, "_window").and.returnValue({
             scrollY: 0
           });
@@ -85,7 +70,7 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
           expect(instance._limitTop()).toBe(true);
         });
 
-        it("calculates when the window has scrolled past the top of the target's container", function() {
+        it("calculates when the window has scrolled past the top of the target's offset parent", function() {
           spyOn(instance, "_window").and.returnValue({
             scrollY: 200
           });
@@ -97,7 +82,7 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
       describe("._limitBottom", function() {
         beforeEach(function() {
           spyOn(instance, "_heights").and.returnValue({
-            target: 100,
+            sticky: 100,
             parent: 200
           });
 
@@ -106,7 +91,7 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
           });
         });
 
-        it("calculates when target has reached the bottom of it's container", function() {
+        it("calculates when the sticky element has reached the bottom of it's container", function() {
           spyOn(instance, "_window").and.returnValue({
             scrollY: 201
           });
@@ -114,7 +99,7 @@ define([ "public/assets/javascripts/lib/utils/sticky.js" ], function(Sticky) {
           expect(instance._limitBottom()).toBe(true);
         });
 
-        it("calculates when target has not reached the bottom of it's container", function() {
+        it("calculates when the sticky element has not reached the bottom of it's container", function() {
           spyOn(instance, "_window").and.returnValue({
             scrollY: 150
           });
