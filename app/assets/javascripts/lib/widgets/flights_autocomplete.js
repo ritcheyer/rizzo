@@ -13,10 +13,10 @@ define([
   "use strict";
 
   var API_KEY = "lp994363056324023341132625613270",
-      userCountry, geoIPCountryCode;
+      userCountry, geoIPCountryCode, geoIPLookupPromise;
 
   function FlightsWidgetAutocomplete() {
-    $.ajax({
+    geoIPLookupPromise = $.ajax({
       type: "GET",
       url: "http://www.lonelyplanet.com",
       success: function(data, textStatus, request) {
@@ -126,6 +126,23 @@ define([
         resultsItem:      "<li class='autocomplete__results__item' data-airport='{{PlaceId}}'><div class='{{isCity}}' id='results-irem-wrapper'><span id='autocomplete-place-name'>{{PlaceName}}</span><span id='autocomplete-country-name'>{{CountryName}}</span></div></li>",
       }
     });
+
+    geoIPLookupPromise.done(function() {
+      this.fetchCountries($(el).data("prepopulation"), function(places) {
+        if (places.length) {
+          var airport = places[0].PlaceId.replace("-sky", ""),
+              city = places[0].PlaceName;
+
+          if (el == "#js-from-city") {
+            this.$fromAirport.val(airport);
+            this.$fromCity.val(city);
+          } else {
+            this.$toAirport.val(airport);
+            this.$toCity.val(city);
+          }
+        }
+      }.bind(this));
+    }.bind(this));
   };
 
   return FlightsWidgetAutocomplete;

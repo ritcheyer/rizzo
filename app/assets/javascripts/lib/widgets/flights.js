@@ -114,14 +114,15 @@ define([
 
   FlightsWidget.prototype.initDatePickers = function() {
     // Initialize the two date fields as Pickadate controls
-    var today = new Date();
+    var today = new Date(),
+        tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000); // add 24 hours
 
     this.$returnDate.pickadate({
       editable: false,
       min: today,
       format: "d mmm yyyy",
       onStart: function() {
-        this.set({ select: today });
+        this.set({ select: tomorrow });
       }
     });
 
