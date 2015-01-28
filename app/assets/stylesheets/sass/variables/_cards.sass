@@ -4,13 +4,20 @@
 // - Width of a Card defaults to single - override when necessary
 // -----------------------------------------------------------------------------
 
-$card-width: 192px
-$card-height: 380px
+// 1:2 aspect ratio
+$card-portrait-width: 192px
+$card-portrait-height: 384px
+
+// 3:1 aspect ratio
+$card-landscape-width: 300px
+$card-landscape-height: 100px
+$card-landscape-cover-height: 200px
+
 $card-gutter: 10px
 $card-footer-height: 35px
 $card-content-height: 165px
 $card-content-padding: 15px
 $card-content-hover-growth: 80px
-$card-double-width: ($card-width * 2) + $card-gutter
-$card-double-height: ($card-height * 2) + $card-gutter
-$card-short-height: $card-height - $card-content-height - ($card-content-padding * 2)
+
+$card-short-height: $card-portrait-height - $card-content-height - ($card-content-padding * 2)
+$card-double-width: ($card-landscape-width * 2) + $card-gutter

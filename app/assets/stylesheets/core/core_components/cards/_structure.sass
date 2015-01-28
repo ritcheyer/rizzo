@@ -1,13 +1,3 @@
-@mixin card-dimensions($span, $width: $card-width, $height: $card-height, $gutter: $card-gutter)
-  $width: ($width * $span) + ($gutter * ($span - 1))
-  $ratio: (1 / $width) * $height
-
-  padding-top: percentage($ratio)
-
-  &.card--fixed
-    width: $width + 0px
-    padding-top: $height + 0px
-
 .card
   @extend %rounded-corners
   position: relative
@@ -45,9 +35,13 @@
   @extend %rounded-corners
   overflow: hidden
 
+.card__figure
+  overflow: hidden
+
 .card__figure__img
   height: 100%
   min-width: 100%
+  object-fit: cover
 
 .card__figure__icon
   +size(30px)
@@ -105,19 +99,27 @@
 
 .card__content__desc
   +font-size(15)
+  display: none
   margin: 10px 0 0
   line-height: 1.3
   color: $feature-copy
 
+  +respond-to(narrow-view)
+    display: block
+
 .card__footer
   +font-size(13)
   top: auto
+  display: none
 
   // A cheeky extra 1px to cover any seams or
   // artefacts on iDevices when zoomed out
   height: $card-footer-height + 1px
   padding: 0 $card-content-padding
   color: $grey-highlight
+
+  +respond-to(narrow-view)
+    display: block
 
   .card--no-footer &
     display: none
@@ -152,34 +154,46 @@
   &.card--has-img
 
     .card__content
-      top: auto
       border-top: 0
 
     // Standard card
     &.card--standard
 
       .card__figure
-        bottom: $card-content-height + ($card-content-padding * 2)
+        right: 67.5%
 
       .card__footer,
       .card__content
         background: #FFF
 
       .card__content
-        height: $card-content-height
-        transition: padding .2s ease-out
+        left: 32.5%
 
-      a:hover,
-      a:focus
-        .card__content
-          padding-bottom: $card-content-hover-growth
+      +respond-to(narrow-view)
+        .card__figure
+          right: 0
+          bottom: $card-content-height + ($card-content-padding * 2)
 
-      &.card--has-footer
         .card__content
-          height: $card-content-height - $card-footer-height
+          top: auto
+          left: 0
+          height: $card-content-height
+          transition: padding .2s ease-out
+
+        a:hover,
+        a:focus
+          .card__content
+            padding-bottom: $card-content-hover-growth
+
+        &.card--has-footer
+          .card__content
+            height: $card-content-height - $card-footer-height
 
     // Cover image card
     &.card--cover
+
+      .card__content
+        top: auto
 
       .card__footer,
       .card__content
@@ -212,8 +226,7 @@
         padding-right: 40px
 
 .card--short
-  // Short cards are always a single width
-  +card-dimensions($span: 1, $height: $card-short-height)
+  +short-card-dimensions()
 
   &.card--has-img
 
