@@ -12,23 +12,15 @@
     position: relative
 
   .nav--left + &
-    display: table-cell
     overflow: visible
     vertical-align: top
-    width: 798px
-    max-width: 798px
-    .responsive &
-      clear: both
-      display: block
-      margin-left: 0
-      max-width: 100%
-      width: 100%
-      +respond-to(wide-view)
-        clear: none
-        display: table-cell
-        margin-left: 10px
-        max-width: 798px
-        width: 798px
+    clear: both
+    +respond-to(wide-view)
+      clear: none
+      display: table-cell
+      margin-left: 10px
+      max-width: 798px
+      width: 798px
     .ie7  &
       display: block
       overflow: hidden

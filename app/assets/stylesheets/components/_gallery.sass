@@ -81,15 +81,13 @@ $footer-height: 250px
     width: auto
 
 .gallery__title
-  +font-size(24)
+  +font-size(20)
   color: $body-copy
   padding-bottom: 10px
-  .responsive &
-    +font-size(20)
-    +respond-to(768)
-      +font-size(22)
-    +respond-to(1000)
-      +font-size(24)
+  +respond-to(768)
+    +font-size(22)
+  +respond-to(1000)
+    +font-size(24)
 
 .gallery__breadcrumb
   position: relative
@@ -172,20 +170,18 @@ $footer-height: 250px
 
 .gallery__mpu
   +z-layer(middle)
-  background: white
-  display: block
-  height: $footer-height
+  display: none
   width: $ad-width
-  .responsive &
-    display: none
-    +respond-to(strip-unit($ad-width))
-      display: block
-      margin: 0 auto 20px
-    +respond-to(wide-view)
-      margin: 0
-      position: absolute
-      right: 0
-      top: 0
+  height: $footer-height
+  background: white
+  +respond-to(strip-unit($ad-width))
+    display: block
+    margin: 0 auto 20px
+  +respond-to(wide-view)
+    margin: 0
+    position: absolute
+    right: 0
+    top: 0
 
 .gallery-underlay
   +z-layer(middle)
@@ -265,15 +261,13 @@ $arrow-size: 50px
 
 .gallery__next
   right: 20px
-  .responsive &
-    +respond-to(larger-than-ipad)
-      right: -90px
+  +respond-to(larger-than-ipad)
+    right: -90px
 
 .gallery__previous
   left: 20px
-  .responsive &
-    +respond-to(larger-than-ipad)
-      left: -90px
+  +respond-to(larger-than-ipad)
+    left: -90px
 
 .gallery__slide-details
   display: none

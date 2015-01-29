@@ -2,32 +2,20 @@
   +z-layer
   @extend %rounded-corners
   @extend %fly-out-shadow
-  position: absolute
-  top: 12px
-  right: 12px
-  bottom: 12px
-  width: 294px
-  max-width: 50%
   overflow: auto
   background: #fff
 
-  .responsive &
-    max-width: inherit
-    position: static
-    width: auto
-
-    +respond-to(medium-view)
-      max-width: 50%
-      position: absolute
-      width: 294px
+  +respond-to(medium-view)
+    position: absolute
+    top: 12px
+    right: 12px
+    bottom: 12px
+    width: 294px
+    max-width: 50%
 
   .is-closed &
-    display: none
-
-    .responsive &
-      display: block
-      +respond-to(medium-view)
-        display: none
+    +respond-to(medium-view)
+      display: none
 
   &::-webkit-scrollbar
     width: 4px

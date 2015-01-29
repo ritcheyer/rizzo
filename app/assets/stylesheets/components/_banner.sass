@@ -157,16 +157,13 @@
 
 .hero-banner__source
   +font-size(16)
-  float: left
   color: white
   width: 100%
   &:hover
     text-decoration: none
 
-  .responsive &
-    float: none
-    +respond-to(medium-view)
-      float: left
+  +respond-to(medium-view)
+    float: left
 
 .hero-banner__source-text
   font-style: italic
@@ -191,11 +188,6 @@
   +font-size(18)
   position: absolute
   right: 0
-
-  .responsive &
-    float: none
-    +respond-to(medium-view)
-      float: right
 
 .hero-banner__sponsor
   position: absolute
