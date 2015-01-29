@@ -22,6 +22,6 @@ Our codebase is too large to hold in your head and there is no return in trying 
 
 ## Ensure we can pivot
 
-When making broad decisions about lonelyplanet.com trust that you're expertise means you're right now, but realise that things will change and we may possibly need to pivot away from what you decide on. There is a cost to removing something from the codebase which far outweighs the cost of adding it.
+When making broad decisions about lonelyplanet.com trust that your expertise means you're right now, but realise that things will change and we may possibly need to pivot away from what you decide on. There is a cost to removing something from the codebase which far outweighs the cost of adding it.
 
 Everything is up for discussion, but pivoting on such a huge code base is a slow process so it's always worth spending the extra time to consider how deeply we would be tied into the decision and how quickly we could change course.
