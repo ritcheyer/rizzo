@@ -82,7 +82,7 @@ define([ "jquery", "picker", "pickerDate", "pickerLegacy" ], function($) {
       if (!this._isValidEndDate()) {
         this.outDate.data("pickadate").set("select", new Date(date).getTime() + this.day);
       }
-      this.inLabel.text(date);
+      this.inLabel.text(this.inDate.val());
     } else if (type === "end") {
       if (!this._isValidEndDate() || this.firstTime) {
         this.inDate.data("pickadate").set("select", new Date(date).getTime() - this.day);
