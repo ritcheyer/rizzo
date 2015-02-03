@@ -123,6 +123,7 @@ dropdown_components:
         :name: "select_name"
         :placeholder: "Select Item"
         :selected: "three"
+        :class: "select_class"
         :options:
           - :title: 'one'
           - :title: 'two'
@@ -137,6 +138,7 @@ dropdown_components:
     :fields:
       -
         :name: "select_name"
+        :class: "select_class"
         :placeholder: "Item One"
         :options:
           - :title: 'one'
@@ -144,6 +146,7 @@ dropdown_components:
           - :title: 'three'
       -
         :name: "select_name"
+        :class: "select_class"
         :placeholder: "Item Two"
         :options:
           - :title: 'a'
@@ -152,6 +155,7 @@ dropdown_components:
           - :title: 'd'
       -
         :name: "select_name"
+        :class: "select_class"
         :placeholder: "Item Three"
         :options:
           - :title: 'a1'
