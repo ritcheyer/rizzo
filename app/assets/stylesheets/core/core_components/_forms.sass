@@ -13,25 +13,26 @@
   .input
     float: left
 
+.field__label,
+.field__content
+  @extend %clearfix
+  display: block
+  width: 100%
+  +respond-to(medium-view)
+    float: left
+
 .field__label
   box-sizing: border-box
   padding: 10px 10px 10px 0
-  .field--radio &
-    padding: 0 10px 0 0
   +respond-to(medium-view)
     width: 35%
+
+  .field--radio &
+    padding: 0 10px 0 0
 
 .field__content
   +respond-to(medium-view)
     width: 65%
-
-.field__label,
-.field__content
-  @extend %clearfix
-  display: inline-block
-  width: 100%
-  +respond-to(medium-view)
-    float: left
 
 .field__input--error,
 .field__input--valid
