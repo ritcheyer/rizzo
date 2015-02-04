@@ -5,7 +5,7 @@
   overflow: auto
   background: #fff
 
-  +respond-to(medium-view)
+  +respond-to-legacy-support(medium-view)
     position: absolute
     top: 12px
     right: 12px
@@ -14,7 +14,7 @@
     max-width: 50%
 
   .is-closed &
-    +respond-to(medium-view)
+    +respond-to-legacy-support(medium-view)
       display: none
 
   &::-webkit-scrollbar
