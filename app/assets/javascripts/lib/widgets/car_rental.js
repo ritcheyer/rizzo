@@ -19,27 +19,10 @@ define([
   "use strict";
 
   var CarApp,
-      $checkbox = $("#js-dropoff-different"),
-
-      $widget = $(".js-car-rental-widget"),
-
-      $pickupTime = $("#js-pickup-time"),
-
-      $pickupDate = $("#js-pickup-date"),
-      $pickupLocation = $("#js-pickup-location"),
-
-      $dropoffTime = $("#js-dropoff-time"),
-
-      $dropoffDate = $("#js-dropoff-date"),
-      $dropoffLocation = $("#js-dropoff-location"),
-
-      $currency = $("#js-driver-currency"),
-      $currencyContainer = $currency.closest(".js-select-group-manager").find(".js-select-overlay"),
-
-      $residence = $("#js-driver-country"),
-      $residenceContainer = $residence.closest(".js-select-group-manager").find(".js-select-overlay"),
-
-      $getquote = $(".js-get-quote"),
+      $checkbox, $widget, $pickupTime, $pickupDate,
+      $pickupLocation, $dropoffTime, $dropoffDate,
+      $dropoffLocation, $currency, $currencyContainer,
+      $residence, $residenceContainer,
 
       googleAnalytics = new GoogleAnalytics({
         $locationStart: $pickupLocation,
@@ -72,6 +55,19 @@ define([
 
   CarApp.prototype.init = function() {
     userCurrency = localStore.getCookie("lpCurrency");
+
+    $checkbox = $("#js-dropoff-different");
+    $widget = $(".js-car-rental-widget");
+    $pickupTime = $("#js-pickup-time");
+    $pickupDate = $("#js-pickup-date");
+    $pickupLocation = $("#js-pickup-location");
+    $dropoffTime = $("#js-dropoff-time");
+    $dropoffDate = $("#js-dropoff-date");
+    $dropoffLocation = $("#js-dropoff-location");
+    $currency = $("#js-driver-currency");
+    $currencyContainer = $currency.closest(".js-select-group-manager").find(".js-select-overlay");
+    $residence = $("#js-driver-country");
+    $residenceContainer = $residence.closest(".js-select-group-manager").find(".js-select-overlay");
 
     this.initDatepickers();
     this.initAutocompletes();
@@ -192,7 +188,7 @@ define([
   CarApp.prototype.handlers = function() {
     var _this = this;
 
-    $pickupDate.on("change", _this.setDropoffDate.bind(_this));
+    $widget.on("change", "#js-pickup-date", _this.setDropoffDate.bind(_this));
 
     $dropoffDate.add($pickupDate).change(function() {
       _this._clearError($(this));
@@ -203,7 +199,7 @@ define([
     });
 
     // checkbox click signifies a different return location
-    $checkbox.on("click", function() {
+    $widget.on("click", "#js-dropoff-different", function() {
       // Clear any error styles on the drop off location input
       $dropoffLocation.removeClass("form--error");
 
@@ -215,7 +211,7 @@ define([
     });
     _this.hidedropoffLocation();
 
-    $residence.on("change", function() {
+    $widget.on("change", "#js-driver-country", function() {
       var currency = $(this).find(":selected").data("currencycode") || "USD";
 
       $residenceContainer.removeClass("form--error"); // Clear error style
@@ -224,17 +220,17 @@ define([
       $currency.trigger("change");
     });
 
-    $currency.on("change", function() {
+    $widget.on("change", "#js-driver-currency", function() {
       $currencyContainer.removeClass("form--error");  // Clear error style
     });
 
     // listen for a change in pickup time
-    $pickupTime.on("change", function() {
+    $widget.on("change", "#js-pickup-time", function() {
       _this.setdropoffTime();
     });
 
     // Form submission handler
-    $getquote.on("click", function(e) {
+    $widget.on("click", ".js-get-quote", function(e) {
       if (_this.validate()) {
         _this.config.pickupDateTime = _this.config.pickupDate + $pickupTime.val();
         _this.config.dropoffDateTime = _this.config.dropoffDate + $dropoffTime.val();
