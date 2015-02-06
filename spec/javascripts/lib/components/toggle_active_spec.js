@@ -1,4 +1,6 @@
-define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function(ToggleActive) {
+define([ "jquery", "lib/components/toggle_active" ], function($, ToggleActive) {
+
+  "use strict";
 
   describe("ToggleActive", function() {
 
@@ -7,6 +9,10 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
     beforeEach(function() {
       loadFixtures("toggle_active.html");
       instance = new ToggleActive();
+    });
+
+    afterEach(function() {
+      $(document).off();
     });
 
     describe("Initialisation", function() {
@@ -18,7 +24,7 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
       describe("Toggles class names.", function() {
         beforeEach(function(done) {
           $("#normal").trigger("click");
-          spyOn(instance, "_broadcast").and.callFake(done);
+          spyOn(instance, "broadcast").and.callFake(done);
         });
 
         it("toggles the is-active and is-not-active class names", function() {
@@ -30,7 +36,7 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
       describe("Custom class.", function() {
         beforeEach(function(done) {
           $("#custom-class").trigger("click");
-          spyOn(instance, "_broadcast").and.callFake(done);
+          spyOn(instance, "broadcast").and.callFake(done);
         });
 
         it("toggles a custom class", function() {
@@ -41,7 +47,7 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
       describe("Toggle both.", function() {
         beforeEach(function(done) {
           $("#both").trigger("click");
-          spyOn(instance, "_broadcast").and.callFake(done);
+          spyOn(instance, "broadcast").and.callFake(done);
         });
 
         it("toggles the is-active classes on both the clicked element and the target", function() {
@@ -56,7 +62,7 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
         beforeEach(function(done) {
           e = $.Event("click");
           $("#is-cancellable").trigger(e);
-          spyOn(instance, "_broadcast").and.callFake(done);
+          spyOn(instance, "broadcast").and.callFake(done);
         });
 
         it("has prevented the default action", function() {
@@ -70,7 +76,7 @@ define([ "public/assets/javascripts/lib/components/toggle_active.js" ], function
         beforeEach(function(done) {
           e = $.Event("click");
           $("#not-cancellable").trigger(e);
-          spyOn(instance, "_broadcast").and.callFake(done);
+          spyOn(instance, "broadcast").and.callFake(done);
         });
 
         it("has not prevented the default action", function() {
