@@ -8,14 +8,38 @@
     float: left
     margin-left: $card-gutter
 
-.card--single
-  +card-dimensions(1)
+// Single column list format cards for small screens
+@media screen and (max-width: 380px)
 
-.card--double
-  +card-dimensions(2)
+  .card--list--tall
+    +card-dimensions-list-format()
+  .card--list--short
+    +card-dimensions-list-format(true)
 
-.card--triple
-  +card-dimensions(3)
+// Multiple column cards for larger screens
++respond-to(narrow-view)
+
+  .card--column--single
+
+    &.card--column--tall
+      +card-dimensions-column-format(1)
+    &.card--column--short
+      +card-dimensions-column-format(1, true)
+
+  .card--column--double
+
+    &.card--column--tall
+      +card-dimensions-column-format(2)
+    &.card--column--short
+      +card-dimensions-column-format(2, true)
+
+  .card--column--triple
+
+    &.card--column--tall
+      +card-dimensions-column-format(3)
+    &.card--column--short
+      +card-dimensions-column-format(3, true)
+
 
 // -----------------------------------------------------------------------------
 // Basic card layout and styles
@@ -33,8 +57,8 @@
 
 .card__mask
   @extend %rounded-corners
-  overflow: hidden
 
+.card__mask,
 .card__figure
   overflow: hidden
 
@@ -47,25 +71,15 @@
   +size(30px)
   +icon-color(white)
   position: absolute
-  left: $card-content-padding
-  top: $card-content-padding
 
 .card__content
-  padding: $card-content-padding
   overflow: hidden
   color: $body-copy
 
-  .card--has-footer &
-    bottom: $card-footer-height
-
 .card__content__pin
-  .card--no-img &
-    width: 22px
-    height: 32px
-    margin-bottom: 6px
-
-  .card--has-img &
-    display: none
+  width: 22px
+  height: 32px
+  margin-bottom: 6px
 
 .card__content__context
   +font-size(13)
@@ -74,7 +88,6 @@
   color: $bodygray
 
   &.copy--icon--before:before
-    +icon-color(white)
     margin-top: -4px
     margin-bottom: -2px
     border-radius: 50%
@@ -99,36 +112,20 @@
 
 .card__content__desc
   +font-size(15)
-  display: none
   margin: 10px 0 0
   line-height: 1.3
   color: $feature-copy
-
-  +respond-to(narrow-view)
-    display: block
 
 .card__footer
   +font-size(13)
   top: auto
   display: none
-
-  // A cheeky extra 1px to cover any seams or
-  // artefacts on iDevices when zoomed out
-  height: $card-footer-height + 1px
-  padding: 0 $card-content-padding
   color: $grey-highlight
 
-  +respond-to(narrow-view)
-    display: block
-
-  .card--no-footer &
-    display: none
-
-  .copy--icon--before
-    &:before
-      +icon-color(body-grey)
-      width: 10px
-      opacity: .75
+  .copy--icon--before:before
+    +icon-color(body-grey)
+    width: 10px
+    opacity: .75
 
 .card__footer__reviewed
   float: right
@@ -145,119 +142,168 @@
     margin-top: -2px
     margin-bottom: -2px
 
+
 // -----------------------------------------------------------------------------
-// Height variations
+// Cards with or without image
 // -----------------------------------------------------------------------------
 
-.card--tall
+.card--has-img
 
-  &.card--has-img
+  .card__content__pin,
+  .card__content__desc
+    display: none
 
+  &.card--no-cover
+
+    .card__footer,
     .card__content
-      border-top: 0
+      background: #FFF
 
-    // Standard card
-    &.card--standard
-
-      .card__figure
-        right: 67.5%
-
-      .card__footer,
-      .card__content
-        background: #FFF
-
-      .card__content
-        left: 32.5%
-
-      +respond-to(narrow-view)
-        .card__figure
-          right: 0
-          bottom: $card-content-height + ($card-content-padding * 2)
-
-        .card__content
-          top: auto
-          left: 0
-          height: $card-content-height
-          transition: padding .2s ease-out
-
-        a:hover,
-        a:focus
-          .card__content
-            padding-bottom: $card-content-hover-growth
-
-        &.card--has-footer
-          .card__content
-            height: $card-content-height - $card-footer-height
-
-    // Cover image card
-    &.card--cover
-
-      .card__content
-        top: auto
-
-      .card__footer,
-      .card__content
-        color: #FFF
-
-      .copy--icon--before
-        &:before
-          +icon-color(white)
-          opacity: 1
-
-      .card__content__context
-        color: inherit
-
-      .card__content__title
-        +font-size(24)
-        color: white
-
-      .card__content__desc
-        @extend %visually-hide
-
-      &.card--double
-
-        .card__content__title
-          +font-size(28)
-
-  &.card--no-img
-
-    &.card--has-price
-      .card__content__title
-        padding-right: 40px
-
-.card--short
-  +short-card-dimensions()
-
-  &.card--has-img
-
-    // Short cards with an image should always act
-    // as a cover image whether told to or not.
-    .card__figure__img
-      width: 100%
-      height: auto
+  &.card--cover
 
     .card__footer,
     .card__content
       color: #FFF
 
-    .copy--icon--before
-      &:before
-        +icon-color(white)
-        opacity: 1
-
     .card__content
       top: auto
-      border-top: 0
 
+    .copy--icon--before:before
+      +icon-color(white)
+      opacity: 1
+
+    .card__content__title,
     .card__content__context
       color: inherit
 
-    .card__content__title
-      +font-size(24)
-      color: white
 
-    .card__content__desc
-      @extend %visually-hide
+// -----------------------------------------------------------------------------
+// Single column list format
+// -----------------------------------------------------------------------------
+
+@media screen and (max-width: 380px)
+
+  .card__figure__icon
+    top: $card-list-format-padding
+    left: $card-list-format-padding
+
+  .card__content
+    padding: $card-list-format-padding
+
+  .card__content__desc
+    display: none
+
+  .card--no-cover
+
+    &.card--has-img
+
+      // Adjust image aspect ratio
+      &.card--list--tall
+
+        .card__figure
+          // Because the image height will always fill
+          // whatever space the content isn't in, see?
+          bottom: $card-list-format-content-height
+
+        .card__content
+          top: auto
+
+        &.card--no-footer
+          .card__content
+            height: $card-list-format-content-height
+
+        &.card--has-footer
+          .card__content
+            height: $card-list-format-content-height - $card-list-format-footer-height
+
+        a:hover,
+        a:focus
+          .card__content
+            padding-bottom: 80px
+
+
+
+      // Short cards switch to a media block style layout
+      &.card--list--short
+        .card__figure
+          right: 67.5%
+
+        .card__content
+          left: 32.5%
+
+    &.card--no-img
+
+// -----------------------------------------------------------------------------
+// Multiple column format
+// -----------------------------------------------------------------------------
+
++respond-to(narrow-view)
+
+  .card__figure__icon
+    top: $card-column-format-padding
+    left: $card-column-format-padding
+
+  .card__content
+    padding: $card-column-format-padding
+
+  .card--has-footer
+
+    .card__content
+      bottom: $card-column-format-footer-height
+
+    .card__footer
+      display: block
+      padding: 0 $card-column-format-padding
+      // A cheeky extra 1px to cover any seams or
+      // artefacts on iDevices when zoomed out
+      height: $card-column-format-footer-height + 1px
+
+  .card--column--tall
+
+    &.card--has-img
+
+      &.card--no-cover
+
+        .card__figure
+          // Because the image height will always fill
+          // whatever space the content isn't in, see?
+          bottom: $card-column-format-content-height
+
+        .card__content
+          top: auto
+          transition: padding .2s ease-out
+
+        &.card--no-footer
+          .card__content
+            height: $card-column-format-content-height
+
+        &.card--has-footer
+          .card__content
+            height: $card-column-format-content-height - $card-column-format-footer-height
+
+        a:hover,
+        a:focus
+          .card__content
+            padding-bottom: 80px
+
+      &.card--cover
+
+        .card__content__title
+          +font-size(24)
+
+        &.card--double
+          .card__content__title
+            +font-size(28)
+
+    &.card--no-img
+
+      .card__content__desc
+        display: block
+
+      &.card--has-price
+        .card__content__title
+          padding-right: 40px
+
 
 // -----------------------------------------------------------------------------
 // Paraphernalia

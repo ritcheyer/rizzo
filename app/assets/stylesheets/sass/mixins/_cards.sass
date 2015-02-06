@@ -1,34 +1,12 @@
-@mixin card-dimensions($span)
-  padding-top: aspect-ratio($card-landscape-width, $card-landscape-height)
+@mixin card-dimensions-list-format($short: false)
+  $height: if($short, $card-list-format-figure-height, $card-list-format-height)
+  padding-top: aspect-ratio($card-list-format-width, $height)
 
-  &.card--cover
-    padding-top: aspect-ratio($card-landscape-width, $card-landscape-cover-height)
-
-  &.card--fixed
-    width: $card-landscape-width
-    padding-top: $card-landscape-height
-
-  +respond-to(narrow-view)
-    $width: ($card-portrait-width * $span) + ($card-gutter * ($span - 1))
-
-    &, &.card--cover
-      padding-top: aspect-ratio($width, $card-portrait-height)
-
-    &.card--fixed
-      width: $width
-      padding-top: $card-portrait-height
-
-@mixin short-card-dimensions
-  padding-top: aspect-ratio($card-landscape-width, $card-landscape-height)
+@mixin card-dimensions-column-format($span: 1, $short: false)
+  $width: ($card-column-format-width * $span) + ($card-gutter * ($span - 1))
+  $height: if($short, $card-column-format-figure-height, $card-column-format-height)
+  padding-top: aspect-ratio($width, $height)
 
   &.card--fixed
-    width: $card-landscape-width
-    padding-top: $card-landscape-height
-
-  +respond-to(narrow-view)
-    $height: $card-portrait-height - $card-content-height - ($card-content-padding * 2)
-    padding-top: aspect-ratio($card-portrait-width, $height)
-
-    &.card--fixed
-      width: $card-portrait-width
-      padding-top: $height
+    width: $width
+    padding-top: $height
