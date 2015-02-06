@@ -11,9 +11,6 @@
         -
           :name: "Responsive Grid"
           :slug: "responsive-grid"
-        -
-          :name: "Cards Grid"
-          :slug: "cards-grid"
     -
       :title: "Classes"
       :items:
