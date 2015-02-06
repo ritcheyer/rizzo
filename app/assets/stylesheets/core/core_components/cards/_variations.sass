@@ -17,8 +17,12 @@
       right: 0
       bottom: 0
       min-width: 0
-      height: 80%
-      margin: auto
+      margin: 10px auto
+      height: 160%
+
+      +respond-to(narrow-view)
+        height: 80%
+        margin: auto
 
     .card__content
       border-top: 0

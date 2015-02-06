@@ -77,8 +77,6 @@
   color: $body-copy
 
 .card__content__pin
-  width: 22px
-  height: 32px
   margin-bottom: 6px
 
 .card__content__context
@@ -107,7 +105,6 @@
   height: 18px
 
 .card__content__title
-  +font-size(20)
   color: $titlegray
 
 .card__content__desc
@@ -142,6 +139,13 @@
     margin-top: -2px
     margin-bottom: -2px
 
+.card__tags
+  +z-layer(middle)
+  position: absolute
+  top: -3px
+
+  &.card__tags--large
+    top: -4px
 
 // -----------------------------------------------------------------------------
 // Cards with or without image
@@ -190,8 +194,18 @@
   .card__content
     padding: $card-list-format-padding
 
+  .card__content__title
+    +font-size(16)
+
   .card__content__desc
     display: none
+
+  .card__content__pin
+    width: 15px
+    height: 22px
+
+  .card__tags
+    left: 8px
 
   .card--no-cover
 
@@ -221,8 +235,6 @@
           .card__content
             padding-bottom: 80px
 
-
-
       // Short cards switch to a media block style layout
       &.card--list--short
         .card__figure
@@ -245,6 +257,16 @@
 
   .card__content
     padding: $card-column-format-padding
+
+  .card__content__title
+    +font-size(20)
+
+  .card__content__pin
+    width: 22px
+    height: 32px
+
+  .card__tags
+    right: 8px
 
   .card--has-footer
 
