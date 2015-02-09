@@ -95,13 +95,22 @@
   line-height: 50px
 
 .hero-banner__image-story
-  +z-layer(top)
-  bottom: -55px
+  +z-layer(middle)
   position: absolute
-  transition: bottom 0.5s ease
+  top: 100%
+  transition: top 0.5s ease
   width: 100%
+  .supports-transform .is-active &
+    top: 50%
   .is-active &
-    bottom: 40%
+    top: 35px
+    .copy--h4
+      top: -15px
+  .copy--h4
+    position: absolute
+    top: -48px
+    transition: top 0.5s ease
+    width: 100%
 
 .hero-banner__image-story__cover
   +alpha-background($darkgray, 0.75)
@@ -145,6 +154,8 @@
 
 .hero-banner__image-story__content
   text-align: center
+  .supports-transform .is-active &
+    transform: translateY(-50%)
   .copy--body
     +font-size(18)
     color: white
