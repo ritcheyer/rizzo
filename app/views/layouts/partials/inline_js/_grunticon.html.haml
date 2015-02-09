@@ -6,16 +6,15 @@
 
     function supportsSVG() {
       var hasBgSize = ("background-size" in docElement.style || "backgroundSize" in docElement.style),
-          hasSvg = !!window.document.createElementNS && 
-                   !!window.document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect && 
-                   !!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1") && 
-                   !(window.opera && navigator.userAgent.indexOf('Chrome') === -1),
-          enhanced = window.lp.enhanced;
+          hasSvg = !!window.document.createElementNS &&
+                   !!window.document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect &&
+                   !!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1") &&
+                   !(window.opera && navigator.userAgent.indexOf('Chrome') === -1);
 
-      return hasBgSize && hasSvg && enhanced;
+      return hasBgSize && hasSvg;
     }
 
-    if (supportsSVG()) {
+    if (window.lp.enhanced && supportsSVG()) {
       window.lp.loadCSS(activePath);
       docElement.className += " supports-svg";
     } else {

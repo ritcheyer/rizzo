@@ -53,7 +53,7 @@ define([
       // ie8 and ie9
       this.allowHistoryNav = true;
       // Set up our event listener to listen to hashchange (back/forward)
-      $(window).on( "hashchange", this._onHashChange );
+      $(window).on( "hashchange", this._onHashChange.bind(this) );
       // If there's a hash on page load, fire the _onHashChange function and redirect the user to the correct page.
       if ( this.getHash().indexOf("#!") === 0 ) {
         this._onHashChange();
