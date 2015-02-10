@@ -3,7 +3,7 @@ define([
   "lib/mixins/events",
   "lib/page/pushstate",
   "lib/mixins/page_state",
-  "lib/utils/deparam"
+  "jquery-bbq-deparam/jquery-deparam"
 ], function($, asEventEmitter, PushState, withPageState) {
 
   "use strict";

@@ -11,6 +11,6 @@
     "jquery-timeago": "latest",
     "d3": "3.4.10",
     "nvd3": "latest",
-    "picturefill": "latest"
+    "jquery-bbq-deparam": "latest"
   }
 }
