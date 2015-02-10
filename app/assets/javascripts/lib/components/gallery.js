@@ -84,7 +84,7 @@ define([
   Gallery.prototype._handleEvents = function() {
 
     this.$listener.on(":slider/slideChanged", function() {
-      window.setTimeout(this._afterNavigation.bind(this), +this.slider.config.transition);
+      window.setTimeout(this._afterNavigation.bind(this), this.slider.config.transition * 1.5);
     }.bind(this));
 
     this.$gallery.on("click", ".is-previous", function() {
