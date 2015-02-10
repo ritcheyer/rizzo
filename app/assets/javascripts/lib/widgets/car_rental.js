@@ -23,17 +23,7 @@ define([
       $pickupLocation, $dropoffTime, $dropoffDate,
       $dropoffLocation, $currency, $currencyContainer,
       $residence, $residenceContainer,
-
-      googleAnalytics = new GoogleAnalytics({
-        $locationStart: $pickupLocation,
-        $locationEnd: $dropoffLocation,
-        $dateStart: $pickupDate,
-        $dateEnd: $dropoffDate,
-        $timeStart: $pickupTime,
-        $timeEnd: $dropoffTime,
-        $locationResidence: $residence
-      }),
-      localStore, userCurrency;
+      googleAnalytics, localStore, userCurrency;
 
   CarApp = function() {
 
@@ -68,6 +58,16 @@ define([
     $currencyContainer = $currency.closest(".js-select-group-manager").find(".js-select-overlay");
     $residence = $("#js-driver-country");
     $residenceContainer = $residence.closest(".js-select-group-manager").find(".js-select-overlay");
+
+    googleAnalytics = new GoogleAnalytics({
+      $locationStart: $pickupLocation,
+      $locationEnd: $dropoffLocation,
+      $dateStart: $pickupDate,
+      $dateEnd: $dropoffDate,
+      $timeStart: $pickupTime,
+      $timeEnd: $dropoffTime,
+      $locationResidence: $residence
+    });
 
     this.initDatepickers();
     this.initAutocompletes();
