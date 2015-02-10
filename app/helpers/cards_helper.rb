@@ -9,8 +9,8 @@ module CardsHelper
       # Cards are short by default in list view
       "card--list--#{props[:list_tall?] ? 'tall' : 'short'}",
       # Cards are tall by default in column view
-      "card--column--#{props[:column_short?] ? 'short' : 'tall' }",
-      "card--column--#{props[:column_double?] ? 'double' : 'single'}",
+      "card--column--#{props[:short?] ? 'short' : 'tall' }",
+      "card--column--#{props[:double?] ? 'double' : 'single'}",
       "card--#{props[:cover?] ? 'cover' : 'no-cover'}",
       "card--#{props[:image_url].present? ? 'has-img' : 'no-img'}",
       "card--#{props[:price_tag].present? ? 'has-price' : 'no-price'}",
