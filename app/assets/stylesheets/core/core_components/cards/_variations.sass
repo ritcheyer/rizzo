@@ -90,6 +90,31 @@
   margin: 4px 15px 4px 0
 
 // -----------------------------------------------------------------------------
+// Sponsored (ad) cards
+// -----------------------------------------------------------------------------
+
+.card--sponsored
+
+  .card__content
+    &:before
+      content: normal !important
+
+.card--sponsored--mpu
+  .card__content
+    width: 300px
+    padding: 0
+    margin: 50px auto 0
+
+  .results &
+    float: right
+
+.card--sponsored--adSense
+  margin-top: 20px
+  .card__content
+    position: static
+    padding-top: 40px
+
+// -----------------------------------------------------------------------------
 // Legacy compatibility
 // -----------------------------------------------------------------------------
 
