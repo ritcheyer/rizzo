@@ -42,7 +42,7 @@ define([
   Slider.prototype.init = function() {
     var transform = window.lp.supports.transform && window.lp.supports.transform.css,
         transition = this.$el.data("transition") || this.config.transition,
-        transitionString = transform + " " + transition + "ms ease-in-out, left " + transition + "ms ease-in-out",
+        transitionString = transform + " " + transition + "ms ease-in-out 0, left " + transition + "ms ease-in-out 0",
         currentSlideSpecified;
 
     this.$slides.css("transition", transitionString);
