@@ -14,29 +14,13 @@
 // -----------------------------------------------------------------------------
 @mixin respond-to($screen-width, $fallback: true)
 
-  // We have to set up a blank variable here or sass errors out
-  $breakpoint: ''
+  $breakpoint: if(map-has-key($breakpoints, $screen-width), map-get($breakpoints, $screen-width), $screen-width)
 
-  @if $screen-width == narrow-view
-    $breakpoint: 380
-  @else if $screen-width == medium-view
-    $breakpoint: 600
-  @else if $screen-width == large-view
-    $breakpoint: 780
-  @else if $screen-width == wide-view
-    $breakpoint: 980
-  @else if $screen-width == larger-than-ipad
-    $breakpoint: 1025
-  @else if $screen-width == cinema-view
-    $breakpoint: 1100
+  @if ($is-ie or global-variable-exists(fixed-width))
+    @if $fallback
+      @content
   @else
-    $breakpoint: $screen-width
-
-  @if ($is-ie or global-variable-exists(fixed-width)) and $fallback
-    @content
-
-  @else
-    @media only screen and (min-width : #{$breakpoint}px)
+    @media only screen and (min-width : $breakpoint + 0px)
       @content
 
 // -----------------------------------------------------------------------------

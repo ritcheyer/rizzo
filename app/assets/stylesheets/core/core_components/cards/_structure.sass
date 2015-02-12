@@ -14,7 +14,7 @@
   .card--list--tall
     +card-dimensions-list-format()
   .card--list--short
-    +card-dimensions-list-format(true)
+    +card-dimensions-list-format("short")
 
 // Multiple column cards for larger screens
 +respond-to(narrow-view)
@@ -24,21 +24,21 @@
     &.card--column--tall
       +card-dimensions-column-format(1)
     &.card--column--short
-      +card-dimensions-column-format(1, true)
+      +card-dimensions-column-format(1, "short")
 
   .card--column--double
 
     &.card--column--tall
       +card-dimensions-column-format(2)
     &.card--column--short
-      +card-dimensions-column-format(2, true)
+      +card-dimensions-column-format(2, "short")
 
   .card--column--triple
 
     &.card--column--tall
       +card-dimensions-column-format(3)
     &.card--column--short
-      +card-dimensions-column-format(3, true)
+      +card-dimensions-column-format(3, "short")
 
 
 // -----------------------------------------------------------------------------
@@ -188,7 +188,7 @@
 // Single column list format
 // -----------------------------------------------------------------------------
 
-@media screen and (max-width: 380px)
+@media screen and (max-width: map-get($breakpoints, narrow-view))
 
   .card__figure__icon
     top: $card-list-format-padding
