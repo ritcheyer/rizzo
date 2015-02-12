@@ -34,7 +34,8 @@ module.exports = function(grunt) {
           customselectors: {
             "*": [ ".icon--$1--before:before, .icon--$1--after:after" ],
             // leave single words unquoted for jscs to pass
-            magazine:   [ ".icon--guide, .icon--guide--before:before, .icon--guide--after:after" ],
+            calendar: [ "#quote-departure-date .icon, #quote-return-date .icon" ],
+            magazine: [ ".icon--guide, .icon--guide--before:before, .icon--guide--after:after" ],
             population: [ ".icon--population-ntk" ],
             "place--pin": [ ".icon--place, .icon--place--before:before, .icon--place--after:after" ],
             "chevron-right": [ ".picker__nav--next" ],
