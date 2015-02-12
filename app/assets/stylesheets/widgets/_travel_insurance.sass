@@ -55,6 +55,16 @@
     float: left
     margin: 5px 5px 10px 5px
 
+  .icon
+    @extend %inline-block
+    +size(22px)
+    background-position: 0 20%
+    background-size: cover
+    // We have to position it this way due to the
+    // way the third-party JS renders the markup.
+    float: right
+    margin: -30px 5px 0 0
+
   #selected-destinations
     li
       +font-size(11)
@@ -190,7 +200,7 @@
 
 
 .autocomplete.wn-insurance-quote-editor
-  +z-layer(top)
+  +z-layer(modal)
   border: 1px solid $lightgray
   padding-left: 0
   list-style-type: none
