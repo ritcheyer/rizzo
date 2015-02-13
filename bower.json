@@ -10,7 +10,6 @@
     "autocomplete": "latest",
     "jquery-timeago": "latest",
     "d3": "3.4.10",
-    "nvd3": "latest",
-    "jquery-bbq-deparam": "latest"
+    "nvd3": "latest"
   }
 }
