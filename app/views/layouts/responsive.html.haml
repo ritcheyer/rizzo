@@ -5,7 +5,7 @@
 
 %body.responsive
   = ui_component('lightbox')
-  %script#tmpl-preloader{ type: 'text-mustache' }
+  %script#tmpl-preloader{ type: 'text/mustache' }
     = ui_component('preloader')
 
   = render 'layouts/custom/pre_header', third_party: false
