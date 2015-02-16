@@ -147,14 +147,14 @@
   position: absolute
   top: -2px
 
+
 // -----------------------------------------------------------------------------
 // Cards with or without image
 // -----------------------------------------------------------------------------
 
 .card--has-img
 
-  .card__content__pin,
-  .card__content__desc
+  .card__content__pin
     display: none
 
   &.card--no-cover
@@ -165,6 +165,10 @@
 
   &.card--cover
 
+    .copy--icon--before:before
+      +icon-color(white)
+      opacity: 1
+
     .card__footer,
     .card__content
       color: #FFF
@@ -172,16 +176,15 @@
     .card__content
       top: auto
 
-    .copy--icon--before:before
-      +icon-color(white)
-      opacity: 1
-
     .card__content__title,
     .card__content__context
       color: inherit
 
     .card__content__title
       +font-size(24)
+
+    .card__content__desc
+      @extend %visually-hide
 
 
 // -----------------------------------------------------------------------------
@@ -290,20 +293,24 @@
 
         .card__content
           top: auto
-          transition: padding .2s ease-out
+          transition: height .2s ease-out
 
         &.card--no-footer
           .card__content
             height: $card-column-format-content-height
 
+          a:hover,
+          a:focus
+            .card__content
+              height: $card-column-format-content-height + 60px
+
         &.card--has-footer
           .card__content
             height: $card-column-format-content-height - $card-column-format-footer-height
 
-        a:hover,
-        a:focus
-          .card__content
-            padding-bottom: 80px
+          a:hover,
+          a:focus
+            height: $card-column-format-content-height - $card-column-format-footer-height + 60px
 
       &.card--cover
         &.card--double
@@ -319,7 +326,6 @@
       &.card--has-price
         .card__content__title
           padding-right: 40px
-
 
 // -----------------------------------------------------------------------------
 // Paraphernalia

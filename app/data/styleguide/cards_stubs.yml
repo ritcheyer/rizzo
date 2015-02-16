@@ -89,6 +89,7 @@
   :styleguide_title: "Short card with image and author"
   :url: "#"
   :short?: true
+  :cover?: true
   :title: "Travel shopping"
   :description: ""
   :image_alt: ""
@@ -99,6 +100,7 @@
   :styleguide_title: "Short card with image and image icon"
   :url: "#"
   :short?: true
+  :cover?: true
   :title: "Kyoto"
   :description: ""
   :image_alt: ""
