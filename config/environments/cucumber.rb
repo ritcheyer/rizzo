@@ -16,4 +16,6 @@ Rizzo::Application.configure do
   config.action_controller.allow_forgery_protection    = false
   config.active_support.deprecation = :stderr
 
+  config.eager_load = true
+
 end if defined?(Rizzo::Application)

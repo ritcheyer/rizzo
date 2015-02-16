@@ -14,7 +14,7 @@ describe "components/_pagination.html.haml" do
   describe 'pagination container' do
     describe "rel links in head" do
       before(:each) do
-        stub_template 'layouts/application' => <<-VIEW
+        stub_template 'layouts/application.html.erb' => <<-VIEW
           <html>
             <head><%= yield :pagination_links_rels %></head>
             <body><%= yield %></body>
