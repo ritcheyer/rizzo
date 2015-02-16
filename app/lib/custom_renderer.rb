@@ -2,7 +2,7 @@ require 'redcarpet'
 
 class CustomRenderer < Redcarpet::Render::HTML
 
-  def header(text, header_level, section)
+  def header(text, header_level)
     "<h#{header_level} class='copy--h#{header_level}' id='#{text.downcase.split(" ").join("-")}'>#{text}</h#{header_level}>"
   end
 
