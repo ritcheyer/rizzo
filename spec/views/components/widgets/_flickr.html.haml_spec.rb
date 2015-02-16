@@ -11,9 +11,9 @@ describe 'components/widgets/_flickr.html.haml' do
       rendered.should have_css('.copy--h1')
     end
     it 'renders the ranking' do
-      rendered.should have_css('.card--double')
-      rendered.should have_css('.card--single:not(.card--short)', count: 2)
-      rendered.should have_css('.card--short', count: 2)
+      rendered.should have_css('.card--column--double.card--column--tall')
+      rendered.should have_css('.card--column--single.card--column--tall', count: 2)
+      rendered.should have_css('.card--column--single.card--column--short', count: 2)
     end
   end
 

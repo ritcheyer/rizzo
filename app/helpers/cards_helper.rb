@@ -4,12 +4,14 @@ module CardsHelper
     [
       "card",
       "js-card",
-      "card--#{props[:kind]}",
-      "card--#{props[:short?] ? 'short' : 'tall'}",
+      "card--#{props[:kind] || 'general'}",
       "card--#{props[:fixed?] ? 'fixed' : 'flexible'}",
-      "card--#{props[:cover?] ? 'cover' : 'standard'}",
-      "card--#{props[:double?] ? 'double' : 'single'}",
-      "card--#{props[:stubby?] ? 'stubby' : 'control'}",
+      # Cards are short by default in list view
+      "card--list--#{props[:tall_listing?] ? 'tall' : 'short'}",
+      # Cards are tall by default in column view
+      "card--column--#{props[:short?] ? 'short' : 'tall' }",
+      "card--column--#{props[:double?] ? 'double' : 'single'}",
+      "card--#{props[:cover?] ? 'cover' : 'no-cover'}",
       "card--#{props[:image_url].present? ? 'has-img' : 'no-img'}",
       "card--#{props[:price_tag].present? ? 'has-price' : 'no-price'}",
       "card--#{props[:author_name].present? || props[:context_locale].present? || (props[:tags] && props[:tags][:lp_reviewed?]) ? 'has-footer' : 'no-footer'}"

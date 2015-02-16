@@ -59,6 +59,7 @@
   :styleguide_title: "Guide card with image, context text and price tag"
   :url: "#"
   :kind: "guide"
+  :tall_listing?: true
   :context_text: "Book & Ebook"
   :title: "France's Best Trips"
   :description: "Discover the freedom of the open road with France’s Best Trips. We’ve selected 39 amazing road trips through France, from two-day escapes to week-long adventures, and packed them full of expert advice and inspirational suggestions. Whether you want to cruise the corniches of the French Riviera, get lost among the snowcapped Alps or taste your way around Champagne’s hallowed vineyards, we’ve got the trip for you."

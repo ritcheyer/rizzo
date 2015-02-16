@@ -13,12 +13,15 @@ describe CardsHelper do
 
     it "returns an array of structural class names for the given properties" do
       result = helper.card_classes(
+        tall_listing?: true,
         double?: true,
         cover?: true,
         kind: "article"
       )
 
-      result.should include("card--double")
+      result.should include("card--list--tall")
+      result.should include("card--column--tall")
+      result.should include("card--column--double")
       result.should include("card--cover")
       result.should include("card--article")
 
@@ -28,8 +31,9 @@ describe CardsHelper do
         fixed?: true
       )
 
-      result.should include("card--single")
-      result.should include("card--short")
+      result.should include("card--list--short")
+      result.should include("card--column--single")
+      result.should include("card--column--short")
       result.should include("card--fixed")
     end
 
