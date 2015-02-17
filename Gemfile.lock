@@ -248,5 +248,5 @@ DEPENDENCIES
   sass-globbing
   sass-rails
   selenium-webdriver (= 2.26.0)
-  uglifier (>= 1.0.3)
+  uglifier
   unicorn
