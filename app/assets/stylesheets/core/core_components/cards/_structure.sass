@@ -9,7 +9,7 @@
     margin-left: $card-gutter
 
 // Single column list format cards for small screens
-@media screen and (max-width: 380px)
+@media screen and (max-width: map-get($breakpoints, narrow-view))
 
   .card--list--tall
     +card-dimensions-list-format()
@@ -310,7 +310,8 @@
 
           a:hover,
           a:focus
-            height: $card-column-format-content-height - $card-column-format-footer-height + 60px
+            .card__content
+              height: $card-column-format-content-height - $card-column-format-footer-height + 60px
 
       &.card--cover
         &.card--double
