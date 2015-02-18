@@ -6,7 +6,7 @@
 - content_for :app_require_config do
   = raw(js_hash({d3: requirejs_config_path("d3/d3"), nvd3: requirejs_config_path("nvd3/nv.d3")}, "window.lp.require.paths"))
 
-%script#tmpl-preloader{ type: 'text-mustache' }
+%script#tmpl-preloader{ type: 'text/mustache' }
   = ui_component('preloader')
 
 - configure_js("pageHopper", @app.page_hopper_sections)
