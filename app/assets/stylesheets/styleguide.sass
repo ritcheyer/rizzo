@@ -320,7 +320,7 @@ pre.styleguide.is-open
   padding-top: 50px
 
 .nav--left__item--konami
-  transition: all 0.5s ease
+  transition: height 0.5s ease
   border-bottom: 0
   height: 0
   margin: 0
@@ -383,3 +383,11 @@ pre.styleguide.is-open
   code
     float: right
     line-height: 1.4
+
+// Ensure tags are actually in the styleguide, not over the left nav
+// Scoped to parent/child to avoid changing the behaviour inside cards
+.card__tags
+  .styleguide-block__item--left > &
+    position: static
+    .price-label
+      margin-top: 0

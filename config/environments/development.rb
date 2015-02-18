@@ -12,4 +12,6 @@ Rizzo::Application.configure do
 
   config.assets.debug = true
 
+  config.eager_load = false
+
 end if defined?(Rizzo::Application)

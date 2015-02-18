@@ -11,6 +11,7 @@
   /[if IE 9] <video style="display: none;">
   - if properties[:breakpoints].any?
     - properties[:breakpoints].each do |breakpoint|
-      %source{ srcset: "#{srcset_url(breakpoint, src, retina)}", media: "(min-width: #{breakpoint[:at]}px)" }
+      - width = breakpoint.delete(:at)
+      %source{ srcset: "#{srcset_url(breakpoint, src, retina)}", media: "(min-width: #{width}px)" }
   /[if IE 9] </video>
   %img{ srcset: srcset_url(size, src, retina), alt: properties[:alt] }

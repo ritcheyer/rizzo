@@ -12,6 +12,7 @@ Rizzo::Application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
+  config.eager_load = true
 
   config.lograge.enabled = true
   config.lograge.log_format = :logstash

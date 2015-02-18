@@ -3,22 +3,18 @@
   :src: "http://media.lonelyplanet.com/a/g/hi/t/2efbfec4e203d6e47bb609bd9f016f82-adventure-travel.jpg"
   :retina: true
   :size:
-    :aspect_ratio: "16x9"
     :resize:
       :width: 192
   :breakpoints:
     -
       :at: 596
-      :aspect_ratio: "16x9"
       :resize:
         :width: 798
     -
       :at: 394
-      :aspect_ratio: "16x9"
       :resize:
         :width: 596
     -
       :at: 192
-      :aspect_ratio: "16x9"
       :resize:
         :width: 394

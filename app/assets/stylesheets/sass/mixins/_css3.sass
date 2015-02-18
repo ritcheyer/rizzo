@@ -13,12 +13,12 @@
   background-color: rgba($color, $opacity)
 
 @mixin background-slide-in-from($direction, $color, $speed: 0.3s)
-  transition: all $speed ease
   outline: none
   position: relative
+  &, &:after
+    transition: width $speed ease, height $speed ease
   &:after
     +z-layer(below)
-    transition: all $speed ease
     background: $color
     content: ""
     position: absolute

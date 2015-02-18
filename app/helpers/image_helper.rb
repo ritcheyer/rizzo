@@ -37,7 +37,7 @@ module ImageHelper
         retina_opts[:crop] = crop
       end
 
-      retina_opts[:quality] = 85
+      retina_opts[:optimize] = {quality: 85}
 
       retina_format = ImageResizer::Format.from_hash(retina_opts)
       retina_url    = ImageResizer.url_for(src, retina_format)
