@@ -6,10 +6,8 @@
 //
 // -----------------------------------------------------------------------------
 
-$card--page-padding-y-small: 10px
-$card--page-padding-x-small: 15px
-$card--page-padding-y: 25px
-$card--page-padding-x: 25px
+$card--page-padding-small: 10px
+$card--page-padding: 25px
 
 .card--top-choice
   &:after
@@ -29,9 +27,9 @@ $card--page-padding-x: 25px
 
 .card--page__content,
 .card--page__hero-content
-  padding: $card--page-padding-y-small $card--page-padding-x-small
+  padding: $card--page-padding-small
   +respond-to(medium-view)
-    padding: $card--page-padding-y $card--page-padding-x
+    padding: $card--page-padding
 
 // -----------------------------------------------------------------------------
 //  Hero
@@ -61,6 +59,7 @@ $card--page-padding-x: 25px
 .card--page__hero-img
   display: block
   width: 100%
+  min-height: 160px
 
 .card--page__hero-name
   +font-size(28)
@@ -88,7 +87,7 @@ $card--page-padding-x: 25px
 // -----------------------------------------------------------------------------
 
 .card--page__header
-  padding: $card--page-padding-y $card--page-padding-x
+  padding: $card--page-padding
   .copy--h1
     line-height: 1.1em
     margin: 0
@@ -96,8 +95,8 @@ $card--page-padding-x: 25px
     padding-left: 95px
 
 .card--page__header--headline
-  padding-top: $card--page-padding-x
-  padding-bottom: $card--page-padding-x
+  padding-top: $card--page-padding
+  padding-bottom: $card--page-padding
   // When in a layer we add breadcrumbs which needs to sit near the header
   .layer-breadcrumbs + .article &
     padding-top: 0
@@ -138,8 +137,8 @@ $card--page-padding-x: 25px
     border-top: 1px solid $body-background
 
 .card--page__fill
-  margin-left: $card--page-padding-x * -1
-  margin-right: $card--page-padding-x * -1
+  margin-left: $card--page-padding * -1
+  margin-right: $card--page-padding * -1
   +respond-to(medium-view)
     margin-left: auto
     margin-right: auto

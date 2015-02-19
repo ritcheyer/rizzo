@@ -21,8 +21,6 @@ define([ "jquery" ], function($) {
   }
 
   ReadMore.prototype._init = function() {
-    this.$wrapper.addClass(this.config.style === "inline" ? "read-more-inline" : "read-more-block");
-
     this.totalHeight = this.getFullHeight();
 
     this.states = {
