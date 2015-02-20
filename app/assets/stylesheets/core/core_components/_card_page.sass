@@ -64,11 +64,16 @@ $card--page-padding: 25px
 .card--page__hero-name
   +font-size(28)
   margin-bottom: 10px
+
   +respond-to(medium-view)
     +font-size(32)
   +respond-to(large-view)
     float: left
-    margin-right: 160px
+    max-width: 480px
+
+    ~ .image-attribution
+      float: right
+
 
 .card--page__hero-cta
   white-space: nowrap
