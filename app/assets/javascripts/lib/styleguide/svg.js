@@ -10,18 +10,18 @@ define([ "jquery" ], function($) {
       $searchBox = $("#js-icon-filter"),
       iconInQueryString = window.location.search.match(/q=([^&]*)/),
 
-  showMatchingIcons = function(query) {
-    $iconCards.addClass("is-hidden").each(function() {
-      var element = $(this);
-      element.data("icon").match(query) && element.removeClass("is-hidden");
-    });
+      showMatchingIcons = function(query) {
+        $iconCards.addClass("is-hidden").each(function() {
+          var element = $(this);
+          element.data("icon").match(query) && element.removeClass("is-hidden");
+        });
 
-    if ($iconCards.filter(".is-hidden").length) {
-      $intro.addClass("is-closed");
-    } else {
-      $intro.removeClass("is-closed");
-    }
-  };
+        if ($iconCards.filter(".is-hidden").length) {
+          $intro.addClass("is-closed");
+        } else {
+          $intro.removeClass("is-closed");
+        }
+      };
 
   if ($colorSelect.length) {
     $.each($colorSelect.get(0).options, function(_, option) {
