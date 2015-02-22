@@ -8,7 +8,6 @@ define([ "jquery" ], function($) {
 
   if (hash.length) {
     $anchorTarget.val(hash);
-    $anchorTarget.trigger("input");
   }
 
   $anchorTarget.on("input", function() {

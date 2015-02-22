@@ -48,4 +48,8 @@ define([ "jquery" ], function($) {
     showMatchingIcons(this.value);
   });
 
+  if ($searchBox.val()) {
+    showMatchingIcons($searchBox.val());
+  }
+
 });

@@ -26,6 +26,7 @@ require([
   "lib/styleguide/typography",
   "lib/utils/last_input_device",
   "lib/components/range_slider",
+  "lib/styleguide/anchor_target",
   "lib/components/toggle_active",
   "lib/styleguide/snippet-expand",
   "lib/components/select_group_manager",

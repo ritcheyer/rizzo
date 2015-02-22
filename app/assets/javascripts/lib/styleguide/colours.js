@@ -24,12 +24,10 @@ define([ "jquery" ], function($) {
   },
 
   resetProximity = function() {
-    if (!$("#proximityMatch").val()) {
-      $(".styleguide__colours").removeAttr("style");
-      $(".js-card-container .card")
-        .removeAttr("style")
-        .removeClass("isnt-approximate is-approximate is-exact");
-    }
+    $(".styleguide__colours").removeAttr("style");
+    $(".js-card-container .card")
+      .removeAttr("style")
+      .removeClass("isnt-approximate is-approximate is-exact");
   },
 
   matchProximity = function() {
@@ -64,13 +62,19 @@ define([ "jquery" ], function($) {
       paddingTop: 10
     });
 
+  },
+
+  $input = $(".js-colours .styleguide-proximity__input"),
+
+  handleInput = function() {
+    var value = $input.val();
+    value[0] == "#" && (value = value.substring(1));
+    value.length == 6 ? matchProximity() : resetProximity();
   };
 
-  $(".js-colours .styleguide-proximity__input").on("keyup", function(event) {
-    if (!event.target.value) {
-      return resetProximity();
-    }
-    event.keyCode == 13 && matchProximity();
-  });
+  $input.on("input", handleInput);
 
+  if ($input.val()) {
+    handleInput();
+  }
 });
