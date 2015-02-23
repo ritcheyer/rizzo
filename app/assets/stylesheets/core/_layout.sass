@@ -31,9 +31,10 @@ body
   @extend %clearfix
   margin: 0 auto
   position: relative
-  padding-left: 10px
-  padding-right: 10px
+  padding-left: $layout-gutter
+  padding-right: $layout-gutter
   width: auto
+
   +respond-to(wide-view)
     width: $fixed-layout-width
 
