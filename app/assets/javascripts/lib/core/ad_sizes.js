@@ -25,14 +25,8 @@ define(function() {
       { browser: [ 728, 0 ], ad_sizes: [ [ 300, 600 ], [ 300, 250 ] ] },
       { browser: [ 0, 0 ], ad_sizes: [ 300, 250 ] }
     ],
-    "sponsor-tile": [
-      { browser: [ 0, 0 ], ad_sizes: [ 276,  32 ] }
-    ],
     "sponsor-logo": [
       { browser: [ 0, 0 ], ad_sizes: [ 150, 120 ] }
-    ],
-    "traffic-driver": [
-      { browser: [ 0, 0 ], ad_sizes: [ 192, 380 ] }
     ],
     "traffic-driver-html": [
       { browser: [ 0, 0 ], ad_sizes: [ 1, 1 ] }
