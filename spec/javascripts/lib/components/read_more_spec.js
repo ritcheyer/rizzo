@@ -55,7 +55,6 @@ define([ "public/assets/javascripts/lib/components/read_more.js" ], function(Sec
           maxHeight: 100
         });
         expect(window.SectionToggle.$el.find(".btn--clear").length).toBe(1);
-        expect(window.SectionToggle.$wrapper).toHaveClass("read-more-block");
       });
 
       it("appends a shadow block-style toggle button when requested", function() {
@@ -65,7 +64,6 @@ define([ "public/assets/javascripts/lib/components/read_more.js" ], function(Sec
         });
         expect(window.SectionToggle.$el.find(".read-more__handler").length).toBe(1);
         expect(window.SectionToggle.$el.find(".btn--clear").length).toBe(1);
-        expect(window.SectionToggle.$wrapper).toHaveClass("read-more-block");
       });
 
       it("appends an inline-style toggle button when requested", function() {
@@ -74,7 +72,6 @@ define([ "public/assets/javascripts/lib/components/read_more.js" ], function(Sec
           style: "inline"
         });
         expect(window.SectionToggle.$el.find(".btn--clear").length).toBe(1);
-        expect(window.SectionToggle.$wrapper).toHaveClass("read-more-inline");
       });
 
       it("closes toggle area by default", function() {
@@ -157,7 +154,6 @@ define([ "public/assets/javascripts/lib/components/read_more.js" ], function(Sec
             tolerance: 10
           });
           expect(window.SectionToggle.$el.find(".btn--clear").length).toBe(1);
-          expect(window.SectionToggle.$wrapper).toHaveClass("read-more-block");
         });
 
         it("closes toggle area by default", function() {
