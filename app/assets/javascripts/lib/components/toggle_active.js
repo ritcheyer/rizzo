@@ -20,8 +20,7 @@ define([
   }
 
   ToggleActive.prototype.init = function() {
-    this.$toggles.length && this._prepareTogglesAndTargets();
-    this.listen();
+    this.$toggles.length && (this._prepareTogglesAndTargets(), this.listen());
   };
 
   // -------------------------------------------------------------------------
@@ -36,6 +35,8 @@ define([
       .on(":toggleActive/update", function(e, target) {
         _this._updateClasses($(target));
       });
+
+    this.$context.trigger(":toggleActive/listening");
   };
 
   // -------------------------------------------------------------------------
