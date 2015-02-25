@@ -54,12 +54,12 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
 
   NavSearch.prototype.onItem = function(el) {
     var $el = $(el);
-    window.location = $el.attr("href");
     window.lp.analytics.api.trackEvent({
       category: "search",
       action: "autocomplete",
       value: $el.attr("href")
     });
+    window.location = $el.attr("href");
   };
 
   $(document).ready(function() {
