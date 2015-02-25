@@ -57,7 +57,7 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
     window.lp.analytics.api.trackEvent({
       category: "search",
       action: "autocomplete",
-      value: el.href
+      label: el.href
     });
 
     window.location = el.href;
