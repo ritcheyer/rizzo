@@ -20,9 +20,9 @@ define(function() {
       document.documentElement.className += " last-input-" + deviceType;
     }
 
-    if (!listener) return;
-
-    if (userDevices[deviceType]) return;
+    // if there's nobody listening, return
+    // no need to announce the activation of a device more than once
+    if (!listener || userDevices[deviceType]) return;
 
     // announce the presence of each device as it's used for the first time
     userDevices[deviceType] = true;
