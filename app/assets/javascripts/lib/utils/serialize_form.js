@@ -1,10 +1,10 @@
 define([
   "jquery"
 ], function($) {
-  
+
   "use strict";
 
-  var buildObject, PATTERNS, push_counters;
+  var buildObject, PATTERNS, pushCounters;
 
   PATTERNS = {
     key: /[a-zA-Z0-9_-]+|(?=\[\])/g,
@@ -13,47 +13,47 @@ define([
     named: /^[a-zA-Z0-9_-]+$/
   };
 
-  push_counters = {};
-  
+  pushCounters = {};
+
   function SerializeForm(form) {
-    push_counters = {};
+    pushCounters = {};
     if (form.jquery === void 0) {
       form = $(form);
     }
     return buildObject(form, {});
   }
-  
+
   SerializeForm.build = function(base, key, value) {
     base[key] = value;
     return base;
   };
 
-  SerializeForm.push_counter = function(key, i) {
-    if (push_counters[key] === void 0) {
-      push_counters[key] = 0;
+  SerializeForm.pushCounter = function(key, i) {
+    if (pushCounters[key] === void 0) {
+      pushCounters[key] = 0;
     }
     if (i === void 0) {
-      return push_counters[key]++;
+      return pushCounters[key]++;
     } else {
-      if (i !== void 0 && i > push_counters[key]) {
-        return push_counters[key] = ++i;
+      if (i !== void 0 && i > pushCounters[key]) {
+        return pushCounters[key] = ++i;
       }
     }
   };
 
   buildObject = function(form, formParams) {
     $.each(form.serializeArray(), function() {
-      var k, keys, merge, reverse_key;
+      var k, keys, merge, reverseKey;
       k = void 0;
       keys = this.name.match(PATTERNS.key);
       merge = (this.value == "on" ? true : this.value);
-      reverse_key = this.name;
+      reverseKey = this.name;
       while ((k = keys.pop()) !== void 0) {
-        reverse_key = reverse_key.replace(new RegExp("\\[" + k + "\\]$"), "");
+        reverseKey = reverseKey.replace(new RegExp("\\[" + k + "\\]$"), "");
         if (k.match(PATTERNS.push)) {
-          merge = SerializeForm.build([], SerializeForm.push_counter(reverse_key), merge);
+          merge = SerializeForm.build([], SerializeForm.pushCounter(reverseKey), merge);
         } else if (k.match(PATTERNS.fixed)) {
-          SerializeForm.push_counter(reverse_key, k);
+          SerializeForm.pushCounter(reverseKey, k);
           merge = SerializeForm.build([], k, merge);
         } else {
           if (k.match(PATTERNS.named)) {
