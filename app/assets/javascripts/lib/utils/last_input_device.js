@@ -2,20 +2,17 @@ define(function() {
 
   "use strict";
 
-  if (!document.addEventListener) { return false; }
+  if (!document.addEventListener) return false;
 
   var listener = document.getElementById("js-row--content"),
       userDevices = {};
 
   function updateClass(deviceType) {
-    if (userDevices[deviceType]) { return; }
-
     var match = document.documentElement.className.match(/last-input-(\w+)/),
         oldClass = match && match[0],
-        oldDeviceType = match && match[1],
-        event;
+        oldDeviceType = match && match[1];
 
-    if (oldDeviceType == deviceType) { return; }
+    if (oldDeviceType == deviceType) return;
 
     if (match && oldClass) {
       document.documentElement.className = document.documentElement.className.replace(oldClass, "last-input-" + deviceType);
@@ -23,13 +20,13 @@ define(function() {
       document.documentElement.className += " last-input-" + deviceType;
     }
 
-    userDevices[deviceType] = true;
+    // if there's nobody listening, return
+    // no need to announce the activation of a device more than once
+    if (!listener || userDevices[deviceType]) return;
 
     // announce the presence of each device as it's used for the first time
-    if (!listener) { return; }
-    event = document.createEvent("CustomEvent");
-    event.initCustomEvent(":device/" + deviceType);
-    listener.dispatchEvent(event);
+    userDevices[deviceType] = true;
+    listener.dispatchEvent(new CustomEvent(":device/" + deviceType));
   }
 
   document.addEventListener("mousemove", function() {
