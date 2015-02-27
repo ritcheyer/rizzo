@@ -16,11 +16,7 @@ define([ "jquery" ], function($) {
           element.data("icon").match(query) && element.removeClass("is-hidden");
         });
 
-        if ($iconCards.filter(".is-hidden").length) {
-          $intro.addClass("is-closed");
-        } else {
-          $intro.removeClass("is-closed");
-        }
+        $intro.toggleClass("is-closed", $iconCards.filter(".is-hidden").length > 0);
       };
 
   if ($colorSelect.length) {
