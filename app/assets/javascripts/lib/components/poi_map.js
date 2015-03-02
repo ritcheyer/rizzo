@@ -56,7 +56,7 @@ define([
   POIMap.prototype._init = function() {
     if (window.innerWidth < 980)  return;
 
-    this.$placeholder.on({
+    this.$container.on({
       "click.poi": this._mouseClickHandler.bind(this),
       "mousemove.preload": this._mouseMoveHandler.bind(this),
       "mouseleave.preload": this._mouseLeaveHandler.bind(this)
