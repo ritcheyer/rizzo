@@ -35,11 +35,11 @@
       %li
         %code mpu
       %li
-        %code sponsor_tile
+        %code sponsor_logo
       %li
-        %code traffic_driver
+        %code sponsor_logo_html
       %li
-        %code traffic_driver_rail
+        %code traffic_driver_html
 
     %pre.styleguide.copy--body.language-haml
       %code
@@ -71,11 +71,11 @@
         = preserve do
           :plain
 
-            // Include a simple traffic driver
-            = ui_component('ads/traffic_driver')
+            // Include a simple HTML traffic driver
+            = ui_component('ads/traffic_driver_html')
 
             // Include the double height MPU
-            = ui_component('ads/mpu', properties: { size: { mapping: 'mpu-double' }, extension: 'stackMPU' })
+            = ui_component('ads/mpu', properties: { size: { mapping: 'mpu-double' } })
             
             // Include two leaderboards with different content
             = ui_component("ads/leaderboard", properties: { targeting: { position: "top"} })
