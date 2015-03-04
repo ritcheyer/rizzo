@@ -13,7 +13,7 @@
         %h4.copy--h4
           Story behind the picture
         %p.copy--body
-          = properties[:image_caption]
+          != enable_mailto_links(properties[:image_caption])
 
   .hero-banner__content.row__inner
     - unless properties[:image_info]
