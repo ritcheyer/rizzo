@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe 'components/_hero_banner.html.haml' do
 
