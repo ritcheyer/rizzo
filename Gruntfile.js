@@ -109,26 +109,6 @@ module.exports = function(grunt) {
         command: "pkill -f phantomjs || true"
       }
     },
-    coffee: {
-      compile: {
-        files: [
-          {
-            expand: true,
-            cwd: "./app/assets/javascripts/lib",
-            src: [ "**/*.coffee", "**/**/*.coffee" ],
-            dest: "./public/assets/javascripts/lib",
-            ext: ".js"
-          },
-          {
-            expand: true,
-            cwd: "./spec/javascripts/lib",
-            src: [ "**/*.coffee" ],
-            dest: "./public/assets/javascripts/spec",
-            ext: ".js"
-          }
-        ]
-      }
-    },
     copy: {
       data: {
         expand: true,
@@ -197,19 +177,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    watch: {
-      scripts: {
-        files: [
-          "app/assets/javascripts/data/**/*.coffee",
-          "app/assets/javascripts/lib/**/*.coffee",
-          "spec/javascripts/lib/**/*.coffee"
-        ],
-        tasks: [ "shell:cleanJs", "newer:coffee", "jasmine" ],
-        options: {
-          nospawn: true
-        }
-      }
-    },
     plato: {
       rizzo: {
         files: {
@@ -236,11 +203,11 @@ module.exports = function(grunt) {
   require("matchdep").filterDev("grunt-!(template-jasmine-requirejs)").forEach(grunt.loadNpmTasks);
 
   // Tasks
-  grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine", "shell:killPhantom" ]);
-  grunt.registerTask("ci", [ "coffee", "copy", "connect", "jasmine" ]);
-  grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch", "shell:killPhantom" ]);
+  grunt.registerTask("default", [ "shell:cleanJs", "copy", "connect", "jasmine", "shell:killPhantom" ]);
+  grunt.registerTask("ci", [ "copy", "connect", "jasmine" ]);
+  grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "shell:killPhantom" ]);
   grunt.registerTask("wip", [ "jasmine:rizzo:build", "open:jasmine", "connect:server:keepalive" ]);
-  grunt.registerTask("report", [ "shell:cleanJs", "coffee", "copy", "plato", "shell:openPlato" ]);
+  grunt.registerTask("report", [ "shell:cleanJs", "copy", "plato", "shell:openPlato" ]);
   grunt.registerTask("imageoptim", [ "imageoptim" ]);
   grunt.registerTask("icon:active", [ "grunticon:active", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon:critical", [ "grunticon:critical", "shell:cleanIcons", "shell:move" ]);
