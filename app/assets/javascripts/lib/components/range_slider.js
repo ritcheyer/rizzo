@@ -10,40 +10,97 @@ define([ "jquery", "nouislider/jquery.nouislider" ], function($) {
 
   RangeSlider.prototype._initSliders = function() {
     var _this = this;
+
     this.sliders.each(function() {
-      var $slider = $(this);
-      $slider.noUiSlider(_this._getConfig($slider.data()));
+      var $slider = $(this),
+          sliderData = $slider.data(),
+          targets = sliderData.targets.split(","),
+          $sliderContainer = $slider.closest(".js-range-slider-container"),
+          $minValue = $sliderContainer.find("[name='" + targets[0] + "']"),
+          $maxValue = $sliderContainer.find("[name='" + targets[1] + "']"),
+          $minLabel = $sliderContainer.find(".js-range-min"),
+          $maxLabel = $sliderContainer.find(".js-range-max"),
+          updateProxies;
+
+      updateProxies = function(event, data) {
+        var curMinVal = Math.floor(data[0]),
+            curMaxVal = Math.floor(data[1]);
+
+        _this._setLabelText(sliderData, $minLabel, curMinVal);
+        _this._setLabelText(sliderData, $maxLabel, curMaxVal);
+
+        _this._setFormValue(sliderData, $minValue, curMinVal);
+        _this._setFormValue(sliderData, $maxValue, curMaxVal);
+      };
+
+      // Initialize jQuery plugin
+      $slider.noUiSlider(_this._getConfig(sliderData));
+
+      // Call proxy update functions
+      $slider.on("slide", updateProxies);
+      updateProxies(null, _this._getStartValues(sliderData));
     });
+  };
+
+  RangeSlider.prototype._getStartValues = function(data) {
+    return [ parseInt(data.current.split(",")[0], 10), parseInt(this._getMaxStartValue(data), 10) ];
   };
 
   RangeSlider.prototype._getConfig = function(data) {
     return {
-      range: [ data.range.split(",")[0], this._getMaxRangeValue(data) ],
-      start: [ data.current.split(",")[0], this._getMaxStartValue(data) ],
+      range: this._setRange(data),
+      start: this._getStartValues(data),
       handles: 2,
-      connect: true,
-      serialization: {
-        resolution: 1,
-        to: [
-          [ this._setMinValue.bind(this, data), this._setMinLabel.bind(this, data) ],
-          [ this._setMaxValue.bind(this, data), this._setMaxLabel.bind(this, data) ]
-        ]
-      }
+      connect: true
     };
   };
 
   RangeSlider.prototype._getMaxRangeValue = function(data) {
-    return data.capLevel || data.range.split(",")[1];
+    var maxValue = data.capLevel || data.range.split(",")[1];
+
+    // If this is a duration, we need to turn the max value into the hours equivalent of the max day
+    if (data.unit === "hours") {
+      maxValue = Math.floor(maxValue / 24) * 24;
+    }
+
+    return parseInt(maxValue, 10);
   };
 
   RangeSlider.prototype._getMaxStartValue = function(data) {
-    var capValue = data.capLevel,
-        currentValue = data.current.split(",")[1];
+    var capValue = this._getMaxRangeValue(data),
+        currentValue = parseInt(data.current.split(",")[1], 10);
 
     if (capValue && currentValue > capValue) {
       return capValue;
     }
     return currentValue;
+  };
+
+  RangeSlider.prototype._setRange = function(data) {
+    if (data.snapDateAt) {
+      return this._buildSnapRange(data);
+    } else {
+      return {
+        min: [ Math.floor(data.range.split(",")[0]), 1 ],
+        max: [ Math.floor(this._getMaxRangeValue(data)), 1 ]
+      };
+    }
+  };
+
+  RangeSlider.prototype._buildSnapRange = function(data) {
+    var maxRange = this._getMaxRangeValue(data),
+
+    // This is where the slider should transition from hour granularity to days
+    snapPercent = Math.floor((data.snapDateAt / maxRange) * 100),
+        snapKey = snapPercent + "%",
+        range   = {};
+
+    // Set range this way because noUISlider (v7.0.10) fails to set range correctly if keys are not in the right order
+    range.min = [ Math.floor(data.range.split(",")[0]), 1 ];
+    range[snapKey] = [ parseInt(data.snapDateAt, 10), 24 ];
+    range.max = [ maxRange, 1 ];
+
+    return range;
   };
 
   RangeSlider.prototype._addUnitToValue = function(data, value) {
@@ -58,9 +115,9 @@ define([ "jquery", "nouislider/jquery.nouislider" ], function($) {
   };
 
   RangeSlider.prototype._getDurationUnit = function(unit, value) {
-    if (value > 48) {
+    if (value >= 48) {
       unit = "days";
-      value = parseInt(value / 24, 10);
+      value = Math.floor(value / 24);
     } else if (value === "1") {
       unit = "hour";
     }
@@ -73,39 +130,26 @@ define([ "jquery", "nouislider/jquery.nouislider" ], function($) {
   // They are called within the scope of RangeSlider
   // ---------------------------------------------------------------------------
 
-  RangeSlider.prototype._setMinLabel = function(slider, value) {
-    if (slider.unit && slider.unitPosition) {
-      value = this._addUnitToValue(slider, value);
-    }
-    slider.base.closest(".js-range-slider-container").find(".js-range-min").text(value);
-  };
-
-  RangeSlider.prototype._setMinValue = function(slider, value) {
-    $("[name='" + slider.targets.split(",")[0] + "']").val(value);
-  };
-
-  RangeSlider.prototype._setMaxLabel = function(slider, value) {
+  RangeSlider.prototype._setLabelText = function(sliderData, $label, value) {
     var newValue;
 
-    if (slider.unit && slider.unitPosition) {
-      newValue = this._addUnitToValue(slider, value);
+    if (sliderData.unit && sliderData.unitPosition) {
+      newValue = this._addUnitToValue(sliderData, value);
     }
 
-    if (value == slider.capLevel) {
+    if (value == this._getMaxRangeValue(sliderData)) {
       newValue = (newValue || value) + "+";
     }
 
-    slider.base.closest(".js-range-slider-container").find(".js-range-max").text(newValue);
+    $label.text(newValue);
   };
 
-  RangeSlider.prototype._setMaxValue = function(slider, value) {
-    var $target = $("[name='" + slider.targets.split(",")[1] + "']");
-
-    if (value == slider.capLevel) {
-      value = slider.range.split(",")[1];
+  RangeSlider.prototype._setFormValue = function(sliderData, $input, value) {
+    if (value == this._getMaxRangeValue(sliderData)) {
+      value = sliderData.range.split(",")[1];
     }
 
-    $target.val(value);
+    $input.val(value);
   };
 
   // ---------------------------------------------------------------------------
