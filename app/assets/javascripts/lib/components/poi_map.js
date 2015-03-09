@@ -56,11 +56,20 @@ define([
   POIMap.prototype._init = function() {
     if (window.innerWidth < 980)  return;
 
-    this.$container.on({
+    this.$placeholder.on({
       "click.poi": this._mouseClickHandler.bind(this),
       "mousemove.preload": this._mouseMoveHandler.bind(this),
       "mouseleave.preload": this._mouseLeaveHandler.bind(this)
     });
+
+    this.$container.on("click.poi mouseenter.poi", this._containerAction.bind(this));
+  };
+
+  POIMap.prototype._containerAction = function() {
+    if (!this.isOpen && !this.$el.hasClass("is-loading")) {
+      this.isOpen = true;
+      this.toggle();
+    }
   };
 
   POIMap.prototype._load = function(callback) {
