@@ -30,8 +30,8 @@ define(['public/assets/javascripts/lib/components/range_slider.js'], function(Ra
         config = rangeSlider._getConfig(input);
         expect(config.handles).toEqual(2);
         expect(config.connect).toEqual(true);
-        expect(config.range).toEqual(["0", "100"]);
-        return expect(config.start).toEqual(["40", "60"]);
+        expect(config.range).toEqual({ min: [0, 1], max: [100, 1]});
+        return expect(config.start).toEqual([40, 60]);
       });
     });
     describe("A capped slider", function() {
@@ -49,8 +49,8 @@ define(['public/assets/javascripts/lib/components/range_slider.js'], function(Ra
         config = rangeSlider._getConfig(input);
         expect(config.handles).toEqual(2);
         expect(config.connect).toEqual(true);
-        expect(config.range).toEqual(["0", "90"]);
-        return expect(config.start).toEqual(["40", "60"]);
+        expect(config.range).toEqual({ min: [0, 1], max: [90, 1]});
+        return expect(config.start).toEqual([40, 60]);
       });
       return it('reduces the current amount if above the cap', function() {
         var config, input;
@@ -63,8 +63,28 @@ define(['public/assets/javascripts/lib/components/range_slider.js'], function(Ra
         config = rangeSlider._getConfig(input);
         expect(config.handles).toEqual(2);
         expect(config.connect).toEqual(true);
-        expect(config.range).toEqual(["0", "90"]);
-        return expect(config.start).toEqual(["40", "90"]);
+        expect(config.range).toEqual({ min: [0, 1], max: [90, 1] });
+        return expect(config.start).toEqual([40, 90]);
+      });
+    });
+    describe("A snap_date_at slider", function() {
+      beforeEach(function() {
+        return window.rangeSlider = new RangeSlider();
+      });
+      it("creates a breakpoint in granularity", function () {
+        var config, input;
+        input = {
+          range: "1,720",
+          current: "1,10",
+          targets: "foo,bar",
+          capLevel: "199",
+          snapDateAt: "48"
+        };
+        config = rangeSlider._getConfig(input);
+        expect(config.handles).toEqual(2);
+        expect(config.connect).toEqual(true);
+        expect(config.range).toEqual({ min: [1, 1], '24%': [48, 24], max: [199, 1]});
+        return expect(config.start).toEqual([1, 10]);
       });
     });
     return describe("Updating the units", function() {
