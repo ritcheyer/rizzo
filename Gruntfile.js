@@ -146,7 +146,11 @@ module.exports = function(grunt) {
       rizzo: {
         options: {
           host: "http://127.0.0.1:8888/",
-          helpers: "./spec/javascripts/helpers/**/*.js",
+          helpers: [
+            "./spec/javascripts/helpers/bind_polyfill.js",
+            "./spec/javascripts/helpers/jasmine-jquery.js",
+            "./spec/javascripts/helpers/SpecHelper.js"
+          ],
           template: require("grunt-template-jasmine-requirejs"),
           specs: "./public/assets/javascripts/spec/**/*_spec.js",
           vendor: "./vendor/assets/javascripts/jquery/dist/jquery.js",
