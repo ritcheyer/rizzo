@@ -1,6 +1,7 @@
 define([
   "jquery",
-  "lib/utils/template"
+  "lib/utils/template",
+  "polyfills/function_bind"
 ], function($, Template) {
 
   "use strict";
@@ -20,6 +21,18 @@ define([
     $.each(this.$el.find(".js-place-title-nav"), function(i, el) {
       this.fetchNavItems(el);
     }.bind(this));
+
+    // The menu can be quite long so disable scrollperf to maintain
+    // hover state when the user has to scroll.
+    this.$el.hover(
+      function() {
+        this.$el.trigger(":scrollperf/disable");
+      }.bind(this),
+      function() {
+        this.$el.trigger(":scrollperf/enable");
+      }.bind(this)
+    );
+
   };
 
   PlaceTitleNav.prototype.getUrl = function(menuItem) {

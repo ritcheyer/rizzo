@@ -32,6 +32,8 @@ define([
   };
 
   ScrollPerf.prototype._onScroll = function onScroll() {
+    if (this.disabled) return;
+
     if (!this.scrolling) {
       this._scrollStart();
     }
@@ -58,6 +60,14 @@ define([
       this.position = [ event.clientX, event.clientY ];
       this.clicked = true;
     }
+  };
+
+  ScrollPerf.prototype._onDisable = function onDisable() {
+    this.disabled = true;
+  };
+
+  ScrollPerf.prototype._onEnable = function onEnable() {
+    this.disabled = false;
   };
 
   // pulled out so it can be stubbed in the tests
@@ -90,6 +100,11 @@ define([
   };
 
   ScrollPerf.prototype._bindEvents = function bindEvents() {
+    $(window).on({
+      ":scrollperf/disable": this._onDisable.bind(this),
+      ":scrollperf/enable": this._onEnable.bind(this)
+    });
+
     window.addEventListener("scroll", this._onScroll.bind(this));
     document.addEventListener("click", this._onClick.bind(this));
   };
