@@ -148,12 +148,12 @@ module.exports = function(grunt) {
           host: "http://127.0.0.1:8888/",
           helpers: [
             "./spec/javascripts/helpers/bind_polyfill.js",
+            "./vendor/assets/javascripts/jquery/dist/jquery.js",
             "./spec/javascripts/helpers/jasmine-jquery.js",
             "./spec/javascripts/helpers/SpecHelper.js"
           ],
           template: require("grunt-template-jasmine-requirejs"),
           specs: "./public/assets/javascripts/spec/**/*_spec.js",
-          vendor: "./vendor/assets/javascripts/jquery/dist/jquery.js",
           templateOptions: {
             version: "./vendor/assets/javascripts/requirejs/require.js",
             requireConfig: {
@@ -173,6 +173,10 @@ module.exports = function(grunt) {
                 pickadate: "./vendor/assets/javascripts/pickadate",
                 polyfills: "./vendor/assets/javascripts/polyfills",
                 usabilla: "./vendor/assets/javascripts/usabilla",
+                picker: "vendor/assets/javascripts/pickadate/lib/picker",
+                pickerDate: "./vendor/assets/javascripts/pickadate/lib/picker.date",
+                pickerLegacy: "./vendor/assets/javascripts/pickadate/lib/legacy",
+                "jquery-bbq-deparam/jquery-deparam": "./vendor/assets/javascripts/jquery-bbq-deparam/jquery-deparam",
                 data: "./public/assets/javascripts/data",
                 lib: "./public/assets/javascripts/lib"
               }
