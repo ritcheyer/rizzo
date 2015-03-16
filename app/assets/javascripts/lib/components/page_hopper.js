@@ -8,7 +8,7 @@ define([
   "jquery",
   "autocomplete",
   "lib/components/lightbox"
-], function($, Autocomplete, LightBox) {
+], function($, AutoComplete, LightBox) {
 
   "use strict";
 
@@ -58,7 +58,11 @@ define([
 
     _this.$listener.on(":lightbox/open", function(event, data) {
       if (data.customClass == config.lightboxClass) {
-        _this.$listener.trigger(":lightbox/renderContent", "<div class='card card--page page-hopper'> <div class='card--page__header'><input class='page-hopper__input " + config.autocompleteInputClass + "' type='text' /></div></div>");
+        _this.$listener.trigger(
+          ":lightbox/renderContent",
+            "<input class='input page-hopper__input card--page__header copy--feature " +
+            config.autocompleteInputClass + "' type='text'>"
+        );
       }
       _this.$listener.addClass("page-hopper--open");
     });
@@ -85,22 +89,21 @@ define([
   };
 
   PageHopper.prototype._setupAutocomplete = function() {
-    new Autocomplete({
+    new AutoComplete({
       el: "." + config.autocompleteInputClass,
       fetch: _this._filterSections,
       onItem: function(el) {
-        location.href = el.href;
+        location.href = $(el).data("value");
       },
       threshold: 2,
       limit: 4,
-      template: {
-        elementWrapper: "<div class='js-autocomplete'></div>",
-        resultsWrapper: "<div class='autocomplete nav__submenu'></div>",
-        resultsContainer: "<div class='autocomplete__results nav__submenu__content nav--stacked icon--tapered-arrow-up--after icon--white--after icon--white--bordered'></div>",
-        resultsItem: "<a class='autocomplete__results__item nav__submenu__item nav__item nav__submenu__link' href='{{slug}}'>{{title}}<br /><span class='copy--caption'>{{slug}}</span></a>",
-        resultsItemHighlightClass: "autocomplete__results__item--highlight",
-        searchTermHighlightClass: "autocomplete__search-term--highlight",
-        hiddenClass: "is-hidden"
+      templates: {
+        item: "<div class='copy--feature'>{{title}}</div>",
+        value: "{{slug}}",
+        empty: "<div class='copy--feature'>No matches found</div>"
+      },
+      extraClasses: {
+        wrapper: "page-hopper"
       }
     });
 
