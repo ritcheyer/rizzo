@@ -98,9 +98,10 @@ define([
     });
   };
 
-  FlightsWidgetAutocomplete.prototype.onSelectCity = function(el, event, currentField) {
-    var selectedCode = $(el).data("airport").slice(0, -4),
-        selectedValue = $(el).text();
+  FlightsWidgetAutocomplete.prototype.onSelectCity = function(item, event, currentField) {
+    var $item = $(item),
+        selectedCode = $item.data("value").slice(0, -4),
+        selectedValue = $item.text();
 
     selectedValue = selectedValue.substring(0, selectedValue.indexOf(")"));
     if (currentField === "#js-from-city") {
@@ -116,14 +117,16 @@ define([
     new AutoComplete({
       el: el,
       threshold: 3,
-      limit: 5,
+      limit: 4,
       fetch: this.fetchCountries.bind(this),
       onItem: this.onSelectCity.bind(this),
-      template: {
-        elementWrapper:   "<div class='js-autocomplete'></div>",
-        resultsWrapper:   "<div class='autocomplete'></div>",
-        resultsContainer: "<ul class='autocomplete__results'></ul>",
-        resultsItem:      "<li class='autocomplete__results__item' data-airport='{{PlaceId}}'><div class='{{isCity}}' id='results-irem-wrapper'><span id='autocomplete-place-name'>{{PlaceName}}</span><span id='autocomplete-country-name'>{{CountryName}}</span></div></li>",
+      templates: {
+        item:
+          "<div class='{{isCity}}'>" +
+            "<span class='autocomplete__place-name'>{{PlaceName}}</span>" +
+            "<span class='autocomplete__country-name'>{{CountryName}}</span>" +
+          "</div>",
+        value: "{{PlaceId}}"
       }
     });
 
