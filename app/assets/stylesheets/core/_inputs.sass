@@ -86,10 +86,11 @@ input[type="submit"]
   transition: width 0.2s ease, background-color 0.2s ease
   border-radius: 16px
   background-color: $row-primary--darker
+  background-image: none
   color: $nav-primary-type
   display: inline-block
   height: 35px
-  padding: 0 10px
+  padding: 0 35px 0 10px
   vertical-align: top
   &:focus
     color: $body-copy
@@ -112,7 +113,6 @@ input[type="submit"]
       width: 200px
     +placeholder()
       text-indent: 0
-
 
   +placeholder()
     color: $row-primary--darker
@@ -146,70 +146,31 @@ input[type="submit"]
     background-position: 0 -28px
     @if $is-ie
       background-position: 0 0
+  .is-loading + &
+    animation: pulse 1s ease infinite
 
-
+  @keyframes "pulse"
+    0% 
+      opacity: 1   
+    50%
+      opacity: 0.05
+    100%
+      opacity: 1
 
 .primary-search-autocomplete
-  .autocomplete
-    position: relative
-    display: block
-    width: 100%
-    margin: 0
-    left: 0
-    top: 75%
-    .autocomplete__results
-      @extend %transition--base
-      @extend %fly-out-shadow
-      @extend %rounded-corners
-      list-style: none
-      top: 4px
-      left: 0
-      width: 100%
-      margin: 0
-      background-color: white
-      position: absolute
-      background-color: white
-      padding: 4px 0
-      +css-arrow-central(top, $size: 30px)
-      &:after
-        position: absolute
-        filter: drop-shadow(0 -1px 0 rgba(0,0,0,.3))
-      .btn--small
-        width: 90%
-        margin: 13px auto
-        padding-top: 9px
-        padding-bottom: 8px
-        display: block
-        text-transform: uppercase
-        +font-size(13)
-
-      .autocomplete__results__item
-        cursor: pointer
-        +font-size(14)
-        color: $titlegray
-        display: block
-        padding: 12px 12px 12px 39px
-        font-weight: normal
-        background-repeat: no-repeat
-        background-size: auto 100%
-        cursor: pointer
-        border-bottom: 1px solid $subduedgray
-        position: relative
-        text-decoration: none
-        &:last-child
-          border: 0
-        &:before
-          width: 20px
-          height: 20px
-          position: absolute
-          top: 8px
-          left: 9px
-        &:hover
-          background: $body-background-offset
-        &.autocomplete__results__item--highlight
-          background: $body-background-offset
-        .autocomplete__search-term--highlight
-          font-weight: bold
+  .autocomplete__results
+    top: 88%
+  .autocomplete__list
+    padding: 0
+  .autocomplete__list__item
+    +font-size(13px)
+    border-top: 0
+    &:first-child
+      border-radius: 4px 4px 0 0
+    &:last-child
+      border-radius: 0 0 4px 4px
+  .btn
+    text-transform: uppercase
 
 // -----------------------------------------------------------------------------
 //

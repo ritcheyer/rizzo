@@ -4,8 +4,7 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
 
   function NavSearch() {
 
-    var el = ".js-primary-search",
-        $el = $(el);
+    var $el = $(".js-primary-search");
 
     // switch search icon on click
     $el.on("focus", function() {
@@ -15,20 +14,18 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
     });
 
     new Autocomplete({
-      el: el,
-      threshold: 0,
+      el: $el,
+      threshold: 2,
       limit: 10,
-      template: {
-        elementWrapper: "<div class='js-autocomplete primary-search-autocomplete'></div>",
-        resultsWrapper: "<div class='autocomplete'></div>",
-        resultsContainer: "<div class='autocomplete__results icon--tapered-arrow-up--after icon--white--after'></div>",
-        resultsItemHighlightClass: "autocomplete__results__item--highlight",
-        resultsItem: "<a class='autocomplete__results__item icon--{{type}}--before' href='{{url}}'>{{name}}</a>",
-        searchTermHighlightClass: "autocomplete__search-term--highlight",
-        hiddenClass: "is-hidden"
-
+      templates: {
+        item: "<div class='nav__icon nav__submenu__item__text icon--{{type}}--before'>{{name}}</div>",
+        value: "{{url}}"
       },
-      fetch: function(searchTerm, cb) {
+      extraClasses: {
+        wrapper: "primary-search-autocomplete",
+        item: "nav__item nav__submenu__item"
+      },
+      fetch: function(searchTerm, callback) {
         $.ajax({
           url: "//www.lonelyplanet.com/search.json?q=" + searchTerm,
           dataType: "json",
@@ -43,8 +40,18 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
                 item.url = index > -1 && index < 5  ? item.slug : "http://www.lonelyplanet.com/" + item.slug;
               }
             }
-            cb(data);
-            $el.closest(".js-autocomplete").find(".autocomplete__results").append("<a class='btn btn--small backup-button' href='http://www.lonelyplanet.com/search?q=" + searchTerm + "'>See all results</a>");
+            callback(data);
+            $el
+              .next(".autocomplete__results")
+              .find(".autocomplete__list")
+              .append(
+                "<div class='autocomplete__list__item'>" +
+                  "<a class='btn btn--medium btn--linkblue btn--full-width'" +
+                    " href='http://www.lonelyplanet.com/search?q=" + searchTerm + "'>" +
+                    "See all results" +
+                  "</a>" +
+                "</div>"
+              );
           }
         });
       },
@@ -52,15 +59,16 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
     });
   }
 
-  NavSearch.prototype.onItem = function(el) {
+  NavSearch.prototype.onItem = function(item) {
+    var url = $(item).data("value");
 
     window.lp.analytics.api.trackEvent({
       category: "search",
       action: "autocomplete",
-      label: el.href
+      label: url
     });
 
-    window.location = el.href;
+    window.location = url;
 
   };
 
