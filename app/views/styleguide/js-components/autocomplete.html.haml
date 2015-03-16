@@ -4,134 +4,77 @@
   .clearfix
     %h1.copy--h1 AutoComplete
 
-  %p<
-    This guide presents an example usage taken from&nbsp;
-    %a{ href: "https://www.lonelyplanet.com/thorntree/friendships" }> Thorn Tree user search
-    \. For full guide go to&nbsp;
-    %a{ href: "https://github.com/lonelyplanet/autocomplete" }> AutoComplete repository
-    \.
+  %p
+    = succeed "." do
+      This is just an example showing AutocComplete implementation for
+      %strong Page Hopper
+    Check it out by pressing
+    %code.language-markup ctrl + k
+    = succeed "." do
+      = surround "(", ")" do
+        %code.language-markup cmd + k
+        for Macs
+  %p
+    For detailed config & usage instructions please visit our
+    = succeed "." do
+      %a{ href: "https://github.com/lonelyplanet/autocomplete" } AutoComplete repository
 
 .styleguide-block
 
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      1. Define Input Element
+      Text input
 
     %pre.styleguide.copy--body.language-markup
       %code
         = preserve do
           :escaped
-            <input class="js-autocomplete-all-users" type="text">
+            <input class='js-autocomplete-page-hopper input--page-hopper' type='text'>"
 
-    %p
-      %strong Note:
-    %p
-      If using
-      %code.language-markup simple_form
-      wrapper (as in Community) pass autocomplete parameter as in example below:
-
-    %pre.styleguide.copy--body.language-ruby
-      %code
-        = preserve do
-          :plain
-            = f.input :friend_id, as: :rizzo_text_field, placeholder: 'Find user...', input_html: { autocomplete: 'all-users' }
-
-    %p
-      It will add
-      %code.language-markup js-autocomplete-all-users
-      class to element.
 
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      2. Create Config File
+      Config
 
     %pre.styleguide.copy--body.language-javascript
       %code
         = preserve do
-          :plain
-            require(["autocomplete"], function(AutoComplete) {
-              jQuery(function($) {
-                // 2.1 Define fetch function
-                // 2.2 Define onItem function
-                // 2.3 Configure parameters
-                // 2.4 Initialize AutoComplete
-                // (Detailed description below)
-              });
-            });
-
-  .styleguide-block.styleguide-block__description.card.copy--body
-
-    %h2.copy--h2.styleguide-block__heading
-      2.1 Define fetch function
-
-    %pre.styleguide.copy--body.language-javascript
-      %code
-        = preserve do
-          :plain
-            var fetchUsers = function(searchTerm, callback) {
-              $.ajax({
-                dataType: "json",
-                url: "/thorntree/friendships/search.json",
-                data: { q: searchTerm }
-              }).done(callback)
+          :escaped
+            var config = {
+              el: ".js-autocomplete-page-hopper",
+              threshold: 2,
+              limit: 4,
+              templates: {
+                item: "<div class='copy--feature'>{{title}}</div>",
+                value: "{{slug}}",
+                empty: "<div class='copy--feature'>No matches found</div>"
+              },
+              extraClasses: {
+                wrapper: "page-hopper"
+              },
+              fetch: function(searchTerm, callback) {
+                var regex = new RegExp(searchTerm, "gim"),
+                    results = window.lp.pageHopper.sections.filter(function(current) {
+                      return regex.test(current.title);
+                    });
+                    
+                callback(results);
+              },
+              onItem: function(item) {
+                location.href = $(item).data("value");
+              }
             };
 
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      2.2 Define onItem function
+      Initialization
 
     %pre.styleguide.copy--body.language-javascript
       %code
         = preserve do
-          :plain
-             var onItemUsername = function(el) {
-               var elAttr = $(el).attr("data-username");
-                $(".js-autocomplete-all-users").val(elAttr);
-             },
+          :escaped
+            new AutoComplete(config);
 
-  .styleguide-block.styleguide-block__description.card.copy--body
-
-    %h2.copy--h2.styleguide-block__heading
-      2.3 Set Options & Template
-
-    %p<
-      Template in this example is based on rizzo's&nbsp;
-      %code.language-markup> _nav_flyout.sass
-      \. Some styles had to be overwritten, hence the custom
-      %code.language-markup _autocomplete.sass
-
-
-    %pre.styleguide.copy--body.language-javascript
-      %code
-        = preserve do
-          :plain
-            var config = {
-              el: ".js-autocomplete-all-users",
-              fetch: fetchUsers,
-              onItem: onItemUsername,
-              threshold: 2,
-              limit: 4,
-              template: {
-                elementWrapper: "&lt;div class='js-autocomplete'>&lt;/div>",
-                resultsWrapper: "&lt;div class='autocomplete nav__submenu'>&lt;/div>",
-                resultsContainer: "&lt;div class='autocomplete__results nav__submenu__content nav--stacked icon--tapered-arrow-up--after icon--white--after icon--white--bordered'>&lt;/div>",
-                resultsItem: "&lt;div class='autocomplete__results__item autocomplete__results__item--user-avatar nav__submenu__item nav__item nav__submenu__link' style='background-image: url({{avatar_url}})' data-username='{{username}}'>{{username}}&lt;/div>",
-                resultsItemHighlightClass: "autocomplete__results__item--highlight",
-                searchTermHighlightClass: "autocomplete__search-term--highlight",
-                hiddenClass: "is-hidden"
-               }
-             };
-
-  .styleguide-block.styleguide-block__description.card.copy--body
-
-    %h2.copy--h2.styleguide-block__heading
-      2.4 Initialize AutoComplete
-
-    %pre.styleguide.copy--body.language-javascript
-      %code
-        = preserve do
-          :plain
-            var ac = new AutoComplete(config);

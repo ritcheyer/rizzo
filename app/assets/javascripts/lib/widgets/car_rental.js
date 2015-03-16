@@ -279,19 +279,15 @@ define([
   };
 
   CarApp.prototype.initAutocompletes = function() {
-    var _this = this;
-
-    new AutoComplete({
+    this.autoCompletePickup = new AutoComplete({
       el: "#js-pickup-location",
-      template: {
-        resultsWrapper:    "<div class='autocomplete'></div>",
-        resultsContainer:  "<ul class='autocomplete__results'></ul>",
-        resultsItem:       "<li class='autocomplete__results__item' data-locationid='{{i}}'>{{n}}</li>",
-        resultsItemHighlightClass: "autocomplete__results__item--highlight"
-      },
       threshold: 2,
-      fetch: _this.fetchFilter,
-      onItem: _this._autoSelect
+      templates: {
+        item: "{{n}}",
+        value: "{{i}}"
+      },
+      fetch: this.fetchFilter,
+      onItem: this._autoSelect
     });
   };
 
@@ -305,15 +301,13 @@ define([
     $(".dropoff-area").show();
     $widget.addClass("drop-off-visible");
 
-    new AutoComplete({
+    this.autoCompleteDropoff = new AutoComplete({
       el: "#js-dropoff-location",
-      template: {
-        resultsWrapper:    "<div class='autocomplete'></div>",
-        resultsContainer:  "<ul class='autocomplete__results'></ul>",
-        resultsItem:       "<li class='autocomplete__results__item' data-locationid='{{i}}'>{{n}}</li>",
-        resultsItemHighlightClass: "autocomplete__results__item--highlight"
-      },
       threshold: 2,
+      templates: {
+        item: "{{n}}",
+        value: "{{i}}"
+      },
       fetch: this.fetchFilter,
       onItem: this._autoSelect
     });
@@ -412,9 +406,11 @@ define([
     }, 1000);
   };
 
-  CarApp.prototype._autoSelect = function(el) {
-    var selectedValue = $(el).text();
-    $(this.el).val(selectedValue).attr("data-locationid", $(el).attr("data-locationid"));
+  CarApp.prototype._autoSelect = function(item) {
+    var $item = $(item),
+        $input = $item.closest(".autocomplete").find("input");
+
+    $input.val($item.text()).attr("data-locationid", $item.data("value"));
   };
 
   CarApp.prototype._clearError = function($el) {
