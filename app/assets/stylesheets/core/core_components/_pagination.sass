@@ -8,8 +8,8 @@
 .pagination__link
   border-radius: 5px
   background-color: #fff
-  border: 2px solid $body-background
-  color: $section--transport
+  border: 2px solid mix($darkgray, white, 15%)
+  color: $titlegray
   display: inline-block
   font-weight: bold
   margin-left: 2px
@@ -17,6 +17,9 @@
 
   &:first-child
     margin-left: 0
+
+  &:hover
+    border-color: mix($darkgray, white, 35%)
 
 .pagination__link--next,
 .pagination__link--prev
@@ -26,20 +29,14 @@
     position: relative
     top: 2px
 
-.pagination__link--first,
-.pagination__link--last,
-.pagination__link--next,
-.pagination__link--prev
-  display: inline-block
-
 .pagination__backwards,
 .pagination__forwards
   min-height: 35px
   min-width: 100px
 
 .pagination__link--current
-  display: inline-block
-  opacity: 0.5
+  color: $linkblue
+  border-color: $linkblue
 
 .pagination__numbers
   text-align: center
