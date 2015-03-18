@@ -25,7 +25,7 @@ input[type="submit"]
   box-sizing: border-box
   transition: background 0.3s ease
   background-color: $body-background-offset
-  border: 1px solid $body-background-offset
+  border: 1px solid $details-panel-border
   color: $body-copy
   padding: 9px 10px
   width: 100%
@@ -34,14 +34,10 @@ input[type="submit"]
 
   &:focus
     background-color: #fff
-    border: 1px solid $details-panel-border
+    border-color: $details-panel-border
 
   .standout &
     background-color: #fff
-
-    &:focus
-      background-color: #fff
-      border: 1px solid $details-panel-border
 
 .input--regular--dark
   box-sizing: border-box
@@ -150,8 +146,8 @@ input[type="submit"]
     animation: pulse 1s ease infinite
 
   @keyframes "pulse"
-    0% 
-      opacity: 1   
+    0%
+      opacity: 1
     50%
       opacity: 0.05
     100%
