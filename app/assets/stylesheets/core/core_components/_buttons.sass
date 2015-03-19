@@ -13,7 +13,8 @@
   padding: 5px 20px
   overflow: hidden
   text-align: center
-  border: none
+  border: 1px solid
+  border-color: transparent
   &:hover
     text-decoration: none
 
@@ -27,19 +28,19 @@
 
 .btn--small
   +btn-font-size(13)
-  padding: 3px 14px
+  padding: 2px 14px
 
 .btn--medium
   +btn-font-size(14)
-  padding: 4px 20px
+  padding: 3px 20px
 
 .btn--large
   +btn-font-size(16)
-  padding: 5px 30px
+  padding: 4px 30px
 
 .btn--x-large
   +btn-font-size(18)
-  padding: 5px 40px
+  padding: 4px 40px
 
 // -----------------------------------------------------------------------------
 // Buttons font modifiers
@@ -79,6 +80,8 @@
   display: inline-block
   margin-right: 5px
   overflow: visible
+  &:last-child
+    margin-right: 0
 
 // -----------------------------------------------------------------------------
 // Button Colors
