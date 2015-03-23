@@ -188,8 +188,6 @@ define([
   CarApp.prototype.handlers = function() {
     var _this = this;
 
-    $widget.on("change", "#js-pickup-date", _this.setDropoffDate.bind(_this));
-
     $dropoffDate.add($pickupDate).change(function() {
       _this._clearError($(this));
     });
