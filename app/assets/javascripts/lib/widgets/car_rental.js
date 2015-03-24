@@ -81,34 +81,28 @@ define([
   };
 
   CarApp.prototype.generateCurrencies = function() {
-    var options = "", currency;
+    var options = "<option value=''>Currency</option>",
+        currency;
 
     for (var i = 0; i < currencies.length; i++) {
       currency = currencies[i].code;
-      options += "<option value='" + currency + "'" + (currency == userCurrency ? " selected" : "") + ">" + currencies[i].name + "</option>";
+      options += "<option value='" + currency + "'" + ">" + currencies[i].name + "</option>";
     }
     $currency.html(options).trigger("change");
   };
 
   CarApp.prototype.generateCountries = function() {
-    var options = "",
-        foundSelected = false,
+    var options = "<option value=''>Country of Residence</option>",
         currency;
 
     for (var i = 0; i < countries.length; i++) {
-      var selected = "";
-
       if (countries[i].hasOwnProperty("currency")) {
         currency = "data-currencycode='" + countries[i].currency + "'";
       } else {
         currency = "";
       }
-      if (!foundSelected && countries[i].currency == userCurrency) {
-        selected = " selected";
-        foundSelected = true;
-      }
 
-      options += "<option value='" + countries[i].code + "' " + currency + selected + ">" + countries[i].name + "</option>";
+      options += "<option value='" + countries[i].code + "' " + currency + ">" + countries[i].name + "</option>";
     }
 
     $residence.html(options).trigger("change");
