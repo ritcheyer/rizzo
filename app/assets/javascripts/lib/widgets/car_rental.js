@@ -273,6 +273,7 @@ define([
   CarApp.prototype.initAutocompletes = function() {
     this.autoCompletePickup = new AutoComplete({
       el: "#js-pickup-location",
+      limit: 0,
       threshold: 2,
       templates: {
         item: "{{n}}",
