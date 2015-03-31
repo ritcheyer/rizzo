@@ -24,7 +24,7 @@ define([ "jquery" ], function($) {
     });
   };
 
-   // "Squarish" is determined based on being < 6:5 / 5:6 ratio
+  // "Squarish" is determined based on being < 6:5 / 5:6 ratio
   ImageHelper.prototype.detectOrientation = function($img) {
     var ratio = this._ratio($img);
 
