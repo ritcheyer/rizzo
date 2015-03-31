@@ -35,7 +35,7 @@ define([ "jquery" ], function($) {
           callback();
         }
       };
-        // Load images
+      // Load images
       $(image)
         .load(loadHandler)
         .error(loadHandler)
