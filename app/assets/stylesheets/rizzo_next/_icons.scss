@@ -1,0 +1,29 @@
+[class^="icon--"],
+[class*=" icon--"] {
+  background-size: cover;
+  &:before,
+  &:after {
+    content: "";
+    background-size: cover;
+    pointer-events: none;
+  }
+}
+
+.icon--hamburger--before:before,
+.icon--hamburger--after:after,
+.icon--hamburger {
+  background-image: url('https://assets.staticlp.com/destinations-next/icons/hamburger.svg');
+  background-repeat: no-repeat;
+}
+
+.icon--lp-logo {
+  background-image: url("https://assets.staticlp.com/destinations-next/icons/lp-logo.svg");
+}
+
+.icon--search {
+  background-image: url("https://assets.staticlp.com/destinations-next/icons/search.svg");
+}
+
+.icon--white {
+  background-position: 0 40%
+}
