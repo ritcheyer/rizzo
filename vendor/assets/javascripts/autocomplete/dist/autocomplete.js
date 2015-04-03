@@ -5,6 +5,10 @@ define([ "jquery" ], function($) {
   var defaults = {
     el: ".js-autocomplete",
     threshold: 2,
+    triggers: {
+      start: false,
+      end: false
+    },
     limit: 5,
     forceSelection: false,
     debounceTime: 200,
@@ -18,7 +22,7 @@ define([ "jquery" ], function($) {
     onItem: undefined
   };
 
-  function AutoComplete(args) {
+  function Autocomplete(args) {
     $.extend(this, {
       config: $.extend(true, {}, defaults, args),
       results: [],
@@ -32,10 +36,13 @@ define([ "jquery" ], function($) {
         27: "esc",
         13: "enter",
         38: "up",
-        40: "down"
+        40: "down",
+        37: "left",
+        39: "right"
       },
       classes: {
         wrapper:     "autocomplete",
+        input:       "autocomplete__input",
         results:     "autocomplete__results",
         list:        "autocomplete__list",
         item:        "autocomplete__list__item",
@@ -43,9 +50,15 @@ define([ "jquery" ], function($) {
         disabled:    "autocomplete__list__item--disabled",
         empty:       "autocomplete__list__item--empty",
         searchTerm:  "autocomplete__list__item__search-term",
-        loading:     "is-loading"
+        loading:     "is-loading",
+        visible:     "is-visible"
       },
     });
+
+    this.isTriggered = !!(this.config.triggers.start && this.config.triggers.end);
+
+    // make sure threshold isn't lower than 1
+    this.config.threshold < 1 && (this.config.threshold = 1);
 
     // if 'value' template is undefined, use 'item' template
     !this.config.templates.value && (this.config.templates.value = this.config.templates.item);
@@ -82,7 +95,7 @@ define([ "jquery" ], function($) {
     this.init();
   }
 
-  AutoComplete.prototype.init = function() {
+  Autocomplete.prototype.init = function() {
     this.wrapEl();
     this.listen();
   };
@@ -91,13 +104,20 @@ define([ "jquery" ], function($) {
   // Subscribe to Events
   // -------------------------------------------------------------------------
 
-  AutoComplete.prototype.listen = function() {
+  Autocomplete.prototype.listen = function() {
     var _this = this,
-        itemSelector = "." + this.classes.item.replace(" ", ".");
+        itemSelector = "." + this.classes.item.replace(/ /g, ".");
 
-    this.$wrapper
-      .on("keyup", $.proxy(this.processTyping, this))
-      .on("keydown", $.proxy(this.processSpecialKey, this));
+    this.$el
+      .on("keyup click", $.proxy(this.processTyping, this))
+      .on("keydown", $.proxy(this.processSpecialKey, this))
+      .on("blur", function(e) {
+        if (_this.config.forceSelection) {
+          e.target.value != _this.searchTerm && _this.$el.val(_this.searchTerm);
+          !_this.selected && _this.$el.val("");
+        }
+        _this.clearResults();
+      });
 
     // 'blur' fires before 'click' so we have to use 'mousedown'
     this.$results
@@ -111,30 +131,24 @@ define([ "jquery" ], function($) {
         _this.highlightResult();
       });
 
-    this.$el.on("blur", function(e) {
-      if (_this.config.forceSelection) {
-        e.target.value != _this.searchTerm && _this.$el.val(_this.searchTerm);
-        !_this.selected && _this.$el.val("");
-      }
-      _this.clearResults();
-    });
   };
 
   // -------------------------------------------------------------------------
   // Functions
   // -------------------------------------------------------------------------
 
-  AutoComplete.prototype.wrapEl = function() {
+  Autocomplete.prototype.wrapEl = function() {
     this.$el
+      .addClass(this.classes.input)
       .wrap(this.templates.$wrapper)
       .after(this.templates.$results.append(this.templates.$list));
 
     this.$wrapper = this.$el.closest("." + this.classes.wrapper.replace(/ /g, "."));
-    this.$results = $("." + this.classes.results.replace(/ /g, "."), this.$wrapper).hide();
+    this.$results = $("." + this.classes.results.replace(/ /g, "."), this.$wrapper);
     this.$list = $("." + this.classes.list.replace(/ /g, "."), this.$wrapper);
   };
 
-  AutoComplete.prototype.showResults = function() {
+  Autocomplete.prototype.showResults = function() {
     this.populateResults();
 
     if (this.results.length > 0) {
@@ -145,27 +159,27 @@ define([ "jquery" ], function($) {
       });
     }
 
-    this.$results.show();
+    this.$wrapper.addClass(this.classes.visible);
     this.displayed = true;
+    this.resultIndex = -1;
 
     // highlight first item if forceSelection
     if (this.config.forceSelection) {
-      this.resultIndex = 0;
-      this.highlightResult();
+      this.changeIndex("down") && this.highlightResult();
     }
   };
 
-  AutoComplete.prototype.hideResults = function() {
-    this.$results.hide();
+  Autocomplete.prototype.hideResults = function() {
+    this.$wrapper.removeClass(this.classes.visible);
     this.displayed = false;
   };
 
-  AutoComplete.prototype.populateResults = function() {
+  Autocomplete.prototype.populateResults = function() {
     this.processTemplate();
     this.$list.html(this.$items);
   };
 
-  AutoComplete.prototype.processTemplate = function() {
+  Autocomplete.prototype.processTemplate = function() {
     var len = this.results.length;
 
     this.$items = $();
@@ -179,7 +193,7 @@ define([ "jquery" ], function($) {
     }
   };
 
-  AutoComplete.prototype.renderTemplate = function($item, obj) {
+  Autocomplete.prototype.renderTemplate = function($item, obj) {
     var template = $item[0].outerHTML;
 
     for (var key in obj) {
@@ -192,15 +206,16 @@ define([ "jquery" ], function($) {
     return $item;
   };
 
-  AutoComplete.prototype.highlightResult = function() {
-    // highlight result by adding class
-    this.$items
-      .removeClass(this.classes.highlighted)
-      .eq(this.resultIndex)
-      .addClass(this.classes.highlighted);
+  Autocomplete.prototype.highlightResult = function() {
+    var $currentItem = this.$items.eq(this.resultIndex);
+    // unless disabled, highlight result by adding class
+    this.$items.removeClass(this.classes.highlighted);
+    if (!$currentItem.hasClass(this.classes.disabled)) {
+      $currentItem.addClass(this.classes.highlighted);
+    }
   };
 
-  AutoComplete.prototype.selectResult = function() {
+  Autocomplete.prototype.selectResult = function() {
     var $item = this.$items.eq(this.resultIndex);
 
     if (!$item.hasClass(this.classes.disabled)) {
@@ -211,22 +226,21 @@ define([ "jquery" ], function($) {
     }
   };
 
-  AutoComplete.prototype.clearResults = function() {
+  Autocomplete.prototype.clearResults = function() {
     this.results = [];
     this.$list.html(null);
     this.resultIndex = -1;
     this.hideResults();
   };
 
-  AutoComplete.prototype.callFetch = function() {
+  Autocomplete.prototype.callFetch = function() {
     var _this = this,
         limit = this.config.limit;
 
     this.config.fetch(this.searchTerm, function(results) {
       if (!!results) {
         _this.results = limit > 0 ? results.slice(0, limit) : results;
-        if ((!!_this.config.templates.empty || results.length > 0) &&
-            _this.$el.is(":focus") && (_this.searchTerm.length >= _this.config.threshold)) {
+        if ((!!_this.config.templates.empty || results.length > 0) && _this.$el.is(":focus")) {
           _this.showResults();
         } else {
           _this.clearResults();
@@ -236,8 +250,32 @@ define([ "jquery" ], function($) {
     });
   };
 
-  AutoComplete.prototype.processTyping = function(e) {
-    var currentInputVal = $.trim(e.target.value);
+  Autocomplete.prototype.getTriggeredValue = function(e) {
+    var fullValue = e.target.value,
+        triggeredValue = "",
+        startTrigger = this.config.triggers.start,
+        endTrigger = this.config.triggers.end,
+        referenceIndex = e.target.selectionStart - 1,
+        startTriggerBeforeReferenceIndex = fullValue.lastIndexOf(startTrigger, referenceIndex),
+        endTriggerBeforeReferenceIndex = fullValue.lastIndexOf(endTrigger, referenceIndex),
+        endTriggerAfterReferenceIndex = fullValue.indexOf(endTrigger, referenceIndex);
+
+    if (startTriggerBeforeReferenceIndex > endTriggerBeforeReferenceIndex) {
+      if (endTriggerAfterReferenceIndex > -1) {
+        var length = endTriggerAfterReferenceIndex - startTriggerBeforeReferenceIndex;
+        // value between start trigger and end trigger
+        triggeredValue = fullValue.substr(startTriggerBeforeReferenceIndex, length);
+      } else {
+        // value between start trigger and end of text
+        triggeredValue = fullValue.substr(startTriggerBeforeReferenceIndex);
+      }
+    }
+
+    return triggeredValue;
+  };
+
+  Autocomplete.prototype.processTyping = function(e) {
+    var currentInputVal = this.isTriggered ? this.getTriggeredValue(e) : $.trim(e.target.value);
 
     if (this.searchTerm != currentInputVal) {
       this.searchTerm = currentInputVal;
@@ -250,72 +288,109 @@ define([ "jquery" ], function($) {
     }
   };
 
-  AutoComplete.prototype.debounceSearch = function() {
+  Autocomplete.prototype.debounceSearch = function() {
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout($.proxy(this.processSearch, this), this.config.debounceTime);
   };
 
-  AutoComplete.prototype.processSearch = function() {
+  Autocomplete.prototype.processSearch = function() {
     this.$wrapper.addClass(this.classes.loading);
     this.callFetch();
   };
 
-  AutoComplete.prototype.changeIndex = function(direction) {
-    var changed = false;
-
-    if (direction === "up") {
-      if (this.resultIndex > 0 && this.results.length > 1) {
-        this.resultIndex--;
-        changed = true;
-      }
-    } else if (direction === "down") {
-      if (this.resultIndex < this.results.length - 1 && this.results.length > 0) {
-        this.resultIndex++;
-        changed = true;
-      }
-    }
-    return changed;
+  Autocomplete.prototype.currentItemDisabled = function() {
+    return this.$items.eq(this.resultIndex).hasClass(this.classes.disabled);
   };
 
-  AutoComplete.prototype.processSpecialKey = function(e) {
-    var keyName = this.specialKeys[e.keyCode],
-        changed = false;
+  Autocomplete.prototype.allItemsDisabled = function() {
+    return !this.$items.not("." + this.classes.disabled).length;
+  };
 
-    e.which === 13 && this.displayed && this.resultIndex > -1 && e.preventDefault();
+  Autocomplete.prototype.increaseIndex = function() {
+    this.resultIndex++;
+    this.resultIndex == this.results.length && (this.resultIndex = 0);
+  };
+
+  Autocomplete.prototype.decreaseIndex = function() {
+    this.resultIndex <= 0 && (this.resultIndex = this.results.length);
+    this.resultIndex--;
+  };
+
+  Autocomplete.prototype.changeIndex = function(direction) {
+    var resultsLength = this.results.length,
+        tmpIndex = this.resultIndex,
+        i = 0;
+
+    if (resultsLength && !this.allItemsDisabled()) {
+      switch (direction) {
+        case "up": {
+          this.decreaseIndex();
+          while (this.currentItemDisabled() && i < resultsLength) {
+            this.decreaseIndex();
+            i++;
+          }
+          break;
+        }
+        case "down": {
+          this.increaseIndex();
+          while (this.currentItemDisabled() && i < resultsLength) {
+            this.increaseIndex();
+            i++;
+          }
+          break;
+        }
+      }
+    }
+    return this.resultIndex != tmpIndex;
+  };
+
+  Autocomplete.prototype.processSpecialKey = function(e) {
+    var keyName = this.specialKeys[e.keyCode],
+        indexChanged = false,
+        anyResultHighlighted = this.resultIndex > -1,
+        anyResultsAvailable = !!this.results.length;
+
     clearTimeout(this.typingTimer);
 
     if (this.displayed) {
       switch (keyName) {
-        case "up": {
-          changed = this.changeIndex("up");
-          break;
-        }
+        case "up":
         case "down": {
-          changed = this.changeIndex("down");
+          if (anyResultsAvailable) {
+            e.preventDefault();
+            indexChanged = this.changeIndex(keyName);
+          }
           break;
         }
-        case "enter": {
-          this.resultIndex > -1 && this.selectResult();
+        case "left":
+        case "right": {
+          if (anyResultHighlighted) {
+            e.preventDefault();
+            indexChanged = this.changeIndex(keyName == "left" ? "up" : "down");
+          }
           break;
         }
+        case "enter":
         case "tab": {
-          this.resultIndex > -1 && this.selectResult();
+          if (anyResultHighlighted) {
+            e.preventDefault();
+            this.selectResult();
+          }
           break;
         }
         case "esc": {
+          e.preventDefault();
           this.config.forceSelection && this.$el.val("");
           this.clearResults();
           break;
         }
-        default: {
-          break;
-        }
       }
     }
-    changed && this.highlightResult();
+
+    indexChanged && this.highlightResult();
   };
 
-  AutoComplete.prototype.defaultFetch = function(searchTerm, callback) {
+  Autocomplete.prototype.defaultFetch = function(searchTerm, callback) {
     var results = [
       { text: "Jon" },
       { text: "Bon", disabled: true },
@@ -327,7 +402,7 @@ define([ "jquery" ], function($) {
     }));
   };
 
-  AutoComplete.prototype.defaultOnItem = function(item) {
+  Autocomplete.prototype.defaultOnItem = function(item) {
     $(this.config.el).val($(item).data("value"));
   };
 
@@ -389,5 +464,5 @@ define([ "jquery" ], function($) {
     });
   };
 
-  return AutoComplete;
+  return Autocomplete;
 });
