@@ -6,23 +6,26 @@
 
 .autocomplete
   position: relative
-  input
+  input, textarea
     background-image: url("#{image_path('shared/spinner.gif')}")
     background-repeat: no-repeat
     background-position: right 5px top 11px
     background-size: 0
-  &.is-loading input
-    background-size: 40px
+  &.is-loading 
+    input, textarea
+      background-size: 40px
 
 .autocomplete__results
   +z-layer(middle)
   position: absolute
-  display: block
+  display: none
   cursor: pointer
   width: 100%
   padding: 10px 0
   left: 0
   top: 86%
+  .autocomplete.is-visible &
+    display: block
 
 .autocomplete__list
   +css-arrow-central(top, $size: 30px)
@@ -33,8 +36,6 @@
   padding: 10px 0
   background-color: white
   border-top: 1px solid rgba(0, 0, 0, 0.05)
-  max-height: 202px
-  overflow: scroll
   &:after
     +icon-color(white)
     position: absolute
