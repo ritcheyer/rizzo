@@ -21,6 +21,10 @@ define(function() {
     mpu: [
       { browser: [ 0, 0 ], ad_sizes: [ 300, 250 ] }
     ],
+    "mpu-bottomboard": [
+      { browser: [ 728, 0 ], ad_sizes: [ 728, 90 ] },
+      { browser: [ 0, 0 ], ad_sizes: [ 300, 250 ] }
+    ],
     "mpu-double": [
       { browser: [ 728, 0 ], ad_sizes: [ [ 300, 600 ], [ 300, 250 ] ] },
       { browser: [ 0, 0 ], ad_sizes: [ 300, 250 ] }
