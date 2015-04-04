@@ -14,12 +14,12 @@
 
 - if item[:slug]
 
-  %a.nav__item.js-nav-item{ data: item[:analytics], class: [item_classes, active, item[:extra_class]], href: item[:slug], itemprop: "url", aria: { label: active.present? ? "Current page" : nil } }<
+  %a.nav__item.js-nav-item{ class: [item_classes, active, item[:extra_class]], data: item[:analytics], href: item[:slug], target: item[:target], itemprop: "url", aria: { label: active.present? ? "Current page" : nil } }<
 
     - if item[:image_url]
       %img{ class: "nav__submenu__item--image", src: item[:image_url], alt: item[:title] }
 
-    %div{itemprop: "name", class: [item[:icon_class] ? "nav__icon #{item[:icon_class]}" : false, defined?(submenu_item) ? "" : "wv--hidden--before", "nav__submenu__item__text"] }
+    %div{ class: [item[:icon_class] ? "nav__icon #{item[:icon_class]}" : false, defined?(submenu_item) ? "" : "wv--hidden--before", "nav__submenu__item__text"], itemprop: "name" }
       = item[:title]
 
       - if show_badge
@@ -30,5 +30,5 @@
     = render "components/navigation/submenu", item: item, show_responsive_toggle: !defined?(primary), button_text: item[:button_text], button_url: item[:button_url]
 
 - else
-  %span.nav__item{class: [nav_type, item[:extra_class]]}
+  %span.nav__item{ class: [nav_type, item[:extra_class]]}
     = item[:title]
