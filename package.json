@@ -2,9 +2,6 @@
   "name": "rizzo",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "preinstall": "git submodule update --init"
-  },
   "devDependencies": {
     "grunt": "latest",
     "grunt-concurrent": "latest",
