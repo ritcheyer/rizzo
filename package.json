@@ -2,6 +2,9 @@
   "name": "rizzo",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "preinstall": "git submodule update -i -r"
+  },
   "devDependencies": {
     "grunt": "latest",
     "grunt-concurrent": "latest",
@@ -12,7 +15,7 @@
     "grunt-contrib-watch": "latest",
     "grunt-grunticon": "latest",
     "grunt-imageoptim": "latest",
-    "grunt-jscs": "^1.1.0",
+    "grunt-jscs": "^1.6.0",
     "grunt-open": "latest",
     "grunt-plato": "latest",
     "grunt-shell": "latest",
