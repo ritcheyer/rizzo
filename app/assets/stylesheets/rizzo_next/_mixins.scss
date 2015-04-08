@@ -20,3 +20,8 @@ $base-font-size: 14 !default;
   $ratioPercentage: ($imageHeight / $imageWidth) * 100;
   padding-bottom: #{$ratioPercentage + %};
 }
+
+@mixin hardware-acceleration() {
+  z-index: 1;
+  transform: translateZ(0);
+}
