@@ -1,0 +1,23 @@
+@mixin h1-props($mobile) {
+  font-size: 81px;
+
+  @include respond-to($mobile) {
+    font-size: 120px;
+  }
+}
+
+@mixin strapline-props($mobile) {
+  font-size: 20px;
+
+  @include respond-to($mobile) {
+    font-size: 30px;
+  }
+}
+
+@mixin navigation-item-props($mobile) {
+  font-size: 18px;
+
+  @include respond-to($mobile) {
+    font-size: 13px;
+  }
+}

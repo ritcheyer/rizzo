@@ -4,12 +4,6 @@ $base-font-size: 14 !default;
   @return $value / ($value * 0 + 1);
 }
 
-@mixin font-size($sizeValue: 14) {
-  $value: strip-unit($sizeValue);
-  font-size: #{$value + px};
-  font-size: #{($value / $base-font-size) + rem};
-}
-
 @mixin respond-to($screen-width) {
   @media only screen and (min-width : $screen-width+ 0px) {
     @content;
