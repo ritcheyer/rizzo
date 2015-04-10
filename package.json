@@ -12,7 +12,7 @@
     "grunt-contrib-watch": "latest",
     "grunt-grunticon": "latest",
     "grunt-imageoptim": "latest",
-    "grunt-jscs": "^1.1.0",
+    "grunt-jscs": "^1.6.0",
     "grunt-open": "latest",
     "grunt-plato": "latest",
     "grunt-shell": "latest",

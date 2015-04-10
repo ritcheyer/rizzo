@@ -195,7 +195,8 @@ module.exports = function(grunt) {
     jshint: {
       src: [ "Gruntfile.js", "app/assets/javascripts/**/*.js" ],
       options: {
-        jshintrc: "./.jshintrc"
+        jshintrc: "./.jshintrc",
+        ignores: "app/assets/javascripts/data/**"
       }
     },
     jscs: {

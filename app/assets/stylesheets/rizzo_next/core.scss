@@ -1,0 +1,15 @@
+@import "webpack_deps"; // variables and mixins
+@import "reset";
+@import "fonts";
+@import "clearfix";
+@import "utility_classes";
+@import "icons";
+@import "buttons";
+
+body {
+  font-family: $sans-serif;
+}
+
+h1 {
+  font-weight: $semibold;
+}
