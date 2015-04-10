@@ -10,4 +10,9 @@
   padding: 11px 22px;
   border-radius: 29px;
   cursor: pointer;
+  transition: background-color 0.2s ease-in;
+
+  &:hover {
+    background-color: $button-hover-background;
+  }
 }
