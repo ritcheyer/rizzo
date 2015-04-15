@@ -50,3 +50,7 @@ $base-font-size: 14 !default;
 @mixin divider() {
   border-bottom: 1px solid $divider-color;
 }
+@mixin component-width() {
+  max-width: 1290px;
+  margin: 0 auto;
+}
