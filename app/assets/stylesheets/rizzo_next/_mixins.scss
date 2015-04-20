@@ -19,3 +19,25 @@ $base-font-size: 14 !default;
   z-index: 1;
   transform: translateZ(0);
 }
+
+// [doc] A mixin to help clean up z-index madness. Options are: `below`, `default`, `middle`, `top`, and `modal` [/doc]
+@mixin z-layer( $layer: default ){
+  @if $layer == below {
+    z-index: -1;
+  }
+  @else if $layer == default {
+    z-index: 1;
+  }
+  @else if $layer == middle {
+    z-index: 10;
+  }
+  @else if $layer == top {
+    z-index: 20;
+  }
+  @else if $layer == modal {
+    z-index: 9999;
+  }
+  @else {
+    z-index: 1;
+  }
+}
