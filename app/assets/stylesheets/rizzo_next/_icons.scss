@@ -24,8 +24,31 @@
   background-image: url("https://assets.staticlp.com/destinations-next/icons/search.svg");
 }
 
+.icon--chevron-right {
+  background-image: url("https://assets.staticlp.com/destinations-next/icons/chevron-right.svg");
+}
+
+.icon--sight {
+  background:{
+    image: url("https://assets.staticlp.com/destinations-next/icons/sight--line.svg");
+    repeat: no-repeat;
+  }
+}
+
+.icon--cross {
+  background-image: url("https://assets.staticlp.com/destinations-next/icons/cross.svg");
+}
+
 .icon--white {
-  background-position: 0 40%
+  background-position: 0 40%;
+}
+
+.icon--lp-blue {
+  background-position: 50% 60%;
+}
+
+.icon--custom-2 {
+  background-position: 50% 100%;
 }
 
 .icon--chevron-right {
