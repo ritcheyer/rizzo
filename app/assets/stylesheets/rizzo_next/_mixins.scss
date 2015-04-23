@@ -5,16 +5,20 @@ $base-font-size: 14 !default;
 }
 
 @mixin respond-to($screen-width) {
-  @media only screen and (min-width : $screen-width+ 0px) {
+  @media only screen and (min-width : $screen-width + 0px) {
     @content;
   }
 }
 
+// Providing an image width and height, provides the correct aspect ratio via padding-bottom %
+// This should be used with an element of a height of 0, so that the height is determined by the padding-bottom
+// rather than the element's height property
 @mixin best-fit-padding($imageWidth, $imageHeight) {
   $ratioPercentage: ($imageHeight / $imageWidth) * 100;
   padding-bottom: #{$ratioPercentage + %};
 }
 
+// Hack to force GPU rendering (most in the community argue this should be used quite sparingly!!)
 @mixin hardware-acceleration() {
   z-index: 1;
   transform: translateZ(0);
@@ -40,4 +44,9 @@ $base-font-size: 14 !default;
   @else {
     z-index: 1;
   }
+}
+
+// Standard divider used between sections
+@mixin divider() {
+  border-bottom: 1px solid $divider-color;
 }
