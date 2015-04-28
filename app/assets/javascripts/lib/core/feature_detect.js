@@ -42,7 +42,7 @@ define([ "jquery" ], function($) {
     document.body.insertBefore(el, document.body.firstChild);
 
     if (transform) {
-      el.style[transform.css] = "translate3d(1px,1px,1px)";
+      el.style[transform.js] = "translate3d(1px,1px,1px)";
       has3d = window.getComputedStyle(el).getPropertyValue(transform.css);
     }
 
