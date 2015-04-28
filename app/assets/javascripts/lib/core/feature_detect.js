@@ -101,10 +101,10 @@ define([ "jquery" ], function($) {
   features.transform = function() {
     var
       transforms = {
+        transform: "transform",
         webkitTransform: "-webkit-transform",
         MozTransform: "-moz-transform",
-        msTransform: "-ms-transform",
-        transform: "transform"
+        msTransform: "-ms-transform"
       },
       transform;
 
