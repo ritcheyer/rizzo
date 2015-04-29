@@ -20,3 +20,12 @@
 .button--wide{
   padding: 11px 42px;
 }
+
+.button--inverted {
+  background-color: transparent;
+  color: $button-background;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
