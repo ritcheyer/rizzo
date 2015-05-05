@@ -47,9 +47,15 @@ $base-font-size: 14 !default;
 }
 
 // Standard divider used between sections
-@mixin divider() {
-  border-bottom: 1px solid $divider-color;
+@mixin divider($position: bottom) {
+  @if $position == bottom {
+    border-bottom: 1px solid $divider-color;
+  }
+  @else if $position == top {
+    border-top: 1px solid $divider-color;
+  }
 }
+
 @mixin component-width() {
   max-width: 1290px;
   margin: 0 auto;
