@@ -107,6 +107,9 @@
           :name: "UI Colours"
           :slug: "ui-colours"
         -
+          :name: "Destination Next Colors"
+          :slug: "colors-next"
+        -
           :name: "Typography"
           :slug: "typography"
     -
