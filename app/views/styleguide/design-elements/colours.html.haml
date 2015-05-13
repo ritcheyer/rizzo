@@ -11,5 +11,5 @@
       colour_palette.sass
 
   .grid-wrapper--10
-    - @app.get_colours('_colour_palette').each do |group|
+    - @app.get_colours('../../assets/stylesheets/sass/variables/_colour_palette.sass').each do |group|
       = render 'styleguide/partials/colour', group: group

@@ -21,7 +21,7 @@ class StyleGuide < RizzoApp
   end
 
   def get_colours(file)
-    colours = File.read(File.expand_path("../../assets/stylesheets/sass/variables/#{file}.sass", __FILE__))
+    colours = File.read(File.expand_path("#{file}", __FILE__))
     colours = colours.split("// -----------------------------------------------------------------------------\n")
     colours.delete_if(&:empty?)
     groups = []
@@ -85,12 +85,12 @@ class StyleGuide < RizzoApp
   end
 
   def extract_colour(contents, variable)
-    matches = contents.match(/(#{Regexp.escape(variable)})\s*:\s*(#[a-fA-F0-9]{3,6})\s*(!default)?/)
+    matches = contents.match(/(#{Regexp.escape(variable)})\s*:\s*(#[a-fA-F0-9]{3,6})\s*(!default|!default;)?/)
     matches ? matches[2] : matches
   end
 
   def extract_variable(line)
-    matches = line.match(/(\$[0-9a-zA-Z_-]+)\s*(!default)?/)
+    matches = line.match(/(\$[0-9a-zA-Z_-]+)\s*(!default|!default;)?/)
     matches ? matches[1] : matches
   end
 
