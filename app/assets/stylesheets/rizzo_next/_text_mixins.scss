@@ -8,20 +8,6 @@
   }
 }
 
-@mixin h2-props($mobile) {
-  color: $h2-color;
-  font: {
-    size: 28px;
-    family: $sans-serif;
-    weight: $light;
-  }
-  line-height: 1.8;
-
-  @include respond-to($mobile) {
-    font-size: 50px;
-  }
-}
-
 @mixin h3-props($mobile) {
   color: $h2-color;
   font: {

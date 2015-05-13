@@ -63,13 +63,15 @@ $base-font-size: 14 !default;
 
 @mixin author-image($mobile) {
   display: inline-block;
-  width: 50px;
+  width: 12vw;
   margin-right: 5px;
   border-radius: 60px;
   vertical-align: middle;
+  max-width: 50px;
 
   @include respond-to($mobile) {
     width: 80px;
+    max-width: none;
     margin-bottom: 15px;
   }
 }
@@ -85,23 +87,31 @@ $base-font-size: 14 !default;
   }
 }
 
-@mixin author-name() {
+@mixin author-name($mobile) {
   margin-bottom: 4px;
   font: {
     weight: $semibold;
-    size: 14px;
+    size: 4vw;
   }
   text-transform: uppercase;
   color: $body-color;
   letter-spacing: 1px;
+
+  @include respond-to($mobile) {
+    font-size: 14px;
+  }
 }
 
-@mixin author-title() {
+@mixin author-title($mobile) {
   font: {
     family: $serif;
     style: italic;
-    size: 14px;
+    size: 4vw;
   }
   color: $light-text-color;
   letter-spacing: 1px;
+
+  @include respond-to($mobile) {
+    font-size: 14px;
+  }
 }
