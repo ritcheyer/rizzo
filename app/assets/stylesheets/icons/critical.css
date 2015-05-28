@@ -1,3 +1,6 @@
+.icon--article--before:before, .icon--article--after:after,
+.icon--article { background-image: url('png/article.png'); background-repeat: no-repeat; }
+
 .icon--bold--before:before, .icon--bold--after:after,
 .icon--bold { background-image: url('png/bold.png'); background-repeat: no-repeat; }
 
@@ -17,6 +20,9 @@
 .picker__nav--next,
 .icon--chevron-right--before:before, .icon--chevron-right--after:after,
 .icon--chevron-right { background-image: url('png/chevron-right.png'); background-repeat: no-repeat; }
+
+.icon--comment--before:before, .icon--comment--after:after,
+.icon--comment { background-image: url('png/comment.png'); background-repeat: no-repeat; }
 
 .icon--cross--before:before, .icon--cross--after:after,
 .icon--cross { background-image: url('png/cross.png'); background-repeat: no-repeat; }
