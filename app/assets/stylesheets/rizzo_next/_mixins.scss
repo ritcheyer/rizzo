@@ -115,3 +115,27 @@ $base-font-size: 14 !default;
     font-size: 14px;
   }
 }
+
+$button-divider-line-width: 124px;
+@mixin see-more-link {
+  position: relative;
+  margin-top: 40px;
+  padding-top: 15px;
+  text-align: center;
+
+  @include respond-to($mobile-breakpoint) {
+    margin-top: 80px;
+  }
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: $button-divider-line-width;
+    height: 1px;
+    margin-left: -($button-divider-line-width/2);
+    background: #dde8f1;
+    content: "";
+  }
+}
