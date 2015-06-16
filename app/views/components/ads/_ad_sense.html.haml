@@ -1,7 +1,7 @@
 - type = defined?(properties) ? properties[:type] : "default"
 - adsense = ad_sense_properties(type)
 
-- content_for :scripts do
+-# content_for :scripts do
   %script{ async: true, src: "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}
   :javascript
     (adsbygoogle = window.adsbygoogle || []).push({});

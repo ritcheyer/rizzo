@@ -1,7 +1,7 @@
 define([
   "jquery",
   "flamsteed",
-  "lib/core/ad_manager",
+  // "lib/core/ad_manager",
 
   "sCode",
   "trackjs",
@@ -25,9 +25,9 @@ define([
 
   $(document).ready(function() {
 
-    if (window.lp.ads) {
-      new AdManager(window.lp.ads).init();
-    }
+    // if (window.lp.ads) {
+    //   new AdManager(window.lp.ads).init();
+    // }
 
     if (window.location.protocol !== "https:") {
       // FS can't be served over https https://trello.com/c/2RCd59vk
